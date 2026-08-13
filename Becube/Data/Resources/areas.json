@@ -1,1 +1,13 @@
-{ "areas": [] }
+[
+    {
+        "id": "box_breathing",
+        "index": 0,
+        "name": "box breathing",
+        "image": "box breathing",
+        "philosophy": "Beautiful Blue Flower",
+        "info": {
+            "what is it": "cool",
+            "when is it": "now"
+        }
+    }
+]

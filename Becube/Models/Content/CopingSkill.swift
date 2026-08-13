@@ -8,5 +8,13 @@
 //
 
 import Foundation
+import UIKit
 
-// TODO: implement
+struct CopingSkill: Codable{
+    let id: String
+    let index: Int
+    let name: String
+    let image: String
+    let philosophy: String
+    let info: [String: String]
+}

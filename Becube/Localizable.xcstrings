@@ -1,0 +1,29 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "boxBreathingDisplayName" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Box Breathing"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pernapasan Kotak"
+          }
+        }
+      }
+    },
+    "boxBreathingWhatIsIt" : {
+      "extractionState" : "manual"
+    },
+    "boxBreathingWhyItWorks" : {
+      "extractionState" : "manual"
+    }
+  },
+  "version" : "1.2"
+}

@@ -8,5 +8,17 @@
 //
 
 import Foundation
+import SwiftData
 
-// TODO: implement
+@Model
+class GardenState {
+    var name: String
+    var unlockedCSIds: [String] = []
+    var toolBoxSkillIds: [String] = []
+    var unlockedForestAreaIds: [String] = []
+    
+    init(name: String){
+        self.name = name
+    }
+    
+}
