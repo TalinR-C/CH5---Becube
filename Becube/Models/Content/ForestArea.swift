@@ -9,4 +9,6 @@
 
 import Foundation
 
-// TODO: implement
+struct ForestArea: Codable{
+    
+}

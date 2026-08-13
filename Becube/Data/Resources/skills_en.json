@@ -1,1 +1,14 @@
-{ "skills": [] }
+{
+    "skills": [
+        "id": "box_breathing",
+        "name": "box breathing",
+        "image": "box breathing",
+        "philosophy": "Beautiful Blue Flower",
+        "index": 0,
+        "info": [
+            "what is it": "cool",
+            "when is it": "now"
+        ]
+        
+    ]
+}
