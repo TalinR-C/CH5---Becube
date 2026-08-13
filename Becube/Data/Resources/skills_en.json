@@ -1,10 +1,10 @@
 [
   {
     "id": "urge_surfing",
-    "name": "Urge Surfing",
-    "plantImage": "plant_teratai",
-    "plantPhilosophy": "The lotus rests on water that never stops moving. It does not fight the current or sink into it — it stays on the surface and lets the water pass.",
     "index": 1,
+    "name": "Urge Surfing",
+    "image": "plant_teratai",
+    "philosophy": "The lotus rests on water that never stops moving. It does not fight the current or sink into it — it stays on the surface and lets the water pass.",
     "info": {
       "what is it": "Noticing an urge and staying with it as a physical sensation until it passes, instead of acting on it or fighting it.",
       "how to do it?": "1. Name it: \"there's an urge.\"\n2. Find where it sits in your body — chest, stomach, jaw, hands.\n3. Describe it: hot or cold, tight or buzzing, still or moving.\n4. Breathe normally and keep watching.\n5. Notice it change. It will not stay at the same level.",
@@ -14,10 +14,10 @@
   },
   {
     "id": "delay_and_distract",
-    "name": "Delay and Distract",
-    "plantImage": "plant_bambu",
-    "plantPhilosophy": "Bamboo spends years growing roots underground before anything shows above the soil. Waiting is not doing nothing.",
     "index": 2,
+    "name": "Delay and Distract",
+    "image": "plant_bambu",
+    "philosophy": "Bamboo spends years growing roots underground before anything shows above the soil. Waiting is not doing nothing.",
     "info": {
       "what is it": "Putting a decision on hold for a short, set period, and filling that period with something absorbing.",
       "how to do it?": "1. Say it: \"not now — 15 minutes.\"\n2. Set a timer.\n3. Do one thing that takes your hands and attention: walk, wash dishes, call someone, prayer, a game.\n4. When the timer ends, check in. Extend if you want to.\n5. You are not promising forever. Only the next 15 minutes.",
@@ -27,10 +27,10 @@
   },
   {
     "id": "high_risk_situations",
-    "name": "Knowing Your Risky Moments",
-    "plantImage": "plant_beringin",
-    "plantPhilosophy": "The banyan sends roots out across the ground long before it stands tall. It learns the shape of the land first.",
     "index": 3,
+    "name": "Knowing Your Risky Moments",
+    "image": "plant_beringin",
+    "philosophy": "The banyan sends roots out across the ground long before it stands tall. It learns the shape of the land first.",
     "info": {
       "what is it": "Mapping in advance the people, places, times and feelings that reliably raise your risk — and deciding what you will do about each.",
       "how to do it?": "1. List your last 3–5 close calls.\n2. For each, write what was happening 30 minutes before.\n3. Sort them: avoid for now / go, but with a plan / unavoidable, needs a skill.\n4. Write one action for each.",
@@ -40,10 +40,10 @@
   },
   {
     "id": "refusal_skills",
-    "name": "Saying No",
-    "plantImage": "plant_pandan",
-    "plantPhilosophy": "Pandan has a sharp edge along every leaf. It gives freely and it is still not easy to take from.",
     "index": 4,
+    "name": "Saying No",
+    "image": "plant_pandan",
+    "philosophy": "Pandan has a sharp edge along every leaf. It gives freely and it is still not easy to take from.",
     "info": {
       "what is it": "A short, practised, repeatable way to refuse an offer — the words, the voice, and an exit.",
       "how to do it?": "1. Pick your line and keep it short: \"No thanks, I'm not drinking.\"\n2. No long explanation — explaining invites negotiation.\n3. Say it with eye contact and a steady voice. No apology.\n4. Offer something else or change the subject.\n5. Have an exit ready. Use it if they push twice.\n6. Rehearse out loud beforehand, ideally with someone playing the pressure.",
@@ -53,10 +53,10 @@
   },
   {
     "id": "paced_breathing",
-    "name": "Slow Breathing",
-    "plantImage": "plant_jepun",
-    "plantPhilosophy": "The frangipani opens slowly and keeps its scent through the night. Nothing about it is hurried.",
     "index": 5,
+    "name": "Slow Breathing",
+    "image": "plant_jepun",
+    "philosophy": "The frangipani opens slowly and keeps its scent through the night. Nothing about it is hurried.",
     "info": {
       "what is it": "Slowing your breathing to about six breaths a minute, with the out-breath longer than the in-breath.",
       "how to do it?": "1. Sit upright.\n2. Breathe in through the nose for a count of 4.\n3. Breathe out for a count of 6.\n4. Normal size breath — slower rate, not bigger breaths.\n5. Continue 2–5 minutes.\n6. If you feel light-headed, go back to normal breathing. That means the breaths are too big.",
@@ -66,10 +66,10 @@
   },
   {
     "id": "cold_water_reset",
-    "name": "Cold on the Face",
-    "plantImage": "plant_mentha",
-    "plantPhilosophy": "Mint cools whatever it touches. It does not solve anything — it makes the next moment bearable enough to think in.",
     "index": 6,
+    "name": "Cold on the Face",
+    "image": "plant_mentha",
+    "philosophy": "Mint cools whatever it touches. It does not solve anything — it makes the next moment bearable enough to think in.",
     "info": {
       "what is it": "Briefly putting cold on your face to trigger a reflex that slows your heart. A reset that buys you access to your other skills.",
       "how to do it?": "SAFETY FIRST — do not use this without medical advice if you have a heart condition, a low heart rate, high or low blood pressure, an eating disorder, or take beta-blockers.\n\n1. Fill a bowl with cold water, or use a cold wet cloth or a wrapped ice pack.\n2. Hold your breath.\n3. Apply the cold around your eyes and upper cheeks, or lean your face into the bowl.\n4. Hold 15–30 seconds.\n5. Come up and breathe. Repeat once or twice if needed.",
@@ -79,10 +79,10 @@
   },
   {
     "id": "muscle_release",
-    "name": "Muscle Release",
-    "plantImage": "plant_pakis",
-    "plantPhilosophy": "The fern grows coiled tight, then opens. It cannot unfurl without having been curled first.",
     "index": 7,
+    "name": "Muscle Release",
+    "image": "plant_pakis",
+    "philosophy": "The fern grows coiled tight, then opens. It cannot unfurl without having been curled first.",
     "info": {
       "what is it": "Tensing a muscle group, then releasing it, working through the body — and noticing the difference between tense and loose.",
       "how to do it?": "1. Start at your hands. Clench for 5 seconds.\n2. Release, and notice the change for 10 seconds.\n3. Move up: forearms, shoulders, jaw, stomach, legs, feet.\n4. Breathe out as you release.\n5. Full body takes 10–15 minutes. Hands, shoulders and jaw alone takes 2.",
@@ -92,10 +92,10 @@
   },
   {
     "id": "grounding",
-    "name": "Grounding",
-    "plantImage": "plant_akar_wangi",
-    "plantPhilosophy": "Vetiver is grown on slopes to stop the soil washing away. Its whole value is in the roots, not what shows.",
     "index": 8,
+    "name": "Grounding",
+    "image": "plant_akar_wangi",
+    "philosophy": "Vetiver is grown on slopes to stop the soil washing away. Its whole value is in the roots, not what shows.",
     "info": {
       "what is it": "Using your senses to pull your attention out of your head and back into the room.",
       "how to do it?": "Name, out loud or silently:\n5 things you can see\n4 things you can feel — chair, floor, fabric, air\n3 things you can hear\n2 things you can smell\n1 thing you can taste\n\nGo slowly. Repeat if you still feel far away.",
@@ -105,10 +105,10 @@
   },
   {
     "id": "checking_the_thought",
-    "name": "Checking the Thought",
-    "plantImage": "plant_kaca_piring",
-    "plantPhilosophy": "Kaca piring is named for glass. A thought is worth looking through, not just believing.",
     "index": 9,
+    "name": "Checking the Thought",
+    "image": "plant_kaca_piring",
+    "philosophy": "Kaca piring is named for glass. A thought is worth looking through, not just believing.",
     "info": {
       "what is it": "Catching the thought driving a feeling, then testing it against evidence instead of accepting it or arguing with it.",
       "how to do it?": "1. Write the situation in one line.\n2. Write the thought exactly as it arrived — \"I've ruined everything.\"\n3. Rate how much you believe it, 0–10.\n4. Write what supports it.\n5. Write what does not fit it.\n6. Write a version that accounts for both.\n7. Rate your belief again.",
@@ -118,10 +118,10 @@
   },
   {
     "id": "opposite_action",
-    "name": "Opposite Action",
-    "plantImage": "plant_bunga_matahari",
-    "plantPhilosophy": "The sunflower turns its face toward the light. It is a movement, made daily, not a feeling.",
     "index": 10,
+    "name": "Opposite Action",
+    "image": "plant_bunga_matahari",
+    "philosophy": "The sunflower turns its face toward the light. It is a movement, made daily, not a feeling.",
     "info": {
       "what is it": "When an emotion pushes you toward something that will make things worse, doing the opposite — fully.",
       "how to do it?": "1. Name the emotion.\n2. Name what it is pushing you to do — hide, lash out, use, stay in bed.\n3. Ask: does acting on this fit the facts, and will it help?\n4. If no, find the opposite: approach instead of avoid, gentle instead of attack, get up instead of stay down.\n5. Do it all the way — posture, voice, face included. Half-doing it does not work.",
@@ -131,10 +131,10 @@
   },
   {
     "id": "scheduling_good_activity",
-    "name": "One Good Thing",
-    "plantImage": "plant_gemitir",
-    "plantPhilosophy": "Gemitir is picked for the offering every morning, whether or not the day feels worth marking. The act comes first.",
     "index": 11,
+    "name": "One Good Thing",
+    "image": "plant_gemitir",
+    "philosophy": "Gemitir is picked for the offering every morning, whether or not the day feels worth marking. The act comes first.",
     "info": {
       "what is it": "Deliberately putting one meaningful or rewarding activity into your day, planned in advance — whether or not you feel like it.",
       "how to do it?": "1. List activities that used to matter, or still do. Small ones count.\n2. Pick one.\n3. Give it a specific slot: day, time, place.\n4. Do it whether or not motivation arrives.\n5. Rate your mood before and after.\n6. Build up to a few per week.",
@@ -144,10 +144,10 @@
   },
   {
     "id": "if_then_plans",
-    "name": "If–Then Plans",
-    "plantImage": "plant_bunga_pukul_empat",
-    "plantPhilosophy": "The four o'clock flower opens at the same hour every day. It does not decide each afternoon — the cue does it.",
     "index": 12,
+    "name": "If–Then Plans",
+    "image": "plant_bunga_pukul_empat",
+    "philosophy": "The four o'clock flower opens at the same hour every day. It does not decide each afternoon — the cue does it.",
     "info": {
       "what is it": "Deciding in advance the exact situation and the exact response, in one sentence, before the situation arrives.",
       "how to do it?": "1. Pick one risky situation you already know about.\n2. Write: \"IF [specific trigger], THEN I will [specific action].\"\n3. Make the trigger something you can actually notice — \"if I walk past the shop on the way home,\" not \"if I feel tempted.\"\n4. Attach it to something already in your day rather than a clock time.\n5. Say it, write it, put it where you will see it.",
@@ -157,10 +157,10 @@
   },
   {
     "id": "tracking",
-    "name": "Tracking",
-    "plantImage": "plant_jati",
-    "plantPhilosophy": "The teak tree keeps a ring for every year, wet ones and dry ones alike. It does not choose which years to record.",
     "index": 13,
+    "name": "Tracking",
+    "image": "plant_jati",
+    "philosophy": "The teak tree keeps a ring for every year, wet ones and dry ones alike. It does not choose which years to record.",
     "info": {
       "what is it": "Recording what actually happens — urges, mood, use, skills tried — instead of relying on memory.",
       "how to do it?": "1. Pick two or three things to log.\n2. Log close to when it happens, not at the end of the week.\n3. Keep it short — a number and a word.\n4. Log hard days with the same detail as good ones.\n5. Look back weekly for patterns: times, places, feelings that repeat.",
@@ -170,10 +170,10 @@
   },
   {
     "id": "reaching_out",
-    "name": "Reaching Out",
-    "plantImage": "plant_bakau",
-    "plantPhilosophy": "Mangroves grow with their roots tangled into each other. That is how they hold a shoreline that no single tree could hold.",
     "index": 14,
+    "name": "Reaching Out",
+    "image": "plant_bakau",
+    "philosophy": "Mangroves grow with their roots tangled into each other. That is how they hold a shoreline that no single tree could hold.",
     "info": {
       "what is it": "Contacting a specific named person, before you need them, with a specific ask.",
       "how to do it?": "1. Name 2–3 people in advance and write them down.\n2. Decide what you would say — \"I'm having a hard night, can you talk for ten minutes?\"\n3. Ask for something concrete: company, a call, a distraction, a ride away from somewhere.\n4. Reach out early, not at the peak.\n5. If nobody answers, the L.I.S.A. Helpline is open 24 hours, in both languages.",
@@ -183,10 +183,10 @@
   },
   {
     "id": "after_a_slip",
-    "name": "After a Slip",
-    "plantImage": "plant_pisang",
-    "plantPhilosophy": "A banana plant fruits once and falls. But it has already grown a shoot beside it, and that one is the same plant, continuing.",
     "index": 15,
+    "name": "After a Slip",
+    "image": "plant_pisang",
+    "philosophy": "A banana plant fruits once and falls. But it has already grown a shoot beside it, and that one is the same plant, continuing.",
     "info": {
       "what is it": "Treating a slip as an event with causes you can look at, rather than as proof about who you are.",
       "how to do it?": "1. Stop the episode. Getting through the next hour matters more than understanding it.\n2. Get somewhere safe and tell one person.\n3. When you are steadier, write what happened in the hour before — where, who, what feeling.\n4. Name the situation, not a verdict about your character.\n5. Pick one thing to change, and make one if–then plan for that exact situation.\n6. Go back to your routine the same day if you can.",
@@ -195,4 +195,3 @@
     }
   }
 ]
-
