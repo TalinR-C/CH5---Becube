@@ -7,18 +7,20 @@
 //  SwiftData @Model
 //
 
-import Foundation
 import SwiftData
 
 @Model
 class GardenState {
     var name: String
-    var unlockedCSIds: [String] = []
-    var toolBoxSkillIds: [String] = []
-    var unlockedForestAreaIds: [String] = []
+    var unlockedPlantsID: [String]
+    var unlockedToolboxID: [String]
+    var unlockedForestAreaID: [String]
     
-    init(name: String){
-        self.name = name
+    init(){
+        self.name = ""
+        self.unlockedPlantsID = []
+        self.unlockedToolboxID = []
+        self.unlockedForestAreaID = []
     }
     
 }

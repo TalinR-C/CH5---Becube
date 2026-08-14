@@ -14,13 +14,6 @@ struct CopingSkill: Codable{
     let index: Int
     let name: String
     let image: String
-    let philosophy: String
-    let info: SkillInfo
-}
-
-struct SkillInfo: Codable{
-    let what: String
-    let how: String
-    let when: String
-    let why: String
+    let plantPhilosophy: String
+    let info: [String: String]
 }
