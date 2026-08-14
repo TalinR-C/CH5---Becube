@@ -11,28 +11,27 @@ import SwiftData
 
 @Observable
 class GardenStore {
-    private let contex: ModelContext
-    var current: GardenState
+    private let context: ModelContext
+    var gardenState: GardenState
     
     init(context: ModelContext) {
-        self.contex = context
+        self.context = context
         let existing = try? context.fetch(FetchDescriptor<GardenState>())
         
         if let found = existing?.first {
-            self.current = found
+            self.gardenState = found
             print("Found GardenState")
         } else {
             let created = GardenState()
             context.insert(created)
-            self.current = created
+            self.gardenState = created
             print("Created GardenState")
         }
     }
     
     func appendUnlockedPlant(id: String){
-        current.unlockedPlantsID.append(id)
-        do{try contex.save(); print("Saved!!")} catch{print("Error saving GardenState")}
-        
+        gardenState.unlockedPlantsID.append(id)
+        do{try context.save(); print("Saved!!")} catch{print("Error saving GardenState")}
     }
     
     
