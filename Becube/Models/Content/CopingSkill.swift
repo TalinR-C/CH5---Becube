@@ -8,7 +8,6 @@
 //
 
 import Foundation
-import UIKit
 
 struct CopingSkill: Codable{
     let id: String
