@@ -7,6 +7,28 @@
 //  Tab bar: Forest / Garden / Toolkit / Settings
 //
 
-import Foundation
+import SwiftUI
+import SwiftData
 
-// TODO: implement
+struct RootView {
+    var body: some View {
+        TabView {
+            NavigationStack {
+                ShelfListView()
+            }
+            .tabItem {
+                Label("Shelf", systemImage: "book.closed.fill")
+            }
+            GardenView()
+                .tabItem {
+                    Label("Garden", systemImage: "garden")
+                }
+            NavigationStack {
+                ForestAreaView()
+            }
+            .tabItem {
+                Label("Forest", systemImage: "forest")
+            }
+        }
+    }
+}

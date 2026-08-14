@@ -7,6 +7,18 @@
 //  SwiftData reads/writes
 //
 
-import Foundation
+import SwiftData
 
-// TODO: implement
+@Observable
+class GardenStore {
+    private let contex: ModelContext
+    
+    init(context: ModelContext) {
+        self.contex = context
+    }
+    
+
+    
+}
+
+

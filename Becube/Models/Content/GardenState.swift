@@ -7,7 +7,6 @@
 //  SwiftData @Model
 //
 
-import Foundation
 import SwiftData
 
 @Model
@@ -18,7 +17,10 @@ class GardenState {
     var unlockedForestAreaIds: [String] = []
     
     init(name: String){
-        self.name = name
+        self.name = ""
+        self.unlockedCSIds = []
+        self.toolBoxSkillIds = []
+        self.unlockedForestAreaIds = []
     }
     
 }

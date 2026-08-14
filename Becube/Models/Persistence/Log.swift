@@ -26,5 +26,3 @@ class Log {
         self.journal = journal
     }
 }
-
-// TODO: implement

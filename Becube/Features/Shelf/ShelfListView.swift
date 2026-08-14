@@ -5,6 +5,14 @@
 //  Created by Talin Russo-Christoffelsz on 13/08/26.
 //
 
-import Foundation
+import SwiftUI
 
-// TODO: implement
+struct ShelfListView: View {
+    var body: some View {
+        VStack {
+            List()
+        }
+    }
+}
+
+
