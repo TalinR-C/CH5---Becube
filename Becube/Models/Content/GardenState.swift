@@ -12,11 +12,11 @@ import SwiftData
 @Model
 class GardenState {
     var name: String
-    var unlockedCSIds: [String] = []
-    var toolBoxSkillIds: [String] = []
-    var unlockedForestAreaIds: [String] = []
+    var unlockedCSIds: [String]
+    var toolBoxSkillIds: [String]
+    var unlockedForestAreaIds: [String]
     
-    init(name: String){
+    init(){
         self.name = ""
         self.unlockedCSIds = []
         self.toolBoxSkillIds = []

@@ -10,7 +10,7 @@ import SwiftUI
 struct ShelfListView: View {
     var body: some View {
         VStack {
-            List()
+            Text("ShelfListView")
         }
     }
 }

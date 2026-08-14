@@ -24,8 +24,8 @@ struct BecubeApp: App {
         }
     }()
     
-    var gardenStore : GardenStore {
-        
+    var gardenStore: GardenStore {
+        GardenStore(context: sharedModelContainer.mainContext)
     }
 
     var body: some Scene {
