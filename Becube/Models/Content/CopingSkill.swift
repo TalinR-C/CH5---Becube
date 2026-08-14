@@ -15,6 +15,6 @@ struct CopingSkill: Codable{
     let index: Int
     let name: String
     let image: String
-    let philosophy: String
+    let plantPhilosophy: String
     let info: [String: String]
 }
