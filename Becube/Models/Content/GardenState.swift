@@ -12,15 +12,15 @@ import SwiftData
 @Model
 class GardenState {
     var name: String
-    var unlockedCSIds: [String]
-    var toolBoxSkillIds: [String]
-    var unlockedForestAreaIds: [String]
+    var unlockedPlantsID: [String]
+    var unlockedToolboxID: [String]
+    var unlockedForestAreaID: [String]
     
     init(){
         self.name = ""
-        self.unlockedCSIds = []
-        self.toolBoxSkillIds = []
-        self.unlockedForestAreaIds = []
+        self.unlockedPlantsID = []
+        self.unlockedToolboxID = []
+        self.unlockedForestAreaID = []
     }
     
 }

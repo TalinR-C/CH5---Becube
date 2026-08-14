@@ -29,6 +29,14 @@ class GardenStore {
         }
     }
     
+    func appendUnlockedPlant(id: String){
+        current.unlockedPlantsID.append(id)
+        do{try contex.save(); print("Saved!!")} catch{print("Error saving GardenState")}
+        
+    }
+    
+    
+    
     
 }
 

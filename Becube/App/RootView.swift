@@ -10,25 +10,25 @@
 import SwiftUI
 import SwiftData
 
-struct RootView {
+struct RootView: View {
     var body: some View {
         TabView {
-            NavigationStack {
-                ShelfListView()
-            }
+            ShelfListView()
             .tabItem {
                 Label("Shelf", systemImage: "book.closed.fill")
             }
             GardenView()
-                .tabItem {
-                    Label("Garden", systemImage: "garden")
-                }
-            NavigationStack {
-                ForestAreaView()
+            .tabItem {
+                Label("Garden", systemImage: "garden")
             }
+            ForestAreaView()
             .tabItem {
                 Label("Forest", systemImage: "forest")
             }
         }
     }
+}
+
+#Preview {
+    RootView()
 }

@@ -30,9 +30,11 @@ struct BecubeApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
         }
         .modelContainer(sharedModelContainer)
         .environment(gardenStore)
     }
 }
+
+
