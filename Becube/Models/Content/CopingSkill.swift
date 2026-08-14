@@ -8,7 +8,6 @@
 //
 
 import Foundation
-import UIKit
 
 struct CopingSkill: Codable{
     let id: String
@@ -16,5 +15,12 @@ struct CopingSkill: Codable{
     let name: String
     let image: String
     let philosophy: String
-    let info: [String: String]
+    let info: SkillInfo
+}
+
+struct SkillInfo: Codable{
+    let what: String
+    let how: String
+    let when: String
+    let why: String
 }
