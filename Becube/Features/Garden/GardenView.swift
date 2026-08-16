@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct GardenView: View {
+    @Environment(GardenStore.self) var gardenStore
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
         Text(ContentRepository.skills[0].name)
+        Button{
+            gardenStore.appendUnlockedPlant(id: "test")
+        } label: {
+            Text("Add Plant")
+        }
+
     }
 }
 

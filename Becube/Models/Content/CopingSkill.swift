@@ -8,13 +8,12 @@
 //
 
 import Foundation
-import UIKit
 
 struct CopingSkill: Codable{
     let id: String
     let index: Int
     let name: String
     let image: String
-    let philosophy: String
+    let plantPhilosophy: String
     let info: [String: String]
 }
