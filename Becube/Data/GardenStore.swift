@@ -29,12 +29,15 @@ class GardenStore {
         }
     }
     
+    func resetData(){
+        gardenState.unlockedPlantsID.removeAll()
+        do{try context.save(); print("Saved!!")} catch{print("Error saving GardenState")}
+    }
+    
     func appendUnlockedPlant(id: String){
         gardenState.unlockedPlantsID.append(id)
         do{try context.save(); print("Saved!!")} catch{print("Error saving GardenState")}
     }
-    
-    
     
     
 }

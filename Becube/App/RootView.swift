@@ -13,17 +13,14 @@ import SwiftData
 struct RootView: View {
     var body: some View {
         TabView {
-            ShelfListView()
-            .tabItem {
-                Label("Shelf", systemImage: "book.closed.fill")
+            Tab("Shelf", systemImage: "book.closed.fill"){
+                ShelfListView()
             }
-            GardenView()
-            .tabItem {
-                Label("Garden", systemImage: "garden")
+            Tab("Garden", systemImage: "garden"){
+                GardenView()
             }
-            ForestAreaView()
-            .tabItem {
-                Label("Forest", systemImage: "forest")
+            Tab("Forest", systemImage: "forest"){
+                ForestAreaView()
             }
         }
     }
