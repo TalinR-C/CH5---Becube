@@ -2,7 +2,7 @@
 //  ForestAreaView.swift
 //  Becube
 //
-//  Created by Talin Russo-Christoffelsz on 13/08/26.
+//  Created by Muhammad Saleh Bagir Alatas on 14/08/26.
 //
 
 import Foundation
@@ -10,13 +10,28 @@ import Foundation
 import SwiftUI
 
 struct ForestAreaView: View {
+    @Environment(\.modelContext) private var context
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            Image(ImageResource.riverbend)
+                .resizable()
+                .ignoresSafeArea()
+            
+            Text("Forest One")
+                .font(.largeTitle)
+                .bold()
+                .position(x: 200, y: 50)
+                
+            Text("Hello")
+                .position(x: 100, y: 200)
         }
-        .padding()
+        .padding(0)
+    }
+}
+
+#Preview {
+    NavigationStack {
+        ForestAreaView()
     }
 }

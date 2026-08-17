@@ -8,3 +8,8 @@
 import Foundation
 
 // TODO: implement
+
+@Observable
+class ForestAreaViewModel {
+    
+}
