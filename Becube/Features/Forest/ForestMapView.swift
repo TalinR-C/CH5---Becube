@@ -22,41 +22,45 @@ struct ForestMapView: View {
             
             if let viewModel {
                 NavigationLink {
-                    
+                    ForestAreaView(forestArea: viewModel.forestAreas[0])
                 } label: {
                     AreaButton(areaStatus: viewModel.areaStatus[0])
-                        .position(x: 100, y: 200)
                 }
-                
-                
+                .disabled(!viewModel.areaStatus[0].unlocked)
+                .position(x: 100, y: 200)
+
+
                 NavigationLink {
-                    
+                    ForestAreaView(forestArea: viewModel.forestAreas[1])
                 } label: {
                     AreaButton(areaStatus: viewModel.areaStatus[1])
-                        .position(x: 300, y: 200)
                 }
-                
-                
+                .disabled(!viewModel.areaStatus[1].unlocked)
+                .position(x: 300, y: 200)
+
+
                 NavigationLink {
-                    
+
                 } label: {
                     GoToGardenButton()
-                        .position(x: 200, y: 400)
                 }
-                
+                .position(x: 200, y: 400)
+
                 NavigationLink {
-                
+                    ForestAreaView(forestArea: viewModel.forestAreas[2])
                 } label: {
                     AreaButton(areaStatus: viewModel.areaStatus[2])
-                        .position(x: 100, y: 600)
                 }
-                
-                Button {
-                    
+                .disabled(!viewModel.areaStatus[2].unlocked)
+                .position(x: 100, y: 600)
+
+                NavigationLink {
+                    ForestAreaView(forestArea: viewModel.forestAreas[3])
                 } label: {
                     AreaButton(areaStatus: viewModel.areaStatus[3])
-                        .position(x: 300, y: 600)
                 }
+                .disabled(!viewModel.areaStatus[3].unlocked)
+                .position(x: 300, y: 600)
             }
         }
         .task {
@@ -73,5 +77,7 @@ struct ForestMapView: View {
 }
 
 #Preview {
-    ForestMapView()
+    NavigationStack {
+        ForestMapView()
+    }
 }

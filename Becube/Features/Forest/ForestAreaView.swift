@@ -10,28 +10,43 @@ import Foundation
 import SwiftUI
 
 struct ForestAreaView: View {
-    @Environment(\.modelContext) private var context
-    
+    var forestArea: ForestArea
+
+    // Fixed slots for up to four skill bubbles, alternating left/right
+    private let bubblePositions: [CGPoint] = [
+        CGPoint(x: 100, y: 200),
+        CGPoint(x: 300, y: 250),
+        CGPoint(x: 100, y: 400),
+        CGPoint(x: 300, y: 500)
+    ]
+
     var body: some View {
         ZStack {
             Image(ImageResource.riverbend)
                 .resizable()
                 .ignoresSafeArea()
             
-            Text("Forest One")
+            Text(forestArea.name)
                 .font(.largeTitle)
                 .bold()
                 .position(x: 200, y: 50)
                 
-            Text("Hello")
-                .position(x: 100, y: 200)
+            ForEach(Array(zip(forestArea.copingSkillIds, bubblePositions)), id: \.0) { skillId, position in
+                SkillBubble(message: skillId, tailOffsetDenominator: position.x < 200 ? -4 : 4)
+                    .position(position)
+            }
+            
+            
         }
         .padding(0)
+        .task {
+            
+        }
     }
 }
 
-#Preview {
-    NavigationStack {
-        ForestAreaView()
-    }
-}
+//#Preview {
+//    NavigationStack {
+//        ForestAreaView()
+//    }
+//}

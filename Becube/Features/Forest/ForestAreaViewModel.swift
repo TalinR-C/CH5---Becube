@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import SwiftData
 
 // TODO: implement
 
 @Observable
 class ForestAreaViewModel {
+    
     
 }
