@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct AreaButton: View {
-    var areaStatus: (name: String, isLocked: Bool)
+    var areaStatus: (name: String, unlocked: Bool)
     
     var body: some View {
-        if areaStatus.isLocked {
-            Lock()
-        } else {
+        if areaStatus.unlocked {
             ThinCapsule(text: areaStatus.name)
+        } else {
+            Lock()
         }
     }
 }
@@ -23,6 +23,6 @@ struct AreaButton: View {
     ZStack {
         Color(.green)
         
-        AreaButton(areaStatus: ("Area 1", false))
+        AreaButton(areaStatus: ("Area 1", true))
     }
 }

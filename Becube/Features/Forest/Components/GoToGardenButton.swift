@@ -14,7 +14,7 @@ struct GoToGardenButton: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 80)
-            AreaButton(areaStatus: ("Go to garden", false))
+            AreaButton(areaStatus: ("Go to garden", true))
         }
     }
 }
