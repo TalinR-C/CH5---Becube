@@ -10,5 +10,9 @@
 import Foundation
 
 struct ForestArea: Codable{
+    let id: String
     let name: String
+    let copingSkillIds: [String]
+    let index: Int
+
 }
