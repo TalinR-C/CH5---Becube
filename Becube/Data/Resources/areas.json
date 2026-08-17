@@ -1,13 +1,46 @@
+
 [
-    {
-        "id": "box_breathing",
-        "index": 0,
-        "name": "box breathing",
-        "image": "box breathing",
-        "philosophy": "Beautiful Blue Flower",
-        "info": {
-            "what is it": "cool",
-            "when is it": "now"
-        }
-    }
+  {
+    "id": "riverbend",
+    "name": "The Riverbend",
+    "copingSkillIds": [
+      "urge_surfing",
+      "delay_and_distract",
+      "high_risk_situations",
+      "refusal_skills"
+    ],
+    "index": 1
+  },
+  {
+    "id": "fern_hollow",
+    "name": "The Fern Hollow",
+    "copingSkillIds": [
+      "paced_breathing",
+      "cold_water_reset",
+      "muscle_release",
+      "grounding"
+    ],
+    "index": 2
+  },
+  {
+    "id": "canopy_gap",
+    "name": "The Canopy Gap",
+    "copingSkillIds": [
+      "checking_the_thought",
+      "opposite_action",
+      "scheduling_good_activity",
+      "if_then_plans"
+    ],
+    "index": 3
+  },
+  {
+    "id": "old_grove",
+    "name": "The Old Grove",
+    "copingSkillIds": [
+      "tracking",
+      "reaching_out",
+      "after_a_slip"
+    ],
+    "index": 4
+  }
 ]
