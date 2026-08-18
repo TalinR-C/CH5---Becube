@@ -13,7 +13,6 @@ import SwiftData
 class GardenStore {
     private let context: ModelContext
     var gardenState: GardenState
-    var gardenViewModel = GardenViewModel()
     
     init(context: ModelContext) {
         self.context = context
@@ -29,17 +28,11 @@ class GardenStore {
             print("Created GardenState")
         }
         
-        gardenViewModel.gardenStore = self
         print("initialize gardenviewmodel")
     }
     
     func resetData(){
         gardenState.unlockedPlantsID.removeAll()
-        do{try context.save(); print("Saved!!")} catch{print("Error saving GardenState")}
-    }
-    
-    func appendUnlockedPlant(id: String){
-        gardenState.unlockedPlantsID.append(id)
         do{try context.save(); print("Saved!!")} catch{print("Error saving GardenState")}
     }
     

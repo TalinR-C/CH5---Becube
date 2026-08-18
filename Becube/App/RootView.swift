@@ -11,13 +11,14 @@ import SwiftUI
 import SwiftData
 
 struct RootView: View {
+    @Environment(GardenStore.self) var gardenStore
     var body: some View {
         TabView {
             Tab("Shelf", systemImage: "book.closed.fill"){
                 ShelfListView()
             }
             Tab("Garden", systemImage: "garden"){
-                GardenView()
+                GardenView(viewModel: GardenViewModel(gardenStore: gardenStore))
             }
             Tab("Forest", systemImage: "forest"){
                 ForestAreaView()

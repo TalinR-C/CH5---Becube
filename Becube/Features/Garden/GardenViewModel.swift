@@ -9,15 +9,20 @@ import Foundation
 
 @Observable
 class GardenViewModel {
-    @ObservationIgnored weak var gardenStore: GardenStore?
+    private let gardenStore: GardenStore
     
-    init() {
-        print("YAAY")
+    init(gardenStore: GardenStore) {
+        self.gardenStore = gardenStore
     }
     
-    func resetData(){
-        gardenStore!.gardenState.unlockedPlantsID.removeAll()
-        gardenStore!.saveData()
+    func appendUnlockedPlant(id: String){
+        gardenStore.gardenState.unlockedPlantsID.append(id)
+        gardenStore.saveData()
+    }
+    
+    func resetPlantData(){
+        gardenStore.gardenState.unlockedPlantsID.removeAll()
+        gardenStore.saveData()
     }
     
     func testGardenVM(){
