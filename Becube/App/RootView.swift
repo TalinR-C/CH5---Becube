@@ -21,7 +21,8 @@ struct RootView: View {
             .tabItem {
                 Label("Garden", systemImage: "garden")
             }
-            ForestAreaView()
+            
+            ForestMapView()
             .tabItem {
                 Label("Forest", systemImage: "forest")
             }
@@ -30,5 +31,11 @@ struct RootView: View {
 }
 
 #Preview {
+    let container = try! ModelContainer(
+        for: GardenState.self, Log.self,
+        configurations: ModelConfiguration(isStoredInMemoryOnly: true)
+    )
     RootView()
+        .modelContainer(container)
+        .environment(GardenStore(context: container.mainContext))
 }
