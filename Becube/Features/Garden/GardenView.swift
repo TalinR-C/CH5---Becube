@@ -41,8 +41,9 @@ struct GardenView: View {
             NavigationLink("Go to List"){
                 ContentView()
             }
+            Text(test)
         }
-        Text(test)
+       
         
 //        ForEach(gardenStore.gardenState.unlockedPlantsID, id: \.self){ id in
 //            let plant = ContentRepository.skills.first {$0.id == id}!
