@@ -7,4 +7,20 @@
 
 import Foundation
 
-// TODO: implement
+@Observable
+class GardenViewModel {
+    @ObservationIgnored weak var gardenStore: GardenStore?
+    
+    init() {
+        print("YAAY")
+    }
+    
+    func resetData(){
+        gardenStore!.gardenState.unlockedPlantsID.removeAll()
+        gardenStore!.saveData()
+    }
+    
+    func testGardenVM(){
+        print("GArden test")
+    }
+}

@@ -15,24 +15,28 @@ struct GardenView: View {
 //        Text(ContentRepository.skills[0].name)
         HStack{
             Button{
-                gardenStore.appendUnlockedPlant(id: "test")
+                gardenStore.appendUnlockedPlant(id: "urge_surfing")
             } label: {
                 Text("Add Plant")
             }
             Button{
-                gardenStore.resetData()
+                gardenStore.gardenViewModel.resetData()
             } label: {
                 Text("Reset Data")
             }
+            Button{
+                gardenStore.gardenViewModel.testGardenVM()
+            } label: {
+                Text("Test Garden")
+            }
         }
         
-        
-        
-        ForEach(gardenStore.gardenState.unlockedPlantsID, id: \.self){ id in
-//            let plant = ContentRepository.skills.first {$0.id == id}
-//            Text("test")
-            Text(id)
-        }
+//        ForEach(gardenStore.gardenState.unlockedPlantsID, id: \.self){ id in
+//            let plant = ContentRepository.skills.first {$0.id == id}!
+//            ZStack{
+//                Image(plant.image)
+//            }
+//        }
 
     }
 }
