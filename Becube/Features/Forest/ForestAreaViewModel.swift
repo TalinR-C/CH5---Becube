@@ -12,6 +12,11 @@ import SwiftData
 
 @Observable
 class ForestAreaViewModel {
+    var skills: [CopingSkill]
     
-    
+    init(skills: [CopingSkill]) {
+        self.skills = []
+        
+        self.skills = Bundle.main.decode([CopingSkill].self, from: "skills_en")
+    }
 }
