@@ -8,9 +8,12 @@
 import Foundation
 
 import SwiftUI
+import SwiftData
 
 struct ForestAreaView: View {
     var forestArea: ForestArea
+    var viewModel: ForestAreaViewModel?
+    @Environment(\.modelContext) private var context
 
     // Fixed slots for up to four skill bubbles, alternating left/right
     private let bubblePositions: [CGPoint] = [
