@@ -32,7 +32,7 @@ struct BecubeApp: App {
         WindowGroup {
             RootView()
         }
-//        .modelContainer(sharedModelContainer)
+        .modelContainer(sharedModelContainer)
         .environment(gardenStore)
     }
 }
