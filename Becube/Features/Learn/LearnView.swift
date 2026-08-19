@@ -21,8 +21,8 @@ struct LearnView: View {
                 .ignoresSafeArea()
 
                 VStack(spacing: 20) {
-                    
-//                    captionCard(text: "Box Breathing", tailPosition: .topCenter)
+
+//                    CommentBox(text: "Box Breathing", tailPosition: .topCenter)
 
                     header /// custom top row: back button + skill name
                     
@@ -179,20 +179,16 @@ struct LearnView: View {
                                 y: 4)
                     )
 
-                captionCard(text: viewModel.currentPageText)
-                    .font(.system(size: 15, weight: .regular, design: .rounded))
-                    .foregroundStyle(Color.brown)
-                
-                // the small text box below the image, reused via a helper function
+                CommentBox(text: viewModel.currentPageText)
+
+                // the small text box below the image, now shared via Components/CommentBox
             }
 
         case .why:
             VStack(spacing: 12) {
                 ForEach(Array(whyParagraphs.enumerated()), id: \.offset) { _, paragraph in
                     // loops over each separated paragraph string
-                    captionCard(text: paragraph)
-                        .font(.system(size: 15, weight: .regular, design: .rounded))
-                        .foregroundStyle(Color.brown)
+                    CommentBox(text: paragraph)
                     // wraps each paragraph in its own card
                 }
             }
@@ -250,29 +246,9 @@ struct LearnView: View {
         // splits it wherever there's a blank line (two newlines in a row), one chunk per paragraph
     }
 
-    private func captionCard(text: String, tailPosition: TailPosition = .none) -> some View {
-        
-        // a small reusable piece: takes any string, returns a styled text box
-        Text(text)
-            .font(.system(size: 15, weight: .regular, design: .rounded))
-            .padding()
-//            .frame(maxWidth: .infinity)
-            .background(
-                BulgingCardShape(cornerRadius: 40, bulge: 4, tailPosition: tailPosition)
-                    .stroke(Color.brown, lineWidth: 2)
-            )
-            
-            .padding(8)
-        
-            .background(
-                BulgingCardShape(cornerRadius: 48, bulge: 6, tailPosition: tailPosition)
-                    .fill(Color(.systemBackground))
-                    .shadow(color: Color.black.opacity(0.05), radius: 8, x: 0, y: 4)
-            )
-          
-    }
+    // captionCard used to live here as a private helper — it's now the shared
+    // CommentBox view in Becube/Components, so any feature can use it.
 
-    
     //reusable card for how to steps
     private func stepsCard<Content: View>(
         tailPosition: TailPosition = .none,
@@ -296,23 +272,3 @@ struct LearnView: View {
 }
 
 //Struct to add buldge effect on stepscard
-
-    
-
-#Preview {
-    let viewModel = LearnViewModel(skillID: "grounding")
-    viewModel.skill = CopingSkill(
-        id: "grounding",
-        index: 8,
-        name: "Grounding",
-        image: "plant_akar_wangi",
-        plantPhilosophy: "Vetiver is grown on slopes to stop the soil washing away.",
-        info: [
-            "what": "Using your senses to pull your attention out of your head and back into the room.",
-            "how": "Name 5 things you can see\nName 4 things you can feel\nName 3 things you can hear\nName 2 things you can smell\nName 1 thing you can taste",
-            "when": "Panic, feeling unreal or detached, a memory surfacing.",
-            "why": "Attention is limited. Filling it with real things around you leaves less room for the spiral inside.\n\nThis exact exercise has not been tested on its own — it is used because clinicians consistently find it helps."
-        ]
-    )
-    return LearnView(viewModel: viewModel)
-}

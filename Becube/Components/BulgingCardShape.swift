@@ -1,12 +1,14 @@
 //
-//  Components.swift
+//  BulgingCardShape.swift
 //  Becube
 //
 //  Created by Ni Ketut Lela Berliani on 19/08/26.
+//  Moved to Components on 19/08/26 so it can be shared across features.
 //
 
 import SwiftUI
 
+/// Which edge of a `BulgingCardShape` (if any) grows a speech-bubble-style tail.
 enum TailPosition: Int {
     case none = 0
     case bottomCenter = 1
@@ -15,6 +17,9 @@ enum TailPosition: Int {
     case bottomRight = 4
 }
 
+/// A rounded-rectangle `Shape` whose top/bottom edges bow outward slightly ("bulge"),
+/// and which can optionally grow a small triangular tail on one edge — used to give
+/// cards a soft, hand-drawn feel and to point them at whatever they're captioning.
 struct BulgingCardShape: Shape {
     var cornerRadius: CGFloat
     var bulge: CGFloat
