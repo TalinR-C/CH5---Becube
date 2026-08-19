@@ -21,6 +21,9 @@ struct LearnView: View {
                 .ignoresSafeArea()
 
                 VStack(spacing: 20) {
+                    
+//                    captionCard(text: "Box Breathing", tailPosition: .topCenter)
+
                     header /// custom top row: back button + skill name
                     
                         ///Current state title
@@ -247,39 +250,43 @@ struct LearnView: View {
         // splits it wherever there's a blank line (two newlines in a row), one chunk per paragraph
     }
 
-    private func captionCard(text: String) -> some View {
+    private func captionCard(text: String, tailPosition: TailPosition = .none) -> some View {
+        
         // a small reusable piece: takes any string, returns a styled text box
         Text(text)
             .font(.system(size: 15, weight: .regular, design: .rounded))
             .padding()
-            .frame(maxWidth: .infinity)
+//            .frame(maxWidth: .infinity)
             .background(
-                BulgingCardShape(cornerRadius: 40, bulge: 6)
+                BulgingCardShape(cornerRadius: 40, bulge: 4, tailPosition: tailPosition)
                     .stroke(Color.brown, lineWidth: 2)
             )
             
             .padding(8)
         
             .background(
-                BulgingCardShape(cornerRadius: 48, bulge: 8)
+                BulgingCardShape(cornerRadius: 48, bulge: 6, tailPosition: tailPosition)
                     .fill(Color(.systemBackground))
                     .shadow(color: Color.black.opacity(0.05), radius: 8, x: 0, y: 4)
             )
+          
     }
 
     
-    //cool reusable buldging card
-    private func stepsCard<Content: View>(@ViewBuilder content: () -> Content) -> some View {
+    //reusable card for how to steps
+    private func stepsCard<Content: View>(
+        tailPosition: TailPosition = .none,
+        @ViewBuilder content: () -> Content) -> some View {
             content()
                 .padding(24)
                 .background(
-                    BulgingCardShape(cornerRadius: 40, bulge: 8)
+                    BulgingCardShape(cornerRadius: 40, bulge: 8, tailPosition: tailPosition)
                         .stroke(Color.brown, lineWidth: 2)
                 )
                 
                 .padding(8)
                 .background(
-                    BulgingCardShape(cornerRadius: 48, bulge: 10)
+                    BulgingCardShape(cornerRadius: 48, bulge: 10, tailPosition: tailPosition)
                         .fill(Color(.systemBackground))
                         .shadow(color: Color.black.opacity(0.05), radius: 8, x: 0, y: 4)
                 )
@@ -289,48 +296,8 @@ struct LearnView: View {
 }
 
 //Struct to add buldge effect on stepscard
-    struct BulgingCardShape: Shape {
-        var cornerRadius: CGFloat
-        var bulge: CGFloat
-        
-        func path(in rect: CGRect) -> Path {
-            var path = Path()
-            
-            path.move(to: CGPoint(x: rect.minX, y: rect.minY + cornerRadius))
-            
-            path.addArc(tangent1End: CGPoint(x: rect.minX, y: rect.minY),
-                        tangent2End: CGPoint(x: rect.minX + cornerRadius, y: rect.minY),
-                        radius: cornerRadius)
-            
-            path.addQuadCurve(
-                to: CGPoint(x: rect.maxX - cornerRadius, y: rect.minY),
-                control: CGPoint(x: rect.midX, y: rect.minY - bulge)
-            )
-            
-            path.addArc(tangent1End: CGPoint(x: rect.maxX, y: rect.minY),
-                        tangent2End: CGPoint(x: rect.maxX, y: rect.minY + cornerRadius),
-                        radius: cornerRadius)
-            
-            path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY - cornerRadius))
-            
-            path.addArc(tangent1End: CGPoint(x: rect.maxX, y: rect.maxY),
-                        tangent2End: CGPoint(x: rect.maxX - cornerRadius, y: rect.maxY),
-                        radius: cornerRadius)
 
-            path.addQuadCurve(
-                to: CGPoint(x: rect.minX + cornerRadius, y: rect.maxY),
-                control: CGPoint(x: rect.midX, y: rect.maxY + bulge)
-            )
-            
-            path.addArc(tangent1End: CGPoint(x: rect.minX, y: rect.maxY),
-                        tangent2End: CGPoint(x: rect.minX, y: rect.maxY - cornerRadius),
-                        radius: cornerRadius)
-            
-            path.closeSubpath()
-            
-            return path
-        }
-    }
+    
 
 #Preview {
     let viewModel = LearnViewModel(skillID: "grounding")
