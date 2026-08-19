@@ -34,7 +34,9 @@ class GardenStore {
         do{try context.save(); print("Saved!!")} catch{print("Error saving GardenState")}
     }
     
-    
+    func getUnlockedPlants() -> [String] {
+        return gardenState.unlockedPlantsID
+    }
     
     
 }
