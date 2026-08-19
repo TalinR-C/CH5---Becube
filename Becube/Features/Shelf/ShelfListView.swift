@@ -10,10 +10,6 @@ import SwiftData
 
 struct ShelfListView: View {
     @State var viewModel: ShelfListViewModel
-    
-    init(gardenStore: GardenStore) {
-        _viewModel = State(initialValue: ShelfListViewModel(gardenStore: gardenStore))
-    }
 
     var body: some View {
         NavigationStack {
