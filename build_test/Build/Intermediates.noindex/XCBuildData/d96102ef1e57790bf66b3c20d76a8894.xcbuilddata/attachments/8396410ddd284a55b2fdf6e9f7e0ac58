@@ -1,0 +1,529 @@
+{
+  "" : {
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Becube-primary.dia",
+    "emit-module-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Becube-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Becube-primary-emit-module.dia",
+    "pch" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Becube-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Becube-primary.swiftdeps"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/App/BecubeApp.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BecubeApp.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BecubeApp.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BecubeApp.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BecubeApp.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BecubeApp.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BecubeApp.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BecubeApp.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BecubeApp~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/App/RootView.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/RootView.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/RootView.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/RootView.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/RootView.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/RootView.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/RootView.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/RootView.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/RootView~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/App/Router.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Router.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Router.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Router.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Router.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Router.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Router.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Router.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Router~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/ContentView.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ContentView.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ContentView.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ContentView.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ContentView.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ContentView.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ContentView~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Data/ContentRepository.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ContentRepository.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ContentRepository.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ContentRepository.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ContentRepository.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ContentRepository.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ContentRepository.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ContentRepository.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ContentRepository~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Data/GardenStore.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenStore.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenStore.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenStore.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenStore.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenStore.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenStore.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenStore.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenStore~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Domain/PracticeService.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeService.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeService.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeService.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeService.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeService.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeService.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeService.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeService~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Domain/Progression.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Progression.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Progression.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Progression.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Progression.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Progression.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Progression.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Progression.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Progression~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Domain/ReflectionService.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectionService.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectionService.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectionService.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectionService.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectionService.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectionService.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectionService.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectionService~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Domain/SkillStats.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SkillStats.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SkillStats.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SkillStats.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SkillStats.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SkillStats.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SkillStats.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SkillStats.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SkillStats~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Domain/ToolkitService.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ToolkitService.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ToolkitService.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ToolkitService.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ToolkitService.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ToolkitService.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ToolkitService.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ToolkitService.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ToolkitService~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Forest/Components/GoToGardenButton.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GoToGardenButton.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GoToGardenButton.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GoToGardenButton.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GoToGardenButton.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GoToGardenButton.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GoToGardenButton.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GoToGardenButton.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GoToGardenButton~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Forest/Components/PlantNode.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PlantNode.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PlantNode.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PlantNode.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PlantNode.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PlantNode.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PlantNode.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PlantNode.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PlantNode~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Forest/Components/ThinCapsuleButton.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ThinCapsuleButton.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ThinCapsuleButton.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ThinCapsuleButton.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ThinCapsuleButton.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ThinCapsuleButton.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ThinCapsuleButton.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ThinCapsuleButton.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ThinCapsuleButton~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Forest/ForestAreaView.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestAreaView.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestAreaView.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestAreaView.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestAreaView.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestAreaView.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestAreaView.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestAreaView.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestAreaView~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Forest/ForestAreaViewModel.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestAreaViewModel.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestAreaViewModel.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestAreaViewModel.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestAreaViewModel.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestAreaViewModel.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestAreaViewModel.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestAreaViewModel.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestAreaViewModel~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Forest/ForestMapView.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestMapView.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestMapView.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestMapView.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestMapView.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestMapView.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestMapView.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestMapView.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestMapView~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Forest/ForestMapViewModel.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestMapViewModel.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestMapViewModel.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestMapViewModel.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestMapViewModel.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestMapViewModel.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestMapViewModel.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestMapViewModel.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestMapViewModel~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Garden/GardenView.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenView.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenView.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenView.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenView.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenView.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenView.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenView.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenView~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Garden/GardenViewModel.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenViewModel.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenViewModel.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenViewModel.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenViewModel.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenViewModel.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenViewModel.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenViewModel.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenViewModel~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Learn/LearnView.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/LearnView.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/LearnView.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/LearnView.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/LearnView.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/LearnView.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/LearnView.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/LearnView.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/LearnView~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Learn/LearnViewModel.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/LearnViewModel.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/LearnViewModel.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/LearnViewModel.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/LearnViewModel.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/LearnViewModel.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/LearnViewModel.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/LearnViewModel.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/LearnViewModel~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Practice/PracticeHostView.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeHostView.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeHostView.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeHostView.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeHostView.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeHostView.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeHostView.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeHostView.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeHostView~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Practice/PracticeRegistry.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeRegistry.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeRegistry.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeRegistry.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeRegistry.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeRegistry.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeRegistry.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeRegistry.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeRegistry~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Practice/PracticeSession.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeSession.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeSession.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeSession.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeSession.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeSession.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeSession.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeSession.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/PracticeSession~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Practice/Shared/BreathCircle.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BreathCircle.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BreathCircle.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BreathCircle.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BreathCircle.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BreathCircle.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BreathCircle.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BreathCircle.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BreathCircle~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Practice/Shared/StepPager.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/StepPager.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/StepPager.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/StepPager.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/StepPager.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/StepPager.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/StepPager.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/StepPager.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/StepPager~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Practice/Shared/TimerRing.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/TimerRing.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/TimerRing.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/TimerRing.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/TimerRing.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/TimerRing.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/TimerRing.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/TimerRing.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/TimerRing~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Practice/Skills/BodyScan/BodyScanView.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BodyScanView.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BodyScanView.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BodyScanView.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BodyScanView.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BodyScanView.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BodyScanView.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BodyScanView.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BodyScanView~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Practice/Skills/BodyScan/BodyScanViewModel.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BodyScanViewModel.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BodyScanViewModel.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BodyScanViewModel.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BodyScanViewModel.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BodyScanViewModel.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BodyScanViewModel.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BodyScanViewModel.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BodyScanViewModel~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Practice/Skills/BoxBreathing/BoxBreathingView.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BoxBreathingView.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BoxBreathingView.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BoxBreathingView.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BoxBreathingView.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BoxBreathingView.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BoxBreathingView.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BoxBreathingView.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BoxBreathingView~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Practice/Skills/BoxBreathing/BoxBreathingViewModel.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BoxBreathingViewModel.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BoxBreathingViewModel.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BoxBreathingViewModel.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BoxBreathingViewModel.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BoxBreathingViewModel.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BoxBreathingViewModel.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BoxBreathingViewModel.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/BoxBreathingViewModel~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Practice/Skills/FiveSenses/FiveSensesView.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/FiveSensesView.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/FiveSensesView.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/FiveSensesView.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/FiveSensesView.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/FiveSensesView.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/FiveSensesView.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/FiveSensesView.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/FiveSensesView~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Practice/Skills/FiveSenses/FiveSensesViewModel.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/FiveSensesViewModel.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/FiveSensesViewModel.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/FiveSensesViewModel.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/FiveSensesViewModel.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/FiveSensesViewModel.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/FiveSensesViewModel.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/FiveSensesViewModel.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/FiveSensesViewModel~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Reflect/ReflectView.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectView.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectView.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectView.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectView.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectView.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectView.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectView.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectView~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Reflect/ReflectViewModel.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectViewModel.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectViewModel.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectViewModel.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectViewModel.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectViewModel.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectViewModel.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectViewModel.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReflectViewModel~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Settings/SettingsView.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SettingsView.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SettingsView.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SettingsView.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SettingsView.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SettingsView.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SettingsView.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SettingsView.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SettingsView~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Settings/SettingsViewModel.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SettingsViewModel.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SettingsViewModel.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SettingsViewModel.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SettingsViewModel.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SettingsViewModel.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SettingsViewModel.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SettingsViewModel.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SettingsViewModel~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Shelf/ShelfListView.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ShelfListView.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ShelfListView.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ShelfListView.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ShelfListView.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ShelfListView.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ShelfListView.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ShelfListView.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ShelfListView~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Shelf/ShelfListViewModel.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ShelfListViewModel.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ShelfListViewModel.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ShelfListViewModel.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ShelfListViewModel.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ShelfListViewModel.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ShelfListViewModel.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ShelfListViewModel.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ShelfListViewModel~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Shelf/SingleSkillPlantView.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SingleSkillPlantView.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SingleSkillPlantView.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SingleSkillPlantView.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SingleSkillPlantView.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SingleSkillPlantView.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SingleSkillPlantView.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SingleSkillPlantView.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SingleSkillPlantView~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Features/Shelf/SingleSkillPlantViewModel.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SingleSkillPlantViewModel.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SingleSkillPlantViewModel.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SingleSkillPlantViewModel.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SingleSkillPlantViewModel.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SingleSkillPlantViewModel.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SingleSkillPlantViewModel.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SingleSkillPlantViewModel.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/SingleSkillPlantViewModel~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Models/Content/CopingSkill.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/CopingSkill.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/CopingSkill.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/CopingSkill.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/CopingSkill.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/CopingSkill.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/CopingSkill.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/CopingSkill.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/CopingSkill~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Models/Content/ForestArea.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestArea.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestArea.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestArea.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestArea.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestArea.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestArea.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestArea.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ForestArea~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Models/Content/GardenState.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenState.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenState.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenState.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenState.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenState.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenState.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenState.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GardenState~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Models/Persistence/AppSettings.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/AppSettings.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/AppSettings.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/AppSettings.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/AppSettings.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/AppSettings.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/AppSettings.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/AppSettings.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/AppSettings~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Models/Persistence/Log.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Log.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Log.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Log.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Log.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Log.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Log.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Log.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Log~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Services/ReminderScheduler.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReminderScheduler.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReminderScheduler.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReminderScheduler.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReminderScheduler.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReminderScheduler.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReminderScheduler.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReminderScheduler.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ReminderScheduler~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Utils.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Utils.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Utils.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Utils.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Utils.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Utils.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Utils.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Utils.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/Utils~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/Becube/Widget/ToolBoxWidget.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ToolBoxWidget.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ToolBoxWidget.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ToolBoxWidget.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ToolBoxWidget.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ToolBoxWidget.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ToolBoxWidget.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ToolBoxWidget.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/ToolBoxWidget~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  },
+  "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/DerivedSources/GeneratedStringSymbols_Localizable.swift" : {
+    "const-values" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GeneratedStringSymbols_Localizable.swiftconstvalues",
+    "dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GeneratedStringSymbols_Localizable.d",
+    "diagnostics" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GeneratedStringSymbols_Localizable.dia",
+    "index-unit-output-path" : "/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GeneratedStringSymbols_Localizable.o",
+    "llvm-bc" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GeneratedStringSymbols_Localizable.bc",
+    "object" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GeneratedStringSymbols_Localizable.o",
+    "swift-dependencies" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GeneratedStringSymbols_Localizable.swiftdeps",
+    "swiftmodule" : "/Users/salehalatas/Documents/Projects/CH5---Becube/build_test/Build/Intermediates.noindex/Becube.build/Debug-iphoneos/Becube.build/Objects-normal/arm64/GeneratedStringSymbols_Localizable~partial.swiftmodule"
+  }
+}

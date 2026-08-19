@@ -16,7 +16,7 @@ struct ForestMapView: View {
     
     var body: some View {
         ZStack {
-            Image(ImageResource.riverbend)
+            Image(ImageResource.forestMap)
                 .resizable()
                 .ignoresSafeArea()
             
@@ -40,7 +40,7 @@ struct ForestMapView: View {
 
 
                 NavigationLink {
-
+                    
                 } label: {
                     GoToGardenButton()
                 }
