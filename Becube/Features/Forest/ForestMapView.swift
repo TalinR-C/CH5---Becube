@@ -11,7 +11,7 @@ import SwiftUI
 // TODO: implement
 struct ForestMapView: View {
     
-    @Environment(\.modelContext) private var context
+    @Environment(GardenStore.self) private var gardenStore
     @State private var viewModel: ForestMapViewModel?
     
     var body: some View {
@@ -65,7 +65,7 @@ struct ForestMapView: View {
         }
         .task {
             if viewModel == nil {
-                viewModel = ForestMapViewModel(context: context)
+                viewModel = ForestMapViewModel(gardenStore: gardenStore)
             }
         }
     }

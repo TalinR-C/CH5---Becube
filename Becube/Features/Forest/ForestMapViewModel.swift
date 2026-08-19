@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import SwiftData
 
 // TODO: implement
 
@@ -16,54 +15,36 @@ class ForestMapViewModel {
     var columns: [GridItem]
     var forestAreas: [ForestArea]
     var skills: [CopingSkill]
-    var garden: GardenState?
-    var context: ModelContext
-    
+    private let gardenStore: GardenStore
+
     var areaStatus: [(name: String, unlocked: Bool)] {
-        forestAreas.map { ($0.name, (garden?.unlockedForestAreaID.contains($0.id) ?? false)) }
+        forestAreas.map { ($0.name, gardenStore.gardenState.unlockedForestAreaID.contains($0.id)) }
     }
-    
-    init(context: ModelContext) {
+
+    init(gardenStore: GardenStore) {
         self.columns = [
             .init(.flexible(), spacing: 0, alignment: .center),
             .init(.flexible(), spacing: 0, alignment: .center)
         ]
-        
+
         self.forestAreas = Bundle.main.decode([ForestArea].self, from: "areas.json")
         self.skills = Bundle.main.decode([CopingSkill].self, from: "skills_en.json")
-        self.context = context
+        self.gardenStore = gardenStore
 
         unlockFirstAreaIfNeeded()
     }
 
     // The first area is always available; unlock it for fresh gardens
     private func unlockFirstAreaIfNeeded() {
-        guard let garden,
-              let firstArea = forestAreas.min(by: { $0.index < $1.index }),
-              !garden.unlockedForestAreaID.contains(firstArea.id) else { return }
+        guard let firstArea = forestAreas.min(by: { $0.index < $1.index }),
+              !gardenStore.gardenState.unlockedForestAreaID.contains(firstArea.id) else { return }
 
-        garden.unlockedForestAreaID.append(firstArea.id)
+        gardenStore.gardenState.unlockedForestAreaID.append(firstArea.id)
+        gardenStore.saveData()
     }
-    
+
     // To check whether a particular area is unlocked
     func unlocked(_ area: ForestArea) -> Bool {
-        return garden?.unlockedForestAreaID.contains(area.id) ?? false
-    }
-    
-    func fetchData() {
-        let descriptor = FetchDescriptor<GardenState>()
-        
-        do {
-            if let found = try context.fetch(descriptor).first {
-                garden = found
-            } else {
-                let created = GardenState()
-                context.insert(created)
-                garden = created
-            }
-            unlockFirstAreaIfNeeded()
-        } catch {
-            print("Failed to fetch items: \(error)")
-        }
+        gardenStore.gardenState.unlockedForestAreaID.contains(area.id)
     }
 }
