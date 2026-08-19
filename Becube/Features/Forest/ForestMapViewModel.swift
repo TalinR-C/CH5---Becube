@@ -15,6 +15,7 @@ import SwiftData
 class ForestMapViewModel {
     var columns: [GridItem]
     var forestAreas: [ForestArea]
+    var skills: [CopingSkill]
     var garden: GardenState?
     var context: ModelContext
     
@@ -29,17 +30,8 @@ class ForestMapViewModel {
         ]
         
         self.forestAreas = Bundle.main.decode([ForestArea].self, from: "areas.json")
+        self.skills = Bundle.main.decode([CopingSkill].self, from: "skills_en.json")
         self.context = context
-        
-        // Fetch or create GardenState singleton
-        let existing = try? context.fetch(FetchDescriptor<GardenState>())
-        if let found = existing?.first {
-            self.garden = found
-        } else {
-            let created = GardenState()
-            context.insert(created)
-            self.garden = created
-        }
 
         unlockFirstAreaIfNeeded()
     }
