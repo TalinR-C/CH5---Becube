@@ -56,77 +56,86 @@ struct CalendarView: View {
     var onDateSelected: (Date, Date) -> Void
     
     var body: some View {
-        VStack(spacing: 20) {
-            // Month navigation
-            HStack {
-                Text(currentMonth.formatted(.dateTime.year().month()))
-                    .font(.system(size: 16, weight: .bold))
-                    .foregroundStyle(.white)
-                Spacer()
-                Button {
-                    currentMonth = Calendar.current.date(byAdding: .month, value: -1, to: currentMonth)!
-                    updateDays()
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .font(.title2)
-                        .foregroundStyle(.blue)
-                }
-                Button {
-                    currentMonth = Calendar.current.date(byAdding: .month, value: 1, to: currentMonth)!
-                    updateDays()
-                } label: {
-                    Image(systemName: "chevron.right")
-                        .font(.title2)
-                        .foregroundStyle(.blue)
-                }
-            }
-            
-            // Days of the week row
-            HStack {
-                ForEach(daysOfWeek.indices, id: \.self) { index in
-                    Text(daysOfWeek[index])
-                        .font(.system(size: 14, weight: .medium))
-                        .foregroundStyle(.white)
-                        .frame(maxWidth: .infinity)
-                }
-            }
-            
-            // Grid of days
-            LazyVGrid(columns: columns, spacing: 10) {
-                ForEach(days, id: \.self) { day in
-                    Button {
-                        if  day.date.monthInt == currentMonth.monthInt {
-                            selectedDate = day.date
-                            onDateSelected(selectedDate, selectedHour)
+        Image("CalendarBackground")
+            .resizable()
+            .scaledToFit()
+            .background(.red)
+            .overlay{
+                VStack(spacing: 10) {
+                    // Month navigation
+                    HStack {
+                        Text(currentMonth.formatted(.dateTime.year().month()))
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundStyle(Color.darkBrown)
+                        Spacer()
+                        HStack(spacing: 20){
+                            Button {
+                                currentMonth = Calendar.current.date(byAdding: .month, value: -1, to: currentMonth)!
+                                updateDays()
+                            } label: {
+                                Image(systemName: "chevron.left")
+                                    .font(.title2)
+                                    .foregroundStyle(Color.darkBrown)
+                            }
+                            Button {
+                                currentMonth = Calendar.current.date(byAdding: .month, value: 1, to: currentMonth)!
+                                updateDays()
+                            } label: {
+                                Image(systemName: "chevron.right")
+                                    .font(.title2)
+                                    .foregroundStyle(Color.darkBrown)
+                            }
                         }
-                        else if day.date.monthInt == currentMonth.monthInt - 1{
-                            selectedDate = day.date
-                            currentMonth = Calendar.current.date(byAdding: .month, value: -1, to: currentMonth)!
-                            updateDays()
+                    }
+                    
+                    // Days of the week row
+                    HStack {
+                        ForEach(daysOfWeek.indices, id: \.self) { index in
+                            Text(daysOfWeek[index])
+                                .font(.system(size: 14, weight: .medium))
+                                .foregroundStyle(Color.darkBrown    )
+                                .frame(maxWidth: .infinity)
                         }
-                        else if day.date.monthInt == currentMonth.monthInt + 1{
-                            selectedDate = day.date
-                            currentMonth = Calendar.current.date(byAdding: .month, value: 1, to: currentMonth)!
-                            updateDays()
+                    }
+                    
+                    // Grid of days
+                    LazyVGrid(columns: columns, spacing: 5) {
+                        ForEach(days, id: \.self) { day in
+                            Button {
+                                if  day.date.monthInt == currentMonth.monthInt {
+                                    selectedDate = day.date
+                                    onDateSelected(selectedDate, selectedHour)
+                                }
+                                else if day.date.monthInt == currentMonth.monthInt - 1{
+                                    selectedDate = day.date
+                                    currentMonth = Calendar.current.date(byAdding: .month, value: -1, to: currentMonth)!
+                                    updateDays()
+                                }
+                                else if day.date.monthInt == currentMonth.monthInt + 1{
+                                    selectedDate = day.date
+                                    currentMonth = Calendar.current.date(byAdding: .month, value: 1, to: currentMonth)!
+                                    updateDays()
+                                }
+                            } label: {
+                                Text(day.date.formatted(.dateTime.day()))
+                                    .font(.system(size: 14, weight: .medium))
+                                    .foregroundStyle(foregroundStyle(for: day.date))
+                                    .frame(maxWidth: .infinity, minHeight: 35)
+                                    .background(
+                                        backgroundStyle(for: day)
+                                    )
+                            }
                         }
-                    } label: {
-                        Text(day.date.formatted(.dateTime.day()))
-                            .font(.system(size: 14, weight: .medium))
-                            .foregroundStyle(foregroundStyle(for: day.date))
-                            .frame(maxWidth: .infinity, minHeight: 40)
-                            .background(
-                                backgroundStyle(for: day)
-                            )
                     }
                 }
+                .padding(50)
+                .onAppear {
+                    updateDays()
+                    onDateSelected(selectedDate, selectedHour)
+                }
             }
-        }
-        .padding()
-        .onAppear {
-            updateDays()
-            onDateSelected(selectedDate, selectedHour)
-        }
-        .background(Color.black)
+        
+        
     }
     
     private func updateDays() {
@@ -153,14 +162,6 @@ struct CalendarView: View {
         return averageRating
     }
     
-    private func getRatingClass(rating: Double) -> Color{
-        if rating <= 1.0 {return Color.red}
-        if rating <= 2.0 {return Color.yellow}
-        if rating <= 3.0 {return Color.orange}
-        if rating <= 4.0 {return Color.green}
-        return Color.blue
-    }
-    
     private func getRatingClassImage(rating: Double) -> Image{
         if rating <= 1.0 {return Image("rating_1")}
         if rating <= 2.0 {return Image("rating_2")}
@@ -174,21 +175,25 @@ struct CalendarView: View {
         let isSelectedDate = day.formattedDate == selectedDate.formattedDate
         
         if isDifferentMonth {
-            return isSelectedDate ? .black : .white.opacity(0.3)
-        } else {
-            return .black
+            return isSelectedDate ? .blue : Color.darkBrown.opacity(0.3)
+        }
+        else if day.startOfDay == .now.startOfDay {
+            return .red
+        }
+        else {
+            return isSelectedDate ? .blue : Color.darkBrown
         }
     }
     
     @ViewBuilder
     private func backgroundStyle(for day: Day) -> some View {
-        // Selected date background
-        if day.date.formattedDate == selectedDate.formattedDate{
-            Circle()
-                .foregroundStyle(Color.blue)
-        }
+//        // Selected date background
+//        if day.date.formattedDate == selectedDate.formattedDate{
+//            Circle()
+//                .foregroundStyle(Color.blue)
+//        }
         // Rating based background
-        else if day.hasEntry {
+        if day.hasEntry {
             getRatingClassImage(rating: day.averageRating!)
         }
         else {
