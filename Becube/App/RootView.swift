@@ -11,7 +11,7 @@ import SwiftUI
 import SwiftData
 
 struct RootView: View {
-    @Environment(GardenStore.self) var gardenStore
+–––    @Environment(GardenStore.self) var gardenStore
     var body: some View {
         TabView {
             Tab("Shelf", systemImage: "book.closed.fill"){
