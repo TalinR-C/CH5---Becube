@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.dismiss) private var dismiss
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -16,9 +17,13 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .padding()
+        Button("Done") {
+            dismiss()
+        }
     }
 }
 
 #Preview {
     ContentView()
 }
+

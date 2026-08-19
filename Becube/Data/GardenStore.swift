@@ -8,11 +8,13 @@
 //
 
 import SwiftData
+import Foundation
 
 @Observable
 class GardenStore {
     private let context: ModelContext
     var gardenState: GardenState
+    var logHistory: [Log]
     
     init(context: ModelContext) {
         self.context = context
@@ -27,14 +29,36 @@ class GardenStore {
             self.gardenState = created
             print("Created GardenState")
         }
+        
+        let existingLogs = try? context.fetch(FetchDescriptor<Log>())
+        if let foundLogs = existingLogs {
+            self.logHistory = foundLogs
+            print("Found Logs")
+        } else {
+            self.logHistory = []
+            print("Created empty Logs")
+        }
+        
+        print("initialize gardenviewmodel")
     }
     
-    func appendUnlockedPlant(id: String){
-        gardenState.unlockedPlantsID.append(id)
+    func resetData(){
+        gardenState.unlockedPlantsID.removeAll()
         do{try context.save(); print("Saved!!")} catch{print("Error saving GardenState")}
     }
     
+    func saveData(){
+        do{try context.save(); print("Saved!!")} catch{print("Error saving GardenState")}
+    }
     
+    func getDayAverageRating(date: Date) -> Double{
+        let logsInDay = logHistory.filter{$0.date.startOfDay == date.startOfDay}
+        if logsInDay.count <= 0 {return 0.0}
+        let ratings = logsInDay.compactMap {r in r.score}
+        let averageRating = Double(ratings.reduce(0, +)) / Double(ratings.count)
+        print(date, "--- Rating:",averageRating)
+        return averageRating
+    }
     
     
 }
