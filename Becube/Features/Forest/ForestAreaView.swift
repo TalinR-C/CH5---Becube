@@ -2,21 +2,54 @@
 //  ForestAreaView.swift
 //  Becube
 //
-//  Created by Talin Russo-Christoffelsz on 13/08/26.
+//  Created by Muhammad Saleh Bagir Alatas on 14/08/26.
 //
 
 import Foundation
 
 import SwiftUI
+import SwiftData
 
 struct ForestAreaView: View {
+    var forestArea: ForestArea
+    var viewModel: ForestAreaViewModel?
+    @Environment(\.modelContext) private var context
+
+    // Fixed slots for up to four skill bubbles, alternating left/right
+    private let bubblePositions: [CGPoint] = [
+        CGPoint(x: 100, y: 200),
+        CGPoint(x: 300, y: 250),
+        CGPoint(x: 100, y: 400),
+        CGPoint(x: 300, y: 500)
+    ]
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            Image(ImageResource.riverbend)
+                .resizable()
+                .ignoresSafeArea()
+            
+            Text(forestArea.name)
+                .font(.largeTitle)
+                .bold()
+                .position(x: 200, y: 50)
+                
+            ForEach(Array(zip(forestArea.copingSkillIds, bubblePositions)), id: \.0) { skillId, position in
+                SkillBubble(message: skillId, tailOffsetDenominator: position.x < 200 ? -4 : 4)
+                    .position(position)
+            }
+            
+            
         }
-        .padding()
+        .padding(0)
+        .task {
+            
+        }
     }
 }
+
+//#Preview {
+//    NavigationStack {
+//        ForestAreaView()
+//    }
+//}
