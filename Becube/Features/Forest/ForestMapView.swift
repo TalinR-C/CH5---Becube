@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import SwiftData
 
 // TODO: implement
 struct ForestMapView: View {
@@ -15,52 +16,54 @@ struct ForestMapView: View {
     @State private var viewModel: ForestMapViewModel?
     
     var body: some View {
-        ZStack {
-            Image(ImageResource.forestMap)
-                .resizable()
-                .ignoresSafeArea()
+        NavigationStack {
+            ZStack {
+                Image(ImageResource.forestMap)
+                    .resizable()
+                    .ignoresSafeArea()
             
-            if let viewModel {
-                NavigationLink {
-                    ForestAreaView(forestArea: viewModel.forestAreas[0])
-                } label: {
-                    AreaButton(areaStatus: viewModel.areaStatus[0])
-                }
-                .disabled(!viewModel.areaStatus[0].unlocked)
-                .position(x: 100, y: 200)
+                if let viewModel {
+                    NavigationLink {
+                        ForestAreaView(forestArea: viewModel.forestAreas[0])
+                    } label: {
+                        AreaButton(areaStatus: viewModel.areaStatus[0])
+                    }
+                    .disabled(!viewModel.areaStatus[0].unlocked)
+                    .position(x: 100, y: 200)
 
 
-                NavigationLink {
-                    ForestAreaView(forestArea: viewModel.forestAreas[1])
-                } label: {
-                    AreaButton(areaStatus: viewModel.areaStatus[1])
-                }
-                .disabled(!viewModel.areaStatus[1].unlocked)
-                .position(x: 300, y: 200)
+                    NavigationLink {
+                        ForestAreaView(forestArea: viewModel.forestAreas[1])
+                    } label: {
+                        AreaButton(areaStatus: viewModel.areaStatus[1])
+                    }
+                    .disabled(!viewModel.areaStatus[1].unlocked)
+                    .position(x: 300, y: 200)
 
 
-                NavigationLink {
+                    NavigationLink {
                     
-                } label: {
-                    GoToGardenButton()
-                }
-                .position(x: 200, y: 400)
+                    } label: {
+                        GoToGardenButton()
+                    }
+                    .position(x: 200, y: 400)
 
-                NavigationLink {
-                    ForestAreaView(forestArea: viewModel.forestAreas[2])
-                } label: {
-                    AreaButton(areaStatus: viewModel.areaStatus[2])
-                }
-                .disabled(!viewModel.areaStatus[2].unlocked)
-                .position(x: 100, y: 600)
+                    NavigationLink {
+                        ForestAreaView(forestArea: viewModel.forestAreas[2])
+                    } label: {
+                        AreaButton(areaStatus: viewModel.areaStatus[2])
+                    }
+                    .disabled(!viewModel.areaStatus[2].unlocked)
+                    .position(x: 100, y: 600)
 
-                NavigationLink {
-                    ForestAreaView(forestArea: viewModel.forestAreas[3])
-                } label: {
-                    AreaButton(areaStatus: viewModel.areaStatus[3])
+                    NavigationLink {
+                        ForestAreaView(forestArea: viewModel.forestAreas[3])
+                    } label: {
+                        AreaButton(areaStatus: viewModel.areaStatus[3])
+                    }
+                    .disabled(!viewModel.areaStatus[3].unlocked)
+                    .position(x: 300, y: 600)
                 }
-                .disabled(!viewModel.areaStatus[3].unlocked)
-                .position(x: 300, y: 600)
             }
         }
         .task {
@@ -77,7 +80,10 @@ struct ForestMapView: View {
 }
 
 #Preview {
-    NavigationStack {
-        ForestMapView()
-    }
+    let container = try! ModelContainer(
+        for: GardenState.self, Log.self,
+        configurations: ModelConfiguration(isStoredInMemoryOnly: true)
+    )
+    ForestMapView()
+        .environment(GardenStore(context: container.mainContext))
 }
