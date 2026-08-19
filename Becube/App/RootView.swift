@@ -11,26 +11,22 @@ import SwiftUI
 import SwiftData
 
 struct RootView: View {
-    @Environment(GardenStore.self) private var gardenStore
-    
+–––    @Environment(GardenStore.self) var gardenStore
     var body: some View {
         TabView {
-            ShelfListView(gardenStore: gardenStore)
-            .tabItem {
-                Label("Shelf", systemImage: "book.closed.fill")
+            Tab("Shelf", systemImage: "book.closed.fill"){
+                ShelfListView()
             }
-            GardenView()
-            .tabItem {
-                Label("Garden", systemImage: "garden")
+            Tab("Garden", systemImage: "garden"){
+                GardenView(viewModel: GardenViewModel(gardenStore: gardenStore))
             }
-            ForestAreaView()
-            .tabItem {
-                Label("Forest", systemImage: "forest")
+            Tab("Forest", systemImage: "forest"){
+                ForestAreaView()
             }
         }
     }
 }
 
-#Preview {
-    RootView()
-}
+//#Preview {
+//    RootView()
+//}
