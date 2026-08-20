@@ -14,48 +14,73 @@ struct ReflectHistoryView: View {
     @State var displayedLogs: [Log] = []
     
     var body: some View {
-        Text("Log History")
-        
-        // Flower Image and Stats
-        HStack{
-            VStack{
-                Text("Done")
-                ZStack{
-                    Image("Star")
-                    Text("5x")
+        ScrollView{
+            Text("Log History")
+            
+            // Flower Image and Stats
+            HStack{
+                VStack{
+                    Text("Done")
+                    ZStack{
+                        Image("Star")
+                        Text("5x")
+                    }
                 }
-            }
-             
-            Image("Flower") // Center Image
-            
-            VStack{
-                Text("Avg\nRating")
-                    .multilineTextAlignment(.center)
-                ZStack{
-                    Image("Star")
-                    Image("rating_color_1")
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                 
+                Image("Flower") // Center Image
+                
+                VStack{
+                    Text("Avg\nRating")
+                        .multilineTextAlignment(.center)
+                    ZStack{
+                        Image("Star")
+                        Image("rating_color_1")
+                    }
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                
             }
             
-        }
-        
-        // Title and Flower Name
-        VStack{
-            Text(current.name)
-                .textCase(.uppercase)
-            Text("flower name: (\(current.image))")
-        }
-        
-        // Calendar
-        CalendarView(onDateSelected: onDateSelected)
-        
-        // Logs
-        ForEach(displayedLogs, id: \.self){ log in
+            // Title and Flower Name
+            VStack{
+                Text(current.name)
+                    .textCase(.uppercase)
+                Text("flower name: \(current.plantName!)")
+            }
             
+            // Calendar
+            CalendarView(onDateSelected: onDateSelected)
+            
+            // Logs
+            ForEach(displayedLogs, id: \.self){ log in
+                SingleLogView(viewModel: viewModel, log: log)
+            }
         }
         
+        // Testing
+        Button{
+            displayedLogs.append(Log(
+                id: UUID(),
+                date: Date(),
+                copingID: "id",
+                rating: 3,
+                journal: "I like this"
+            )
+            )
+            viewModel.submitLog(log: Log(
+                id: UUID(),
+                date: Date(),
+                copingID: "id",
+                rating: 3,
+                journal: "I like this"
+            )
+)
+        }
+        label: {
+            Text("Add Log")
+        }
     }
-    
     
     func onDateSelected(start: Date, end: Date) {
         print("Start: \(start), End: \(end)")
@@ -70,7 +95,7 @@ struct ReflectHistoryView: View {
             GardenState.self,
             Log.self
         ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
 
         do {
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
@@ -94,7 +119,8 @@ struct ReflectHistoryView: View {
                 "how": "Name 5 things you can see\nName 4 things you can feel\nName 3 things you can hear\nName 2 things you can smell\nName 1 thing you can taste",
                 "when": "Panic, feeling unreal or detached, a memory surfacing.",
                 "why": "Attention is limited. Filling it with real things around you leaves less room for the spiral inside.\n\nThis exact exercise has not been tested on its own — it is used because clinicians consistently find it helps."
-            ]
+            ],
+            plantName: "Hydrangaea"
         ),
     )
 }

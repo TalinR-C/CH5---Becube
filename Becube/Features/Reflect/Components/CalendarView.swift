@@ -35,7 +35,6 @@ struct Day: Hashable{
 }
 
 struct CalendarView: View {
-    
     @State var logs: [LogTest] = [
         LogTest(id: UUID(), date: try! Date("18/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 4, journal: "first entry"),
         LogTest(id: UUID(), date: try! Date("18/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 2, journal: "first entry"),

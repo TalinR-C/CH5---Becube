@@ -82,7 +82,7 @@ class GardenStore {
     ///   practiced in total.
     func getPlantAverageRating(id: String) -> (average: Double, count: Int) {
         let logsForPlant = logHistory.filter { $0.copingID == id }
-        let ratings = logsForPlant.compactMap { $0.score }
+        let ratings = logsForPlant.compactMap { $0.rating }
         let averageRating = ratings.isEmpty ? 0.0 : Double(ratings.reduce(0, +)) / Double(ratings.count)
         return (averageRating, logsForPlant.count)
     }
@@ -149,7 +149,7 @@ extension GardenStore {
                     id: UUID(),
                     date: calendar.date(byAdding: .day, value: -dayOffset, to: .now) ?? .now,
                     copingID: skill.id,
-                    score: Int.random(in: 1...5)
+                    rating: Int.random(in: 1...5)
                 )
                 context.insert(log)
                 logHistory.append(log)
