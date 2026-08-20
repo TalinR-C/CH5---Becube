@@ -16,12 +16,6 @@ import Foundation
 /// place unlock behaviour is defined. `GardenStore` owns the persistence side.
 enum Progression {
 
-    /// The area a fresh garden starts in — the lowest-index area, always
-    /// available so a new user has somewhere to begin.
-    static func startingArea(in areas: [ForestArea]) -> ForestArea? {
-        areas.min(by: { $0.index < $1.index })
-    }
-
     /// Adds `id` to `unlockedIDs` unless it is already there.
     ///
     /// Returns `nil` when nothing changed, so callers can tell a real unlock
