@@ -38,13 +38,16 @@ class LearnViewModel {
     let skillID: String ///The ID for the coping skills
     var currentPage: Page = .how ///Default page
     var skill: CopingSkill?
-    
+
+    private let gardenStore: GardenStore
+
     /// Adding closure that will handle a function later
     var onJumpToPractice: (() -> Void)?
 
     /// Initializer (a constructor to build viewmodel once the app starts running and inserting skill ID)
-    init(skillID: String) {
+    init(skillID: String, gardenStore: GardenStore) {
         self.skillID = skillID
+        self.gardenStore = gardenStore
     }
     
     ///fetching the JSON data file through content repository
@@ -68,6 +71,27 @@ class LearnViewModel {
         let nextIndex = currentIndex + 1
         guard nextIndex < Page.allCases.count else { return }
         currentPage = Page.allCases[nextIndex]
+        grantPlantIfFinished()
+    }
+
+    // MARK: - Progression
+
+    /// Whether this skill's plant is already growing in the garden.
+    var isLearned: Bool {
+        gardenStore.hasUnlockedPlant(id: skillID)
+    }
+
+    /// The skill counts as learned once the user has reached the final page,
+    /// meaning every page of the explainer has been shown. Granting here rather
+    /// than on the closing button means a user who reads the whole thing keeps
+    /// the plant even if they are not ready to practice yet.
+    ///
+    /// Jumping straight to practice deliberately does *not* grant it — that
+    /// skips the learning, and rewarding the practice run is `PracticeService`'s
+    /// job once the practice flow exists.
+    private func grantPlantIfFinished() {
+        guard isLastPage else { return }
+        gardenStore.unlockPlant(id: skillID)
     }
     
     func goToPreviousPage() {

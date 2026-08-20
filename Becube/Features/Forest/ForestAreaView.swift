@@ -13,6 +13,8 @@ import SwiftData
 struct ForestAreaView: View {
     private let viewModel: ForestAreaViewModel
 
+    @Environment(GardenStore.self) private var gardenStore
+
     // Fixed slots for up to four skill bubbles, alternating left/right
     private let bubblePositions: [CGPoint] = [
         CGPoint(x: 100, y: 200),
@@ -38,7 +40,9 @@ struct ForestAreaView: View {
 
             ForEach(Array(zip(viewModel.skills, bubblePositions)), id: \.0.id) { skill, position in
                 NavigationLink {
-                    LearnView(viewModel: LearnViewModel(skillID: skill.id))
+                    LearnView(
+                        viewModel: LearnViewModel(skillID: skill.id, gardenStore: gardenStore)
+                    )
                 } label: {
                     SkillBubble(
                         message: skill.name,
@@ -54,7 +58,12 @@ struct ForestAreaView: View {
 }
 
 #Preview {
+    let container = try! ModelContainer(
+        for: GardenState.self, Log.self,
+        configurations: ModelConfiguration(isStoredInMemoryOnly: true)
+    )
     NavigationStack {
         ForestAreaView(forestArea: ContentRepository.areas[0])
     }
+    .environment(GardenStore(context: container.mainContext))
 }

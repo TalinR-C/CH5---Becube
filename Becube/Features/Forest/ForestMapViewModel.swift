@@ -18,7 +18,7 @@ class ForestMapViewModel {
     private let gardenStore: GardenStore
 
     var areaStatus: [(name: String, unlocked: Bool)] {
-        forestAreas.map { ($0.name, gardenStore.gardenState.unlockedForestAreaID.contains($0.id)) }
+        forestAreas.map { ($0.name, gardenStore.hasUnlockedForestArea(id: $0.id)) }
     }
 
     init(gardenStore: GardenStore) {
@@ -36,15 +36,12 @@ class ForestMapViewModel {
 
     // The first area is always available; unlock it for fresh gardens
     private func unlockFirstAreaIfNeeded() {
-        guard let firstArea = forestAreas.min(by: { $0.index < $1.index }),
-              !gardenStore.gardenState.unlockedForestAreaID.contains(firstArea.id) else { return }
-
-        gardenStore.gardenState.unlockedForestAreaID.append(firstArea.id)
-        gardenStore.saveData()
+        guard let firstArea = Progression.startingArea(in: forestAreas) else { return }
+        gardenStore.unlockForestArea(id: firstArea.id)
     }
 
     // To check whether a particular area is unlocked
     func unlocked(_ area: ForestArea) -> Bool {
-        gardenStore.gardenState.unlockedForestAreaID.contains(area.id)
+        gardenStore.hasUnlockedForestArea(id: area.id)
     }
 }
