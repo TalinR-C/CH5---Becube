@@ -62,7 +62,7 @@ struct LearnView: View {
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .frame(height: 56)
-                            .background(Color.brown)
+                            .background(Color.darkBrown)
                             .clipShape(Capsule())
                             .shadow(color: Color.black.opacity(0.15), radius: 6, x: 0, y: 4)
                     }
