@@ -30,14 +30,19 @@ class ForestMapViewModel {
         self.forestAreas = Bundle.main.decode([ForestArea].self, from: "areas.json")
         self.skills = Bundle.main.decode([CopingSkill].self, from: "skills_en.json")
         self.gardenStore = gardenStore
-
-        unlockFirstAreaIfNeeded()
     }
 
-    // The first area is always available; unlock it for fresh gardens
-    private func unlockFirstAreaIfNeeded() {
-        guard let firstArea = Progression.startingArea(in: forestAreas) else { return }
-        gardenStore.unlockForestArea(id: firstArea.id)
+    // A fresh garden has nothing unlocked yet, so the user is asked to pick the
+    // area they want to start in rather than being handed one.
+    var needsStartingArea: Bool {
+        gardenStore.gardenState.unlockedForestAreaID.isEmpty
+    }
+
+    // Opens the area the user picked on first run. Their choice is the only
+    // thing that unlocks an area at this point. The store dedups, so a double
+    // tap cannot add it twice.
+    func chooseStartingArea(_ area: ForestArea) {
+        gardenStore.unlockForestArea(id: area.id)
     }
 
     // To check whether a particular area is unlocked
