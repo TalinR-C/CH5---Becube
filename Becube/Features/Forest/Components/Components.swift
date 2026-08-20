@@ -126,3 +126,24 @@ struct BulgingCardShape: Shape {
         path.addLine(to: end)
     }
 }
+
+
+struct BulgingCard<Content: View>: View {
+    var tailPosition: TailPosition = .none
+    @ViewBuilder var content: Content
+
+    var body: some View {
+        content
+            .padding(24)
+            .background(
+                BulgingCardShape(cornerRadius: 40, bulge: 6, tailPosition: tailPosition)
+                    .stroke(Color.brown, lineWidth: 2)
+            )
+            .padding(8)
+            .background(
+                BulgingCardShape(cornerRadius: 48, bulge: 8, tailPosition: tailPosition)
+                    .fill(Color(.systemBackground))
+                    .shadow(color: Color.black.opacity(0.05), radius: 8, x: 0, y: 4)
+            )
+    }
+}

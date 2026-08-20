@@ -22,7 +22,7 @@ struct LearnView: View {
 
                 VStack(spacing: 20) {
                     
-//                    captionCard(text: "Box Breathing", tailPosition: .topCenter)
+//                    captionCard(text: "Box Breathing", tailPosition: .bottomLeft)
 
                     header /// custom top row: back button + skill name
                     
