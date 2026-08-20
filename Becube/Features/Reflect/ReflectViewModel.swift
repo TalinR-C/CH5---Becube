@@ -7,4 +7,15 @@
 
 import Foundation
 
-// TODO: implement
+@Observable
+class ReflectViewModel {
+    private let gardenStore: GardenStore
+    init(gardenStore: GardenStore) {
+        self.gardenStore = gardenStore
+    }
+    
+    func submitLog(log: Log){
+        gardenStore.addNewLog(log: log)
+    }
+}
+    

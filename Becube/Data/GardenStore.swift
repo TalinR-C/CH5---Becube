@@ -56,11 +56,16 @@ class GardenStore {
     func saveData(){
         do{try context.save(); print("Saved!!")} catch{print("Error saving GardenState")}
     }
-
+    
+    func addNewLog(log: Log){
+        logHistory.append(log)
+        context.insert(log)
+    }
+    
     func getDayAverageRating(date: Date) -> Double{
         let logsInDay = logHistory.filter{$0.date.startOfDay == date.startOfDay}
         if logsInDay.count <= 0 {return 0.0}
-        let ratings = logsInDay.compactMap {r in r.score}
+        let ratings = logsInDay.compactMap {r in r.rating}
         let averageRating = Double(ratings.reduce(0, +)) / Double(ratings.count)
         print(date, "--- Rating:",averageRating)
         return averageRating
