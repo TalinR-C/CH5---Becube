@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SingleLockedPlant: View {
     let skill : CopingSkill
+    @Environment(GardenStore.self) var gardenStore
     
     var body: some View{
         
@@ -53,7 +54,7 @@ struct SingleLockedPlant: View {
                         
                         
                         //Card Informations
-                        BulgingCard(tailPosition: .topCenter) {
+                        CommentBox(bulge: 6, tailPosition: .topCenter, contentPadding: 24) {
                             VStack(spacing: 2) {
                                 Text(skill.name)
                                     .font(.system(size: 20, weight: .bold, design: .rounded))
@@ -81,7 +82,7 @@ struct SingleLockedPlant: View {
                         
                         NavigationLink{
                             
-                            let learnVM = LearnViewModel(skillID: skill.id)
+                            let learnVM = LearnViewModel(skillID: skill.id, gardenStore: gardenStore)
                             LearnView(viewModel: learnVM)
                             
                         }label: {
@@ -122,24 +123,4 @@ struct SingleLockedPlant: View {
         // hides the system's navigation bar entirely, so only our custom header shows
     }
     
-}
-
-#Preview {
-    let dummySkill = CopingSkill(
-        id: "urge_surfing",
-        index: 1,
-        name: "Urge Surfing",
-        image: "flower_hydrangea",
-        plantPhilosophy: "Flower Name: Hydrangea",
-        info: [
-            "what": "A simple breathing exercise..",
-            "how": "Breathe in for 4 seconds...",
-            "when": "When you are feeling stressed or overwhelmed.",
-            "why": "It helps regulate the autonomic nervous system."
-        ]
-    )
-    
-    return NavigationStack {
-        SingleLockedPlant(skill: dummySkill)
-    }
 }
