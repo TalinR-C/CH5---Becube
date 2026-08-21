@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>12</integer>
+	<key>logs</key>
+	<dict>
+		<key>5070D567-8A35-4C3B-A6A3-CBCB812A10D6</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>5070D567-8A35-4C3B-A6A3-CBCB812A10D6.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Becube project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Becube</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Cleaning project Becube with scheme Becube</string>
+			<key>timeStartedRecording</key>
+			<real>808547001.28234506</real>
+			<key>timeStoppedRecording</key>
+			<real>808547001.29321301</real>
+			<key>title</key>
+			<string>Cleaning project Becube with scheme Becube</string>
+			<key>uniqueIdentifier</key>
+			<string>5070D567-8A35-4C3B-A6A3-CBCB812A10D6</string>
+		</dict>
+		<key>5B403559-52F4-455F-9B8C-77D1616C5CD2</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>5B403559-52F4-455F-9B8C-77D1616C5CD2.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>1</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Becube project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Becube</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project Becube with scheme Becube</string>
+			<key>timeStartedRecording</key>
+			<real>808546999.78239596</real>
+			<key>timeStoppedRecording</key>
+			<real>808547001.27887905</real>
+			<key>title</key>
+			<string>Building project Becube with scheme Becube</string>
+			<key>uniqueIdentifier</key>
+			<string>5B403559-52F4-455F-9B8C-77D1616C5CD2</string>
+		</dict>
+		<key>BFA13212-E47F-483B-B7C0-752B1AF48789</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>BFA13212-E47F-483B-B7C0-752B1AF48789.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>1</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Becube project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Becube</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project Becube with scheme Becube</string>
+			<key>timeStartedRecording</key>
+			<real>808547001.29732001</real>
+			<key>timeStoppedRecording</key>
+			<real>808547001.446859</real>
+			<key>title</key>
+			<string>Building project Becube with scheme Becube</string>
+			<key>uniqueIdentifier</key>
+			<string>BFA13212-E47F-483B-B7C0-752B1AF48789</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

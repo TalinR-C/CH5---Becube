@@ -47,20 +47,68 @@ class GardenStore {
         }
         #endif
     }
+    
+    // MARK: - Unlocking
+
+    /// Whether this skill's plant is already in the garden.
+    func hasUnlockedPlant(id: String) -> Bool {
+        gardenState.unlockedPlantsID.contains(id)
+    }
+
+    /// Grants a skill's plant. No-op (and no write) if it is already unlocked.
+    /// Returns whether this call actually unlocked something.
+    @discardableResult
+    func unlockPlant(id: String) -> Bool {
+        guard let updated = Progression.unlocking(id, in: gardenState.unlockedPlantsID) else {
+            return false
+        }
+        gardenState.unlockedPlantsID = updated
+        saveData()
+        return true
+    }
+
+    /// Whether this forest area is open to the user.
+    func hasUnlockedForestArea(id: String) -> Bool {
+        gardenState.unlockedForestAreaID.contains(id)
+    }
+
+    /// Opens a forest area. No-op (and no write) if it is already unlocked.
+    /// Returns whether this call actually unlocked something.
+    @discardableResult
+    func unlockForestArea(id: String) -> Bool {
+        guard let updated = Progression.unlocking(id, in: gardenState.unlockedForestAreaID) else {
+            return false
+        }
+        gardenState.unlockedForestAreaID = updated
+        saveData()
+        return true
+    }
 
     func resetData(){
-        gardenState.unlockedPlantsID.removeAll()
-        do{try context.save(); print("Saved!!")} catch{print("Error saving GardenState")}
+        do{
+            try context.delete(model: Log.self)
+            try context.delete(model: GardenState.self)
+            try context.save()
+            print("Reset Data!!")
+        }
+        catch{print("Error saving GardenState")}
     }
 
     func saveData(){
         do{try context.save(); print("Saved!!")} catch{print("Error saving GardenState")}
     }
-
+    
+    func addNewLog(log: Log){
+        logHistory.append(log)
+        context.insert(log)
+        saveData()
+        print("Added new log data + Save")
+    }
+    
     func getDayAverageRating(date: Date) -> Double{
         let logsInDay = logHistory.filter{$0.date.startOfDay == date.startOfDay}
         if logsInDay.count <= 0 {return 0.0}
-        let ratings = logsInDay.compactMap {r in r.score}
+        let ratings = logsInDay.compactMap {r in r.rating}
         let averageRating = Double(ratings.reduce(0, +)) / Double(ratings.count)
         print(date, "--- Rating:",averageRating)
         return averageRating
@@ -77,7 +125,7 @@ class GardenStore {
     ///   practiced in total.
     func getPlantAverageRating(id: String) -> (average: Double, count: Int) {
         let logsForPlant = logHistory.filter { $0.copingID == id }
-        let ratings = logsForPlant.compactMap { $0.score }
+        let ratings = logsForPlant.compactMap { $0.rating }
         let averageRating = ratings.isEmpty ? 0.0 : Double(ratings.reduce(0, +)) / Double(ratings.count)
         return (averageRating, logsForPlant.count)
     }
@@ -127,32 +175,32 @@ extension GardenStore {
     /// overwrites any real data in that simulator's local store. That's the point of a
     /// demo mode, but don't turn this argument on for a build you care about the data in.
     private func seedDemoData() {
-        logHistory.forEach { context.delete($0) }
-        logHistory.removeAll()
-
-        let demoSkills = Array(ContentRepository.skills.prefix(6))
-        gardenState.unlockedPlantsID = demoSkills.map(\.id)
-        gardenState.unlockedToolboxID = demoSkills.prefix(4).map(\.id)
-
-        let calendar = Calendar.current
-        for (index, skill) in demoSkills.enumerated() {
-            // Vary the practice count per skill — including one with zero logs — so the
-            // Shelf's empty-rating state is easy to spot right alongside the populated ones.
-            let practiceCount = index
-            for dayOffset in 0..<practiceCount {
-                let log = Log(
-                    id: UUID(),
-                    date: calendar.date(byAdding: .day, value: -dayOffset, to: .now) ?? .now,
-                    copingID: skill.id,
-                    score: Int.random(in: 1...5)
-                )
-                context.insert(log)
-                logHistory.append(log)
-            }
-        }
-
-        saveData()
-        print("Demo mode: seeded \(demoSkills.count) skills, \(logHistory.count) logs")
+//        logHistory.forEach { context.delete($0) }
+//        logHistory.removeAll()
+//
+//        let demoSkills = Array(ContentRepository.skills.prefix(6))
+//        gardenState.unlockedPlantsID = demoSkills.map(\.id)
+//        gardenState.unlockedToolboxID = demoSkills.prefix(4).map(\.id)
+//
+//        let calendar = Calendar.current
+//        for (index, skill) in demoSkills.enumerated() {
+//            // Vary the practice count per skill — including one with zero logs — so the
+//            // Shelf's empty-rating state is easy to spot right alongside the populated ones.
+//            let practiceCount = index
+//            for dayOffset in 0..<practiceCount {
+//                let log = Log(
+//                    id: UUID(),
+//                    date: calendar.date(byAdding: .day, value: -dayOffset, to: .now) ?? .now,
+//                    copingID: skill.id,
+//                    rating: Int.random(in: 1...5)
+//                )
+//                context.insert(log)
+//                logHistory.append(log)
+//            }
+//        }
+//
+//        saveData()
+//        print("Demo mode: seeded \(demoSkills.count) skills, \(logHistory.count) logs")
     }
 }
 #endif

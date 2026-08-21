@@ -21,7 +21,7 @@ struct RootView: View {
                 GardenView(viewModel: GardenViewModel(gardenStore: gardenStore))
             }
             Tab("Forest", systemImage: "forest"){
-                ForestAreaView()
+                ForestMapView()
             }
         }
     }

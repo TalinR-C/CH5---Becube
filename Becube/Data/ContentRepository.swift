@@ -10,7 +10,7 @@
 import Foundation
 
 enum ContentType{
-    case areas
+    case areas  
     case skills
 }
 

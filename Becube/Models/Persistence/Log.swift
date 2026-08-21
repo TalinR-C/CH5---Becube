@@ -15,14 +15,14 @@ class Log {
     var id: UUID
     var date : Date
     var copingID : String
-    var score : Int?
+    var rating : Int?
     var journal : String?
     
-    init(id: UUID, date: Date, copingID: String, score: Int? = nil, journal: String? = nil) {
+    init(id: UUID, date: Date, copingID: String, rating: Int? = nil, journal: String? = nil) {
         self.id = id
         self.date = date
         self.copingID = copingID
-        self.score = score
+        self.rating = rating
         self.journal = journal
     }
 }
