@@ -29,6 +29,8 @@ struct BecubeApp: App {
     init() {
         gardenStore = GardenStore(context: sharedModelContainer.mainContext)
     }
+    
+    @State private var router = Router()
 
     var body: some Scene {
         WindowGroup {
@@ -36,6 +38,7 @@ struct BecubeApp: App {
         }
         .modelContainer(sharedModelContainer)
         .environment(gardenStore)
+        .environment(router)
     }
 }
 

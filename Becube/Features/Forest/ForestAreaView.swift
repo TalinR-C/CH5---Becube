@@ -13,7 +13,7 @@ import SwiftData
 struct ForestAreaView: View {
     private let viewModel: ForestAreaViewModel
 
-    @Environment(GardenStore.self) private var gardenStore
+    @Environment(Router.self) private var router
 
     // Fixed slots for up to four skill bubbles, alternating left/right
     private let bubblePositions: [CGPoint] = [
@@ -39,10 +39,12 @@ struct ForestAreaView: View {
                 .position(x: 200, y: 50)
 
             ForEach(Array(zip(viewModel.skills, bubblePositions)), id: \.0.id) { skill, position in
-                NavigationLink {
-                    LearnView(
-                        viewModel: LearnViewModel(skillID: skill.id, gardenStore: gardenStore)
-                    )
+                // A bubble opens the skill's plant screen, which is where the
+                // Learn and Practice choices live. Swap this for
+                // `.learn(skillID:)` if a bubble should drop straight into the
+                // lesson instead.
+                Button {
+                    router.push(.lockedPlant(skillID: skill.id))
                 } label: {
                     SkillBubble(
                         message: skill.name,
@@ -66,4 +68,5 @@ struct ForestAreaView: View {
         ForestAreaView(forestArea: ContentRepository.areas[0])
     }
     .environment(GardenStore(context: container.mainContext))
+    .environment(Router())
 }

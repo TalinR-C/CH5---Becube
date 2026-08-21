@@ -13,6 +13,7 @@ import SwiftData
 
 struct SinglePlantView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(Router.self) private var router
     @State var viewModel: SingleSkillPlantViewModel
 
     /// How far the plant dips below the top of the shelf section, so its pot lands on
@@ -40,9 +41,7 @@ struct SinglePlantView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
-        // This screen is pushed inside the Shelf tab's NavigationStack, so the tab bar
-        // would otherwise stay visible underneath it.
-        .toolbar(.hidden, for: .tabBar)
+        // The tab bar is hidden for every pushed screen by `.routeDestinations()`.
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -54,7 +53,9 @@ struct SinglePlantView: View {
                 .tint(ShelfPalette.darkBrown)
             }
             ToolbarItem(placement: .topBarTrailing) {
-                Button(action: {}) {
+                Button {
+                    router.push(.reflectHistory(skillID: viewModel.skillID))
+                } label: {
                     Image(systemName: "clock")
                 }
                 .tint(ShelfPalette.darkBrown)
@@ -181,16 +182,22 @@ struct SinglePlantView: View {
 
     private var actionButtons: some View {
         VStack(spacing: 12) {
-            Button("Practice") {}
-                .buttonStyle(ShelfActionButtonStyle(role: .primary))
+            Button("Practice") {
+                router.push(.practice(skillID: viewModel.skillID))
+            }
+            .buttonStyle(ShelfActionButtonStyle(role: .primary))
 
-            Button("Log Experience") {}
-                .buttonStyle(ShelfActionButtonStyle(role: .secondary))
+            // Logging without practising first is a deliberate entry point —
+            // the user may have used the skill out in the world.
+            Button("Log Experience") {
+                router.push(.reflect(skillID: viewModel.skillID))
+            }
+            .buttonStyle(ShelfActionButtonStyle(role: .secondary))
 
             // A plain underlined link rather than a third pill, so the two real
             // actions above it stay the emphasis.
             Button {
-                // TODO: open the Learn flow for this skill.
+                router.push(.learn(skillID: viewModel.skillID))
             } label: {
                 Text("Refresh Your Memory")
                     .font(.system(size: 15, weight: .medium, design: .rounded))
@@ -236,4 +243,5 @@ struct ShelfActionButtonStyle: ButtonStyle {
     return NavigationStack {
         SinglePlantView(viewModel: SingleSkillPlantViewModel(gardenStore: store, skillID: skillID))
     }
+    .environment(Router())
 }

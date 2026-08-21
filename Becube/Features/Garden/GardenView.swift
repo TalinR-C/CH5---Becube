@@ -16,33 +16,33 @@ struct GardenView: View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
 //        Text(ContentRepository.skills[0].name)
                 
-        NavigationStack(){
-            HStack{
-                Button{
-                    viewModel.appendUnlockedPlant(id: "urge_surfing")
-                } label: {
-                    Text("Add Plant")
-                }
-                Button{
-                    viewModel.resetPlantData()
-                } label: {
-                    Text("Reset Data")
-                }
-                Button{
-                    viewModel.testGardenVM()
-                } label: {
-                    Text("Test Garden")
-                }
-                Button("Change Data"){
-                    test = "World"
-                }
+        // The Garden tab's NavigationStack lives in RootView now — a second one
+        // here would swallow every push and leave the router's path empty.
+        HStack{
+            Button{
+                viewModel.appendUnlockedPlant(id: "urge_surfing")
+            } label: {
+                Text("Add Plant")
             }
-
-            NavigationLink("Go to List"){
-                ContentView()
+            Button{
+                viewModel.resetPlantData()
+            } label: {
+                Text("Reset Data")
             }
-            Text(test)
+            Button{
+                viewModel.testGardenVM()
+            } label: {
+                Text("Test Garden")
+            }
+            Button("Change Data"){
+                test = "World"
+            }
         }
+
+        NavigationLink("Go to List"){
+            ContentView()
+        }
+        Text(test)
        
         
 //        ForEach(gardenStore.gardenState.unlockedPlantsID, id: \.self){ id in
