@@ -15,9 +15,13 @@ struct RootView: View {
     @Environment(Router.self) private var router
 
     var body: some View {
-        TabView {
+        @Bindable var router = router
+        
+        TabView(selection: $router.selectedTab) {
             NavigationStack(path: $router.shelfPath) {
-              ShelfListView(viewModel: ShelfListViewModel(gardenStore: gardenStore))  
+              ShelfListView(viewModel: ShelfListViewModel(gardenStore: gardenStore))
+                    .routeDestinations()
+                    .tabBarVisible(router.shelfPath.isEmpty)
             }
             .tabItem {
                 Image(ImageResource.shelfIcon)
@@ -25,6 +29,8 @@ struct RootView: View {
             }
             NavigationStack(path: $router.gardenPath) {
               GardenView(viewModel: GardenViewModel(gardenStore: gardenStore))
+                    .routeDestinations()
+                    .tabBarVisible(router.gardenPath.isEmpty)
             }
             .tabItem {
                 Image(ImageResource.gardenIcon)
@@ -32,6 +38,8 @@ struct RootView: View {
             }
             NavigationStack(path: $router.forestPath) {
                 ForestMapView()
+                    .routeDestinations()
+                    .tabBarVisible(router.forestPath.isEmpty)
             }
             .tabItem{
                 Image(systemName: "map.fill")
