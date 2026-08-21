@@ -107,5 +107,6 @@ struct ForestMapView: View {
         configurations: ModelConfiguration(isStoredInMemoryOnly: true)
     )
     ForestMapView()
+        .modelContainer(container)
         .environment(GardenStore(context: container.mainContext))
 }
