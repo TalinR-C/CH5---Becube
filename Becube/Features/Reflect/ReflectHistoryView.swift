@@ -10,20 +10,24 @@ import SwiftData
 
 struct ReflectHistoryView: View {
     @State var viewModel: ReflectViewModel
-    @State var current: CopingSkill
-    @State var displayedLogs: [Log] = []
     
     var body: some View {
         ScrollView{
-            Text("Log History")
+            Text("LOG HISTORY")
+                .font(.system(size: 17))
+                .foregroundStyle(.brown)
             
             // Flower Image and Stats
             HStack{
                 VStack{
+                    Spacer()
                     Text("Done")
+                        .font(.system(size: 11))
+                        .foregroundStyle(.brown)
                     ZStack{
                         Image("Star")
                         Text("5x")
+                            .foregroundStyle(.white)
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
@@ -31,11 +35,16 @@ struct ReflectHistoryView: View {
                 Image("Flower") // Center Image
                 
                 VStack{
+                    Spacer()
                     Text("Avg\nRating")
+                        .font(.system(size: 11))
+                        .foregroundStyle(.brown)
                         .multilineTextAlignment(.center)
                     ZStack{
                         Image("Star")
-                        Image("rating_color_1")
+                        viewModel.ratingClassImage
+                            .resizable()
+                            .frame(width: 25, height: 25)
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -44,46 +53,29 @@ struct ReflectHistoryView: View {
             
             // Title and Flower Name
             VStack{
-                Text(current.name)
+                Text(viewModel.current.name)
+                    .font(.system(size: 24))
                     .textCase(.uppercase)
-                Text("flower name: \(current.plantName!)")
+                    .foregroundStyle(.brown)
+                Text("Flower Name: \(viewModel.current.plantName!)")
+                    .font(.system(size: 13.75))
+                    .foregroundStyle(.brown)
             }
             
             // Calendar
             CalendarView(onDateSelected: onDateSelected)
             
             // Logs
-            ForEach(displayedLogs, id: \.self){ log in
+            ForEach(viewModel.logs, id: \.self){ log in
                 SingleLogView(viewModel: viewModel, log: log)
             }
         }
-        
-        // Testing
-        Button{
-            displayedLogs.append(Log(
-                id: UUID(),
-                date: Date(),
-                copingID: "id",
-                rating: 3,
-                journal: "I like this"
-            )
-            )
-            viewModel.submitLog(log: Log(
-                id: UUID(),
-                date: Date(),
-                copingID: "id",
-                rating: 3,
-                journal: "I like this"
-            )
-)
-        }
-        label: {
-            Text("Add Log")
-        }
+        .background(.offWhite)
     }
     
-    func onDateSelected(start: Date, end: Date) {
-        print("Start: \(start), End: \(end)")
+    
+    func onDateSelected(date: Date) {
+        viewModel.getDayLogs(day: date)
     }
     
 }
@@ -107,21 +99,24 @@ struct ReflectHistoryView: View {
     let gardenStore = GardenStore(context: sharedModelContainer.mainContext)
     
     return ReflectHistoryView(
-        viewModel: ReflectViewModel(gardenStore: gardenStore),
-        current: CopingSkill(
-            id: "grounding",
-            index: 8,
-            name: "Grounding",
-            image: "plant_akar_wangi",
-            plantPhilosophy: "Vetiver is grown on slopes to stop the soil washing away.",
-            info: [
-                "what": "Using your senses to pull your attention out of your head and back into the room.",
-                "how": "Name 5 things you can see\nName 4 things you can feel\nName 3 things you can hear\nName 2 things you can smell\nName 1 thing you can taste",
-                "when": "Panic, feeling unreal or detached, a memory surfacing.",
-                "why": "Attention is limited. Filling it with real things around you leaves less room for the spiral inside.\n\nThis exact exercise has not been tested on its own — it is used because clinicians consistently find it helps."
-            ],
-            plantName: "Hydrangaea"
+        viewModel: ReflectViewModel(
+            gardenStore: gardenStore,
+            current: CopingSkill(
+                id: "grounding",
+                index: 8,
+                name: "Grounding",
+                image: "plant_akar_wangi",
+                plantPhilosophy: "Vetiver is grown on slopes to stop the soil washing away.",
+                info: [
+                    "what": "Using your senses to pull your attention out of your head and back into the room.",
+                    "how": "Name 5 things you can see\nName 4 things you can feel\nName 3 things you can hear\nName 2 things you can smell\nName 1 thing you can taste",
+                    "when": "Panic, feeling unreal or detached, a memory surfacing.",
+                    "why": "Attention is limited. Filling it with real things around you leaves less room for the spiral inside.\n\nThis exact exercise has not been tested on its own — it is used because clinicians consistently find it helps."
+                ],
+                plantName: "Hydrangaea"
+            ),
         ),
+        
     )
 }
 

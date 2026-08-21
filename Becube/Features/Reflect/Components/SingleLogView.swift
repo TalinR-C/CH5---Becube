@@ -32,33 +32,33 @@ struct SingleLogView: View {
 }
 
 
-#Preview {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            GardenState.self,
-            Log.self
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-    
-    let gardenStore = GardenStore(context: sharedModelContainer.mainContext)
-    
-    return SingleLogView(
-        viewModel: ReflectViewModel(gardenStore: gardenStore),
-        log: Log(
-            id: UUID(),
-            date: Date(),
-            copingID: "id",
-            rating: 3,
-            journal: "I like this"
-        )
-    )
-}
+//#Preview {
+//    var sharedModelContainer: ModelContainer = {
+//        let schema = Schema([
+//            GardenState.self,
+//            Log.self
+//        ])
+//        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+//
+//        do {
+//            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+//        } catch {
+//            fatalError("Could not create ModelContainer: \(error)")
+//        }
+//    }()
+//    
+//    let gardenStore = GardenStore(context: sharedModelContainer.mainContext)
+//    
+//    return SingleLogView(
+//        viewModel: ReflectViewModel(gardenStore: gardenStore),
+//        log: Log(
+//            id: UUID(),
+//            date: Date(),
+//            copingID: "id",
+//            rating: 3,
+//            journal: "I like this"
+//        )
+//    )
+//}
 
 

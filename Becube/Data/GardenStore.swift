@@ -49,8 +49,13 @@ class GardenStore {
     }
 
     func resetData(){
-        gardenState.unlockedPlantsID.removeAll()
-        do{try context.save(); print("Saved!!")} catch{print("Error saving GardenState")}
+        do{
+            try context.delete(model: Log.self)
+            try context.delete(model: GardenState.self)
+            try context.save()
+            print("Reset Data!!")
+        }
+        catch{print("Error saving GardenState")}
     }
 
     func saveData(){
@@ -60,6 +65,8 @@ class GardenStore {
     func addNewLog(log: Log){
         logHistory.append(log)
         context.insert(log)
+        saveData()
+        print("Added new log data + Save")
     }
     
     func getDayAverageRating(date: Date) -> Double{
@@ -132,32 +139,32 @@ extension GardenStore {
     /// overwrites any real data in that simulator's local store. That's the point of a
     /// demo mode, but don't turn this argument on for a build you care about the data in.
     private func seedDemoData() {
-        logHistory.forEach { context.delete($0) }
-        logHistory.removeAll()
-
-        let demoSkills = Array(ContentRepository.skills.prefix(6))
-        gardenState.unlockedPlantsID = demoSkills.map(\.id)
-        gardenState.unlockedToolboxID = demoSkills.prefix(4).map(\.id)
-
-        let calendar = Calendar.current
-        for (index, skill) in demoSkills.enumerated() {
-            // Vary the practice count per skill — including one with zero logs — so the
-            // Shelf's empty-rating state is easy to spot right alongside the populated ones.
-            let practiceCount = index
-            for dayOffset in 0..<practiceCount {
-                let log = Log(
-                    id: UUID(),
-                    date: calendar.date(byAdding: .day, value: -dayOffset, to: .now) ?? .now,
-                    copingID: skill.id,
-                    rating: Int.random(in: 1...5)
-                )
-                context.insert(log)
-                logHistory.append(log)
-            }
-        }
-
-        saveData()
-        print("Demo mode: seeded \(demoSkills.count) skills, \(logHistory.count) logs")
+//        logHistory.forEach { context.delete($0) }
+//        logHistory.removeAll()
+//
+//        let demoSkills = Array(ContentRepository.skills.prefix(6))
+//        gardenState.unlockedPlantsID = demoSkills.map(\.id)
+//        gardenState.unlockedToolboxID = demoSkills.prefix(4).map(\.id)
+//
+//        let calendar = Calendar.current
+//        for (index, skill) in demoSkills.enumerated() {
+//            // Vary the practice count per skill — including one with zero logs — so the
+//            // Shelf's empty-rating state is easy to spot right alongside the populated ones.
+//            let practiceCount = index
+//            for dayOffset in 0..<practiceCount {
+//                let log = Log(
+//                    id: UUID(),
+//                    date: calendar.date(byAdding: .day, value: -dayOffset, to: .now) ?? .now,
+//                    copingID: skill.id,
+//                    rating: Int.random(in: 1...5)
+//                )
+//                context.insert(log)
+//                logHistory.append(log)
+//            }
+//        }
+//
+//        saveData()
+//        print("Demo mode: seeded \(demoSkills.count) skills, \(logHistory.count) logs")
     }
 }
 #endif

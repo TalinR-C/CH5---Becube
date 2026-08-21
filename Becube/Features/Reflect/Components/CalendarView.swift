@@ -52,13 +52,12 @@ struct CalendarView: View {
     let daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SA"]
     let columns = Array(repeating: GridItem(.flexible()), count: 7)
     
-    var onDateSelected: (Date, Date) -> Void
+    var onDateSelected: (Date) -> Void
     
     var body: some View {
         Image("CalendarBackground")
             .resizable()
-            .scaledToFit()
-            .background(.red)
+            .frame(height: 395)
             .overlay{
                 VStack(spacing: 10) {
                     // Month navigation
@@ -103,7 +102,7 @@ struct CalendarView: View {
                             Button {
                                 if  day.date.monthInt == currentMonth.monthInt {
                                     selectedDate = day.date
-                                    onDateSelected(selectedDate, selectedHour)
+                                    onDateSelected(selectedDate)
                                 }
                                 else if day.date.monthInt == currentMonth.monthInt - 1{
                                     selectedDate = day.date
@@ -118,7 +117,7 @@ struct CalendarView: View {
                             } label: {
                                 Text(day.date.formatted(.dateTime.day()))
                                     .font(.system(size: 14, weight: .medium))
-                                    .foregroundStyle(foregroundStyle(for: day.date))
+                                    .foregroundStyle(day.date.monthInt == currentMonth.monthInt ? .darkBrown : .darkBrown.opacity(0.3))
                                     .frame(maxWidth: .infinity, minHeight: 35)
                                     .background(
                                         backgroundStyle(for: day)
@@ -130,11 +129,9 @@ struct CalendarView: View {
                 .padding(50)
                 .onAppear {
                     updateDays()
-                    onDateSelected(selectedDate, selectedHour)
+                    onDateSelected(selectedDate)
                 }
             }
-        
-        
     }
     
     private func updateDays() {
@@ -162,26 +159,11 @@ struct CalendarView: View {
     }
     
     private func getRatingClassImage(rating: Double) -> Image{
-        if rating <= 1.0 {return Image("rating_1")}
-        if rating <= 2.0 {return Image("rating_2")}
-        if rating <= 3.0 {return Image("rating_3")}
-        if rating <= 4.0 {return Image("rating_4")}
+        if rating <= 1.0 {return Image("rating_empty_color_1")}
+        if rating <= 2.0 {return Image("rating_empty_color_2")}
+        if rating <= 3.0 {return Image("rating_empty_color_3")}
+        if rating <= 4.0 {return Image("rating_empty_color_4")}
         return Image("rating_5")
-    }
-    
-    private func foregroundStyle(for day: Date) -> Color {
-        let isDifferentMonth = day.monthInt != currentMonth.monthInt
-        let isSelectedDate = day.formattedDate == selectedDate.formattedDate
-        
-        if isDifferentMonth {
-            return isSelectedDate ? .blue : Color.darkBrown.opacity(0.3)
-        }
-        else if day.startOfDay == .now.startOfDay {
-            return .red
-        }
-        else {
-            return isSelectedDate ? .blue : Color.darkBrown
-        }
     }
     
     @ViewBuilder
@@ -203,7 +185,7 @@ struct CalendarView: View {
 }
 
 #Preview {
-    func twodates(date1:Date,date2:Date){
+    func twodates(date1:Date){
         print("Een twee datum")
     }
    return CalendarView(onDateSelected: twodates)
