@@ -65,6 +65,7 @@ class ReflectViewModel {
     }
     
     func ratingName(rating: Int) -> String {
+        if rating == 0 {return "No Rating Please Check"}
         let ratingName = ["Not For \nMe", "Not Quite", "It's Okay", "I Like It", "I Really \nLike It"]
         return String(ratingName[rating - 1])
     }

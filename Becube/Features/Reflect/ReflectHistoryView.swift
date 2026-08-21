@@ -70,7 +70,9 @@ struct ReflectHistoryView: View {
             
             // Logs
             ForEach(viewModel.logs, id: \.self){ log in
-                SingleLogView(viewModel: viewModel, log: log)
+                if log.rating != nil {
+                    SingleLogView(viewModel: viewModel, log: log)
+                }
             }
         }
         .background(.offWhite)
