@@ -26,7 +26,7 @@ struct ReflectHistoryView: View {
                         .foregroundStyle(.brown)
                     ZStack{
                         Image("Star")
-                        Text("5x")
+                        Text("\(viewModel.getCurrentPlantlogs().count)")
                             .foregroundStyle(.white)
                     }
                 }
@@ -42,7 +42,7 @@ struct ReflectHistoryView: View {
                         .multilineTextAlignment(.center)
                     ZStack{
                         Image("Star")
-                        viewModel.ratingClassImage
+                        Image("rating_\(viewModel.currentRatingClass)")
                             .resizable()
                             .frame(width: 25, height: 25)
                     }
