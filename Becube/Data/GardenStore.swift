@@ -42,6 +42,42 @@ class GardenStore {
         print("initialize gardenviewmodel")
     }
     
+    // MARK: - Unlocking
+
+    /// Whether this skill's plant is already in the garden.
+    func hasUnlockedPlant(id: String) -> Bool {
+        gardenState.unlockedPlantsID.contains(id)
+    }
+
+    /// Grants a skill's plant. No-op (and no write) if it is already unlocked.
+    /// Returns whether this call actually unlocked something.
+    @discardableResult
+    func unlockPlant(id: String) -> Bool {
+        guard let updated = Progression.unlocking(id, in: gardenState.unlockedPlantsID) else {
+            return false
+        }
+        gardenState.unlockedPlantsID = updated
+        saveData()
+        return true
+    }
+
+    /// Whether this forest area is open to the user.
+    func hasUnlockedForestArea(id: String) -> Bool {
+        gardenState.unlockedForestAreaID.contains(id)
+    }
+
+    /// Opens a forest area. No-op (and no write) if it is already unlocked.
+    /// Returns whether this call actually unlocked something.
+    @discardableResult
+    func unlockForestArea(id: String) -> Bool {
+        guard let updated = Progression.unlocking(id, in: gardenState.unlockedForestAreaID) else {
+            return false
+        }
+        gardenState.unlockedForestAreaID = updated
+        saveData()
+        return true
+    }
+
     func resetData(){
         gardenState.unlockedPlantsID.removeAll()
         do{try context.save(); print("Saved!!")} catch{print("Error saving GardenState")}

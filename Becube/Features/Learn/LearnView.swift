@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct LearnView: View {
 
@@ -300,7 +301,14 @@ struct LearnView: View {
     
 
 #Preview {
-    let viewModel = LearnViewModel(skillID: "grounding")
+    let container = try! ModelContainer(
+        for: GardenState.self, Log.self,
+        configurations: ModelConfiguration(isStoredInMemoryOnly: true)
+    )
+    let viewModel = LearnViewModel(
+        skillID: "grounding",
+        gardenStore: GardenStore(context: container.mainContext)
+    )
     viewModel.skill = CopingSkill(
         id: "grounding",
         index: 8,

@@ -7,77 +7,105 @@
 
 import Foundation
 import SwiftUI
+import SwiftData
 
 // TODO: implement
 struct ForestMapView: View {
-    
-    @Environment(\.modelContext) private var context
+
+    @Environment(GardenStore.self) private var gardenStore
     @State private var viewModel: ForestMapViewModel?
-    
+    @State private var showAreaLocked = false
+
+    // Fixed slots on the map, one per area in areas.json order
+    private let areaPositions: [CGPoint] = [
+        CGPoint(x: 100, y: 200),
+        CGPoint(x: 300, y: 200),
+        CGPoint(x: 100, y: 600),
+        CGPoint(x: 300, y: 600)
+    ]
+
     var body: some View {
-        ZStack {
-            Image(ImageResource.forestMap)
-                .resizable()
-                .ignoresSafeArea()
-            
-            if let viewModel {
-                NavigationLink {
-                    ForestAreaView(forestArea: viewModel.forestAreas[0])
-                } label: {
-                    AreaButton(areaStatus: viewModel.areaStatus[0])
+        NavigationStack {
+            ZStack {
+                Image(ImageResource.forestMap)
+                    .resizable()
+                    .ignoresSafeArea()
+
+                if let viewModel {
+                    ForEach(Array(zip(viewModel.forestAreas, areaPositions)), id: \.0.id) { area, position in
+                        areaNode(area, viewModel: viewModel)
+                            .position(position)
+                    }
+
+                    NavigationLink {
+
+                    } label: {
+                        GoToGardenButton()
+                    }
+                    .position(x: 200, y: 400)
+
+                    modals(for: viewModel)
                 }
-                .disabled(!viewModel.areaStatus[0].unlocked)
-                .position(x: 100, y: 200)
-
-
-                NavigationLink {
-                    ForestAreaView(forestArea: viewModel.forestAreas[1])
-                } label: {
-                    AreaButton(areaStatus: viewModel.areaStatus[1])
-                }
-                .disabled(!viewModel.areaStatus[1].unlocked)
-                .position(x: 300, y: 200)
-
-
-                NavigationLink {
-                    
-                } label: {
-                    GoToGardenButton()
-                }
-                .position(x: 200, y: 400)
-
-                NavigationLink {
-                    ForestAreaView(forestArea: viewModel.forestAreas[2])
-                } label: {
-                    AreaButton(areaStatus: viewModel.areaStatus[2])
-                }
-                .disabled(!viewModel.areaStatus[2].unlocked)
-                .position(x: 100, y: 600)
-
-                NavigationLink {
-                    ForestAreaView(forestArea: viewModel.forestAreas[3])
-                } label: {
-                    AreaButton(areaStatus: viewModel.areaStatus[3])
-                }
-                .disabled(!viewModel.areaStatus[3].unlocked)
-                .position(x: 300, y: 600)
             }
         }
         .task {
             if viewModel == nil {
-                viewModel = ForestMapViewModel(context: context)
+                viewModel = ForestMapViewModel(gardenStore: gardenStore)
             }
         }
     }
-    
-    
+
+    /// An unlocked area navigates into itself; a locked one explains why it
+    /// cannot be entered instead of sitting there inert.
+    @ViewBuilder
+    private func areaNode(_ area: ForestArea, viewModel: ForestMapViewModel) -> some View {
+        let status = (name: area.name, unlocked: viewModel.unlocked(area))
+
+        if status.unlocked {
+            NavigationLink {
+                ForestAreaView(forestArea: area)
+            } label: {
+                AreaButton(areaStatus: status)
+            }
+        } else {
+            Button {
+                showAreaLocked = true
+            } label: {
+                AreaButton(areaStatus: status)
+            }
+            .buttonStyle(.plain)
+        }
+    }
+
+    /// The picker takes priority: until the user has chosen somewhere to start,
+    /// every area is locked and the locked modal would be all they could reach.
+    @ViewBuilder
+    private func modals(for viewModel: ForestMapViewModel) -> some View {
+        if viewModel.needsStartingArea {
+            AreaPickerModal(areas: viewModel.forestAreas) { area in
+                withAnimation(.easeOut(duration: 0.2)) {
+                    viewModel.chooseStartingArea(area)
+                }
+            }
+        } else if showAreaLocked {
+            AreaLockedModal {
+                withAnimation(.easeOut(duration: 0.2)) {
+                    showAreaLocked = false
+                }
+            }
+        }
+    }
+
     init() {
         self.viewModel = nil
     }
 }
 
 #Preview {
-    NavigationStack {
-        ForestMapView()
-    }
+    let container = try! ModelContainer(
+        for: GardenState.self, Log.self,
+        configurations: ModelConfiguration(isStoredInMemoryOnly: true)
+    )
+    ForestMapView()
+        .environment(GardenStore(context: container.mainContext))
 }

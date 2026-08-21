@@ -16,8 +16,7 @@ class GardenViewModel {
     }
     
     func appendUnlockedPlant(id: String){
-        gardenStore.gardenState.unlockedPlantsID.append(id)
-        gardenStore.saveData()
+        gardenStore.unlockPlant(id: id)
     }
     
     func resetPlantData(){

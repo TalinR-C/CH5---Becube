@@ -2,7 +2,7 @@
 [
   {
     "id": "riverbend",
-    "name": "The Riverbend",
+    "name": "The Waterfall",
     "copingSkillIds": [
       "urge_surfing",
       "delay_and_distract",
@@ -13,7 +13,7 @@
   },
   {
     "id": "fern_hollow",
-    "name": "The Fern Hollow",
+    "name": "The Lake",
     "copingSkillIds": [
       "paced_breathing",
       "cold_water_reset",
@@ -24,7 +24,7 @@
   },
   {
     "id": "canopy_gap",
-    "name": "The Canopy Gap",
+    "name": "The Mountain",
     "copingSkillIds": [
       "checking_the_thought",
       "opposite_action",
@@ -35,7 +35,7 @@
   },
   {
     "id": "old_grove",
-    "name": "The Old Grove",
+    "name": "The Forest",
     "copingSkillIds": [
       "tracking",
       "reaching_out",

@@ -11,9 +11,9 @@ import SwiftUI
 import SwiftData
 
 struct ForestAreaView: View {
-    var forestArea: ForestArea
-    var viewModel: ForestAreaViewModel?
-    @Environment(\.modelContext) private var context
+    private let viewModel: ForestAreaViewModel
+
+    @Environment(GardenStore.self) private var gardenStore
 
     // Fixed slots for up to four skill bubbles, alternating left/right
     private let bubblePositions: [CGPoint] = [
@@ -23,33 +23,47 @@ struct ForestAreaView: View {
         CGPoint(x: 300, y: 500)
     ]
 
+    init(forestArea: ForestArea) {
+        self.viewModel = ForestAreaViewModel(forestArea: forestArea)
+    }
+
     var body: some View {
         ZStack {
             Image(ImageResource.riverbend)
                 .resizable()
                 .ignoresSafeArea()
-            
-            Text(forestArea.name)
+
+            Text(viewModel.areaName)
                 .font(.largeTitle)
                 .bold()
                 .position(x: 200, y: 50)
-                
-            ForEach(Array(zip(forestArea.copingSkillIds, bubblePositions)), id: \.0) { skillId, position in
-                SkillBubble(message: skillId, tailOffsetDenominator: position.x < 200 ? -4 : 4)
-                    .position(position)
+
+            ForEach(Array(zip(viewModel.skills, bubblePositions)), id: \.0.id) { skill, position in
+                NavigationLink {
+                    LearnView(
+                        viewModel: LearnViewModel(skillID: skill.id, gardenStore: gardenStore)
+                    )
+                } label: {
+                    SkillBubble(
+                        message: skill.name,
+                        tailOffsetDenominator: position.x < 200 ? -4 : 4
+                    )
+                }
+                .buttonStyle(.plain)
+                .position(position)
             }
-            
-            
         }
         .padding(0)
-        .task {
-            
-        }
     }
 }
 
-//#Preview {
-//    NavigationStack {
-//        ForestAreaView()
-//    }
-//}
+#Preview {
+    let container = try! ModelContainer(
+        for: GardenState.self, Log.self,
+        configurations: ModelConfiguration(isStoredInMemoryOnly: true)
+    )
+    NavigationStack {
+        ForestAreaView(forestArea: ContentRepository.areas[0])
+    }
+    .environment(GardenStore(context: container.mainContext))
+}
