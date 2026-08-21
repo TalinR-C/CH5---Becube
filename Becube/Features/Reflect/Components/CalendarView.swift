@@ -7,18 +7,6 @@
 
 import SwiftUI
 
-
-struct Day: Hashable{
-    var date: Date
-    var averageRating: Double?
-    var hasEntry: Bool = false
-    init(date: Date, averageRating: Double? = nil, hasEntry: Bool) {
-        self.date = date
-        self.averageRating = averageRating
-        self.hasEntry = hasEntry
-    }
-}
-
 struct CalendarView: View {
     @State var logs: [Log]
     
@@ -35,7 +23,7 @@ struct CalendarView: View {
     var body: some View {
         Image("CalendarBackground")
             .resizable()
-            .frame(height: 395)
+            .frame(height: 440)
             .overlay{
                 VStack(spacing: 10) {
                     // Month navigation
@@ -75,7 +63,7 @@ struct CalendarView: View {
                     }
                     
                     // Grid of days
-                    LazyVGrid(columns: columns, spacing: 5) {
+                    LazyVGrid(columns: columns, spacing: 12) {
                         ForEach(days, id: \.self) { day in
                             Button {
                                 if  day.date.monthInt == currentMonth.monthInt {
@@ -95,16 +83,27 @@ struct CalendarView: View {
                             } label: {
                                 Text(day.date.formatted(.dateTime.day()))
                                     .font(day.date.startOfDay == selectedDate.startOfDay
-                                                ? .system(size: 18).bold()
-                                                : .system(size: 14))
+                                          ? .system(size: 17).bold()
+                                          : .system(size: 14))
                                     .foregroundStyle(day.date.monthInt == currentMonth.monthInt ? .darkBrown : .darkBrown.opacity(0.3))
-                                    .frame(maxWidth: .infinity, minHeight: 35)
+                                    .frame(minHeight: 35)
                                     .background(
                                         backgroundStyle(for: day)
                                     )
                             }
+                            .overlay(
+                                Circle()
+                                    .foregroundStyle(
+                                        day.hasEntry
+                                        ? .brown : .clear
+                                    )
+                                    .frame(width: 4, height: 4)
+                                    .offset(x: 0, y: 21)
+                                
+                            )
                         }
                     }
+                    Spacer()
                 }
                 .padding(50)
                 .onAppear {
@@ -112,6 +111,7 @@ struct CalendarView: View {
                     onDateSelected(selectedDate)
                 }
             }
+        
     }
     
     private func updateDays() {
@@ -166,10 +166,14 @@ struct CalendarView: View {
         // Selected date background
         if day.date.startOfDay == selectedDate.startOfDay, day.hasEntry{
             Image("BorderBrown\(getRatingClass(rating: day.averageRating!))")
+                .resizable()
+                .frame(width: 35, height: 35)
         }
         // Rating based background
-        if day.hasEntry {
+        else if day.hasEntry {
             Image("rating_empty_color_\(getRatingClass(rating: day.averageRating!))")
+                .resizable()
+                .frame(width: 35, height: 35)
         }
         else {
             Circle()
@@ -178,17 +182,17 @@ struct CalendarView: View {
     }
 }
 
-//#Preview {
-//    func twodates(date1:Date){
-//        print("Een twee datum")
-//    }
-//    
-//    let logs = [
-//            Log(id: UUID(), date: try! Date("21/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 4, journal: "first entry"),
-//            Log(id: UUID(), date: try! Date("18 /08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 2, journal: "first entry"),
-//            Log(id: UUID(), date: try! Date("18/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 4, journal: "first entry"),
-//            Log(id: UUID(), date: try! Date("19/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 1, journal: "first entry")
-//        ]
-//    
-//    return CalendarView(logs: logs, onDateSelected: twodates)
-//}
+#Preview {
+    func twodates(date1:Date){
+        print("Een twee datum")
+    }
+    
+    let logs = [
+            Log(id: UUID(), date: try! Date("21/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", rating: 4, journal: "first entry"),
+            Log(id: UUID(), date: try! Date("18 /08/2026", strategy: .dateTime.day().month().year()), copingID: "123", rating: 2, journal: "first entry"),
+            Log(id: UUID(), date: try! Date("18/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", rating: 4, journal: "first entry"),
+            Log(id: UUID(), date: try! Date("19/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", rating: 1, journal: "first entry")
+        ]
+    
+    return CalendarView(logs: logs, onDateSelected: twodates)
+}

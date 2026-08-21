@@ -8,6 +8,17 @@
 import Foundation
 import SwiftUI
 
+struct Day: Hashable{
+    var date: Date
+    var averageRating: Double?
+    var hasEntry: Bool = false
+    init(date: Date, averageRating: Double? = nil, hasEntry: Bool) {
+        self.date = date
+        self.averageRating = averageRating
+        self.hasEntry = hasEntry
+    }
+}
+
 @Observable
 class ReflectViewModel {
     private let gardenStore: GardenStore
@@ -38,6 +49,11 @@ class ReflectViewModel {
     func getDayLogs(day: Date){
         let plantLogs = gardenStore.logHistory.filter{$0.copingID == self.current.id}
         self.logs = plantLogs.filter{$0.date.startOfDay == day.startOfDay}
+    }
+    
+    func doesDayHaveLogEntries(day: Date) -> Bool{
+        let plantLogs = gardenStore.logHistory.filter{$0.copingID == self.current.id}
+        return plantLogs.contains(where: {$0.date.startOfDay == day.startOfDay})
     }
     
     private func getPlantAverageRating() -> Double{
