@@ -6,7 +6,8 @@
 //
 //  The compact card used in the horizontal "toolbox" row standing on the Shelf's top
 //  plank — the user's pinned coping skills. Visually: a CommentBox speech bubble with
-//  the skill's name, a flower, and its Done/Avg Rating badges underneath.
+//  the skill's name, a flower, and its Done/Avg Rating badges sitting across the base
+//  of the pot.
 //
 
 import SwiftUI
@@ -21,35 +22,51 @@ struct ToolBoxPlantCard: View {
     /// the row needs to scroll.
     private let nameWidth: CGFloat = 60
 
+    /// Height of the plant art.
+    private let flowerHeight: CGFloat = 104
+
+    private let badgeSize: CGFloat = 32
+
+    /// How far the badges hang below the base of the pot. The bubble-and-flower stack
+    /// reserves this much empty space beneath itself and the badges are bottom-aligned
+    /// into it, so they overlap the pot by `badgeSize - badgeDrop` without anything
+    /// being offset outside the card's own bounds — which the horizontal ScrollView in
+    /// ShelfListView would clip.
+    private let badgeDrop: CGFloat = 16
+
     var body: some View {
-        VStack(spacing: 4) {
-            CommentBox(cornerRadius: 14, bulge: 2, tailPosition: .bottomCenter, contentPadding: 6) {
-                Text(name)
-                    .font(.system(size: 12, weight: .bold, design: .rounded))
-                    .foregroundStyle(ShelfPalette.darkBrown)
-                    .multilineTextAlignment(.center)
-                    .lineLimit(2)
-                    // A long single word ("Grounding") can't wrap, so let it shrink a
-                    // little rather than truncate to "Ground…".
-                    .minimumScaleFactor(0.75)
-                    .frame(width: nameWidth)
-            }
-
-            // No plant art exists per-skill yet, so every card falls back to the
-            // shared "Flower" placeholder image (per Talin's note).
-            Image("Flower")
-                .resizable()
-                .scaledToFit()
-                .frame(height: 84)
-
-            // Slight negative spacing so the two badges overlap, as they do in the Hi-Fi.
-            HStack(spacing: -6) {
-                IndicatorBadge(size: 32) {
-                    Text("\(timesCompleted)x")
+        ZStack(alignment: .bottom) {
+            VStack(spacing: 2) {
+                CommentBox(cornerRadius: 14, bulge: 2, tailPosition: .bottomCenter, contentPadding: 6) {
+                    Text(name)
                         .font(.system(size: 12, weight: .bold, design: .rounded))
                         .foregroundStyle(ShelfPalette.darkBrown)
+                        .multilineTextAlignment(.center)
+                        // Three lines rather than the two the Hi-Fi shows: its four
+                        // sample names are all short, but real ones ("Knowing Your
+                        // Risky Situations") truncate to "Knowing Your Risky…" at two.
+                        // Bubbles grow upward, so the plants below still line up.
+                        .lineLimit(3)
+                        .minimumScaleFactor(0.6)
+                        .frame(width: nameWidth)
                 }
-                IndicatorBadge(size: 32) {
+
+                // No plant art exists per-skill yet, so every card falls back to the
+                // shared "Flower" placeholder image (per Talin's note).
+                Image("Flower")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: flowerHeight)
+            }
+            .padding(.bottom, badgeDrop)
+
+            HStack(spacing: 0) {
+                IndicatorBadge(size: badgeSize) {
+                    Text("\(timesCompleted)x")
+                        .font(.system(size: 12, weight: .bold, design: .rounded))
+                        .foregroundStyle(ShelfPalette.badgeText)
+                }
+                IndicatorBadge(size: badgeSize) {
                     Image(RatingAsset.assetName(forAverage: averageRating))
                         .resizable()
                         .scaledToFit()
