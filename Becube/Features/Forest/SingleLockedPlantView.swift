@@ -97,8 +97,7 @@ struct SingleLockedPlant: View {
                         
                         NavigationLink {
                             
-                            Text("\(skill.name)")
-                                .font(.title)
+                            PracticeDestinationView(skillID: skill.id)
                             
                         } label: {
                             
@@ -126,7 +125,7 @@ struct SingleLockedPlant: View {
 
 #Preview {
     let dummySkill = CopingSkill(
-        id: "urge_surfing",
+        id: "box_breathing",
         index: 1,
         name: "Urge Surfing",
         image: "flower_hydrangea",

@@ -5,12 +5,13 @@
 //  Created by Talin Russo-Christoffelsz on 13/08/26.
 //
 
+//still need to link and navigate the practice based on the skill ID
 import Foundation
 import SwiftUI
 
 struct BoxBreathingView: View {
-    @State var viewModel = BoxBreathingViewModel()
-
+    @State var viewModel: BoxBreathingViewModel
+    
     var body: some View {
         ZStack{
             
@@ -93,6 +94,6 @@ struct BoxBreathingView: View {
 }
 
 #Preview {
-    BoxBreathingView()
+    BoxBreathingView(viewModel: BoxBreathingViewModel(skillID: "box_breathing"))
 }
 

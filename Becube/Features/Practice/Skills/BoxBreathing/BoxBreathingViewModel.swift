@@ -24,6 +24,7 @@ enum BreathPhase: CaseIterable {
 class BoxBreathingViewModel{
     
     //Duration and the side of the square
+    let skillID: String
     let phaseDuration: Double = 4.0
     let squareSize: CGFloat = 320
     
@@ -37,7 +38,8 @@ class BoxBreathingViewModel{
 
     private let corners: [CGPoint]
     
-    init() {
+    init(skillID : String) {
+        self.skillID = skillID
         let s = squareSize
         corners = [
             CGPoint(x: 0, y: s), // bottom-left

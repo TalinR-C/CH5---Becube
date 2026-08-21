@@ -49,33 +49,37 @@ struct LearnView: View {
 
                     progressBar /// the row of 3 capsule segments showing page progress
 
-                    Button {
-                        // if isLastPage is true, label reads "Practice"; otherwise "Next"
+                    Group {
                         if viewModel.isLastPage {
-                            viewModel.onJumpToPractice?() // call the practice closure, if one's been assigned
+                            NavigationLink {
+                                PracticeDestinationView(skillID: viewModel.skillID)
+                                // NOW this is correct — as a NavigationLink's destination closure,
+                                // SwiftUI actually builds and pushes this view when tapped,
+                                // instead of the value being silently discarded
+                            } label: {
+                                practiceButtonLabel(text: "Practice")
+                            }
                         } else {
-                            viewModel.goToNextPage() // otherwise just advance to the next page
+                            Button {
+                                viewModel.goToNextPage()
+                            } label: {
+                                practiceButtonLabel(text: "Next")
+                            }
                         }
-                    } label: {
-                        Text(viewModel.isLastPage ? "Practice" : "Next")
-                            .font(.system(size: 17, weight: .semibold, design: .rounded))
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 56)
-                            .background(Color.darkBrown)
-                            .clipShape(Capsule())
-                            .shadow(color: Color.black.opacity(0.15), radius: 6, x: 0, y: 4)
                     }
-                    
 
-                        Button("Jump Straight to Practice") {
-                            viewModel.onJumpToPractice?()
-                        }
-                        .font(.footnote)
-                        .underline()
-                        .foregroundStyle(Color.brown)
-                        .opacity(viewModel.isLastPage ? 0 : 1) // hides it visually, but keeps its space reserved in the layout
-                        .disabled(viewModel.isLastPage) // prevents taps while it's invisible
+                    NavigationLink {
+                        
+                        PracticeDestinationView(skillID: viewModel.skillID)
+                        
+                    } label: {
+                        Text("Jump Straight to Practice")
+                            .font(.footnote)
+                            .underline()
+                            .foregroundStyle(Color.brown)
+                    }
+                    .opacity(viewModel.isLastPage ? 0 : 1)
+                    .disabled(viewModel.isLastPage)
                     
                 }
                 .padding()
@@ -155,7 +159,6 @@ struct LearnView: View {
     // required whenever a computed property's different branches return different View types
     private var pageContent: some View {
         switch viewModel.currentPage {
-        // branches based on which page (how/when/why) is currently active
 
         case .how:
             howStepsCard // shows the numbered steps card
@@ -249,6 +252,17 @@ struct LearnView: View {
             .components(separatedBy: "\n\n")
         // splits it wherever there's a blank line (two newlines in a row), one chunk per paragraph
     }
+    
+    private func practiceButtonLabel(text: String) -> some View {
+        Text(text)
+            .font(.system(size: 17, weight: .semibold, design: .rounded))
+            .foregroundColor(.white)
+            .frame(maxWidth: .infinity)
+            .frame(height: 56)
+            .background(Color.darkBrown) // matches your current styling
+            .clipShape(Capsule())
+            .shadow(color: Color.black.opacity(0.15), radius: 6, x: 0, y: 4)
+    }
 
     private func captionCard(text: String, tailPosition: TailPosition = .none) -> some View {
         
@@ -300,9 +314,9 @@ struct LearnView: View {
     
 
 #Preview {
-    let viewModel = LearnViewModel(skillID: "grounding")
+    let viewModel = LearnViewModel(skillID: "box_breathing")
     viewModel.skill = CopingSkill(
-        id: "grounding",
+        id: "box_breathing",
         index: 8,
         name: "Grounding",
         image: "plant_akar_wangi",

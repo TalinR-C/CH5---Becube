@@ -82,7 +82,7 @@ class LearnViewModel {
         Page.allCases.firstIndex(of: currentPage) ?? 0
     }
 
-    ///fetching the skill's name
+    ///fetching the skill's name and replace it with UPPERCASE
     var skillName: String {
         skill?.name.uppercased() ?? ""
     }

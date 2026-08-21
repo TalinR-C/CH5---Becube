@@ -8,5 +8,14 @@
 //
 
 import Foundation
+import SwiftUI
 
-// TODO: implement
+struct PracticeRegistry {
+    @ViewBuilder
+    static func view(for kind: PracticeKind, skillID: String) -> some View {
+        switch kind {
+        case .boxBreathing:
+            BoxBreathingView(viewModel: BoxBreathingViewModel(skillID: skillID))
+        }
+    }
+}
