@@ -36,13 +36,11 @@ struct Day: Hashable{
 
 struct CalendarView: View {
     @State var logs: [LogTest] = [
-        LogTest(id: UUID(), date: try! Date("18/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 4, journal: "first entry"),
-        LogTest(id: UUID(), date: try! Date("18/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 2, journal: "first entry"),
+        LogTest(id: UUID(), date: try! Date("21/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 4, journal: "first entry"),
+        LogTest(id: UUID(), date: try! Date("18 /08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 2, journal: "first entry"),
         LogTest(id: UUID(), date: try! Date("18/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 4, journal: "first entry"),
         LogTest(id: UUID(), date: try! Date("19/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 1, journal: "first entry")
     ]
-    
-    
     
     @State private var currentMonth = Date.now
     @State private var selectedDate = Date.now
@@ -116,7 +114,9 @@ struct CalendarView: View {
                                 }
                             } label: {
                                 Text(day.date.formatted(.dateTime.day()))
-                                    .font(.system(size: 14, weight: .medium))
+                                    .font(day.date.startOfDay == selectedDate.startOfDay
+                                                ? .system(size: 18).bold()
+                                                : .system(size: 14))
                                     .foregroundStyle(day.date.monthInt == currentMonth.monthInt ? .darkBrown : .darkBrown.opacity(0.3))
                                     .frame(maxWidth: .infinity, minHeight: 35)
                                     .background(
@@ -166,13 +166,28 @@ struct CalendarView: View {
         return Image("rating_5")
     }
     
+    private func getRatingClass(rating: Double) -> Int{
+        if rating <= 1.0, rating > 0.0 {return 1}
+        if rating <= 2.0 {return 2}
+        if rating <= 3.0 {return 3}
+        if rating <= 4.0 {return 4}
+        return 5
+    }
+    
     @ViewBuilder
     private func backgroundStyle(for day: Day) -> some View {
-//        // Selected date background
-//        if day.date.formattedDate == selectedDate.formattedDate{
-//            Circle()
-//                .foregroundStyle(Color.blue)
-//        }
+        
+        // Current date Background
+        if day.date.startOfDay == Date().startOfDay {
+            VStack{
+                Spacer()
+                Image("CurrentDateBackground")
+            }
+        }
+        // Selected date background
+        if day.date.startOfDay == selectedDate.startOfDay, day.hasEntry{
+            Image("BorderBrown\(getRatingClass(rating: day.averageRating!))")
+        }
         // Rating based background
         if day.hasEntry {
             getRatingClassImage(rating: day.averageRating!)
