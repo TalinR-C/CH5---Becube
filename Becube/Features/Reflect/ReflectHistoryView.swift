@@ -63,7 +63,10 @@ struct ReflectHistoryView: View {
             }
             
             // Calendar
-            CalendarView(onDateSelected: onDateSelected)
+            CalendarView(
+                logs: viewModel.logs,
+                onDateSelected: onDateSelected
+            )
             
             // Logs
             ForEach(viewModel.logs, id: \.self){ log in

@@ -54,6 +54,7 @@ class ReflectViewModel {
     
     private func getRatingClassImage(rating: Double) -> Image{
         // TODO: What if PlantAverageRating is 0? If it's 0 it doesn't have a rating.
+        if rating == 0.0 {return Image("")}
         if rating <= 1.0 {return Image("rating_1")}
         if rating <= 2.0 {return Image("rating_2")}
         if rating <= 3.0 {return Image("rating_3")}

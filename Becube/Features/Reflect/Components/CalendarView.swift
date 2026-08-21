@@ -7,21 +7,6 @@
 
 import SwiftUI
 
-class LogTest{
-    var id: UUID
-    var date : Date
-    var copingID : String
-    var score : Int?
-    var journal : String?
-    
-    init(id: UUID, date: Date, copingID: String, score: Int? = nil, journal: String? = nil) {
-        self.id = id
-        self.date = date
-        self.copingID = copingID
-        self.score = score
-        self.journal = journal
-    }
-}
 
 struct Day: Hashable{
     var date: Date
@@ -35,12 +20,7 @@ struct Day: Hashable{
 }
 
 struct CalendarView: View {
-    @State var logs: [LogTest] = [
-        LogTest(id: UUID(), date: try! Date("21/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 4, journal: "first entry"),
-        LogTest(id: UUID(), date: try! Date("18 /08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 2, journal: "first entry"),
-        LogTest(id: UUID(), date: try! Date("18/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 4, journal: "first entry"),
-        LogTest(id: UUID(), date: try! Date("19/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 1, journal: "first entry")
-    ]
+    @State var logs: [Log]
     
     @State private var currentMonth = Date.now
     @State private var selectedDate = Date.now
@@ -152,7 +132,7 @@ struct CalendarView: View {
     private func getDayAverageRating(date: Date) -> Double{
         let logsInDay = logs.filter{$0.date.startOfDay == date.startOfDay}
         if logsInDay.count <= 0 {return 0.0}
-        let ratings = logsInDay.compactMap {r in r.score}
+        let ratings = logsInDay.compactMap {r in r.rating}
         let averageRating = Double(ratings.reduce(0, +)) / Double(ratings.count)
         print(date, "--- Rating:",averageRating)
         return averageRating
@@ -176,7 +156,6 @@ struct CalendarView: View {
     
     @ViewBuilder
     private func backgroundStyle(for day: Day) -> some View {
-        
         // Current date Background
         if day.date.startOfDay == Date().startOfDay {
             VStack{
@@ -190,7 +169,7 @@ struct CalendarView: View {
         }
         // Rating based background
         if day.hasEntry {
-            getRatingClassImage(rating: day.averageRating!)
+            Image("rating_empty_color_\(getRatingClass(rating: day.averageRating!))")
         }
         else {
             Circle()
@@ -199,9 +178,17 @@ struct CalendarView: View {
     }
 }
 
-#Preview {
-    func twodates(date1:Date){
-        print("Een twee datum")
-    }
-   return CalendarView(onDateSelected: twodates)
-}
+//#Preview {
+//    func twodates(date1:Date){
+//        print("Een twee datum")
+//    }
+//    
+//    let logs = [
+//            Log(id: UUID(), date: try! Date("21/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 4, journal: "first entry"),
+//            Log(id: UUID(), date: try! Date("18 /08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 2, journal: "first entry"),
+//            Log(id: UUID(), date: try! Date("18/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 4, journal: "first entry"),
+//            Log(id: UUID(), date: try! Date("19/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 1, journal: "first entry")
+//        ]
+//    
+//    return CalendarView(logs: logs, onDateSelected: twodates)
+//}

@@ -24,7 +24,7 @@ struct GardenView: View {
                     Text("Add Plant")
                 }
                 Button{
-                    viewModel.resetPlantData()
+                    viewModel.nuclearReset()
                 } label: {
                     Text("Reset Data")
                 }

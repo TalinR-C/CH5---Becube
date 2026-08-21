@@ -19,7 +19,7 @@ struct SingleLogView: View {
                         Image("rating_\(log?.rating ?? 0)")
                             .resizable()
                             .frame(width: 30, height: 30)
-                        Text(viewModel.ratingName(rating: log?.rating ?? 0))
+                        Text(viewModel.ratingName(rating: log?.rating ?? 1))
                     }
                     Text(log?.journal ?? "No journal")
                         .padding(.leading, 10)
