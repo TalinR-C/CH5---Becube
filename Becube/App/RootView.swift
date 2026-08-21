@@ -15,33 +15,31 @@ struct RootView: View {
     @Environment(Router.self) private var router
 
     var body: some View {
-        // Turns the environment's Router into something bindable, so the paths
-        // below can be passed as $-bindings.
-        @Bindable var router = router
-
-        TabView(selection: $router.selectedTab) {
-            Tab("Shelf", systemImage: "book.closed.fill", value: AppTab.shelf) {
-                NavigationStack(path: $router.shelfPath) {
-                    ShelfListView(viewModel: ShelfListViewModel(gardenStore: gardenStore))
-                        .routeDestinations()
-                        .tabBarVisible(router.shelfPath.isEmpty)
-                }
+        TabView {
+            NavigationStack(path: $router.shelfPath) {
+              ShelfListView(viewModel: ShelfListViewModel(gardenStore: gardenStore))  
             }
-            Tab("Garden", systemImage: "garden", value: AppTab.garden) {
-                NavigationStack(path: $router.gardenPath) {
-                    GardenView(viewModel: GardenViewModel(gardenStore: gardenStore))
-                        .routeDestinations()
-                        .tabBarVisible(router.gardenPath.isEmpty)
-                }
+            .tabItem {
+                Image(ImageResource.shelfIcon)
+                Text("Shelf")
             }
-            Tab("Forest", systemImage: "forest", value: AppTab.forest) {
-                NavigationStack(path: $router.forestPath) {
-                    ForestMapView()
-                        .routeDestinations()
-                        .tabBarVisible(router.forestPath.isEmpty)
-                }
+            NavigationStack(path: $router.gardenPath) {
+              GardenView(viewModel: GardenViewModel(gardenStore: gardenStore))
             }
+            .tabItem {
+                Image(ImageResource.gardenIcon)
+                Text("Garden")
+            }
+            NavigationStack(path: $router.forestPath) {
+                ForestMapView()
+            }
+            .tabItem{
+                Image(systemName: "map.fill")
+                Text("Explore")
+            }
+            
         }
+        .tint(.darkBrown)
     }
 }
 
