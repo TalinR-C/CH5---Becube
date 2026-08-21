@@ -38,7 +38,7 @@ struct ForestAreaView: View {
             Text(viewModel.areaName)
                 .font(.largeTitle)
                 .bold()
-                .position(x: 200, y: 50)
+                .position(x: 200, y: 100)
 
             ForEach(Array(zip(viewModel.skills, bubblePositions)), id: \.0.id) { skill, position in
                 NavigationLink {
