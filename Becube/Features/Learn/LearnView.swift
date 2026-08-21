@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct LearnView: View {
 
@@ -21,8 +22,8 @@ struct LearnView: View {
                 .ignoresSafeArea()
 
                 VStack(spacing: 20) {
-
-//                    CommentBox(text: "Box Breathing", tailPosition: .topCenter)
+                    
+//                    captionCard(text: "Box Breathing", tailPosition: .bottomLeft)
 
                     header /// custom top row: back button + skill name
                     
@@ -62,7 +63,7 @@ struct LearnView: View {
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .frame(height: 56)
-                            .background(Color.brown)
+                            .background(Color.darkBrown)
                             .clipShape(Capsule())
                             .shadow(color: Color.black.opacity(0.15), radius: 6, x: 0, y: 4)
                     }
@@ -272,3 +273,30 @@ struct LearnView: View {
 }
 
 //Struct to add buldge effect on stepscard
+
+    
+
+#Preview {
+    let container = try! ModelContainer(
+        for: GardenState.self, Log.self,
+        configurations: ModelConfiguration(isStoredInMemoryOnly: true)
+    )
+    let viewModel = LearnViewModel(
+        skillID: "grounding",
+        gardenStore: GardenStore(context: container.mainContext)
+    )
+    viewModel.skill = CopingSkill(
+        id: "grounding",
+        index: 8,
+        name: "Grounding",
+        image: "plant_akar_wangi",
+        plantPhilosophy: "Vetiver is grown on slopes to stop the soil washing away.",
+        info: [
+            "what": "Using your senses to pull your attention out of your head and back into the room.",
+            "how": "Name 5 things you can see\nName 4 things you can feel\nName 3 things you can hear\nName 2 things you can smell\nName 1 thing you can taste",
+            "when": "Panic, feeling unreal or detached, a memory surfacing.",
+            "why": "Attention is limited. Filling it with real things around you leaves less room for the spiral inside.\n\nThis exact exercise has not been tested on its own — it is used because clinicians consistently find it helps."
+        ]
+    )
+    return LearnView(viewModel: viewModel)
+}
