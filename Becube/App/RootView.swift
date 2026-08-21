@@ -14,16 +14,23 @@ struct RootView: View {
     @Environment(GardenStore.self) var gardenStore
     var body: some View {
         TabView {
-            Tab("Shelf", systemImage: "book.closed.fill"){
-                ShelfListView(viewModel: ShelfListViewModel(gardenStore: gardenStore))
-            }
-            Tab("Garden", systemImage: "garden"){
-                GardenView(viewModel: GardenViewModel(gardenStore: gardenStore))
-            }
-            Tab("Forest", systemImage: "forest"){
-                ForestMapView()
-            }
+            ShelfListView(viewModel: ShelfListViewModel(gardenStore: gardenStore))
+                .tabItem {
+                    Image(ImageResource.shelfIcon)
+                    Text("Shelf")
+                }
+            GardenView(viewModel: GardenViewModel(gardenStore: gardenStore))
+                .tabItem {
+                    Image(ImageResource.gardenIcon)
+                    Text("Garden")
+                }
+            ForestMapView()
+                .tabItem{
+                    Image(systemName: "map.fill")
+                    Text("Explore")
+                }
         }
+        .tint(.darkBrown)
     }
 }
 
