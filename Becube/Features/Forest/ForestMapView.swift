@@ -9,10 +9,10 @@ import Foundation
 import SwiftUI
 import SwiftData
 
-// TODO: implement
 struct ForestMapView: View {
 
     @Environment(GardenStore.self) private var gardenStore
+    @Environment(Router.self) private var router
     @State private var viewModel: ForestMapViewModel?
     @State private var showAreaLocked = false
 
@@ -24,28 +24,33 @@ struct ForestMapView: View {
         CGPoint(x: 300, y: 600)
     ]
 
+    // The NavigationStack lives in RootView now, one per tab, so this view is
+    // just the map. Wrapping it in a second stack here would swallow every
+    // push and leave the router's path empty.
     var body: some View {
-        NavigationStack {
-            ZStack {
-                Image(ImageResource.forestMap)
-                    .resizable()
-                    .ignoresSafeArea()
+        ZStack {
+            Image(ImageResource.forestMap)
+                .resizable()
+                .ignoresSafeArea()
 
-                if let viewModel {
-                    ForEach(Array(zip(viewModel.forestAreas, areaPositions)), id: \.0.id) { area, position in
-                        areaNode(area, viewModel: viewModel)
-                            .position(position)
-                    }
-
-                    NavigationLink {
-
-                    } label: {
-                        GoToGardenButton()
-                    }
-                    .position(x: 200, y: 400)
-
-                    modals(for: viewModel)
+            if let viewModel {
+                ForEach(Array(zip(viewModel.forestAreas, areaPositions)), id: \.0.id) { area, position in
+                    areaNode(area, viewModel: viewModel)
+                        .position(position)
                 }
+
+                // Not a push but a tab change: the Garden is a peer of the
+                // Forest, not a screen inside it. Only the router can say that,
+                // which is why this button had nowhere to point before.
+                Button {
+                    router.selectedTab = .garden
+                } label: {
+                    GoToGardenButton()
+                }
+                .buttonStyle(.plain)
+                .position(x: 200, y: 400)
+
+                modals(for: viewModel)
             }
         }
         .task {
@@ -57,24 +62,23 @@ struct ForestMapView: View {
 
     /// An unlocked area navigates into itself; a locked one explains why it
     /// cannot be entered instead of sitting there inert.
-    @ViewBuilder
+    ///
+    /// Both outcomes are now a plain `Button` — pushing a route and raising a
+    /// modal are the same kind of action, so they no longer need two different
+    /// controls to express them.
     private func areaNode(_ area: ForestArea, viewModel: ForestMapViewModel) -> some View {
         let status = (name: area.name, unlocked: viewModel.unlocked(area))
 
-        if status.unlocked {
-            NavigationLink {
-                ForestAreaView(forestArea: area)
-            } label: {
-                AreaButton(areaStatus: status)
-            }
-        } else {
-            Button {
+        return Button {
+            if status.unlocked {
+                router.push(.forestArea(areaID: area.id))
+            } else {
                 showAreaLocked = true
-            } label: {
-                AreaButton(areaStatus: status)
             }
-            .buttonStyle(.plain)
+        } label: {
+            AreaButton(areaStatus: status)
         }
+        .buttonStyle(.plain)
     }
 
     /// The picker takes priority: until the user has chosen somewhere to start,
@@ -106,6 +110,9 @@ struct ForestMapView: View {
         for: GardenState.self, Log.self,
         configurations: ModelConfiguration(isStoredInMemoryOnly: true)
     )
-    ForestMapView()
-        .environment(GardenStore(context: container.mainContext))
+    NavigationStack {
+        ForestMapView()
+    }
+    .environment(GardenStore(context: container.mainContext))
+    .environment(Router())
 }

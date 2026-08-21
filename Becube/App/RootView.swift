@@ -11,29 +11,48 @@ import SwiftUI
 import SwiftData
 
 struct RootView: View {
-    @Environment(GardenStore.self) var gardenStore
+    @Environment(GardenStore.self) private var gardenStore
+    @Environment(Router.self) private var router
+
     var body: some View {
         TabView {
-            ShelfListView(viewModel: ShelfListViewModel(gardenStore: gardenStore))
-                .tabItem {
-                    Image(ImageResource.shelfIcon)
-                    Text("Shelf")
-                }
-            GardenView(viewModel: GardenViewModel(gardenStore: gardenStore))
-                .tabItem {
-                    Image(ImageResource.gardenIcon)
-                    Text("Garden")
-                }
-            ForestMapView()
-                .tabItem{
-                    Image(systemName: "map.fill")
-                    Text("Explore")
-                }
+            NavigationStack(path: $router.shelfPath) {
+              ShelfListView(viewModel: ShelfListViewModel(gardenStore: gardenStore))  
+            }
+            .tabItem {
+                Image(ImageResource.shelfIcon)
+                Text("Shelf")
+            }
+            NavigationStack(path: $router.gardenPath) {
+              GardenView(viewModel: GardenViewModel(gardenStore: gardenStore))
+            }
+            .tabItem {
+                Image(ImageResource.gardenIcon)
+                Text("Garden")
+            }
+            NavigationStack(path: $router.forestPath) {
+                ForestMapView()
+            }
+            .tabItem{
+                Image(systemName: "map.fill")
+                Text("Explore")
+            }
+            
         }
         .tint(.darkBrown)
     }
 }
 
-//#Preview {
-//    RootView()
-//}
+private extension View {
+    /// Declares tab-bar visibility on the *root* of a stack, derived from
+    /// whether that stack has anything pushed.
+    ///
+    /// `RouteDestinations` also hides the bar per-destination, and the two
+    /// always agree — but a destination's preference is only discovered a
+    /// render pass after the transition begins, which is what makes the bar
+    /// fade in late on the way back. `path.isEmpty` flips in the same
+    /// transaction as the push, so SwiftUI knows before the animation starts.
+    func tabBarVisible(_ isVisible: Bool) -> some View {
+        toolbar(isVisible ? .visible : .hidden, for: .tabBar)
+    }
+}
