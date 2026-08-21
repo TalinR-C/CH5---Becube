@@ -29,9 +29,11 @@ struct ForestAreaView: View {
 
     var body: some View {
         ZStack {
-            Image(ImageResource.riverbend)
+            Image(viewModel.forestArea.id)
                 .resizable()
+                .scaledToFill()
                 .ignoresSafeArea()
+                
 
             Text(viewModel.areaName)
                 .font(.largeTitle)
