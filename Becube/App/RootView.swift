@@ -27,6 +27,8 @@ struct RootView: View {
                 Image(ImageResource.shelfIcon)
                 Text("Shelf")
             }
+            .tag(AppTab.shelf)
+            
             NavigationStack(path: $router.gardenPath) {
               GardenView(viewModel: GardenViewModel(gardenStore: gardenStore))
                     .routeDestinations()
@@ -36,6 +38,8 @@ struct RootView: View {
                 Image(ImageResource.gardenIcon)
                 Text("Garden")
             }
+            .tag(AppTab.garden)
+            
             NavigationStack(path: $router.forestPath) {
                 ForestMapView()
                     .routeDestinations()
@@ -45,6 +49,7 @@ struct RootView: View {
                 Image(systemName: "map.fill")
                 Text("Explore")
             }
+            .tag(AppTab.forest)
             
         }
         .tint(.darkBrown)
