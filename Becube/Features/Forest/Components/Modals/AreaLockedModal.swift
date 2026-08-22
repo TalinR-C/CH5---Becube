@@ -44,7 +44,7 @@ struct AreaLockedModal: View {
 
 #Preview {
     ZStack {
-        Image(ImageResource.forestMap).resizable().ignoresSafeArea()
+        Image(ImageResource.Backgrounds.map).resizable().ignoresSafeArea()
         AreaLockedModal { }
     }
 }
