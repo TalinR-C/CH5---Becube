@@ -110,9 +110,14 @@ struct ForestMapView: View {
         for: GardenState.self, Log.self,
         configurations: ModelConfiguration(isStoredInMemoryOnly: true)
     )
-    NavigationStack {
+    let gardenStore = GardenStore(context: container.mainContext)
+    let router = Router()
+
+    NavigationStack(path: Bindable(router).forestPath) {
         ForestMapView()
+            .routeDestinations()
     }
-    .environment(GardenStore(context: container.mainContext))
-    .environment(Router())
+    .modelContainer(container)
+    .environment(gardenStore)
+    .environment(router)
 }
