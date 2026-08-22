@@ -1,45 +1,44 @@
-
 [
   {
-    "id": "riverbend",
-    "name": "The Waterfall",
+    "id": "waterfall",
+    "name": "Waterfall",
     "copingSkillIds": [
+      "box_breathing",
       "urge_surfing",
-      "delay_and_distract",
-      "high_risk_situations",
-      "refusal_skills"
+      "tipp_skill",
+      "stop_skill"
     ],
     "index": 1
   },
   {
-    "id": "fern_hollow",
-    "name": "The Lake",
+    "id": "pond",
+    "name": "Pond",
     "copingSkillIds": [
-      "paced_breathing",
-      "cold_water_reset",
-      "muscle_release",
-      "grounding"
+      "grounding",
+      "progressive_muscle_relaxation",
+      "self_soothing",
+      "body_scan"
     ],
     "index": 2
   },
   {
-    "id": "canopy_gap",
-    "name": "The Mountain",
+    "id": "forest",
+    "name": "Forest",
     "copingSkillIds": [
-      "checking_the_thought",
+      "radical_acceptance",
       "opposite_action",
-      "scheduling_good_activity",
-      "if_then_plans"
+      "cognitive_reframing",
+      "expressive_writing"
     ],
     "index": 3
   },
   {
-    "id": "old_grove",
-    "name": "The Forest",
+    "id": "field",
+    "name": "Field",
     "copingSkillIds": [
-      "tracking",
-      "reaching_out",
-      "after_a_slip"
+      "halt_check_in",
+      "problem_solving_steps",
+      "behavioral_activation"
     ],
     "index": 4
   }
