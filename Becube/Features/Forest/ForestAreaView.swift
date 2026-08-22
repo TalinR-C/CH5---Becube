@@ -15,47 +15,48 @@ struct ForestAreaView: View {
 
     @Environment(Router.self) private var router
 
-    // Fixed slots for up to four skill bubbles, alternating left/right
-    private let bubblePositions: [CGPoint] = [
-        CGPoint(x: 100, y: 200),
-        CGPoint(x: 300, y: 250),
-        CGPoint(x: 100, y: 400),
-        CGPoint(x: 300, y: 500)
-    ]
+    // Figma artboard dimensions the designer used — positions in areas.json are in these units
+    private let figmaFrame = CGSize(width: 390, height: 844)
 
     init(forestArea: ForestArea) {
         self.viewModel = ForestAreaViewModel(forestArea: forestArea)
     }
 
     var body: some View {
-        ZStack {
-            Image(ImageResource.riverbend)
-                .resizable()
-                .ignoresSafeArea()
+        GeometryReader { geo in
+            ZStack {
+                Image("backgrounds/\(viewModel.forestArea.id)")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
 
-            Text(viewModel.areaName)
-                .font(.largeTitle)
-                .bold()
-                .position(x: 200, y: 50)
+                Text(viewModel.areaName)
+                    .font(.largeTitle)
+                    .bold()
+                    .position(x: 200, y: 50)
 
-            ForEach(Array(zip(viewModel.skills, bubblePositions)), id: \.0.id) { skill, position in
-                // A bubble opens the skill's plant screen, which is where the
-                // Learn and Practice choices live. Swap this for
-                // `.learn(skillID:)` if a bubble should drop straight into the
-                // lesson instead.
-                Button {
-                    router.push(.lockedPlant(skillID: skill.id))
-                } label: {
-                    SkillBubble(
-                        message: skill.name,
-                        tailOffsetDenominator: position.x < 200 ? -4 : 4
+                ForEach(Array(zip(viewModel.skills, viewModel.forestArea.skillPositions)), id: \.0.id) { skill, pos in
+                    // A bubble opens the skill's plant screen, which is where the
+                    // Learn and Practice choices live. Swap this for
+                    // `.learn(skillID:)` if a bubble should drop straight into the
+                    // lesson instead.
+                    Button {
+                        router.push(.lockedPlant(skillID: skill.id))
+                    } label: {
+                        SkillBubble(
+                            message: skill.name,
+                            tailOffsetDenominator: pos.x < figmaFrame.width / 2 ? -4 : 4
+                        )
+                    }
+                    .buttonStyle(.plain)
+                    .position(
+                        x: pos.x / figmaFrame.width * geo.size.width,
+                        y: pos.y / figmaFrame.height * geo.size.height
                     )
                 }
-                .buttonStyle(.plain)
-                .position(position)
             }
+            .padding(0)
         }
-        .padding(0)
     }
 }
 
