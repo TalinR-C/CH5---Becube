@@ -29,7 +29,7 @@ struct ForestMapView: View {
     // push and leave the router's path empty.
     var body: some View {
         ZStack {
-            Image(ImageResource.forestMap)
+            Image(ImageResource.Backgrounds.map)
                 .resizable()
                 .ignoresSafeArea()
 
