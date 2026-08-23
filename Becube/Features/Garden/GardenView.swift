@@ -16,13 +16,26 @@ struct GardenView: View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
 //        Text(ContentRepository.skills[0].name)
                 
-        // The Garden tab's NavigationStack lives in RootView now — a second one
-        // here would swallow every push and leave the router's path empty.
-        HStack{
-            Button{
-                viewModel.appendUnlockedPlant(id: "urge_surfing")
-            } label: {
-                Text("Add Plant")
+        NavigationStack(){
+            HStack{
+                Button{
+                    viewModel.appendUnlockedPlant(id: "urge_surfing")
+                } label: {
+                    Text("Add Plant")
+                }
+                Button{
+                    viewModel.nuclearReset()
+                } label: {
+                    Text("Reset Data")
+                }
+                Button{
+                    viewModel.testGardenVM()
+                } label: {
+                    Text("Test Garden")
+                }
+                Button("Change Data"){
+                    test = "World"
+                }
             }
             Button{
                 viewModel.resetPlantData()

@@ -24,6 +24,10 @@ class GardenViewModel {
         gardenStore.saveData()
     }
     
+    func nuclearReset(){
+        gardenStore.resetData()
+    }
+    
     func testGardenVM(){
         print("GArden test")
     }

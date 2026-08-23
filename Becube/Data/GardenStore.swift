@@ -89,6 +89,8 @@ class GardenStore {
             try context.delete(model: Log.self)
             try context.delete(model: GardenState.self)
             try context.save()
+            
+            logHistory.removeAll()
             print("Reset Data!!")
         }
         catch{print("Error saving GardenState")}

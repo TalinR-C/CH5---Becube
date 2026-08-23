@@ -8,30 +8,42 @@
 import Foundation
 import SwiftUI
 
+struct Day: Hashable{
+    var date: Date
+    var averageRating: Double?
+    var hasEntry: Bool = false
+    init(date: Date, averageRating: Double? = nil, hasEntry: Bool) {
+        self.date = date
+        self.averageRating = averageRating
+        self.hasEntry = hasEntry
+    }
+}
+
 @Observable
 class ReflectViewModel {
     private let gardenStore: GardenStore
     let current: CopingSkill
     var logs: [Log] = []
-    var ratingClassImage: Image {
-        return getRatingClassImage(rating: getPlantAverageRating())
+    var currentRatingClass: Int {
+        return getRatingClass(rating: getPlantAverageRating())
     }
     
     init(gardenStore: GardenStore, current: CopingSkill) {
         self.gardenStore = gardenStore
         self.current = current
-        getDefaultLogs(plant: current)
+        
+        // populate log array with default values. Set data to current day.
+        let plantLogs = gardenStore.logHistory.filter{$0.copingID == current.id}
+        self.logs = plantLogs.filter{$0.date.startOfDay == .now.startOfDay}
     }
     
     func submitLog(log: Log){
         gardenStore.addNewLog(log: log)
     }
     
-    func getDefaultLogs(plant: CopingSkill){
-        // the default logs are ones of this specific plant
-        // and filtered to the current day.
-        let plantLogs = gardenStore.logHistory.filter{$0.copingID == plant.id}
-        self.logs = plantLogs.filter{$0.date.startOfDay == .now.startOfDay}
+    func getCurrentPlantlogs() -> [Log]{
+        let plantLogs = gardenStore.logHistory.filter{$0.copingID == current.id}
+        return plantLogs
     }
     
     func getDayLogs(day: Date){
@@ -39,9 +51,9 @@ class ReflectViewModel {
         self.logs = plantLogs.filter{$0.date.startOfDay == day.startOfDay}
     }
     
-    func ratingName(rating: Int) -> String {
-        let ratingName = ["Not For \nMe", "Not Quite", "It's Okay", "I Like It", "I Really \nLike It"]
-        return String(ratingName[rating - 1])
+    func doesDayHaveLogEntries(day: Date) -> Bool{
+        let plantLogs = gardenStore.logHistory.filter{$0.copingID == self.current.id}
+        return plantLogs.contains(where: {$0.date.startOfDay == day.startOfDay})
     }
     
     private func getPlantAverageRating() -> Double{
@@ -52,13 +64,22 @@ class ReflectViewModel {
         return averageRating
     }
     
-    private func getRatingClassImage(rating: Double) -> Image{
-        // TODO: What if PlantAverageRating is 0? If it's 0 it doesn't have a rating.
-        if rating <= 1.0 {return Image("rating_1")}
-        if rating <= 2.0 {return Image("rating_2")}
-        if rating <= 3.0 {return Image("rating_3")}
-        if rating <= 4.0 {return Image("rating_4")}
-        return Image("rating_5")
+    func ratingName(rating: Int, withNewline: Bool = false) -> String {
+        if rating == 0 {return "No Rating Please Check"}
+        let ratingNameNewline = ["Not For \nMe", "Not Quite", "It's Okay", "I Like It", "I Really \nLike It"]
+        let ratingName = ["Not For Me", "Not Quite", "It's Okay", "I Like It", "I Really Like It"]
+        
+        if(withNewline){return String(ratingNameNewline[rating - 1])}
+        return String(ratingName[rating - 1])
+    }
+    
+    func getRatingClass(rating: Double) -> Int {
+        if rating == 0.0 {return 0}
+        if rating <= 1.0 {return 1 }
+        if rating <= 2.0 {return 2 }
+        if rating <= 3.0 {return 3 }
+        if rating <= 4.0 {return 4 }
+        return 5
     }
     
     func resetEverything(){

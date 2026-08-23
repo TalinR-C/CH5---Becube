@@ -7,42 +7,8 @@
 
 import SwiftUI
 
-class LogTest{
-    var id: UUID
-    var date : Date
-    var copingID : String
-    var score : Int?
-    var journal : String?
-    
-    init(id: UUID, date: Date, copingID: String, score: Int? = nil, journal: String? = nil) {
-        self.id = id
-        self.date = date
-        self.copingID = copingID
-        self.score = score
-        self.journal = journal
-    }
-}
-
-struct Day: Hashable{
-    var date: Date
-    var averageRating: Double?
-    var hasEntry: Bool = false
-    init(date: Date, averageRating: Double? = nil, hasEntry: Bool) {
-        self.date = date
-        self.averageRating = averageRating
-        self.hasEntry = hasEntry
-    }
-}
-
 struct CalendarView: View {
-    @State var logs: [LogTest] = [
-        LogTest(id: UUID(), date: try! Date("18/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 4, journal: "first entry"),
-        LogTest(id: UUID(), date: try! Date("18/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 2, journal: "first entry"),
-        LogTest(id: UUID(), date: try! Date("18/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 4, journal: "first entry"),
-        LogTest(id: UUID(), date: try! Date("19/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", score: 1, journal: "first entry")
-    ]
-    
-    
+    @State var logs: [Log]
     
     @State private var currentMonth = Date.now
     @State private var selectedDate = Date.now
@@ -57,7 +23,7 @@ struct CalendarView: View {
     var body: some View {
         Image("CalendarBackground")
             .resizable()
-            .frame(height: 395)
+            .frame(height: 440)
             .overlay{
                 VStack(spacing: 10) {
                     // Month navigation
@@ -97,7 +63,7 @@ struct CalendarView: View {
                     }
                     
                     // Grid of days
-                    LazyVGrid(columns: columns, spacing: 5) {
+                    LazyVGrid(columns: columns, spacing: 12) {
                         ForEach(days, id: \.self) { day in
                             Button {
                                 if  day.date.monthInt == currentMonth.monthInt {
@@ -116,15 +82,28 @@ struct CalendarView: View {
                                 }
                             } label: {
                                 Text(day.date.formatted(.dateTime.day()))
-                                    .font(.system(size: 14, weight: .medium))
+                                    .font(day.date.startOfDay == selectedDate.startOfDay
+                                          ? .system(size: 17).bold()
+                                          : .system(size: 14))
                                     .foregroundStyle(day.date.monthInt == currentMonth.monthInt ? .darkBrown : .darkBrown.opacity(0.3))
-                                    .frame(maxWidth: .infinity, minHeight: 35)
+                                    .frame(minHeight: 35)
                                     .background(
                                         backgroundStyle(for: day)
                                     )
                             }
+                            .overlay(
+                                Circle()
+                                    .foregroundStyle(
+                                        day.hasEntry
+                                        ? .brown : .clear
+                                    )
+                                    .frame(width: 4, height: 4)
+                                    .offset(x: 0, y: 21)
+                                
+                            )
                         }
                     }
+                    Spacer()
                 }
                 .padding(50)
                 .onAppear {
@@ -132,6 +111,7 @@ struct CalendarView: View {
                     onDateSelected(selectedDate)
                 }
             }
+        
     }
     
     private func updateDays() {
@@ -152,9 +132,8 @@ struct CalendarView: View {
     private func getDayAverageRating(date: Date) -> Double{
         let logsInDay = logs.filter{$0.date.startOfDay == date.startOfDay}
         if logsInDay.count <= 0 {return 0.0}
-        let ratings = logsInDay.compactMap {r in r.score}
+        let ratings = logsInDay.compactMap {r in r.rating}
         let averageRating = Double(ratings.reduce(0, +)) / Double(ratings.count)
-        print(date, "--- Rating:",averageRating)
         return averageRating
     }
     
@@ -166,17 +145,38 @@ struct CalendarView: View {
         return Image("rating_5")
     }
     
+    private func getRatingClass(rating: Double) -> Int{
+        if rating <= 1.0, rating > 0.0 {return 1}
+        if rating <= 2.0 {return 2}
+        if rating <= 3.0 {return 3}
+        if rating <= 4.0 {return 4}
+        return 5
+    }
+    
     @ViewBuilder
     private func backgroundStyle(for day: Day) -> some View {
-//        // Selected date background
-//        if day.date.formattedDate == selectedDate.formattedDate{
-//            Circle()
-//                .foregroundStyle(Color.blue)
-//        }
+        // Current date Background
+        if day.date.startOfDay == Date().startOfDay {
+            VStack{
+                Spacer()
+                Image("CurrentDateBackground")
+            }
+        }
+        
         // Rating based background
         if day.hasEntry {
-            getRatingClassImage(rating: day.averageRating!)
+            Image("rating_empty_color_\(getRatingClass(rating: day.averageRating!))")
+                .resizable()
+                .frame(width: 35, height: 35)
         }
+        
+        // Selected date background
+        if day.date.startOfDay == selectedDate.startOfDay, day.hasEntry{
+            Image("BorderBrown\(getRatingClass(rating: day.averageRating!))")
+                .resizable()
+                .frame(width: 35, height: 35)
+        }
+        
         else {
             Circle()
                 .foregroundStyle(.clear)
@@ -188,5 +188,13 @@ struct CalendarView: View {
     func twodates(date1:Date){
         print("Een twee datum")
     }
-   return CalendarView(onDateSelected: twodates)
+    
+    let logs = [
+            Log(id: UUID(), date: try! Date("21/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", rating: 4, journal: "first entry"),
+            Log(id: UUID(), date: try! Date("18 /08/2026", strategy: .dateTime.day().month().year()), copingID: "123", rating: 2, journal: "first entry"),
+            Log(id: UUID(), date: try! Date("18/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", rating: 4, journal: "first entry"),
+            Log(id: UUID(), date: try! Date("23/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", rating: 1, journal: "first entry")
+        ]
+    
+    return CalendarView(logs: logs, onDateSelected: twodates)
 }
