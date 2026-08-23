@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+
 enum BreathPhase: CaseIterable {
     case breatheIn, hold1, breatheOut, hold2
     
@@ -20,8 +21,12 @@ enum BreathPhase: CaseIterable {
     }
 }
 
+@MainActor
 @Observable
-class BoxBreathingViewModel{
+final class BoxBreathingViewModel: PracticeSession {
+    
+    let skillID: String
+    var onComplete: (() -> Void)?
     
     //Duration and the side of the square
     let phaseDuration: Double = 4.0
@@ -37,7 +42,8 @@ class BoxBreathingViewModel{
 
     private let corners: [CGPoint]
     
-    init() {
+    init(skillID: String){
+        self.skillID = skillID
         let s = squareSize
         corners = [
             CGPoint(x: 0, y: s), // bottom-left
@@ -49,17 +55,18 @@ class BoxBreathingViewModel{
     }
     
     func start() {
-            advance()
-            timer = Timer.scheduledTimer(withTimeInterval: phaseDuration, repeats: true) { [weak self] _ in
-                self?.advance()
-                
-            }
+        advance()
+        timer = Timer.scheduledTimer(withTimeInterval: phaseDuration, repeats: true) { [weak self] _ in
+            // Timer fires on the main run loop, so this is genuinely safe —
+            // it's how you tell the compiler that once the class is @MainActor.
+            MainActor.assumeIsolated { self?.advance() }
         }
+    }
     
     func stop() {
-            timer?.invalidate() // stops the timer from firing again
-            timer = nil
-        }
+        timer?.invalidate() // stops the timer from firing again
+        timer = nil
+    }
 
     private func advance() {
         currentPhase = BreathPhase.allCases[phaseIndex] // update the label immediately

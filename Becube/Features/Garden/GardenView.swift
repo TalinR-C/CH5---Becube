@@ -19,7 +19,7 @@ struct GardenView: View {
         NavigationStack(){
             HStack{
                 Button{
-                    viewModel.appendUnlockedPlant(id: "urge_surfing")
+                    viewModel.appendUnlockedPlant(id: "box_breathing")
                 } label: {
                     Text("Add Plant")
                 }
