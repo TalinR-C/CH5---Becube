@@ -64,7 +64,7 @@ struct ReflectHistoryView: View {
             
             // Calendar
             CalendarView(
-                logs: viewModel.logs,
+                logs: viewModel.getCurrentPlantlogs(),
                 onDateSelected: onDateSelected
             )
             

@@ -134,7 +134,6 @@ struct CalendarView: View {
         if logsInDay.count <= 0 {return 0.0}
         let ratings = logsInDay.compactMap {r in r.rating}
         let averageRating = Double(ratings.reduce(0, +)) / Double(ratings.count)
-        print(date, "--- Rating:",averageRating)
         return averageRating
     }
     
@@ -163,18 +162,21 @@ struct CalendarView: View {
                 Image("CurrentDateBackground")
             }
         }
+        
+        // Rating based background
+        if day.hasEntry {
+            Image("rating_empty_color_\(getRatingClass(rating: day.averageRating!))")
+                .resizable()
+                .frame(width: 35, height: 35)
+        }
+        
         // Selected date background
         if day.date.startOfDay == selectedDate.startOfDay, day.hasEntry{
             Image("BorderBrown\(getRatingClass(rating: day.averageRating!))")
                 .resizable()
                 .frame(width: 35, height: 35)
         }
-        // Rating based background
-        else if day.hasEntry {
-            Image("rating_empty_color_\(getRatingClass(rating: day.averageRating!))")
-                .resizable()
-                .frame(width: 35, height: 35)
-        }
+        
         else {
             Circle()
                 .foregroundStyle(.clear)
@@ -191,7 +193,7 @@ struct CalendarView: View {
             Log(id: UUID(), date: try! Date("21/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", rating: 4, journal: "first entry"),
             Log(id: UUID(), date: try! Date("18 /08/2026", strategy: .dateTime.day().month().year()), copingID: "123", rating: 2, journal: "first entry"),
             Log(id: UUID(), date: try! Date("18/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", rating: 4, journal: "first entry"),
-            Log(id: UUID(), date: try! Date("19/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", rating: 1, journal: "first entry")
+            Log(id: UUID(), date: try! Date("23/08/2026", strategy: .dateTime.day().month().year()), copingID: "123", rating: 1, journal: "first entry")
         ]
     
     return CalendarView(logs: logs, onDateSelected: twodates)
