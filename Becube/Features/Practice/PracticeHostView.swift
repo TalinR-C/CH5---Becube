@@ -125,5 +125,18 @@ struct PracticeHostView: View {
         }
         .foregroundStyle(.brown)
     }
+    
+    private func handlePracticeCompletion(
+        skillID: String,
+        gardenStore: GardenStore,
+        router: Router
+    ) {
+        let isFirstTime = PracticeService.complete(skillID: skillID, in: gardenStore)
+        if isFirstTime {
+            router.showFirstCompletion(skillID: skillID)
+        } else {
+            router.showRepeatCompletion(skillID: skillID) // separate screen, separate concern — not covered here
+        }
+    }
 }
 

@@ -16,9 +16,10 @@ import Foundation
 /// that rule out of the view. The `Log` is still written by ReflectView,
 /// because a rating is only known after reflecting.
 enum PracticeService {
-    static func complete(skillID: String, in store: GardenStore) {
-        store.unlockPlant(id: skillID)
-    }
+    @discardableResult
+        static func complete(skillID: String, in store: GardenStore) -> Bool {
+            store.unlockPlant(id: skillID)
+        }
 }
 
 
