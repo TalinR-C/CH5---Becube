@@ -15,53 +15,58 @@ struct ReflectView: View {
     @State var currentLog: String = ""
     let logCharLimit = 200
 
-    var body: some View {
-        NavigationStack{
-            VStack {
-                Image("Flower")
-                Text(viewModel.current.name)
-                    .font(.system(size: 24)).bold(true)
-                    .foregroundStyle(Color.darkBrown)
-                    .padding(.bottom, 20)
-                rating
-                textbox
-                Button{
-                    viewModel.submitLog(
-                        log: Log(
-                            id: UUID(),
-                            date: .now,
-                            copingID: viewModel.current.id,
-                            rating: selectedRating ?? 0,
-                            journal: currentLog
-                        )
-                    )
-                } label: {
-                    Text("Done")
-                        .foregroundStyle(Color.white)
-                        .font(Font.system(size: 16))
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 25)
-                                .frame(width: 300, height: 50)
-                                .foregroundColor(.brown)
-                                .shadow(color: Color.black.opacity(0.2), radius: 4)
-                                .padding()
-                        )
-                }
+    @Environment(Router.self) private var router
 
+    // Reflect is pushed inside whichever tab's stack the user is already in, so
+    // it must not carry a NavigationStack of its own.
+    var body: some View {
+        VStack {
+            Image("Flower")
+            Text(viewModel.current.name)
+                .font(.system(size: 24)).bold(true)
+                .foregroundStyle(Color.darkBrown)
+                .padding(.bottom, 20)
+            rating
+            textbox
+            Button{
+                viewModel.submitLog(
+                    log: Log(
+                        id: UUID(),
+                        date: .now,
+                        copingID: viewModel.current.id,
+                        rating: selectedRating ?? 0,
+                        journal: currentLog
+                    )
+                )
+                // Saving ends the loop, so this is a rewind rather than a push:
+                // the whole Learn -> Practice -> Reflect stack is dropped and
+                // the user lands on the skill's plant.
+                router.finishReflection(skillID: viewModel.current.id)
+            } label: {
+                Text("Done")
+                    .foregroundStyle(Color.white)
+                    .font(Font.system(size: 16))
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 25)
+                            .frame(width: 300, height: 50)
+                            .foregroundColor(.brown)
+                            .shadow(color: Color.black.opacity(0.2), radius: 4)
+                            .padding()
+                    )
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.lightCream)
-            .toolbar{
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: ReflectHistoryView(viewModel:viewModel))
-                    {
-                        Image(systemName: "clock")
-                    }
+
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.lightCream)
+        .toolbar{
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink(value: Route.reflectHistory(skillID: viewModel.current.id)) {
+                    Image(systemName: "clock")
                 }
             }
-            .ignoresSafeArea()
         }
+        .ignoresSafeArea()
     }
     
     var rating: some View {
@@ -101,44 +106,5 @@ struct ReflectView: View {
             }
     }
 
-}
-
-#Preview {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            GardenState.self,
-            Log.self
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-    
-    let gardenStore = GardenStore(context: sharedModelContainer.mainContext)
-    
-    return ReflectView(
-        viewModel: ReflectViewModel(
-            gardenStore: gardenStore,
-            current: CopingSkill(
-                id: "grounding",
-                index: 8,
-                name: "Grounding",
-                image: "plant_akar_wangi",
-                plantPhilosophy: "Vetiver is grown on slopes to stop the soil washing away.",
-                info: [
-                    "what": "Using your senses to pull your attention out of your head and back into the room.",
-                    "how": "Name 5 things you can see\nName 4 things you can feel\nName 3 things you can hear\nName 2 things you can smell\nName 1 thing you can taste",
-                    "when": "Panic, feeling unreal or detached, a memory surfacing.",
-                    "why": "Attention is limited. Filling it with real things around you leaves less room for the spiral inside.\n\nThis exact exercise has not been tested on its own — it is used because clinicians consistently find it helps."
-                ],
-                plantName: "Hydrangaea"
-            ),
-                                   ),
-        
-    )
 }
 

@@ -11,36 +11,31 @@ import SwiftData
 struct ShelfListView: View {
     @State var viewModel: ShelfListViewModel
 
+    // The Shelf tab's NavigationStack lives in RootView, so this view is just
+    // its root content.
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(spacing: 0) {
-                    titleSign
-                    plankSection
-                        // Drawn above the sheet so the plank's front edge sits on top
-                        // of the paper's torn top, rather than the other way round.
-                        .zIndex(1)
-                    paperSection
-                        // Tucks the sheet up under the plank so the blue only shows
-                        // through the torn notches, not as a band between the two.
-                        .padding(.top, -8)
-                }
+        ScrollView {
+            VStack(spacing: 0) {
+                titleSign
+                plankSection
+                    // Drawn above the sheet so the plank's front edge sits on top
+                    // of the paper's torn top, rather than the other way round.
+                    .zIndex(1)
+                paperSection
+                    // Tucks the sheet up under the plank so the blue only shows
+                    // through the torn notches, not as a band between the two.
+                    .padding(.top, -8)
             }
-            .scrollIndicators(.hidden)
-            .background(ShelfPalette.background.ignoresSafeArea())
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(viewModel.isEditing ? "Done" : "Edit") {
-                        viewModel.isEditing.toggle()
-                    }
-                    .font(.system(size: 17, weight: .semibold, design: .rounded))
-                    .foregroundStyle(ShelfPalette.darkBrown)
+        }
+        .scrollIndicators(.hidden)
+        .background(ShelfPalette.background.ignoresSafeArea())
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(viewModel.isEditing ? "Done" : "Edit") {
+                    viewModel.isEditing.toggle()
                 }
-            }
-            // One destination declared once for the whole stack — every card below
-            // (toolbox row or paper grid) navigates by pushing a skill id onto it.
-            .navigationDestination(for: String.self) { skillID in
-                SinglePlantView(viewModel: viewModel.singleSkillViewModel(for: skillID))
+                .font(.system(size: 17, weight: .semibold, design: .rounded))
+                .foregroundStyle(ShelfPalette.darkBrown)
             }
         }
     }
@@ -85,7 +80,7 @@ struct ShelfListView: View {
                 HStack(alignment: .bottom, spacing: 6) {
                     ForEach(viewModel.toolboxSkills) { skill in
                         let stats = viewModel.stats(for: skill.id)
-                        NavigationLink(value: skill.id) {
+                        NavigationLink(value: Route.skillDetail(skillID: skill.id)) {
                             ToolBoxPlantCard(
                                 name: skill.name,
                                 averageRating: stats.average,
@@ -122,7 +117,7 @@ struct ShelfListView: View {
             ) {
                 ForEach(viewModel.filteredSkills) { skill in
                     let stats = viewModel.stats(for: skill.id)
-                    NavigationLink(value: skill.id) {
+                    NavigationLink(value: Route.skillDetail(skillID: skill.id)) {
                         PlantCard(
                             name: skill.name,
                             averageRating: stats.average,
@@ -224,5 +219,7 @@ enum ShelfPalette {
     store.gardenState.name = "David"
     store.gardenState.unlockedToolboxID = ContentRepository.skills.prefix(4).map(\.id)
     store.gardenState.unlockedPlantsID = ContentRepository.skills.map(\.id)
-    return ShelfListView(viewModel: ShelfListViewModel(gardenStore: store))
+    return NavigationStack {
+        ShelfListView(viewModel: ShelfListViewModel(gardenStore: store))
+    }
 }

@@ -37,12 +37,25 @@ struct GardenView: View {
                     test = "World"
                 }
             }
-
-            NavigationLink("Go to List"){
-                ContentView()
+            Button{
+                viewModel.resetPlantData()
+            } label: {
+                Text("Reset Data")
             }
-            Text(test)
+            Button{
+                viewModel.testGardenVM()
+            } label: {
+                Text("Test Garden")
+            }
+            Button("Change Data"){
+                test = "World"
+            }
         }
+
+        NavigationLink("Go to List"){
+            ContentView()
+        }
+        Text(test)
        
         
 //        ForEach(gardenStore.gardenState.unlockedPlantsID, id: \.self){ id in

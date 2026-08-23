@@ -1,197 +1,212 @@
 [
   {
-    "id": "urge_surfing",
+    "id": "box_breathing",
     "index": 1,
-    "name": "Urge Surfing",
-    "image": "BoxBreathingLearn",
-    "plantPhilosophy": "The lotus rests on water that never stops moving. It does not fight the current or sink into it — it stays on the surface and lets the water pass.",
-    "info": {
-      "what": "Noticing an urge and staying with it as a physical sensation until it passes, instead of acting on it or fighting it.",
-      "how": "1. Name it: \"there's an urge.\"\n2. Find where it sits in your body — chest, stomach, jaw, hands.\n3. Describe it: hot or cold, tight or buzzing, still or moving.\n4. Breathe normally and keep watching.\n5. Notice it change. It will not stay at the same level.",
-      "when": "Cravings, urges to gamble, urges to self-harm, sudden anger — any moment when a strong pull to act arrives and you have a few minutes before you would act.",
-      "why": "Acting on an urge is what ends it fast, so your brain learns that acting is the only exit. Watching an urge without acting breaks that link. In a randomised trial, the programme built around this skill reduced substance use a year later. Note: it may not make the urge weaker — it changes what you do with it."
-    }
-  },
-  {
-    "id": "delay_and_distract",
-    "index": 2,
-    "name": "Delay and Distract",
+    "name": "Box Breathing",
     "image": "plant_bambu",
-    "plantPhilosophy": "Bamboo spends years growing roots underground before anything shows above the soil. Waiting is not doing nothing.",
+    "plantName": "Bamboo",
+    "plantPhilosophy": "Bamboo bends deep in a strong wind without snapping, then returns upright — its strength comes from flexibility built on a steady, segmented structure, not rigidity.",
     "info": {
-      "what": "Putting a decision on hold for a short, set period, and filling that period with something absorbing.",
-      "how": "1. Say it: \"not now — 15 minutes.\"\n2. Set a timer.\n3. Do one thing that takes your hands and attention: walk, wash dishes, call someone, prayer, a game.\n4. When the timer ends, check in. Extend if you want to.\n5. You are not promising forever. Only the next 15 minutes.",
-      "when": "Early in an urge, while you can still move. Useful if sitting with an urge feels like too much at first.",
-      "why": "Urges are tied to the moment and the place you are in. Putting distance between the trigger and the decision lowers the chance the decision gets made at full intensity. Used alone it becomes avoidance — pair it with another skill."
+      "what": "A slow, structured breathing pattern — inhale, hold, exhale, hold, each for the same count — that resets your breathing rate after stress.",
+      "how": "1. Breathe in through your nose for 4 seconds.\n2. Hold for 4 seconds.\n3. Breathe out through your mouth for 4 seconds.\n4. Hold for 4 seconds.\nRepeat for a few rounds.",
+      "when": "Before a stressful conversation, when your heart is racing, or any moment you need to feel steady fast.",
+      "why": "Slowing your breath to about 4–6 breaths a minute calms your nervous system and lowers stress hormones like cortisol. It won't erase what's stressing you, but it can bring your body back to a place where you can think clearly."
     }
   },
   {
-    "id": "high_risk_situations",
-    "index": 3,
-    "name": "Knowing Your Risky Moments",
-    "image": "plant_beringin",
-    "plantPhilosophy": "The banyan sends roots out across the ground long before it stands tall. It learns the shape of the land first.",
+    "id": "urge_surfing",
+    "index": 2,
+    "name": "Urge Surfing",
+    "image": "plant_rumput_laut",
+    "plantName": "Seaweed / Kelp",
+    "plantPhilosophy": "Kelp doesn't fight the current — it bends and sways with each wave, rooted at the base, still standing once the wave has passed.",
     "info": {
-      "what": "Mapping in advance the people, places, times and feelings that reliably raise your risk — and deciding what you will do about each.",
-      "how": "1. List your last 3–5 close calls.\n2. For each, write what was happening 30 minutes before.\n3. Sort them: avoid for now / go, but with a plan / unavoidable, needs a skill.\n4. Write one action for each.",
-      "when": "At the start of a change attempt, after any slip, and before a known event — a wedding, payday, a family visit.",
-      "why": "Specific situations, not general weakness, are what most often come immediately before a return to use. Removing a trigger is more reliable than resisting it, because it does not depend on how tired or stretched you are that day."
-    }
-  },
-  {
-    "id": "refusal_skills",
-    "index": 4,
-    "name": "Saying No",
-    "image": "plant_pandan",
-    "plantPhilosophy": "Pandan has a sharp edge along every leaf. It gives freely and it is still not easy to take from.",
-    "info": {
-      "what": "A short, practised, repeatable way to refuse an offer — the words, the voice, and an exit.",
-      "how": "1. Pick your line and keep it short: \"No thanks, I'm not drinking.\"\n2. No long explanation — explaining invites negotiation.\n3. Say it with eye contact and a steady voice. No apology.\n4. Offer something else or change the subject.\n5. Have an exit ready. Use it if they push twice.\n6. Rehearse out loud beforehand, ideally with someone playing the pressure.",
-      "when": "Any situation where use is offered — especially with people who have a stake in you saying yes.",
-      "why": "In one large alcohol trial, people who practised refusal had fewer drinking days, and the reason was that they came to believe they could do it. That is why rehearsing out loud matters more than reading. It does not work for everyone — one trial with adolescents found no benefit."
-    }
-  },
-  {
-    "id": "paced_breathing",
-    "index": 5,
-    "name": "Slow Breathing",
-    "image": "plant_jepun",
-    "plantPhilosophy": "The frangipani opens slowly and keeps its scent through the night. Nothing about it is hurried.",
-    "info": {
-      "what": "Slowing your breathing to about six breaths a minute, with the out-breath longer than the in-breath.",
-      "how": "1. Sit upright.\n2. Breathe in through the nose for a count of 4.\n3. Breathe out for a count of 6.\n4. Normal size breath — slower rate, not bigger breaths.\n5. Continue 2–5 minutes.\n6. If you feel light-headed, go back to normal breathing. That means the breaths are too big.",
-      "when": "Rising anxiety, anger, panic, restlessness, trouble sleeping. Also as a first step before trying a harder skill. Nobody can tell you are doing it.",
-      "why": "Breathing at this rate measurably shifts your body toward its rest state — this is one of the most consistently confirmed findings in this whole set. It changes how your body feels now. It is not a cure for anxiety."
-    }
-  },
-  {
-    "id": "cold_water_reset",
-    "index": 6,
-    "name": "Cold on the Face",
-    "image": "plant_mentha",
-    "plantPhilosophy": "Mint cools whatever it touches. It does not solve anything — it makes the next moment bearable enough to think in.",
-    "info": {
-      "what": "Briefly putting cold on your face to trigger a reflex that slows your heart. A reset that buys you access to your other skills.",
-      "how": "SAFETY FIRST — do not use this without medical advice if you have a heart condition, a low heart rate, high or low blood pressure, an eating disorder, or take beta-blockers.\n\n1. Fill a bowl with cold water, or use a cold wet cloth or a wrapped ice pack.\n2. Hold your breath.\n3. Apply the cold around your eyes and upper cheeks, or lean your face into the bowl.\n4. Hold 15–30 seconds.\n5. Come up and breathe. Repeat once or twice if needed.",
-      "when": "Only for very high distress — the point where you cannot think clearly enough to use anything else.",
-      "why": "Cold on the face while holding your breath triggers a built-in reflex: your heart slows and your body shifts toward its rest state. The physiology is well established. Direct research on it as a coping skill is still limited."
-    }
-  },
-  {
-    "id": "muscle_release",
-    "index": 7,
-    "name": "Muscle Release",
-    "image": "plant_pakis",
-    "plantPhilosophy": "The fern grows coiled tight, then opens. It cannot unfurl without having been curled first.",
-    "info": {
-      "what": "Tensing a muscle group, then releasing it, working through the body — and noticing the difference between tense and loose.",
-      "how": "1. Start at your hands. Clench for 5 seconds.\n2. Release, and notice the change for 10 seconds.\n3. Move up: forearms, shoulders, jaw, stomach, legs, feet.\n4. Breathe out as you release.\n5. Full body takes 10–15 minutes. Hands, shoulders and jaw alone takes 2.",
-      "when": "Tension you carry in your body, trouble falling asleep, background stress. Best as regular practice rather than a crisis tool — it works better once it is familiar.",
-      "why": "Across a large body of research it reduces stress, anxiety and poor sleep, likely by lowering muscle tension and physical over-arousal. Most of the strongest studies were in medical patients rather than in recovery settings."
+      "what": "Picturing an urge as a wave that rises, peaks, and eventually falls — instead of a command you have to obey.",
+      "how": "1. Notice the urge without judging it.\n2. Name where you feel it in your body.\n3. Stay with the sensation, breathing slowly, as it builds.\n4. Notice it start to ease — urges usually pass within about 15–30 minutes if you don't act on them.",
+      "when": "The moment a craving hits and feels too big to sit with.",
+      "why": "Urges are time-limited, not permanent. Psychologist Alan Marlatt developed this technique for relapse prevention on the finding that riding out a craving — rather than fighting or giving in to it — weakens its hold over time."
     }
   },
   {
     "id": "grounding",
-    "index": 8,
-    "name": "Grounding",
+    "index": 3,
+    "name": "Grounding (5-4-3-2-1)",
     "image": "plant_akar_wangi",
-    "plantPhilosophy": "Vetiver is grown on slopes to stop the soil washing away. Its whole value is in the roots, not what shows.",
+    "plantName": "Vetiver",
+    "plantPhilosophy": "Vetiver is grown on slopes to stop the soil washing away — its whole value is in the roots, not what shows above ground.",
     "info": {
-      "what": "Using your senses to pull your attention out of your head and back into the room.",
-      "how": "Name, out loud or silently:\n5 things you can see\n4 things you can feel — chair, floor, fabric, air\n3 things you can hear\n2 things you can smell\n1 thing you can taste\n\nGo slowly. Repeat if you still feel far away.",
-      "when": "Panic, feeling unreal or detached, a memory surfacing, the wired feeling after a shock. Also a safe way out of any exercise that becomes too much.",
-      "why": "Attention is limited. Filling it with real things around you leaves less room for the spiral inside. This exact exercise has not been tested on its own — it is used because clinicians consistently find it helps, not because a trial proved it. If distress is severe or getting worse, contact the L.I.S.A. Helpline."
+      "what": "Using your five senses to pull your attention out of your head and back into the room around you.",
+      "how": "Name, out loud or silently:\n5 things you can see.\n4 things you can feel.\n3 things you can hear.\n2 things you can smell.\n1 thing you can taste.\nGo slowly. Repeat if you still feel far away.",
+      "when": "Panic, feeling unreal or detached, or when a craving is pulling your focus inward.",
+      "why": "Attention is limited — filling it with real, present things leaves less room for the spiral inside. This exact sequence hasn't been tested in isolation, but grounding is used across DBT, CBT, and trauma-informed care as a front-line tool for calming an overactive stress response."
     }
   },
   {
-    "id": "checking_the_thought",
-    "index": 9,
-    "name": "Checking the Thought",
-    "image": "plant_kaca_piring",
-    "plantPhilosophy": "Kaca piring is named for glass. A thought is worth looking through, not just believing.",
+    "id": "progressive_muscle_relaxation",
+    "index": 4,
+    "name": "Progressive Muscle Relaxation",
+    "image": "plant_putri_malu",
+    "plantName": "Putri Malu (Sensitive Plant)",
+    "plantPhilosophy": "Its leaves close tight the instant they're touched, then slowly relax and reopen on their own — visible tension, followed by visible release.",
     "info": {
-      "what": "Catching the thought driving a feeling, then testing it against evidence instead of accepting it or arguing with it.",
-      "how": "1. Write the situation in one line.\n2. Write the thought exactly as it arrived — \"I've ruined everything.\"\n3. Rate how much you believe it, 0–10.\n4. Write what supports it.\n5. Write what does not fit it.\n6. Write a version that accounts for both.\n7. Rate your belief again.",
-      "when": "Repeating self-attacking thoughts, all-or-nothing thinking, and thoughts that give permission to use — \"one won't hurt,\" \"I've earned this.\"",
-      "why": "Changes in thinking and coping are one of the main routes through which therapy reduces use. Step 6 is a version that accounts for both — not a positive version. A reframe that denies real difficulty stops being believable, and stops helping."
+      "what": "Deliberately tensing and then releasing muscle groups, one at a time, so your body learns the difference between tension and relaxation.",
+      "how": "1. Starting with your feet, tense the muscles hard for 5 seconds.\n2. Release suddenly and notice the difference.\n3. Move upward — calves, thighs, stomach, hands, arms, shoulders, face.\n4. Finish with a few slow breaths.",
+      "when": "Before sleep, after a tense day, or whenever your body feels wound up even if your mind can't say why.",
+      "why": "Physician Edmund Jacobson found that patients who could consciously relax their muscles recovered from stress faster. Tensing first makes the release that follows more noticeable and complete.\n\nCaution: skip tensing any muscle that's currently injured or in pain."
+    }
+  },
+  {
+    "id": "tipp_skill",
+    "index": 5,
+    "name": "TIPP Skill",
+    "image": "plant_lidah_buaya",
+    "plantName": "Aloe Vera",
+    "plantPhilosophy": "Aloe stores cool, soothing relief inside a tough exterior built to survive heat — reached for at the exact moment something is burning.",
+    "info": {
+      "what": "A DBT crisis skill using body-based techniques — Temperature, Intense exercise, Paced breathing, Paired muscle relaxation — to bring down overwhelming emotion fast.",
+      "how": "Pick one:\n1. Hold something cold, or splash cold water on your face.\n2. Do a short burst of intense movement — jumping jacks, sprinting in place.\n3. Breathe out longer than you breathe in.\n4. Tense, then release, one muscle group.",
+      "when": "When emotion is so intense you're at risk of doing something you'll regret, and you need relief in minutes, not hours.",
+      "why": "These techniques act on your body's physiology directly, which works faster than trying to think your way calm when your nervous system is flooded.\n\nCaution: if you have a heart condition, check with a doctor before using cold-water techniques."
+    }
+  },
+  {
+    "id": "self_soothing",
+    "index": 6,
+    "name": "Self-Soothing with the Five Senses",
+    "image": "plant_melati",
+    "plantName": "Jasmine",
+    "plantPhilosophy": "Grown for its scent alone, jasmine offers nothing to \"solve\" — only something worth pausing for and noticing.",
+    "info": {
+      "what": "Deliberately giving each of your five senses something calming to focus on.",
+      "how": "Choose one sense at a time: a soft texture to touch, a calming scent, a warm drink to taste, quiet music to hear, something pleasant to look at. Stay with it for a few minutes.",
+      "when": "When you need comfort, not a solution — a low, heavy, or empty kind of day.",
+      "why": "This is one of DBT's distress-tolerance skills, meant to soothe the body directly rather than argue with the feeling."
+    }
+  },
+  {
+    "id": "radical_acceptance",
+    "index": 7,
+    "name": "Radical Acceptance",
+    "image": "plant_beringin",
+    "plantName": "Banyan Tree",
+    "plantPhilosophy": "A banyan doesn't fight the storms that pass through it across a hundred years — it just keeps standing, roots going wherever they need to.",
+    "info": {
+      "what": "Fully accepting a painful reality as it is, right now — not approving of it, just no longer fighting the fact that it's true.",
+      "how": "1. Notice you're fighting reality (\"this shouldn't be happening\").\n2. Remind yourself: it is happening.\n3. Say to yourself, \"I don't have to like this. I just don't have to fight it right now.\"\n4. Notice if the fighting itself eases, even if the situation doesn't.",
+      "when": "When something can't be changed right now, and the struggle against it is adding pain on top of pain.",
+      "why": "Fighting an unchangeable reality is its own source of suffering. Acceptance doesn't mean giving up — it frees up energy that was previously spent resisting what's already true."
     }
   },
   {
     "id": "opposite_action",
-    "index": 10,
+    "index": 8,
     "name": "Opposite Action",
     "image": "plant_bunga_matahari",
-    "plantPhilosophy": "The sunflower turns its face toward the light. It is a movement, made daily, not a feeling.",
+    "plantName": "Sunflower",
+    "plantPhilosophy": "A sunflower turns to track the sun even on days it isn't visible — facing a direction on purpose, not just wherever it happens to be pointed.",
     "info": {
-      "what": "When an emotion pushes you toward something that will make things worse, doing the opposite — fully.",
-      "how": "1. Name the emotion.\n2. Name what it is pushing you to do — hide, lash out, use, stay in bed.\n3. Ask: does acting on this fit the facts, and will it help?\n4. If no, find the opposite: approach instead of avoid, gentle instead of attack, get up instead of stay down.\n5. Do it all the way — posture, voice, face included. Half-doing it does not work.",
-      "when": "Shame that says isolate. Anxiety about something that is not actually dangerous. Low mood that says stay in bed. Anger that says send the message.",
-      "why": "Every emotion comes with an action it wants from you. Following that action tends to feed the emotion; doing the opposite tends to shrink it. This is for emotions that do not fit the facts — if the fear is warranted, listen to it."
+      "what": "Deliberately acting the opposite of what a difficult emotion is urging you to do.",
+      "how": "1. Name the emotion and its urge (fear says hide; anger says lash out).\n2. Ask: does this emotion actually fit the facts right now?\n3. If not, do the opposite — fully, not half-heartedly. Approach instead of avoid; speak gently instead of snapping.",
+      "when": "When an emotion is real but not helpful — like avoiding a friend out of shame, when reaching out is what would actually help.",
+      "why": "Emotions and actions reinforce each other. Repeatedly acting opposite to an unhelpful urge, with full effort, weakens that emotion's grip over time."
     }
   },
   {
-    "id": "scheduling_good_activity",
+    "id": "body_scan",
+    "index": 9,
+    "name": "Body Scan",
+    "image": "plant_pakis",
+    "plantName": "Fern",
+    "plantPhilosophy": "A fern unfurls one frond at a time, never all at once — a slow, deliberate uncurling, much like moving attention through the body part by part.",
+    "info": {
+      "what": "Slowly moving your attention through each part of your body, noticing sensations without trying to change them.",
+      "how": "Lying or sitting comfortably, bring your attention to your feet, then legs, torso, arms, and head — pausing at each, just noticing warmth, tension, or nothing at all.",
+      "when": "To unwind before sleep, or to reconnect with your body when you've been \"in your head\" for too long.",
+      "why": "Developed by Jon Kabat-Zinn as part of Mindfulness-Based Stress Reduction, this practice interrupts the loop between racing thoughts and physical tension by anchoring attention in the body instead."
+    }
+  },
+  {
+    "id": "stop_skill",
+    "index": 10,
+    "name": "STOP Skill",
+    "image": "plant_kaktus",
+    "plantName": "Cactus",
+    "plantPhilosophy": "A cactus survives by pausing — conserving, waiting for the right conditions — rather than reacting to every change in its environment right away.",
+    "info": {
+      "what": "A deliberate pause you take right before you'd otherwise act on impulse.",
+      "how": "S – Stop. Don't move.\nT – Take a step back, physically or mentally.\nO – Observe what's happening, inside and around you.\nP – Proceed with what actually helps, not just what feels urgent.",
+      "when": "The exact moment before an impulsive decision — a text you'll regret, a craving you're about to act on.",
+      "why": "Impulsive action, when emotion is high, usually narrows your options down to the first one that comes to mind. A deliberate pause creates space to choose instead of react."
+    }
+  },
+  {
+    "id": "halt_check_in",
     "index": 11,
-    "name": "One Good Thing",
-    "image": "plant_gemitir",
-    "plantPhilosophy": "Gemitir is picked for the offering every morning, whether or not the day feels worth marking. The act comes first.",
+    "name": "HALT Check-In",
+    "image": "plant_padi",
+    "plantName": "Rice Plant",
+    "plantPhilosophy": "Rice needs water, sun, and nutrients on a steady schedule or it visibly wilts — a plant that makes neglected basic needs impossible to ignore.",
     "info": {
-      "what": "Deliberately putting one meaningful or rewarding activity into your day, planned in advance — whether or not you feel like it.",
-      "how": "1. List activities that used to matter, or still do. Small ones count.\n2. Pick one.\n3. Give it a specific slot: day, time, place.\n4. Do it whether or not motivation arrives.\n5. Rate your mood before and after.\n6. Build up to a few per week.",
-      "when": "Flat or low mood, empty days, and the stretch after stopping when life feels blank because use was the main source of reward.",
-      "why": "Doing comes first, feeling comes second — waiting for motivation keeps the loop closed. This has strong evidence for low mood on its own. For people managing low mood and substance use together, the research is mixed, so treat it as worth trying rather than proven."
+      "what": "A quick check-in on four basic needs that quietly make everything harder when they're unmet: Hungry, Angry, Lonely, Tired.",
+      "how": "Pause and ask yourself: Am I hungry? Angry? Lonely? Tired? Whichever answer is \"yes,\" address that one first, before deciding anything else.",
+      "when": "Anytime you notice you're irritable, foggy, or suddenly craving — often the real problem is one of these four, not what you think it is.",
+      "why": "Long used in addiction recovery communities, HALT works because these four states quietly lower your ability to cope, making relapse and poor decisions more likely if left unaddressed."
     }
   },
   {
-    "id": "if_then_plans",
+    "id": "cognitive_reframing",
     "index": 12,
-    "name": "If–Then Plans",
-    "image": "plant_bunga_pukul_empat",
-    "plantPhilosophy": "The four o'clock flower opens at the same hour every day. It does not decide each afternoon — the cue does it.",
+    "name": "Cognitive Reframing (Thought Record)",
+    "image": "plant_bougenville",
+    "plantName": "Bougainvillea",
+    "plantPhilosophy": "Bougainvillea is thorny and wild by nature, but easily trained onto a trellis — growing in a new direction without harming the plant.",
     "info": {
-      "what": "Deciding in advance the exact situation and the exact response, in one sentence, before the situation arrives.",
-      "how": "1. Pick one risky situation you already know about.\n2. Write: \"IF [specific trigger], THEN I will [specific action].\"\n3. Make the trigger something you can actually notice — \"if I walk past the shop on the way home,\" not \"if I feel tempted.\"\n4. Attach it to something already in your day rather than a clock time.\n5. Say it, write it, put it where you will see it.",
-      "when": "Anything you keep meaning to do but forget in the moment. This skill targets forgetting, not willpower.",
-      "why": "Across dozens of studies, writing plans in this form has a solid effect on actually following through. The trigger becomes linked to the response in your memory, so it comes to mind on its own instead of needing to be remembered. This is the strongest evidence in the whole set."
+      "what": "Catching an automatic negative thought and asking whether it's actually accurate, then finding a more balanced way to see it.",
+      "how": "1. Write the thought down exactly as it came (\"I always mess everything up\").\n2. Ask: what's the evidence for and against it?\n3. Write a more balanced version (\"I made a mistake this time, not every time\").",
+      "when": "When one thought spirals into a much bigger story about yourself than the facts actually support.",
+      "why": "Aaron Beck's cognitive model shows that it's our interpretation of events — not the events themselves — that drives how we feel. Changing the thought can change the feeling."
     }
   },
   {
-    "id": "tracking",
+    "id": "problem_solving_steps",
     "index": 13,
-    "name": "Tracking",
-    "image": "plant_jati",
-    "plantPhilosophy": "The teak tree keeps a ring for every year, wet ones and dry ones alike. It does not choose which years to record.",
+    "name": "Problem-Solving Steps",
+    "image": "plant_markisa",
+    "plantName": "Passion Fruit Vine",
+    "plantPhilosophy": "A passion vine can't reach the sun on its own — give it a trellis, and it climbs it one deliberate step at a time.",
     "info": {
-      "what": "Recording what actually happens — urges, mood, use, skills tried — instead of relying on memory.",
-      "how": "1. Pick two or three things to log.\n2. Log close to when it happens, not at the end of the week.\n3. Keep it short — a number and a word.\n4. Log hard days with the same detail as good ones.\n5. Look back weekly for patterns: times, places, feelings that repeat.",
-      "when": "Ongoing, from the start. Most useful for spotting patterns you cannot see from inside a single day.",
-      "why": "Writing things down builds awareness and shows you progress you would otherwise not notice. In substance use specifically, daily logging of use and mood has been linked to more abstinence and stronger coping. Log the difficult days too — a record with the hard parts removed cannot show you anything."
+      "what": "A structured way to work through a real problem instead of getting stuck circling it.",
+      "how": "1. Define the problem in one clear sentence.\n2. List every possible solution, even bad ones.\n3. Weigh the pros and cons of each.\n4. Pick one and try it.\n5. Check how it went, and adjust.",
+      "when": "A real, solvable problem is sitting in front of you, but it feels too big or tangled to start.",
+      "why": "People who feel overwhelmed by daily problems are more likely to struggle with stress and low mood. Problem-Solving Therapy shows that a structured, step-by-step approach meaningfully improves how well people cope."
     }
   },
   {
-    "id": "reaching_out",
+    "id": "behavioral_activation",
     "index": 14,
-    "name": "Reaching Out",
-    "image": "plant_bakau",
-    "plantPhilosophy": "Mangroves grow with their roots tangled into each other. That is how they hold a shoreline that no single tree could hold.",
+    "name": "Behavioral Activation",
+    "image": "plant_kecambah",
+    "plantName": "Bean Sprout",
+    "plantPhilosophy": "A bean sprout shows visible growth within days of one small, repeated action — watering — proving progress before you feel ready for it.",
     "info": {
-      "what": "Contacting a specific named person, before you need them, with a specific ask.",
-      "how": "1. Name 2–3 people in advance and write them down.\n2. Decide what you would say — \"I'm having a hard night, can you talk for ten minutes?\"\n3. Ask for something concrete: company, a call, a distraction, a ride away from somewhere.\n4. Reach out early, not at the peak.\n5. If nobody answers, the L.I.S.A. Helpline is open 24 hours, in both languages.",
-      "when": "Isolation, shame, and the point where an urge is building and you are alone. Also as regular maintenance — not only in crisis.",
-      "why": "Staying connected to other people is consistently linked to staying engaged with support and coming back after setbacks. Whether it directly changes use is still being studied — but it reliably keeps people in reach of help."
+      "what": "Deliberately scheduling small, meaningful, or enjoyable activities, rather than waiting to feel motivated first.",
+      "how": "1. List a few activities that used to bring you satisfaction or pleasure.\n2. Pick one small enough to actually do today.\n3. Put it on your calendar like an appointment.\n4. Notice your mood afterward, even if you didn't feel like starting.",
+      "when": "Low motivation, low mood, or the pull to withdraw and do nothing.",
+      "why": "Research consistently shows that action often has to come before motivation, not after. Increasing engagement in rewarding activities reliably lifts mood, even without changing your thoughts first."
     }
   },
   {
-    "id": "after_a_slip",
+    "id": "expressive_writing",
     "index": 15,
-    "name": "After a Slip",
-    "image": "plant_pisang",
-    "plantPhilosophy": "A banana plant fruits once and falls. But it has already grown a shoot beside it, and that one is the same plant, continuing.",
+    "name": "Expressive Writing",
+    "image": "plant_lontar",
+    "plantName": "Palmyra Palm (Lontar)",
+    "plantPhilosophy": "In Bali, lontar leaves were the traditional surface for writing down what mattered enough to keep — this skill treats your own words the same way.",
     "info": {
-      "what": "Treating a slip as an event with causes you can look at, rather than as proof about who you are.",
-      "how": "1. Stop the episode. Getting through the next hour matters more than understanding it.\n2. Get somewhere safe and tell one person.\n3. When you are steadier, write what happened in the hour before — where, who, what feeling.\n4. Name the situation, not a verdict about your character.\n5. Pick one thing to change, and make one if–then plan for that exact situation.\n6. Go back to your routine the same day if you can.",
-      "when": "After any slip — and ideally learned before one happens. This lesson is worth much less if it is first read afterwards.",
-      "why": "When a slip gets explained as \"I have no willpower\" or \"this is just who I am,\" shame and hopelessness follow, and a single slip is far more likely to become a full return to use. Looking at the situation instead is not making excuses — it points at something you can change. Character explanations do not."
+      "what": "Writing honestly about a difficult experience — the facts, the emotions, and the thoughts — for a set period of time.",
+      "how": "Set a timer for 15–20 minutes. Write continuously about what's weighing on you, without worrying about grammar or whether it makes sense. Don't reread it right away.",
+      "when": "When something is sitting unprocessed — replaying in your mind but never actually said out loud, even to yourself.",
+      "why": "James Pennebaker's research found that writing about emotional experiences, even briefly over just a few days, can improve both mood and physical health outcomes over time.\n\nCaution: writing about something painful can feel more intense before it feels better. Stop if it becomes overwhelming, and talk to someone you trust."
     }
   }
 ]

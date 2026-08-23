@@ -79,7 +79,14 @@ class ContentRepository{
 
 }
 
+extension ContentRepository {
+    /// Routes carry ids; these turn an id back into content at the one place
+    /// that needs it. Linear over 16 items — a dictionary would be premature.
+    static func skill(id: String) -> CopingSkill? {
+        skills.first { $0.id == id }
+    }
 
-
-    
-
+    static func area(id: String) -> ForestArea? {
+        areas.first { $0.id == id }
+    }
+}

@@ -14,6 +14,8 @@ struct LearnView: View {
 
     @Environment(\.dismiss) private var dismiss
     // pulls the system's built-in "go back" action out of the environment
+
+    @Environment(Router.self) private var router
     
 
     var body: some View {
@@ -85,6 +87,14 @@ struct LearnView: View {
         .task {
             // runs automatically, once, the moment this View first appears on screen
             viewModel.loadSkill() // triggers the ViewModel to fetch the matching CopingSkill
+
+            // The ViewModel already asks for this through a closure; the router
+            // is what finally answers it. `practiceAfterLearning` replaces the
+            // lesson rather than stacking on top of it, so backing out of
+            // practice returns to the plant, not to page 3 of the lesson.
+            viewModel.onJumpToPractice = { [router = router, skillID = viewModel.skillID] in
+                router.practiceAfterLearning(skillID: skillID)
+            }
         }
         .navigationBarBackButtonHidden(true)
         // hides the system's automatic back button, since we're drawing our own in "header"

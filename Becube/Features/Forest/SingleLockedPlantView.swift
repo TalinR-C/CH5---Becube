@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SingleLockedPlant: View {
     let skill : CopingSkill
-    @Environment(GardenStore.self) var gardenStore
+    @Environment(Router.self) private var router
     
     var body: some View{
         
@@ -80,13 +80,10 @@ struct SingleLockedPlant: View {
                     
                     VStack(spacing: 15){
                         
-                        NavigationLink{
-                            
-                            let learnVM = LearnViewModel(skillID: skill.id, gardenStore: gardenStore)
-                            LearnView(viewModel: learnVM)
-                            
-                        }label: {
-                            
+                        Button {
+                            router.push(.learn(skillID: skill.id))
+                        } label: {
+
                             Text("Learn")
                                 .font(.system(size: 17, weight: .semibold, design: .rounded))
                                 .foregroundColor(.white)
@@ -96,13 +93,13 @@ struct SingleLockedPlant: View {
                                 .clipShape(Capsule())
                         }
                         
-                        NavigationLink {
-                            
-                            Text("\(skill.name)")
-                                .font(.title)
-                            
+                        // A plain push, not `practiceAfterLearning` — jumping in
+                        // from here should keep this screen underneath, so backing
+                        // out of practice lands on the plant again.
+                        Button {
+                            router.push(.practice(skillID: skill.id))
                         } label: {
-                            
+
                             Text("Jump Straight to Practice")
                                 .font(.footnote)
                                 .underline()

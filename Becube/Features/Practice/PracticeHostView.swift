@@ -7,6 +7,9 @@
 //  Chrome: close, skip, completion handoff
 //
 
-import Foundation
+import SwiftUI
 
-// TODO: implement
+struct PracticeHostView: View {
+    let skillID: String
+    var body: some View { Text(skillID) }
+}
