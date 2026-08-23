@@ -77,7 +77,7 @@ struct ReflectView: View {
                         } label:{
                             Image(index == self.selectedRating ? "rating_\(index)" : "rating_empty_\(index)")
                         }
-                        Text(viewModel.ratingName(rating: index))
+                        Text(viewModel.ratingName(rating: index, withNewline: true))
                             .font(.system(size:12))
                             .foregroundStyle(Color.brown)
                             .multilineTextAlignment(.center)

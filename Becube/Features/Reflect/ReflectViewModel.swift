@@ -64,9 +64,12 @@ class ReflectViewModel {
         return averageRating
     }
     
-    func ratingName(rating: Int) -> String {
+    func ratingName(rating: Int, withNewline: Bool = false) -> String {
         if rating == 0 {return "No Rating Please Check"}
-        let ratingName = ["Not For \nMe", "Not Quite", "It's Okay", "I Like It", "I Really \nLike It"]
+        let ratingNameNewline = ["Not For \nMe", "Not Quite", "It's Okay", "I Like It", "I Really \nLike It"]
+        let ratingName = ["Not For Me", "Not Quite", "It's Okay", "I Like It", "I Really Like It"]
+        
+        if(withNewline){return String(ratingNameNewline[rating - 1])}
         return String(ratingName[rating - 1])
     }
     
