@@ -208,5 +208,19 @@
       "when": "When something is sitting unprocessed — replaying in your mind but never actually said out loud, even to yourself.",
       "why": "James Pennebaker's research found that writing about emotional experiences, even briefly over just a few days, can improve both mood and physical health outcomes over time.\n\nCaution: writing about something painful can feel more intense before it feels better. Stop if it becomes overwhelming, and talk to someone you trust."
     }
+  },
+  {
+    "id": "if_then_planning",
+    "index": 16,
+    "name": "If–Then Planning",
+    "image": "FlowerPlantPlaceholder",
+    "plantName": "Placeholder Plant",
+    "plantPhilosophy": "Placeholder plant philosophy for If–Then Planning.",
+    "info": {
+      "what": "Placeholder description for what If–Then Planning is.",
+      "how": "1. Placeholder step 1.\n2. Placeholder step 2.\n3. Placeholder step 3.",
+      "when": "Placeholder description for when to use this skill.",
+      "why": "Placeholder description for why this skill works."
+    }
   }
 ]
