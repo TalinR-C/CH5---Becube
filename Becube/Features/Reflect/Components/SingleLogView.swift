@@ -15,18 +15,29 @@ struct SingleLogView: View {
         CommentBox(cornerRadius: 16, bulge: 3, tailPosition: .none) {
             HStack{
                 VStack(alignment: .leading){
-                    HStack{
+                    HStack(alignment: .bottom){
                         Image("rating_\(log.rating ?? 0)")
                             .resizable()
                             .frame(width: 30, height: 30)
                         Text(viewModel.ratingName(rating: log.rating ?? 0))
+                            .font(Font.system(size: 17))
+                            .foregroundStyle(Color.brown).bold()
+                            .padding(.bottom, 3)
+                        Spacer()
+                        Text(log.date, style: .date)
+                            .font(.system(size: 12))
+                            .foregroundStyle(Color.darkBrown.opacity(0.35))
+                            .padding(.bottom, 10)
                     }
                     Text(log.journal ?? "No journal")
+                        .font(Font.system(size: 15))
+                        .foregroundStyle(Color.brown)
                         .padding(.leading, 10)
+                        .multilineTextAlignment(.leading)
                 }
                 Spacer()
             }
-            .frame(width: 300, height: 65)
+            .frame(width: 300)
         }
     }
 }
@@ -73,7 +84,7 @@ struct SingleLogView: View {
             date: Date(),
             copingID: "id",
             rating: 1,
-            journal: "I like this but like the text lenght?"
+            journal: "I like this but like the text lenght? AHAHHHAHAHAHAHAHHA AHHHAHHAH HAHAHHAHHAHAHHAHAHA HAHAHAHHAHAH HAHAHHAHA HAHAHHAHA HAHAHAHAAA"
         )
     )
 }
