@@ -75,7 +75,7 @@ struct ReflectHistoryView: View {
                 )
                 
                 // Logs
-                ForEach(viewModel.logs, id: \.self){ log in
+                ForEach(viewModel.logs.reversed(), id: \.self){ log in
                     if log.rating != nil {
                         SingleLogView(viewModel: viewModel, log: log)
                     }

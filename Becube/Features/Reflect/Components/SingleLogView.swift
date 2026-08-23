@@ -24,7 +24,7 @@ struct SingleLogView: View {
                             .foregroundStyle(Color.brown).bold()
                             .padding(.bottom, 3)
                         Spacer()
-                        Text(log.date, style: .date)
+                        Text(log.date, style: .time)
                             .font(.system(size: 12))
                             .foregroundStyle(Color.darkBrown.opacity(0.35))
                             .padding(.bottom, 10)
