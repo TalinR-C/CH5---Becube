@@ -26,10 +26,14 @@ class ShelfListViewModel {
         return name.isEmpty ? "My Shelf" : "\(name)'s Shelf"
     }
 
-    /// Skills pinned to the horizontal toolbox row at the top of the shelf.
+    /// Skills pinned to the horizontal toolbox row at the top of the shelf, in the order
+    /// they were pinned — mapping over the ids rather than filtering the repository, so a
+    /// newly added plant lands at the end of the row instead of jumping to wherever it
+    /// happens to sit in the content list.
     var toolboxSkills: [CopingSkill] {
-        let ids = gardenStore.gardenState.unlockedToolboxID
-        return ContentRepository.skills.filter { ids.contains($0.id) }
+        gardenStore.gardenState.unlockedToolboxID.compactMap { id in
+            ContentRepository.skills.first { $0.id == id }
+        }
     }
 
     /// Every coping skill the user has unlocked into their garden — these are the ones
@@ -42,6 +46,45 @@ class ShelfListViewModel {
     var filteredSkills: [CopingSkill] {
         guard !searchText.isEmpty else { return unlockedSkills }
         return unlockedSkills.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+    }
+
+    /// How many places on the plank are still free. The row always draws
+    /// `ToolkitService.capacity` slots — a dashed `EmptyToolSlot` for each of these —
+    /// so the shelf reads as four places to fill rather than a row that happens to be
+    /// short.
+    var emptyToolboxSlotCount: Int {
+        max(0, ToolkitService.capacity - toolboxSkills.count)
+    }
+
+    /// The "press edit to add…" bubble only earns its space while the plank is completely
+    /// bare. Once a plant is up there the dashed slots beside it explain themselves.
+    var showsToolboxHint: Bool {
+        toolboxSkills.isEmpty
+    }
+
+    // MARK: - Editing the toolbox
+
+    /// Whether this skill is already standing on the plank. Its grid card hides its
+    /// `+` badge when it is.
+    func isPinned(_ skillID: String) -> Bool {
+        gardenStore.isPinnedToToolbox(id: skillID)
+    }
+
+    /// Whether the plank has a free slot. `false` greys out every `+` badge rather than
+    /// letting a tap silently do nothing.
+    var toolboxHasRoom: Bool {
+        gardenStore.toolboxHasRoom
+    }
+
+    /// Promotes a collected plant onto the plank. It keeps its card in the grid below —
+    /// the toolbox is a subset of what's collected, not a move.
+    func pin(_ skillID: String) {
+        gardenStore.pinToToolbox(id: skillID)
+    }
+
+    /// Takes a plant off the plank. It stays collected either way.
+    func unpin(_ skillID: String) {
+        gardenStore.unpinFromToolbox(id: skillID)
     }
 
     /// Average self-rating + total practice count for one skill, read straight from the
