@@ -8,7 +8,13 @@
       "tipp_skill",
       "stop_skill"
     ],
-    "index": 1
+    "index": 1,
+    "skillPositions": [
+      { "x": 120, "y": 250 },
+      { "x": 270, "y": 350 },
+      { "x": 110, "y": 490 },
+      { "x": 260, "y": 610 }
+    ]
   },
   {
     "id": "pond",
@@ -19,7 +25,13 @@
       "self_soothing",
       "body_scan"
     ],
-    "index": 2
+    "index": 2,
+    "skillPositions": [
+      { "x": 120, "y": 250 },
+      { "x": 270, "y": 350 },
+      { "x": 110, "y": 490 },
+      { "x": 260, "y": 610 }
+    ]
   },
   {
     "id": "forest",
@@ -30,7 +42,13 @@
       "cognitive_reframing",
       "expressive_writing"
     ],
-    "index": 3
+    "index": 3,
+    "skillPositions": [
+      { "x": 120, "y": 250 },
+      { "x": 270, "y": 350 },
+      { "x": 110, "y": 490 },
+      { "x": 260, "y": 610 }
+    ]
   },
   {
     "id": "field",
@@ -41,6 +59,12 @@
       "behavioral_activation",
       "if_then_planning"
     ],
-    "index": 4
+    "index": 4,
+    "skillPositions": [
+      { "x": 120, "y": 250 },
+      { "x": 270, "y": 350 },
+      { "x": 110, "y": 490 },
+      { "x": 260, "y": 610 }
+    ]
   }
 ]
