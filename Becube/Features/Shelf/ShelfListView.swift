@@ -11,35 +11,135 @@ import SwiftData
 struct ShelfListView: View {
     @State var viewModel: ShelfListViewModel
 
+    // MARK: - Sheet state
+
+    /// Whether the paper is up over the whole screen or down showing the shelf.
+    @State private var isSheetRaised = false
+
+    /// Height of the fixed backdrop — the sign plus the plank — measured rather than
+    /// added up by hand, so the paper keeps tucking under the plank's front edge however
+    /// the artwork above it is retuned.
+    @State private var backdropHeight: CGFloat = 0
+
+    /// Live finger movement, on top of whichever position the sheet is resting at.
+    @State private var dragTranslation: CGFloat = 0
+
+    /// The furthest the grid was pulled past its top during the current interaction.
+    ///
+    /// Needed because the scroll view starts springing back the instant the finger lifts,
+    /// so by the time the phase settles `dragTranslation` has already been driven back to
+    /// zero — reading it then would say the user never pulled at all.
+    @State private var peakPull: CGFloat = 0
+
+    /// How far the paper's top edge sits below the screen's top when raised, leaving the
+    /// sign's ropes showing above it.
+    private let raisedTopInset: CGFloat = 40
+
+    /// Overlap that tucks the paper under the plank's front edge when it's down, so the
+    /// blue only shows through the torn notches rather than as a band between the two.
+    private let plankOverlap: CGFloat = 8
+
+    private var collapsedTop: CGFloat { max(raisedTopInset, backdropHeight - plankOverlap) }
+
+    /// Where the paper's top edge is right now: its resting position, moved by the drag in
+    /// progress, and never past either end stop.
+    private var sheetTop: CGFloat {
+        let resting = isSheetRaised ? raisedTopInset : collapsedTop
+        return min(collapsedTop, max(raisedTopInset, resting + dragTranslation))
+    }
+
     // The Shelf tab's NavigationStack lives in RootView, so this view is just
     // its root content.
     var body: some View {
-        ScrollView {
-            VStack(spacing: 0) {
-                titleSign
-                plankSection
-                    // Drawn above the sheet so the plank's front edge sits on top
-                    // of the paper's torn top, rather than the other way round.
-                    .zIndex(1)
-                paperSection
-                    // Tucks the sheet up under the plank so the blue only shows
-                    // through the torn notches, not as a band between the two.
-                    .padding(.top, -8)
-            }
+        // The button is a sibling of the page rather than an overlay on it so the two can
+        // treat the safe area differently: the backdrop runs up behind the status bar,
+        // while the button stays clear of it.
+        ZStack(alignment: .topTrailing) {
+            backdrop
+            paperSheet
+            editButton
         }
-        .scrollIndicators(.hidden)
         .background(ShelfPalette.background.ignoresSafeArea())
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button(viewModel.isEditing ? "Done" : "Edit") {
-                    withAnimation(.snappy(duration: 0.25)) {
-                        viewModel.isEditing.toggle()
+        // The Shelf runs its own Edit button rather than a navigation bar. A bar would do
+        // two unwanted things here: reserve a strip of height above the ropes, and lay its
+        // translucent material over the page's blue as content scrolls under it — the fade
+        // at the top of the shelf. The other full-bleed screens (LearnView,
+        // PracticeHostView) hide it the same way.
+        .toolbar(.hidden, for: .navigationBar)
+    }
+
+    // MARK: - Backdrop
+
+    /// The sign and the toolbox plank. Fixed: the paper slides over it, it never moves.
+    private var backdrop: some View {
+        VStack(spacing: 0) {
+            titleSign
+            plankSection
+        }
+        // Measured on the sign-and-plank stack itself, before it's pinned to the top of a
+        // full-height frame — that frame's height would be the whole screen.
+        .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { backdropHeight = $0 }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        .ignoresSafeArea(.container, edges: .top)
+    }
+
+    // MARK: - Paper sheet
+
+    /// The torn paper, sliding between the two positions. Its height is whatever is left
+    /// below `sheetTop`, so it always reaches the bottom of the screen — raising it grows
+    /// the sheet rather than lifting a fixed-height card and leaving a gap underneath.
+    private var paperSheet: some View {
+        paperSection
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            .padding(.top, sheetTop)
+            .ignoresSafeArea(.container, edges: .top)
+            .gesture(sheetDrag)
+    }
+
+    /// Drags the whole sheet, from anywhere on the paper that isn't the scrolling grid —
+    /// the heading, the search field, the margins. SwiftUI gives a child's own gesture
+    /// priority over a parent's `.gesture`, so a drag that starts on the cards still goes
+    /// to the grid whenever the grid is scrollable, and this only picks up what's left.
+    ///
+    /// Which leaves one gap: a drag that starts on the cards while the sheet is up. That
+    /// belongs to the grid's scrolling, so lowering from there is driven by its overscroll
+    /// instead (see `plantGrid`) — pull past the top and the sheet takes over.
+    private var sheetDrag: some Gesture {
+        DragGesture(minimumDistance: 10)
+            .onChanged { value in
+                let travelled = value.translation.height
+                // Down, only an upward drag moves anything; up, only a downward one.
+                dragTranslation = isSheetRaised ? max(0, travelled) : min(0, travelled)
+            }
+            .onEnded { value in
+                let willTravel = value.predictedEndTranslation.height
+                withAnimation(.snappy(duration: 0.35, extraBounce: 0.08)) {
+                    if isSheetRaised {
+                        if willTravel > 80 { isSheetRaised = false }
+                    } else if willTravel < -80 {
+                        isSheetRaised = true
                     }
+                    dragTranslation = 0
                 }
-                .font(.system(size: 17, weight: .semibold, design: .rounded))
-                .foregroundStyle(ShelfPalette.darkBrown)
+            }
+    }
+
+    /// Sits in the safe area's top-right corner, over the sign's ropes, and stays put while
+    /// the page scrolls underneath it.
+    private var editButton: some View {
+        Button(viewModel.isEditing ? "Done" : "Edit") {
+            withAnimation(.snappy(duration: 0.25)) {
+                viewModel.isEditing.toggle()
             }
         }
+        .font(.system(size: 17, weight: .semibold, design: .rounded))
+        .foregroundStyle(ShelfPalette.darkBrown)
+        .padding(.horizontal, 18)
+        .padding(.vertical, 10)
+        .background(ShelfPalette.buttonSecondary, in: Capsule())
+        .shadow(color: .black.opacity(0.08), radius: 4, y: 2)
+        .padding(.trailing, 16)
+        .padding(.top, 8)
     }
 
     // MARK: - Title
@@ -66,7 +166,6 @@ struct ShelfListView: View {
                     // floating up over the ropes.
                     .offset(y: signHeight * 0.14)
             }
-            .padding(.top, 8)
     }
 
     // MARK: - Toolbox plank
@@ -129,6 +228,9 @@ struct ShelfListView: View {
                 }
             }
             .padding(.horizontal, 8)
+            // The plank is bottom-aligned behind the row, so padding the row's bottom is
+            // what stands the whole thing — plants and empty slots alike — up off it.
+            .padding(.bottom, ToolboxSlot.plankLift)
         }
     }
 
@@ -165,6 +267,8 @@ struct ShelfListView: View {
     /// the outer ~3% of the image, so this clears that plus a comfortable margin.
     private let paperInset: CGFloat = 44
 
+    /// Header and search field are pinned to the top of the sheet; only `plantGrid`
+    /// underneath them scrolls.
     private var paperSection: some View {
         VStack(spacing: 16) {
             Text("Plants Collected")
@@ -172,7 +276,17 @@ struct ShelfListView: View {
                 .foregroundStyle(ShelfPalette.darkBrown)
 
             searchBar
+                .padding(.horizontal, paperInset)
 
+            plantGrid
+        }
+        .padding(.top, 30)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        .background(paperBackground)
+    }
+
+    private var plantGrid: some View {
+        ScrollView {
             LazyVGrid(
                 columns: [
                     GridItem(.flexible(), spacing: 14),
@@ -211,15 +325,42 @@ struct ShelfListView: View {
                 noResults
             }
         }
+        // Inset the *content*, not the ScrollView. Padding the scroll view itself would
+        // pull its clipping bounds in to the cards' own edges, and the edit badges — which
+        // hang 14pt up and to the left of each card — would be clipped away.
         .padding(.horizontal, paperInset)
-        .padding(.top, 30)
+        .padding(.top, 16)
         .padding(.bottom, 36)
-        // Keeps the sheet looking like a sheet when only a card or two is unlocked —
-        // without it the two torn end pieces alone are taller than the content and the
-        // stretchable middle would collapse to nothing. Top-aligned so the heading and
-        // search field stay put instead of drifting down the sheet when the grid empties.
-        .frame(minHeight: 340, alignment: .top)
-        .background(paperBackground)
+        .scrollIndicators(.hidden)
+        // Down, the grid doesn't scroll — the upward drag belongs to the sheet, so raising
+        // it is the first thing that happens, exactly as a Maps-style sheet behaves.
+        .scrollDisabled(!isSheetRaised)
+        // Guarantees the overscroll below exists even with only a card or two collected;
+        // without it a short grid wouldn't bounce and the sheet couldn't be pulled down.
+        .scrollBounceBehavior(.always)
+        .onScrollGeometryChange(for: CGFloat.self) { geometry in
+            // How far the grid has been pulled past its own top. Measured against the
+            // content inset rather than raw `contentOffset`, which is only zero at rest
+            // when the scroll view happens to have no insets of its own.
+            max(0, geometry.contentInsets.top - geometry.contentOffset.y)
+        } action: { _, pull in
+            // Pulling the grid down past its top hands the movement over to the sheet,
+            // which is what makes lowering it feel like one continuous gesture rather
+            // than a separate thing to grab.
+            guard isSheetRaised else { return }
+            dragTranslation = pull
+            peakPull = max(peakPull, pull)
+        }
+        .onScrollPhaseChange { oldPhase, _ in
+            // Decide the moment the finger lifts, not when the scroll finally settles —
+            // by then the spring-back has already reset everything.
+            guard isSheetRaised, oldPhase == .interacting else { return }
+            withAnimation(.snappy(duration: 0.35, extraBounce: 0.08)) {
+                if peakPull > 80 { isSheetRaised = false }
+                dragTranslation = 0
+            }
+            peakPull = 0
+        }
     }
 
     private var noResults: some View {
@@ -279,6 +420,7 @@ struct ShelfListView: View {
             TextField("Search", text: $viewModel.searchText)
                 .font(.system(size: 16, design: .rounded))
                 .foregroundStyle(ShelfPalette.darkBrown)
+            // Nothing sits on the trailing side until there's something to clear.
             if !viewModel.searchText.isEmpty {
                 Button {
                     viewModel.searchText = ""
@@ -286,9 +428,9 @@ struct ShelfListView: View {
                     Image(systemName: "xmark.circle.fill")
                         .foregroundStyle(ShelfPalette.darkBrown.opacity(0.55))
                 }
-            } else {
-                Image(systemName: "mic.fill")
-                    .foregroundStyle(ShelfPalette.darkBrown.opacity(0.55))
+                .buttonStyle(.plain)
+                .accessibilityLabel("Clear search")
+                .transition(.opacity)
             }
         }
         .padding(.horizontal, 16)

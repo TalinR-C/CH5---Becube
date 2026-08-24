@@ -24,7 +24,21 @@ enum ToolboxSlot {
     /// How far a filled card's badges hang below the base of its plant art. An empty slot
     /// reserves the same space under its pot, so with the row bottom-aligned both sit at
     /// the same height on the plank.
+    ///
+    /// This doubles as how far the badges overlap the pot (`badgeSize - baseDrop`), so
+    /// reach for `plankLift` below to move the plants up or down the plank — it leaves
+    /// that overlap alone.
     static let baseDrop: CGFloat = 16
+
+    /// How far the whole row stands up off the bottom of the plank. Raising this lifts the
+    /// plants and the dashed empty slots together, higher against the shelf; lowering it
+    /// sinks them further behind the plank's front edge.
+    static let plankLift: CGFloat = 16
+
+    /// An extra lift applied to a filled `ToolBoxPlantCard` only, on top of `plankLift`.
+    /// The card moves as a whole — plant, pot and both indicator badges — so a collected
+    /// plant sits a touch higher than the empty places beside it.
+    static let cardLift: CGFloat = 8
 }
 
 struct EmptyToolSlot: View {

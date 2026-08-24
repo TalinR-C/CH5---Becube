@@ -25,7 +25,7 @@ struct ToolBoxPlantCard: View {
     /// Height of the plant art.
     private let flowerHeight: CGFloat = 104
 
-    private let badgeSize: CGFloat = 32
+    private let badgeSize: CGFloat = 38
 
     /// How far the badges hang below the base of the pot. The bubble-and-flower stack
     /// reserves this much empty space beneath itself and the badges are bottom-aligned
@@ -63,17 +63,21 @@ struct ToolBoxPlantCard: View {
             HStack(spacing: 0) {
                 IndicatorBadge(size: badgeSize) {
                     Text("\(timesCompleted)x")
-                        .font(.system(size: 12, weight: .bold, design: .rounded))
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
                         .foregroundStyle(ShelfPalette.badgeText)
                 }
                 IndicatorBadge(size: badgeSize) {
                     Image(RatingAsset.assetName(forAverage: averageRating))
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 19, height: 19)
+                        .frame(width: 24, height: 24)
                 }
             }
         }
+        // Lifts the whole card — plant and badges together — a little above the dashed
+        // slots it shares the bottom-aligned row with, so a planted pot stands prouder
+        // on the plank than an empty place does.
+        .padding(.bottom, ToolboxSlot.cardLift)
     }
 }
 
