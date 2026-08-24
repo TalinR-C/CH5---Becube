@@ -17,29 +17,29 @@ struct ToolBoxPlantCard: View {
     let averageRating: Double
     let timesCompleted: Int
 
-    /// Fixed (not `maxWidth`) so every bubble in the row is exactly the same width,
-    /// as in the Hi-Fi — and narrow enough that four cards fit across the shelf before
-    /// the row needs to scroll.
-    private let nameWidth: CGFloat = 60
+    /// Bubble width and the space the badges hang into both come from `ToolboxSlot`, so a
+    /// filled card and an `EmptyToolSlot` are the same size and sit at the same height
+    /// when the row mixes the two.
+    private let nameWidth = ToolboxSlot.nameWidth
 
     /// Height of the plant art.
     private let flowerHeight: CGFloat = 104
 
-    private let badgeSize: CGFloat = 32
+    private let badgeSize: CGFloat = 38
 
     /// How far the badges hang below the base of the pot. The bubble-and-flower stack
     /// reserves this much empty space beneath itself and the badges are bottom-aligned
     /// into it, so they overlap the pot by `badgeSize - badgeDrop` without anything
     /// being offset outside the card's own bounds — which the horizontal ScrollView in
     /// ShelfListView would clip.
-    private let badgeDrop: CGFloat = 16
+    private let badgeDrop = ToolboxSlot.baseDrop
 
     var body: some View {
         ZStack(alignment: .bottom) {
             VStack(spacing: 2) {
                 CommentBox(cornerRadius: 14, bulge: 2, tailPosition: .bottomCenter, contentPadding: 6) {
                     Text(name)
-                        .font(.system(size: 12, weight: .bold, design: .rounded))
+                        .font(.custom("Jua-Regular", size: 12))
                         .foregroundStyle(ShelfPalette.darkBrown)
                         .multilineTextAlignment(.center)
                         // Three lines rather than the two the Hi-Fi shows: its four
@@ -63,17 +63,21 @@ struct ToolBoxPlantCard: View {
             HStack(spacing: 0) {
                 IndicatorBadge(size: badgeSize) {
                     Text("\(timesCompleted)x")
-                        .font(.system(size: 12, weight: .bold, design: .rounded))
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
                         .foregroundStyle(ShelfPalette.badgeText)
                 }
                 IndicatorBadge(size: badgeSize) {
                     Image(RatingAsset.assetName(forAverage: averageRating))
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 19, height: 19)
+                        .frame(width: 24, height: 24)
                 }
             }
         }
+        // Lifts the whole card — plant and badges together — a little above the dashed
+        // slots it shares the bottom-aligned row with, so a planted pot stands prouder
+        // on the plank than an empty place does.
+        .padding(.bottom, ToolboxSlot.cardLift)
     }
 }
 

@@ -28,7 +28,7 @@ private struct RouteDestinations: ViewModifier {
         switch route {
         case .forestArea(let areaID):
             if let area = ContentRepository.area(id: areaID) {
-                ForestAreaView(forestArea: area)
+                ForestAreaView(viewModel: ForestAreaViewModel(gardenStore: gardenStore, forestArea: area))
             }
 
         case .lockedPlant(let skillID):
@@ -56,6 +56,9 @@ private struct RouteDestinations: ViewModifier {
             if let skill = ContentRepository.skill(id: skillID) {
                 ReflectHistoryView(viewModel: ReflectViewModel(gardenStore: gardenStore, current: skill))
             }
+            
+        case .practiceCompletion(let skillID):
+            PracticeCompletionView(skillID: skillID)
         }
     }
 }

@@ -22,16 +22,24 @@ private extension HorizontalAlignment {
     static let tail = HorizontalAlignment(TailAlignment.self)
 }
 
-struct ForestAreaView: View {
-    private let viewModel: ForestAreaViewModel
+enum ExploreState {
+    case showingPopup
+    case highlightingPlant
+    case completed
+}
 
+struct ForestAreaView: View {
+    var viewModel: ForestAreaViewModel
+    @State var currentState: ExploreState = .showingPopup
+
+    @Environment(GardenStore.self) private var gardenStore
     @Environment(Router.self) private var router
 
     // Figma artboard dimensions the designer used — positions in areas.json are in these units
     private let figmaFrame = CGSize(width: 390, height: 844)
 
-    init(forestArea: ForestArea) {
-        self.viewModel = ForestAreaViewModel(forestArea: forestArea)
+    init(viewModel: ForestAreaViewModel) {
+        self.viewModel = viewModel
     }
 
     var body: some View {
@@ -54,18 +62,27 @@ struct ForestAreaView: View {
                 ForEach(Array(zip(viewModel.skills, viewModel.forestArea.skillPositions)), id: \.0.id) { skill, pos in
                     let isLeft = pos.x < figmaFrame.width / 2
 
+                    // During the onboarding's highlight phase only the tutorial
+                    // plant stays tappable; the rest dim out of the way.
+                    let isTarget = (skill.id == viewModel.gardenStore.tutorialPlantID)
+                    let isHighlightingPhase = currentState == .highlightingPlant
+                    let isHighlightingTarget = isHighlightingPhase && isTarget
+                    let shouldDisable = isHighlightingPhase && !isTarget
+
                     // A bubble opens the skill's plant screen, which is where the
                     // Learn and Practice choices live. Swap this for
                     // `.learn(skillID:)` if a bubble should drop straight into the
                     // lesson instead.
                     VStack(alignment: .tail, spacing: 24) {
                         Button {
+                            currentState = .completed
                             router.push(.lockedPlant(skillID: skill.id))
                         } label: {
                             SkillBubble(
                                 message: skill.name,
                                 tailOffsetDenominator: isLeft ? -4 : 4
                             )
+                            .onboardingHighlight(isActive: isHighlightingTarget)
                         }
                         .buttonStyle(.plain)
                         // The tail sits at 25%/75% of the bubble's own width (see
@@ -82,10 +99,53 @@ struct ForestAreaView: View {
                         x: pos.x / figmaFrame.width * geo.size.width,
                         y: pos.y / figmaFrame.height * geo.size.height
                     )
+                    .disabled(shouldDisable)
+                    .opacity(shouldDisable ? 0.6 : 1.0)
+                    .animation(.easeInOut, value: shouldDisable)
+                }
+
+                if currentState == .showingPopup {
+                    OnboardingPopupView(onLearnSkillTapped: onLearnSkillTapped)
                 }
             }
             .padding(0)
         }
+        .onAppear {
+            if viewModel.gardenStore.gardenState.onboardingDone {
+                currentState = .completed
+            }
+        }
+    }
+
+    func onLearnSkillTapped() {
+        self.currentState = .highlightingPlant
+    }
+}
+
+struct OnboardingHighlightModifier: ViewModifier {
+    let isHighlighting: Bool
+    
+    func body(content: Content) -> some View {
+        if isHighlighting {
+            content
+                .scaleEffect(1.1)
+                .overlay(
+                    Circle()
+                        .stroke(Color.green, lineWidth: 3)
+                        .scaleEffect(1.2)
+                        .opacity(0.0) // Pulses to 0 opacity
+                )
+                .animation(.easeInOut(duration: 1).repeatForever(autoreverses: true), value: isHighlighting)
+        } else {
+            content
+        }
+    }
+}
+
+// Optional: A clean extension to make using it easier
+extension View {
+    func onboardingHighlight(isActive: Bool) -> some View {
+        self.modifier(OnboardingHighlightModifier(isHighlighting: isActive))
     }
 }
 
@@ -94,10 +154,17 @@ struct ForestAreaView: View {
         for: GardenState.self, Log.self,
         configurations: ModelConfiguration(isStoredInMemoryOnly: true)
     )
+    let gardenStore = GardenStore(context: container.mainContext)
+
     NavigationStack {
-        ForestAreaView(forestArea: ContentRepository.areas[3])
+        ForestAreaView(
+            viewModel: ForestAreaViewModel(
+                gardenStore: gardenStore,
+                forestArea: ContentRepository.areas[3]
+            )
+        )
     }
     .modelContainer(container)
-    .environment(GardenStore(context: container.mainContext))
+    .environment(gardenStore)
     .environment(Router())
 }

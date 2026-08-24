@@ -85,13 +85,8 @@ struct LearnView: View {
             }
 
         .task {
-            // runs automatically, once, the moment this View first appears on screen
-            viewModel.loadSkill() // triggers the ViewModel to fetch the matching CopingSkill
+            viewModel.loadSkill() // restored — this is what actually fetches the skill
 
-            // The ViewModel already asks for this through a closure; the router
-            // is what finally answers it. `practiceAfterLearning` replaces the
-            // lesson rather than stacking on top of it, so backing out of
-            // practice returns to the plant, not to page 3 of the lesson.
             viewModel.onJumpToPractice = { [router = router, skillID = viewModel.skillID] in
                 router.practiceAfterLearning(skillID: skillID)
             }
@@ -173,10 +168,10 @@ struct LearnView: View {
 
         case .when:
             VStack(spacing: 25) {
-                Image("BoxBreathingLearn")
+                Image(viewModel.imageName)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 346, height: 402)
+                    .frame(width: 346, height: 270)
                     .clipShape(RoundedRectangle(cornerRadius: 5))
                     .padding(5)
                     .background(
@@ -226,7 +221,7 @@ struct LearnView: View {
                                 .frame(width: 38.58, height: 38.58)
                             Text("\(index + 1)")
                                 .font(.system(size: 15, weight: .regular))
-                                .foregroundStyle(Color.brown)
+                                .foregroundStyle(Color.white)
                                
                         }
                         
@@ -284,29 +279,23 @@ struct LearnView: View {
 
 //Struct to add buldge effect on stepscard
 
-    
-//
 //#Preview {
-//    let container = try! ModelContainer(
-//        for: GardenState.self, Log.self,
-//        configurations: ModelConfiguration(isStoredInMemoryOnly: true)
-//    )
-//    let viewModel = LearnViewModel(
-//        skillID: "grounding",
-//        gardenStore: GardenStore(context: container.mainContext)
-//    )
+//    let viewModel = LearnViewModel(skillID: "box_breathing")
 //    viewModel.skill = CopingSkill(
-//        id: "grounding",
-//        index: 8,
-//        name: "Grounding",
-//        image: "plant_akar_wangi",
+//        id: "box_breathing",
+//        index: 1,
+//        name: "Box Breathing",
+//        image: "flower_hydrangea",
 //        plantPhilosophy: "Vetiver is grown on slopes to stop the soil washing away.",
 //        info: [
-//            "what": "Using your senses to pull your attention out of your head and back into the room.",
-//            "how": "Name 5 things you can see\nName 4 things you can feel\nName 3 things you can hear\nName 2 things you can smell\nName 1 thing you can taste",
-//            "when": "Panic, feeling unreal or detached, a memory surfacing.",
-//            "why": "Attention is limited. Filling it with real things around you leaves less room for the spiral inside.\n\nThis exact exercise has not been tested on its own — it is used because clinicians consistently find it helps."
+//            "how": "Breathe in for 4 seconds\nHold for 4 seconds\nBreathe out for 4 seconds\nHold for 4 seconds",
+//            "when": "Before a stressful conversation, or when your heart is racing.",
+//            "why": "Slowing your breath calms your nervous system and lowers stress hormones."
 //        ]
 //    )
-//    return LearnView(viewModel: viewModel)
+//
+//    return NavigationStack {
+//        LearnView(viewModel: viewModel)
+//            .environment(Router())
+//    }
 //}

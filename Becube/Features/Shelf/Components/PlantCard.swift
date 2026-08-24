@@ -64,7 +64,7 @@ struct PlantCard: View {
                 .frame(height: 2)
 
             Text(name)
-                .font(.system(size: 14, weight: .bold, design: .rounded))
+                .font(.custom("Jua-Regular", size: 16))
                 .foregroundStyle(ShelfPalette.darkBrown)
                 .multilineTextAlignment(.center)
                 .lineLimit(2)

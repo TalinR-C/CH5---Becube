@@ -17,11 +17,13 @@ import SwiftUI
 @Observable
 final class Router {
 
-    var selectedTab: AppTab = .forest
+    var selectedTab: AppTab = .shelf
 
     var shelfPath: [Route] = []
     var gardenPath: [Route] = []
     var forestPath: [Route] = []
+    var repeatCompletionSkillID: String?
+
 
     /// The stack belonging to `tab`, readable and writable. Everything below
     /// goes through this, so there is exactly one switch over `AppTab` in the file.
@@ -94,6 +96,15 @@ final class Router {
         reset(to: [.skillDetail(skillID: skillID)])
     }
 
+    ///To indicate the unlocking plant fot the first time 
+    func showFirstCompletion(skillID: String) {
+        replaceTop(with: .practiceCompletion(skillID: skillID))
+    }
+    
+    func showRepeatCompletion(skillID: String) {
+        repeatCompletionSkillID = skillID
+    }
+    
     // MARK: - Deep links
 
     /// Entry point for the toolbox widget: switch tabs and build a stack in one
