@@ -126,6 +126,8 @@ struct PracticeHostView: View {
         else{
             Button("Done") {
                 PracticeService.complete(skillID: skillID, in: gardenStore)
+                screen?.session.stop()
+                handlePracticeCompletion(skillID: skillID, gardenStore: gardenStore, router: router)
                 router.popToRoot()
                 router.selectedTab = .garden
             }
@@ -135,7 +137,6 @@ struct PracticeHostView: View {
             .frame(height: 56)
             .background(Color.darkBrown)
             .clipShape(Capsule())
-            .contentShape(Capsule())
             .shadow(color: Color.black.opacity(0.15), radius: 6, x: 0, y: 4)
         }
     }
