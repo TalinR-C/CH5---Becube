@@ -33,7 +33,11 @@ struct ForestAreaView: View {
                 Text(viewModel.areaName)
                     .font(.largeTitle)
                     .bold()
+                    .padding(5)
+                    .clipShape(.capsule)
+                    .background(Color(.lightCream))
                     .position(x: 200, y: 50)
+                    .foregroundStyle(.darkBrown)
 
                 ForEach(Array(zip(viewModel.skills, viewModel.forestArea.skillPositions)), id: \.0.id) { skill, pos in
                     // A bubble opens the skill's plant screen, which is where the
