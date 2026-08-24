@@ -52,23 +52,31 @@ struct PracticeHostView: View {
             }
             .padding(30)
         }
+        .overlay {
+            if let skillID = router.repeatCompletionSkillID {
+                ZStack {
+                    Color.black.opacity(0.35)
+                        .ignoresSafeArea()
+
+                    PracticeRepeatCompletionView(skillID: skillID)
+                        .frame(maxWidth: 300)
+                }
+                .transition(.opacity.combined(with: .scale(scale: 0.95)))
+                
+            }
+        }
+//        .animation(.easeOut(duration: 0.2), value: router.repeatCompletionSkillID)
         .navigationBarBackButtonHidden(true)
         .toolbar(.hidden, for: .navigationBar)
         .task {
-            // A session can't know about the Router, so the host wires its
-            // "I finished on my own" callback to the same exit the button uses.
-            // The explicit capture list keeps `self` out of the closure — the
-            // session holds it, and the session is held by `screen`, which
-            // would be a cycle.
-            screen?.session.onComplete = { [skillID, gardenStore, router] in
-                PracticeService.complete(skillID: skillID, in: gardenStore)
-                router.reflectAfterPractice(skillID: skillID)
-            }
-            screen?.session.start()
+            let session = screen?.session
+                session?.onComplete = { [weak session, skillID, gardenStore, router] in
+                    session?.stop()
+                    handlePracticeCompletion(skillID: skillID, gardenStore: gardenStore, router: router)
+                }
+                session?.start()
         }
         .onDisappear {
-            // Leaving the screen is what ends a session, however you leave it —
-            // Done, close, or the system back swipe. One place, no duplication.
             screen?.session.stop()
         }
     }
@@ -101,17 +109,21 @@ struct PracticeHostView: View {
     }
 
     private var doneButton: some View {
-        Button("Done") {
-            PracticeService.complete(skillID: skillID, in: gardenStore)
-            router.showFirstCompletion(skillID: skillID)
+        Button {
+            screen?.session.stop()
+            
+            handlePracticeCompletion(skillID: skillID, gardenStore: gardenStore, router: router)
+        } label: {
+            Text("Done")
+            .font(.system(size: 17, weight: .semibold, design: .rounded))
+            .foregroundColor(.white)
+            .frame(maxWidth: .infinity)
+            .frame(height: 56)
+            .background(Color.darkBrown)
+            .clipShape(Capsule())
+            .contentShape(Capsule())
+            .shadow(color: Color.black.opacity(0.15), radius: 6, x: 0, y: 4)
         }
-        .font(.system(size: 17, weight: .semibold, design: .rounded))
-        .foregroundColor(.white)
-        .frame(maxWidth: .infinity)
-        .frame(height: 56)
-        .background(Color.darkBrown)
-        .clipShape(Capsule())
-        .shadow(color: Color.black.opacity(0.15), radius: 6, x: 0, y: 4)
     }
 
     /// A skill whose practice hasn't been built yet. Says so plainly instead of
@@ -135,7 +147,7 @@ struct PracticeHostView: View {
         if isFirstTime {
             router.showFirstCompletion(skillID: skillID)
         } else {
-            router.showRepeatCompletion(skillID: skillID) // separate screen, separate concern — not covered here
+            router.showRepeatCompletion(skillID: skillID)
         }
     }
 }

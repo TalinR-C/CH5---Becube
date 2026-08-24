@@ -18,7 +18,9 @@ import Foundation
 enum PracticeService {
     @discardableResult
         static func complete(skillID: String, in store: GardenStore) -> Bool {
-            store.unlockPlant(id: skillID)
+            let log = Log(id: UUID(), date: .now, copingID: skillID, rating: nil)
+            store.addNewLog(log: log)
+            return store.unlockPlant(id: skillID)
         }
 }
 
