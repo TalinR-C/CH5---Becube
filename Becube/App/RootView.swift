@@ -17,10 +17,17 @@ struct RootView: View {
     var body: some View {
         @Bindable var router = router
         
-        if(gardenStore.gardenState.onboardingDone == false){
+        if(gardenStore.gardenState.onboardingDone[0] == false){
             NavigationStack(path: $router.forestPath) {
                 ForestAreaView(viewModel: ForestAreaViewModel(gardenStore: gardenStore, forestArea: ContentRepository.area(id: "field")!))
                     .routeDestinations()
+            }
+        }
+        else if (gardenStore.gardenState.onboardingDone[1] == false){
+            NavigationStack(path: $router.gardenPath) {
+              GardenView(viewModel: GardenViewModel(gardenStore: gardenStore))
+                    .routeDestinations()
+                    .tabBarVisible(router.gardenPath.isEmpty)
             }
         }
         else {

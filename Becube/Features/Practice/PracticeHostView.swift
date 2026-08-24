@@ -101,17 +101,34 @@ struct PracticeHostView: View {
     }
 
     private var doneButton: some View {
-        Button("Done") {
-            PracticeService.complete(skillID: skillID, in: gardenStore)
-            router.reflectAfterPractice(skillID: skillID)
+        if gardenStore.gardenState.onboardingDone[0] == true {
+            Button("Done") {
+                PracticeService.complete(skillID: skillID, in: gardenStore)
+                router.reflectAfterPractice(skillID: skillID)
+            }
+            .font(.system(size: 17, weight: .semibold, design: .rounded))
+            .foregroundColor(.white)
+            .frame(maxWidth: .infinity)
+            .frame(height: 56)
+            .background(Color.darkBrown)
+            .clipShape(Capsule())
+            .shadow(color: Color.black.opacity(0.15), radius: 6, x: 0, y: 4)
         }
-        .font(.system(size: 17, weight: .semibold, design: .rounded))
-        .foregroundColor(.white)
-        .frame(maxWidth: .infinity)
-        .frame(height: 56)
-        .background(Color.darkBrown)
-        .clipShape(Capsule())
-        .shadow(color: Color.black.opacity(0.15), radius: 6, x: 0, y: 4)
+        else{
+            Button("Done") {
+                gardenStore.toggleOnboarding(state: 0)
+                print(gardenStore.gardenState.onboardingDone)
+                router.popToRoot()
+            }
+            .font(.system(size: 17, weight: .semibold, design: .rounded))
+            .foregroundColor(.white)
+            .frame(maxWidth: .infinity)
+            .frame(height: 56)
+            .background(Color.darkBrown)
+            .clipShape(Capsule())
+            .shadow(color: Color.black.opacity(0.15), radius: 6, x: 0, y: 4)
+        }
+        
     }
 
     /// A skill whose practice hasn't been built yet. Says so plainly instead of

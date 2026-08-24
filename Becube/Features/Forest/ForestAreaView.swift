@@ -33,7 +33,7 @@ struct ForestAreaView: View {
 
     init(viewModel: ForestAreaViewModel) {
         self.viewModel = viewModel
-        if viewModel.gardenStore.gardenState.onboardingDone == true {
+        if viewModel.gardenStore.gardenState.onboardingDone[0] == true {
             currentState = .completed
         }
     }
@@ -81,7 +81,7 @@ struct ForestAreaView: View {
                 .buttonStyle(.plain)
                 .position(position)
                 .disabled(shouldDisable)
-                .opacity(shouldDisable ? 0.4 : 1.0)
+                .opacity(shouldDisable ? 0.6 : 1.0)
                 // Optional: animate the dimming effect
                 .animation(.easeInOut, value: shouldDisable)
             }
@@ -95,7 +95,7 @@ struct ForestAreaView: View {
         
     }
     func onLearnSkillTapped(){
-        self.currentState = .completed
+        self.currentState = .highlightingPlant
     }
 }
 

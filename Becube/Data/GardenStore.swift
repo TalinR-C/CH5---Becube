@@ -48,8 +48,8 @@ class GardenStore {
         #endif
     }
     
-    func toggleOnboarding(){
-        gardenState.onboardingDone.toggle()
+    func toggleOnboarding(state: Int){
+        gardenState.onboardingDone[state].toggle()
         saveData()
     }
     
