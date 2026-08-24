@@ -25,7 +25,7 @@ struct ForestAreaView: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                Image("backgrounds/\(viewModel.forestArea.id)")
+                Image("Backgrounds/\(viewModel.forestArea.id)")
                     .resizable()
                     .scaledToFill()
                     .ignoresSafeArea()
