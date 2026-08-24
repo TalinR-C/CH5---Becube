@@ -17,56 +17,65 @@ struct PracticeCompletionView: View {
     }
 
     var body: some View {
-        VStack(spacing: 24) {
-            CommentBox(bulge: 6, tailPosition: .bottomCenter, contentPadding: 24) {
-                // tail points down, toward the flower sitting below it
-                VStack(spacing: 8) {
-                    Text("Congratulations!")
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
-                        .foregroundStyle(.darkBrown)
-                    Text("You've completed a skill! The plant has been brought back from the garden. Feel free to keep practicing and using the skill whenever you need it.")
+        ZStack{
+            Color("Off White")
+                .ignoresSafeArea(edges: .all)
+            VStack(spacing: 24) {
+                Spacer()
+                CommentBox(bulge: 6, tailPosition: .bottomCenter, contentPadding: 24) {
+                    // tail points down, toward the flower sitting below it
+                    VStack(spacing: 8) {
+                        Text("Congratulations!")
+                            .font(.system(size: 22, weight: .bold, design: .rounded))
+                            .foregroundStyle(.text)
+                        Text("You've completed a skill! The plant has been brought back from the garden. Feel free to keep practicing and using the skill whenever you need it.")
+                            .font(.system(size: 16, weight: .regular, design: .rounded))
+                            .multilineTextAlignment(.center)
+                            .foregroundStyle(.text)
+                    }
+                }
+                .shadow(color: Color.black.opacity(0.05), radius: 8, x: 0, y: 4)
+
+                Image(skill?.image ?? "")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 180, height: 220)
+
+                VStack(spacing: 5) {
+                    Text(skill?.name ?? "")
+                        .font(.system(size: 28, weight: .bold, design: .rounded))
+                        .foregroundStyle(.text)
+                    Text(skill?.plantName ?? "")
                         .font(.system(size: 15, weight: .regular, design: .rounded))
-                        .multilineTextAlignment(.center)
-                        .foregroundStyle(.darkBrown)
-                }
-            }
-
-            Image("Flower") // TODO: confirm real asset name with your team
-                .resizable()
-                .scaledToFit()
-                .frame(width: 180, height: 220)
-
-            VStack(spacing: 4) {
-                Text(skill?.name ?? "")
-                    .font(.system(size: 22, weight: .bold, design: .rounded))
-                    .foregroundStyle(.darkBrown)
-                Text(skill?.plantPhilosophy ?? "") // TODO: field naming still unresolved — see below
-                    .font(.system(size: 15, weight: .regular, design: .rounded))
-                    .foregroundStyle(.secondary)
-            }
-
-            Spacer()
-
-            VStack(spacing: 12) {
-                Button {
-                    router.reflectAfterPractice(skillID: skillID) //continue to reflect
-                } label: {
-                    filledButtonLabel("Log your Experience")
+                        .foregroundStyle(.text)
                 }
 
-                Button {
-                    router.pop() //continue to forest
-                } label: {
-                    outlinedButtonLabel("Continue Exploring")
+                Spacer()
+
+                VStack(spacing: 12) {
+                    Button {
+                        router.reflectAfterPractice(skillID: skillID) //continue to reflect
+                    } label: {
+                        filledButtonLabel("Log your Experience")
+                    }
+                    .shadow(color: Color.black.opacity(0.05), radius: 8, x: 0, y: 4)
+
+                    Button {
+                        router.pop() //continue to forest
+                    } label: {
+                        outlinedButtonLabel("Continue Exploring")
+                    }
+                    .shadow(color: Color.black.opacity(0.05), radius: 8, x: 0, y: 4)
                 }
             }
+            .padding(24)
         }
-        .padding(24)
+        
     }
 
     private func filledButtonLabel(_ text: String) -> some View {
         Text(text)
-            .font(.system(size: 17, weight: .semibold, design: .rounded))
+            .font(.system(size: 16, weight: .regular, design: .rounded))
             .foregroundColor(.white)
             .frame(maxWidth: .infinity)
             .frame(height: 56)
@@ -76,8 +85,8 @@ struct PracticeCompletionView: View {
 
     private func outlinedButtonLabel(_ text: String) -> some View {
         Text(text)
-            .font(.system(size: 17, weight: .semibold, design: .rounded))
-            .foregroundColor(.darkBrown)
+            .font(.system(size: 16, weight: .regular, design: .rounded))
+            .foregroundColor(.text)
             .frame(maxWidth: .infinity)
             .frame(height: 56)
             .background(Color.white)

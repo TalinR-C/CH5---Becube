@@ -103,7 +103,7 @@ struct PracticeHostView: View {
     private var doneButton: some View {
         Button("Done") {
             PracticeService.complete(skillID: skillID, in: gardenStore)
-            router.reflectAfterPractice(skillID: skillID)
+            router.showFirstCompletion(skillID: skillID)
         }
         .font(.system(size: 17, weight: .semibold, design: .rounded))
         .foregroundColor(.white)
