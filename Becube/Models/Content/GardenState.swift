@@ -21,7 +21,7 @@ class GardenState {
         self.name = ""
         self.unlockedPlantsID = []
         self.unlockedToolboxID = []
-        self.unlockedForestAreaID = []
+        self.unlockedForestAreaID = ["waterfall"]
     }
     
 }

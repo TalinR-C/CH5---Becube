@@ -95,6 +95,52 @@ class GardenStore {
         return true
     }
 
+    // MARK: - Toolbox
+
+    /// Whether this skill is currently standing on the Shelf's toolbox plank.
+    func isPinnedToToolbox(id: String) -> Bool {
+        gardenState.unlockedToolboxID.contains(id)
+    }
+
+    /// Whether the plank has a free slot left. Drives whether the `+` badges in edit
+    /// mode are tappable.
+    var toolboxHasRoom: Bool {
+        ToolkitService.hasRoom(in: gardenState.unlockedToolboxID)
+    }
+
+    /// Pins a skill to the plank. No-op (and no write) if it's already up there or the
+    /// plank is full. Returns whether this call actually changed anything.
+    ///
+    /// Pinning never removes anything from `unlockedPlantsID` — the toolbox is a subset
+    /// of the collected plants, so a pinned skill keeps its card in the grid below too.
+    @discardableResult
+    func pinToToolbox(id: String) -> Bool {
+        guard let pinned = ToolkitService.pinning(id, to: gardenState.unlockedToolboxID) else {
+            return false
+        }
+        // In practice a skill can only be pinned from a card in the grid, so it is always
+        // already collected. Enforcing the invariant here anyway means no future caller
+        // can put something on the plank that isn't in the garden.
+        if let unlocked = Progression.unlocking(id, in: gardenState.unlockedPlantsID) {
+            gardenState.unlockedPlantsID = unlocked
+        }
+        gardenState.unlockedToolboxID = pinned
+        saveData()
+        return true
+    }
+
+    /// Takes a skill off the plank, leaving it collected. No-op (and no write) if it
+    /// wasn't pinned. Returns whether this call actually changed anything.
+    @discardableResult
+    func unpinFromToolbox(id: String) -> Bool {
+        guard let updated = ToolkitService.unpinning(id, from: gardenState.unlockedToolboxID) else {
+            return false
+        }
+        gardenState.unlockedToolboxID = updated
+        saveData()
+        return true
+    }
+
     func resetData(){
         do{
             try context.delete(model: Log.self)

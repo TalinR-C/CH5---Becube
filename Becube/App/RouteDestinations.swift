@@ -56,6 +56,9 @@ private struct RouteDestinations: ViewModifier {
             if let skill = ContentRepository.skill(id: skillID) {
                 ReflectHistoryView(viewModel: ReflectViewModel(gardenStore: gardenStore, current: skill))
             }
+            
+        case .practiceCompletion(let skillID):
+            PracticeCompletionView(skillID: skillID)
         }
     }
 }
