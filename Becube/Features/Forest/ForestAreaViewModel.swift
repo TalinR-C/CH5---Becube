@@ -10,6 +10,7 @@ import Foundation
 @Observable
 class ForestAreaViewModel {
     let forestArea: ForestArea
+    let gardenStore: GardenStore
 
     /// The area's skills, resolved from its `copingSkillIds` and kept in that order.
     /// Unknown ids are dropped rather than crashing — content is a build invariant,
@@ -18,10 +19,11 @@ class ForestAreaViewModel {
 
     var areaName: String { forestArea.name }
 
-    init(forestArea: ForestArea) {
+    init(gardenStore: GardenStore, forestArea: ForestArea) {
         self.forestArea = forestArea
         self.skills = forestArea.copingSkillIds.compactMap { id in
             ContentRepository.skills.first(where: { $0.id == id })
         }
+        self.gardenStore = gardenStore
     }
 }

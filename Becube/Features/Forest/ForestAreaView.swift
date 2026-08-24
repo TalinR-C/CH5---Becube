@@ -10,10 +10,18 @@ import Foundation
 import SwiftUI
 import SwiftData
 
+enum ExploreState {
+    case showingPopup
+    case highlightingPlant
+    case completed
+}
+
 struct ForestAreaView: View {
-    private let viewModel: ForestAreaViewModel
+    var viewModel: ForestAreaViewModel
+    @State var currentState: ExploreState = .showingPopup
 
     @Environment(Router.self) private var router
+    
 
     // Fixed slots for up to four skill bubbles, alternating left/right
     private let bubblePositions: [CGPoint] = [
@@ -23,8 +31,11 @@ struct ForestAreaView: View {
         CGPoint(x: 300, y: 500)
     ]
 
-    init(forestArea: ForestArea) {
-        self.viewModel = ForestAreaViewModel(forestArea: forestArea)
+    init(viewModel: ForestAreaViewModel) {
+        self.viewModel = viewModel
+        if viewModel.gardenStore.gardenState.onboardingDone == true {
+            currentState = .completed
+        }
     }
 
     var body: some View {
@@ -39,33 +50,105 @@ struct ForestAreaView: View {
                 .position(x: 200, y: 50)
 
             ForEach(Array(zip(viewModel.skills, bubblePositions)), id: \.0.id) { skill, position in
-                // A bubble opens the skill's plant screen, which is where the
-                // Learn and Practice choices live. Swap this for
-                // `.learn(skillID:)` if a bubble should drop straight into the
-                // lesson instead.
+                
+                // 1. DEFINE THE LOGIC HERE
+                // Example: Make the very first skill in your array the target
+                let isTarget = (skill.id == viewModel.skills.first?.id)
+                
+                // Example: Check your view's state to see if we are currently highlighting
+                // (Replace `currentState == .highlighting` with however your app tracks onboarding)
+                let isHighlightingPhase = currentState == .highlightingPlant ? true : false
+                // 2. USE THEM TO CALCULATE BEHAVIOR
+                let isHighlightingTarget = isHighlightingPhase && isTarget
+                let shouldDisable = isHighlightingPhase && !isTarget
+                
+                // Calculate this BEFORE the view builder to prevent compiler timeouts
+                let tailOffset: CGFloat = position.x < 200 ? -4.0 : 4.0
+                
                 Button {
+                    // Optional: progress your onboarding state when they click the target
+                    // if isHighlightingTarget { currentState = .nextStep }
+                    currentState = .completed
                     router.push(.lockedPlant(skillID: skill.id))
                 } label: {
                     SkillBubble(
                         message: skill.name,
-                        tailOffsetDenominator: position.x < 200 ? -4 : 4
+                        tailOffsetDenominator: tailOffset
                     )
+                    // Apply the custom modifier from the previous step
+                    .onboardingHighlight(isActive: isHighlightingTarget)
                 }
                 .buttonStyle(.plain)
                 .position(position)
+                .disabled(shouldDisable)
+                .opacity(shouldDisable ? 0.4 : 1.0)
+                // Optional: animate the dimming effect
+                .animation(.easeInOut, value: shouldDisable)
             }
+            
+            if(currentState == .showingPopup){
+                OnboardingPopupView(onLearnSkillTapped: onLearnSkillTapped)
+            }
+            
         }
         .padding(0)
+        
+    }
+    func onLearnSkillTapped(){
+        self.currentState = .completed
+    }
+}
+
+struct OnboardingHighlightModifier: ViewModifier {
+    let isHighlighting: Bool
+    
+    func body(content: Content) -> some View {
+        if isHighlighting {
+            content
+                .scaleEffect(1.1)
+                .overlay(
+                    Circle()
+                        .stroke(Color.green, lineWidth: 3)
+                        .scaleEffect(1.2)
+                        .opacity(0.0) // Pulses to 0 opacity
+                )
+                .animation(.easeInOut(duration: 1).repeatForever(autoreverses: true), value: isHighlighting)
+        } else {
+            content
+        }
+    }
+}
+
+// Optional: A clean extension to make using it easier
+extension View {
+    func onboardingHighlight(isActive: Bool) -> some View {
+        self.modifier(OnboardingHighlightModifier(isHighlighting: isActive))
     }
 }
 
 #Preview {
+    var sharedModelContainer: ModelContainer = {
+        let schema = Schema([
+            GardenState.self,
+            Log.self
+        ])
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+
+        do {
+            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+        } catch {
+            fatalError("Could not create ModelContainer: \(error)")
+        }
+    }()
+    
+    let gardenStore = GardenStore(context: sharedModelContainer.mainContext)
+    
     let container = try! ModelContainer(
         for: GardenState.self, Log.self,
         configurations: ModelConfiguration(isStoredInMemoryOnly: true)
     )
     NavigationStack {
-        ForestAreaView(forestArea: ContentRepository.areas[0])
+        ForestAreaView(viewModel: ForestAreaViewModel(gardenStore: gardenStore, forestArea: ContentRepository.areas[0]))
     }
     .environment(GardenStore(context: container.mainContext))
     .environment(Router())

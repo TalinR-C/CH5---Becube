@@ -48,6 +48,11 @@ class GardenStore {
         #endif
     }
     
+    func toggleOnboarding(){
+        gardenState.onboardingDone.toggle()
+        saveData()
+    }
+    
     // MARK: - Unlocking
 
     /// Whether this skill's plant is already in the garden.

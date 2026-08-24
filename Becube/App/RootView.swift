@@ -17,42 +17,50 @@ struct RootView: View {
     var body: some View {
         @Bindable var router = router
         
-        TabView(selection: $router.selectedTab) {
-            NavigationStack(path: $router.shelfPath) {
-              ShelfListView(viewModel: ShelfListViewModel(gardenStore: gardenStore))
-                    .routeDestinations()
-                    .tabBarVisible(router.shelfPath.isEmpty)
-            }
-            .tabItem {
-                Image(ImageResource.shelfIcon)
-                Text("Shelf")
-            }
-            .tag(AppTab.shelf)
-            
-            NavigationStack(path: $router.gardenPath) {
-              GardenView(viewModel: GardenViewModel(gardenStore: gardenStore))
-                    .routeDestinations()
-                    .tabBarVisible(router.gardenPath.isEmpty)
-            }
-            .tabItem {
-                Image(ImageResource.gardenIcon)
-                Text("Garden")
-            }
-            .tag(AppTab.garden)
-            
+        if(gardenStore.gardenState.onboardingDone == false){
             NavigationStack(path: $router.forestPath) {
-                ForestMapView()
+                ForestAreaView(viewModel: ForestAreaViewModel(gardenStore: gardenStore, forestArea: ContentRepository.area(id: "field")!))
                     .routeDestinations()
-                    .tabBarVisible(router.forestPath.isEmpty)
             }
-            .tabItem{
-                Image(systemName: "map.fill")
-                Text("Explore")
-            }
-            .tag(AppTab.forest)
-            
         }
-        .tint(.darkBrown)
+        else {
+            TabView(selection: $router.selectedTab) {
+                NavigationStack(path: $router.shelfPath) {
+                  ShelfListView(viewModel: ShelfListViewModel(gardenStore: gardenStore))
+                        .routeDestinations()
+                        .tabBarVisible(router.shelfPath.isEmpty)
+                }
+                .tabItem {
+                    Image(ImageResource.shelfIcon)
+                    Text("Shelf")
+                }
+                .tag(AppTab.shelf)
+                
+                NavigationStack(path: $router.gardenPath) {
+                  GardenView(viewModel: GardenViewModel(gardenStore: gardenStore))
+                        .routeDestinations()
+                        .tabBarVisible(router.gardenPath.isEmpty)
+                }
+                .tabItem {
+                    Image(ImageResource.gardenIcon)
+                    Text("Garden")
+                }
+                .tag(AppTab.garden)
+                
+                NavigationStack(path: $router.forestPath) {
+                    ForestMapView()
+                        .routeDestinations()
+                        .tabBarVisible(router.forestPath.isEmpty)
+                }
+                .tabItem{
+                    Image(systemName: "map.fill")
+                    Text("Explore")
+                }
+                .tag(AppTab.forest)
+                
+            }
+            .tint(.darkBrown)
+        }
     }
 }
 
