@@ -101,7 +101,7 @@ struct PracticeHostView: View {
     }
 
     private var doneButton: some View {
-        if gardenStore.gardenState.onboardingDone[0] == true {
+        if gardenStore.gardenState.onboardingDone == true {
             Button("Done") {
                 PracticeService.complete(skillID: skillID, in: gardenStore)
                 router.reflectAfterPractice(skillID: skillID)
@@ -117,9 +117,8 @@ struct PracticeHostView: View {
         else{
             Button("Done") {
                 PracticeService.complete(skillID: skillID, in: gardenStore)
-                gardenStore.toggleOnboarding(state: 0)
-                print(gardenStore.gardenState.onboardingDone)
                 router.popToRoot()
+                router.selectedTab = .garden
             }
             .font(.system(size: 17, weight: .semibold, design: .rounded))
             .foregroundColor(.white)

@@ -8,10 +8,10 @@
 import SwiftUI
 import SwiftData
 
-
 struct ShelfListView: View {
     @Environment(GardenStore.self) private var gardenStore
     @State var viewModel: ShelfListViewModel
+    let tutorialBubblePos:CGPoint = CGPoint(x: 200, y: 300)
 
     // The Shelf tab's NavigationStack lives in RootView, so this view is just
     // its root content.
@@ -40,6 +40,12 @@ struct ShelfListView: View {
                     .font(.system(size: 17, weight: .semibold, design: .rounded))
                     .foregroundStyle(ShelfPalette.darkBrown)
                 }
+            }
+            if gardenStore.gardenState.onboardingDone == false{
+                CommentBox(cornerRadius: 16, bulge: 3, tailPosition: .bottomLeft) {
+                    Text("Tap the plant to revisit what you've learned")
+                }
+                .position(x: tutorialBubblePos.x, y: tutorialBubblePos.y)
             }
         }
     }
@@ -128,6 +134,12 @@ struct ShelfListView: View {
                             timesCompleted: stats.count
                         )
                     }
+                    .simultaneousGesture(TapGesture().onEnded {
+                        // This code now runs only when the user actually taps the link
+                        if skill.id == gardenStore.tutorialPlantID {
+                            gardenStore.gardenState.onboardingDone = true
+                        }
+                    })
                     .buttonStyle(.plain)
                 }
             }
@@ -214,16 +226,16 @@ enum ShelfPalette {
     static let buttonSecondary = Color.white
 }
 
-#Preview {
-    let container = try! ModelContainer(
-        for: GardenState.self, Log.self,
-        configurations: ModelConfiguration(isStoredInMemoryOnly: true)
-    )
-    let store = GardenStore(context: container.mainContext)
-    store.gardenState.name = "David"
-    store.gardenState.unlockedToolboxID = ContentRepository.skills.prefix(4).map(\.id)
-    store.gardenState.unlockedPlantsID = ContentRepository.skills.map(\.id)
-    return NavigationStack {
-        ShelfListView(viewModel: ShelfListViewModel(gardenStore: store))
-    }
-}
+//#Preview {
+//    let container = try! ModelContainer(
+//        for: GardenState.self, Log.self,
+//        configurations: ModelConfiguration(isStoredInMemoryOnly: true)
+//    )
+//    let store = GardenStore(context: container.mainContext)
+//    store.gardenState.name = "David"
+//    store.gardenState.unlockedToolboxID = ContentRepository.skills.prefix(4).map(\.id)
+//    store.gardenState.unlockedPlantsID = ContentRepository.skills.map(\.id)
+//    return NavigationStack {
+//        ShelfListView(viewModel: ShelfListViewModel(gardenStore: store))
+//    }
+//}

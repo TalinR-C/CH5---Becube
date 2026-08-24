@@ -15,6 +15,7 @@ class GardenStore {
     private let context: ModelContext
     var gardenState: GardenState
     var logHistory: [Log]
+    var tutorialPlantID: String = "box_breathing"
 
     init(context: ModelContext) {
         self.context = context
@@ -49,7 +50,7 @@ class GardenStore {
     }
     
     func toggleOnboarding(state: Int){
-        gardenState.onboardingDone[state].toggle()
+        gardenState.onboardingDone.toggle()
         saveData()
     }
     

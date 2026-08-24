@@ -16,6 +16,7 @@ enum GardenOnboarding {
 
 struct GardenView: View {
     @Environment(GardenStore.self) private var gardenStore
+    @Environment(Router.self) private var router
     @State var gardenName: String = ""
     @State var viewModel: GardenViewModel
     @State var test = "Hello"
@@ -24,7 +25,6 @@ struct GardenView: View {
     var body: some View {
         ZStack{
             Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    //        Text(ContentRepository.skills[0].name)
                     
             NavigationStack(){
                 HStack{
@@ -61,6 +61,7 @@ struct GardenView: View {
                     test = "World"
                 }
             }
+            .toolbar(gardenStore.gardenState.onboardingDone ? .hidden : .visible, for: .tabBar)
 
             NavigationLink("Go to List"){
                 ContentView()
@@ -75,7 +76,7 @@ struct GardenView: View {
                 }
             }
             
-            if gardenStore.gardenState.onboardingDone[1] == false{
+            if gardenStore.gardenState.onboardingDone == false{
                 if currentOnboardingStep == .discoverSkills{
                     ZStack{
                         Rectangle()
@@ -105,7 +106,8 @@ struct GardenView: View {
                             Button("Continue"){
                                 gardenStore.updateGardenName(name: gardenName)
                                 currentOnboardingStep = .complete
-                                gardenStore.gardenState.onboardingDone[1] = true
+                                router.popToRoot()
+                                router.selectedTab = .shelf
                             }
                         }
                         .frame(width: 300, height: 250)

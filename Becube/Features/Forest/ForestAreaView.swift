@@ -20,6 +20,7 @@ struct ForestAreaView: View {
     var viewModel: ForestAreaViewModel
     @State var currentState: ExploreState = .showingPopup
 
+    @Environment(GardenStore.self) private var gardenStore
     @Environment(Router.self) private var router
     
 
@@ -33,9 +34,6 @@ struct ForestAreaView: View {
 
     init(viewModel: ForestAreaViewModel) {
         self.viewModel = viewModel
-        if viewModel.gardenStore.gardenState.onboardingDone[0] == true {
-            currentState = .completed
-        }
     }
 
     var body: some View {
@@ -53,7 +51,7 @@ struct ForestAreaView: View {
                 
                 // 1. DEFINE THE LOGIC HERE
                 // Example: Make the very first skill in your array the target
-                let isTarget = (skill.id == viewModel.skills.first?.id)
+                let isTarget = (skill.id == viewModel.gardenStore.tutorialPlantID)
                 
                 // Example: Check your view's state to see if we are currently highlighting
                 // (Replace `currentState == .highlighting` with however your app tracks onboarding)
@@ -91,11 +89,17 @@ struct ForestAreaView: View {
             }
             
         }
+        .onAppear {
+                if viewModel.gardenStore.gardenState.onboardingDone {
+                    currentState = .completed
+                }
+            }
         .padding(0)
         
     }
     func onLearnSkillTapped(){
         self.currentState = .highlightingPlant
+        print(currentState)
     }
 }
 

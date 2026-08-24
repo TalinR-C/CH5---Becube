@@ -17,57 +17,49 @@ struct RootView: View {
     var body: some View {
         @Bindable var router = router
         
-        if(gardenStore.gardenState.onboardingDone[0] == false){
-            NavigationStack(path: $router.forestPath) {
-                ForestAreaView(viewModel: ForestAreaViewModel(gardenStore: gardenStore, forestArea: ContentRepository.area(id: "field")!))
+        TabView(selection: $router.selectedTab) {
+            NavigationStack(path: $router.shelfPath) {
+              ShelfListView(viewModel: ShelfListViewModel(gardenStore: gardenStore))
                     .routeDestinations()
+                    .tabBarVisible(router.shelfPath.isEmpty && gardenStore.gardenState.onboardingDone)
             }
-        }
-        else if (gardenStore.gardenState.onboardingDone[1] == false){
+            .tabItem {
+                Image(ImageResource.shelfIcon)
+                Text("Shelf")
+            }
+            .tag(AppTab.shelf)
+            
             NavigationStack(path: $router.gardenPath) {
               GardenView(viewModel: GardenViewModel(gardenStore: gardenStore))
                     .routeDestinations()
-                    .tabBarVisible(router.gardenPath.isEmpty)
+                    .tabBarVisible(router.shelfPath.isEmpty && gardenStore.gardenState.onboardingDone)
+            }
+            .tabItem {
+                Image(ImageResource.gardenIcon)
+                Text("Garden")
+            }
+            .tag(AppTab.garden)
+            
+            NavigationStack(path: $router.forestPath) {
+                ForestMapView()
+                    .routeDestinations()
+                    .tabBarVisible(router.forestPath.isEmpty)
+            }
+            .tabItem{
+                Image(systemName: "map.fill")
+                Text("Explore")
+            }
+            .tag(AppTab.forest)
+            
+        }
+        .onAppear {
+            if gardenStore.gardenState.onboardingDone == false{
+                router.selectedTab = .forest
+                router.push(.forestArea(areaID: "waterfall"))
             }
         }
-        else {
-            TabView(selection: $router.selectedTab) {
-                NavigationStack(path: $router.shelfPath) {
-                  ShelfListView(viewModel: ShelfListViewModel(gardenStore: gardenStore))
-                        .routeDestinations()
-                        .tabBarVisible(router.shelfPath.isEmpty)
-                }
-                .tabItem {
-                    Image(ImageResource.shelfIcon)
-                    Text("Shelf")
-                }
-                .tag(AppTab.shelf)
-                
-                NavigationStack(path: $router.gardenPath) {
-                  GardenView(viewModel: GardenViewModel(gardenStore: gardenStore))
-                        .routeDestinations()
-                        .tabBarVisible(router.gardenPath.isEmpty)
-                }
-                .tabItem {
-                    Image(ImageResource.gardenIcon)
-                    Text("Garden")
-                }
-                .tag(AppTab.garden)
-                
-                NavigationStack(path: $router.forestPath) {
-                    ForestMapView()
-                        .routeDestinations()
-                        .tabBarVisible(router.forestPath.isEmpty)
-                }
-                .tabItem{
-                    Image(systemName: "map.fill")
-                    Text("Explore")
-                }
-                .tag(AppTab.forest)
-                
-            }
-            .tint(.darkBrown)
-        }
+        .tint(.darkBrown)
+        
     }
 }
 
