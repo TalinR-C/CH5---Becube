@@ -29,7 +29,7 @@ struct ForestMapView: View {
     // push and leave the router's path empty.
     var body: some View {
         ZStack {
-            Image(ImageResource.forestMap)
+            Image(ImageResource.Backgrounds.map)
                 .resizable()
                 .ignoresSafeArea()
 
@@ -110,9 +110,14 @@ struct ForestMapView: View {
         for: GardenState.self, Log.self,
         configurations: ModelConfiguration(isStoredInMemoryOnly: true)
     )
-    NavigationStack {
+    let gardenStore = GardenStore(context: container.mainContext)
+    let router = Router()
+
+    NavigationStack(path: Bindable(router).forestPath) {
         ForestMapView()
+            .routeDestinations()
     }
-    .environment(GardenStore(context: container.mainContext))
-    .environment(Router())
+    .modelContainer(container)
+    .environment(gardenStore)
+    .environment(router)
 }

@@ -14,5 +14,10 @@ struct ForestArea: Codable, Hashable {
     let name: String
     let copingSkillIds: [String]
     let index: Int
+    let skillPositions: [SkillPosition]
 
+    struct SkillPosition: Codable, Hashable {
+        let x: Double
+        let y: Double
+    }
 }

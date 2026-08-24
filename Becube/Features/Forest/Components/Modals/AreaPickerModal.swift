@@ -50,7 +50,7 @@ struct AreaPickerModal: View {
 
 #Preview {
     ZStack {
-        Image(ImageResource.forestMap).resizable().ignoresSafeArea()
+        Image(ImageResource.Backgrounds.map).resizable().ignoresSafeArea()
         AreaPickerModal(areas: ContentRepository.areas) { _ in }
     }
 }

@@ -10,6 +10,18 @@ import Foundation
 import SwiftUI
 import SwiftData
 
+/// Aligns a bubble's tail tip with the flower centered beneath it, regardless of
+/// how wide the bubble ends up (its width varies with the skill name's text).
+private struct TailAlignment: AlignmentID {
+    static func defaultValue(in context: ViewDimensions) -> CGFloat {
+        context[HorizontalAlignment.center]
+    }
+}
+
+private extension HorizontalAlignment {
+    static let tail = HorizontalAlignment(TailAlignment.self)
+}
+
 enum ExploreState {
     case showingPopup
     case highlightingPlant
@@ -22,84 +34,91 @@ struct ForestAreaView: View {
 
     @Environment(GardenStore.self) private var gardenStore
     @Environment(Router.self) private var router
-    
 
-    // Fixed slots for up to four skill bubbles, alternating left/right
-    private let bubblePositions: [CGPoint] = [
-        CGPoint(x: 100, y: 200),
-        CGPoint(x: 300, y: 250),
-        CGPoint(x: 100, y: 400),
-        CGPoint(x: 300, y: 500)
-    ]
+    // Figma artboard dimensions the designer used — positions in areas.json are in these units
+    private let figmaFrame = CGSize(width: 390, height: 844)
 
     init(viewModel: ForestAreaViewModel) {
         self.viewModel = viewModel
     }
 
     var body: some View {
-        ZStack {
-            Image(ImageResource.riverbend)
-                .resizable()
-                .ignoresSafeArea()
+        GeometryReader { geo in
+            ZStack {
+                Image("Backgrounds/\(viewModel.forestArea.id)")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
 
-            Text(viewModel.areaName)
-                .font(.largeTitle)
-                .bold()
-                .position(x: 200, y: 50)
+                Text(viewModel.areaName)
+                    .font(.largeTitle)
+                    .bold()
+                    .padding(5)
+                    .clipShape(.capsule)
+                    .background(Color(.lightCream))
+                    .position(x: 200, y: 50)
+                    .foregroundStyle(.darkBrown)
 
-            ForEach(Array(zip(viewModel.skills, bubblePositions)), id: \.0.id) { skill, position in
-                
-                // 1. DEFINE THE LOGIC HERE
-                // Example: Make the very first skill in your array the target
-                let isTarget = (skill.id == viewModel.gardenStore.tutorialPlantID)
-                
-                // Example: Check your view's state to see if we are currently highlighting
-                // (Replace `currentState == .highlighting` with however your app tracks onboarding)
-                let isHighlightingPhase = currentState == .highlightingPlant ? true : false
-                // 2. USE THEM TO CALCULATE BEHAVIOR
-                let isHighlightingTarget = isHighlightingPhase && isTarget
-                let shouldDisable = isHighlightingPhase && !isTarget
-                
-                // Calculate this BEFORE the view builder to prevent compiler timeouts
-                let tailOffset: CGFloat = position.x < 200 ? -4.0 : 4.0
-                
-                Button {
-                    // Optional: progress your onboarding state when they click the target
-                    // if isHighlightingTarget { currentState = .nextStep }
-                    currentState = .completed
-                    router.push(.lockedPlant(skillID: skill.id))
-                } label: {
-                    SkillBubble(
-                        message: skill.name,
-                        tailOffsetDenominator: tailOffset
+                ForEach(Array(zip(viewModel.skills, viewModel.forestArea.skillPositions)), id: \.0.id) { skill, pos in
+                    let isLeft = pos.x < figmaFrame.width / 2
+
+                    // During the onboarding's highlight phase only the tutorial
+                    // plant stays tappable; the rest dim out of the way.
+                    let isTarget = (skill.id == viewModel.gardenStore.tutorialPlantID)
+                    let isHighlightingPhase = currentState == .highlightingPlant
+                    let isHighlightingTarget = isHighlightingPhase && isTarget
+                    let shouldDisable = isHighlightingPhase && !isTarget
+
+                    // A bubble opens the skill's plant screen, which is where the
+                    // Learn and Practice choices live. Swap this for
+                    // `.learn(skillID:)` if a bubble should drop straight into the
+                    // lesson instead.
+                    VStack(alignment: .tail, spacing: 24) {
+                        Button {
+                            currentState = .completed
+                            router.push(.lockedPlant(skillID: skill.id))
+                        } label: {
+                            SkillBubble(
+                                message: skill.name,
+                                tailOffsetDenominator: isLeft ? -4 : 4
+                            )
+                            .onboardingHighlight(isActive: isHighlightingTarget)
+                        }
+                        .buttonStyle(.plain)
+                        // The tail sits at 25%/75% of the bubble's own width (see
+                        // BulgingCardShape), so its x-position has to be derived the
+                        // same way here rather than aligned by the bubble's edge.
+                        .alignmentGuide(.tail) { d in isLeft ? d.width * 0.25 : d.width * 0.75 }
+
+                        Image("Flower")
+                            .alignmentGuide(.tail) { d in d.width / 2 }
+                            
+                    }
+                    .padding()
+                    .position(
+                        x: pos.x / figmaFrame.width * geo.size.width,
+                        y: pos.y / figmaFrame.height * geo.size.height
                     )
-                    // Apply the custom modifier from the previous step
-                    .onboardingHighlight(isActive: isHighlightingTarget)
+                    .disabled(shouldDisable)
+                    .opacity(shouldDisable ? 0.6 : 1.0)
+                    .animation(.easeInOut, value: shouldDisable)
                 }
-                .buttonStyle(.plain)
-                .position(position)
-                .disabled(shouldDisable)
-                .opacity(shouldDisable ? 0.6 : 1.0)
-                // Optional: animate the dimming effect
-                .animation(.easeInOut, value: shouldDisable)
+
+                if currentState == .showingPopup {
+                    OnboardingPopupView(onLearnSkillTapped: onLearnSkillTapped)
+                }
             }
-            
-            if(currentState == .showingPopup){
-                OnboardingPopupView(onLearnSkillTapped: onLearnSkillTapped)
-            }
-            
+            .padding(0)
         }
         .onAppear {
-                if viewModel.gardenStore.gardenState.onboardingDone {
-                    currentState = .completed
-                }
+            if viewModel.gardenStore.gardenState.onboardingDone {
+                currentState = .completed
             }
-        .padding(0)
-        
+        }
     }
-    func onLearnSkillTapped(){
+
+    func onLearnSkillTapped() {
         self.currentState = .highlightingPlant
-        print(currentState)
     }
 }
 
@@ -131,29 +150,21 @@ extension View {
 }
 
 #Preview {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            GardenState.self,
-            Log.self
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-    
-    let gardenStore = GardenStore(context: sharedModelContainer.mainContext)
-    
     let container = try! ModelContainer(
         for: GardenState.self, Log.self,
         configurations: ModelConfiguration(isStoredInMemoryOnly: true)
     )
+    let gardenStore = GardenStore(context: container.mainContext)
+
     NavigationStack {
-        ForestAreaView(viewModel: ForestAreaViewModel(gardenStore: gardenStore, forestArea: ContentRepository.areas[0]))
+        ForestAreaView(
+            viewModel: ForestAreaViewModel(
+                gardenStore: gardenStore,
+                forestArea: ContentRepository.areas[3]
+            )
+        )
     }
-    .environment(GardenStore(context: container.mainContext))
+    .modelContainer(container)
+    .environment(gardenStore)
     .environment(Router())
 }

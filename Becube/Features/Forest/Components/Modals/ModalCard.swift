@@ -57,7 +57,7 @@ struct ModalCard<Content: View>: View {
 
 #Preview {
     ZStack {
-        Image(ImageResource.forestMap).resizable().ignoresSafeArea()
+        Image(ImageResource.Backgrounds.map).resizable().ignoresSafeArea()
         ModalCard {
             Text("Title")
                 .font(.system(.title2, design: .rounded, weight: .bold))
