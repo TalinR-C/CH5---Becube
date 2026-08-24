@@ -21,9 +21,29 @@ enum Route: Hashable, Codable {
     case skillDetail(skillID: String)
     case learn(skillID: String)
     case practice(skillID: String)
-    case reflect(skillID: String)
+    /// `logID` is the log a practice just wrote, when reflection is the tail of
+    /// a practice. `nil` means the user came straight here to log an experience,
+    /// so the reflection is a log of its own.
+    case reflect(skillID: String, logID: UUID?)
     case reflectHistory(skillID: String)
-    case practiceCompletion(skillID: String)
+    case practiceCompletion(skillID: String, logID: UUID)
+}
+
+extension Route {
+    /// True for screens that only exist as a step of the
+    /// Learn -> Practice -> Reflect loop. Leaving the loop unwinds past all of
+    /// them, so the user lands back where they entered it from.
+    ///
+    /// `lockedPlant` counts: once the practice is done the plant isn't locked
+    /// any more, so that screen is stale the moment the loop ends.
+    var isFlowStep: Bool {
+        switch self {
+        case .lockedPlant, .learn, .practice, .practiceCompletion, .reflect:
+            true
+        case .forestArea, .skillDetail, .reflectHistory:
+            false
+        }
+    }
 }
 
 /// Top-level rather than nested in `Router` so it reads cleanly next to

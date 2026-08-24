@@ -11,17 +11,27 @@ import Foundation
 
 /// What finishing a practice earns.
 ///
-/// One line today, but it's the seam where "skipping shouldn't grant the
-/// plant", streak counting and completion haptics will land — and it keeps
-/// that rule out of the view. The `Log` is still written by ReflectView,
-/// because a rating is only known after reflecting.
+/// A completed practice writes **the** log for that use of the skill — one log,
+/// rating still empty. If the user goes on to reflect, that reflection fills in
+/// this same log rather than adding a second one, which is why the id has to
+/// travel back out of here.
 enum PracticeService {
-    @discardableResult
-        static func complete(skillID: String, in store: GardenStore) -> Bool {
-            let log = Log(id: UUID(), date: .now, copingID: skillID, rating: nil)
-            store.addNewLog(log: log)
-            return store.unlockPlant(id: skillID)
-        }
+
+    /// One completed practice: the log it wrote, and whether it also granted the
+    /// plant for the first time (which decides the celebration screen).
+    struct Completion: Hashable {
+        let skillID: String
+        let logID: UUID
+        let isFirstUnlock: Bool
+    }
+
+    static func complete(skillID: String, in store: GardenStore) -> Completion {
+        let log = Log(id: UUID(), date: .now, copingID: skillID, rating: nil)
+        store.addNewLog(log: log)
+        return Completion(
+            skillID: skillID,
+            logID: log.id,
+            isFirstUnlock: store.unlockPlant(id: skillID)
+        )
+    }
 }
-
-

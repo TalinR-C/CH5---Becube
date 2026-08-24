@@ -29,19 +29,11 @@ struct ReflectView: View {
             rating
             textbox
             Button{
-                viewModel.submitLog(
-                    log: Log(
-                        id: UUID(),
-                        date: .now,
-                        copingID: viewModel.current.id,
-                        rating: selectedRating ?? 0,
-                        journal: currentLog
-                    )
-                )
+                viewModel.submitLog(rating: selectedRating, journal: currentLog)
                 // Saving ends the loop, so this is a rewind rather than a push:
-                // the whole Learn -> Practice -> Reflect stack is dropped and
-                // the user lands on the skill's plant.
-                router.finishReflection(skillID: viewModel.current.id)
+                // every step of Learn -> Practice -> Reflect is popped and the
+                // user lands on the screen they entered the loop from.
+                router.finishReflection()
             } label: {
                 Text("Done")
                     .foregroundStyle(Color.white)

@@ -22,23 +22,36 @@ struct Day: Hashable{
 @Observable
 class ReflectViewModel {
     private let gardenStore: GardenStore
+    /// Set when reflection follows a practice: the log to fill in rather than
+    /// duplicate. `nil` when the user came straight here, so this reflection is
+    /// a log in its own right.
+    private let attachedLogID: UUID?
     let current: CopingSkill
     var logs: [Log] = []
     var currentRatingClass: Int {
         return getRatingClass(rating: getPlantAverageRating())
     }
     
-    init(gardenStore: GardenStore, current: CopingSkill) {
+    init(gardenStore: GardenStore, current: CopingSkill, attachingTo logID: UUID? = nil) {
         self.gardenStore = gardenStore
         self.current = current
+        self.attachedLogID = logID
         
         // populate log array with default values. Set data to current day.
         let plantLogs = gardenStore.logHistory.filter{$0.copingID == current.id}
         self.logs = plantLogs.filter{$0.date.startOfDay == .now.startOfDay}
     }
     
-    func submitLog(log: Log){
-        gardenStore.addNewLog(log: log)
+    /// `rating` is `nil` when the user didn't pick one — an unrated log still
+    /// counts as a use of the skill, it just stays out of the average.
+    func submitLog(rating: Int?, journal: String?) {
+        ReflectionService.save(
+            rating: rating,
+            journal: journal,
+            skillID: current.id,
+            attachingTo: attachedLogID,
+            in: gardenStore
+        )
     }
     
     func getCurrentPlantlogs() -> [Log]{

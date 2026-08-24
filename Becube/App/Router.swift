@@ -22,7 +22,10 @@ final class Router {
     var shelfPath: [Route] = []
     var gardenPath: [Route] = []
     var forestPath: [Route] = []
-    var repeatCompletionSkillID: String?
+    /// Set while the "practised again" card is up over the practice screen.
+    /// It carries the completion so the card's "Log Experience" button can point
+    /// the reflection at the log that practice just wrote.
+    var repeatCompletion: PracticeService.Completion?
 
 
     /// The stack belonging to `tab`, readable and writable. Everything below
@@ -85,24 +88,38 @@ final class Router {
         replaceTop(with: .practice(skillID: skillID))
     }
 
-    /// Practice finished — reflection replaces it, same reasoning.
-    func reflectAfterPractice(skillID: String) {
-        replaceTop(with: .reflect(skillID: skillID))
+    /// Practice finished — reflection replaces it, same reasoning. Carries the
+    /// practice's log so reflecting fills that log in instead of writing a second one.
+    func reflectAfterPractice(skillID: String, logID: UUID?) {
+        replaceTop(with: .reflect(skillID: skillID, logID: logID))
     }
 
-    /// Reflection saved: the loop is done. Drop the whole flow and land on the
-    /// skill's plant page.
-    func finishReflection(skillID: String) {
-        reset(to: [.skillDetail(skillID: skillID)])
+    /// Leaves the loop: pops every screen that belongs to it and lands on the
+    /// one underneath — the forest area in Explore, the plant in the Shelf.
+    ///
+    /// The stack already records where the flow was entered from, so no origin
+    /// has to be threaded through `learn` -> `practice` -> `reflect` to find the
+    /// way back. Replacing the stack (`reset`) is what threw that away.
+    func exitFlow() {
+        repeatCompletion = nil
+        var stack = self[selectedTab]
+        while stack.last?.isFlowStep == true { stack.removeLast() }
+        self[selectedTab] = stack
     }
 
-    ///To indicate the unlocking plant fot the first time 
-    func showFirstCompletion(skillID: String) {
-        replaceTop(with: .practiceCompletion(skillID: skillID))
+    /// Reflection saved: the loop is over.
+    func finishReflection() {
+        exitFlow()
     }
-    
-    func showRepeatCompletion(skillID: String) {
-        repeatCompletionSkillID = skillID
+
+    /// First time this plant has been unlocked: a full screen for it.
+    func showFirstCompletion(skillID: String, logID: UUID) {
+        replaceTop(with: .practiceCompletion(skillID: skillID, logID: logID))
+    }
+
+    /// Practised again: a card over the practice screen, not a new screen.
+    func showRepeatCompletion(_ completion: PracticeService.Completion) {
+        repeatCompletion = completion
     }
     
     // MARK: - Deep links

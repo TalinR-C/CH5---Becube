@@ -47,9 +47,11 @@ private struct RouteDestinations: ViewModifier {
         case .practice(let skillID):
             PracticeHostView(skillID: skillID)
 
-        case .reflect(let skillID):
+        case .reflect(let skillID, let logID):
             if let skill = ContentRepository.skill(id: skillID) {
-                ReflectView(viewModel: ReflectViewModel(gardenStore: gardenStore, current: skill))
+                ReflectView(
+                    viewModel: ReflectViewModel(gardenStore: gardenStore, current: skill, attachingTo: logID)
+                )
             }
 
         case .reflectHistory(let skillID):
@@ -57,8 +59,8 @@ private struct RouteDestinations: ViewModifier {
                 ReflectHistoryView(viewModel: ReflectViewModel(gardenStore: gardenStore, current: skill))
             }
             
-        case .practiceCompletion(let skillID):
-            PracticeCompletionView(skillID: skillID)
+        case .practiceCompletion(let skillID, let logID):
+            PracticeCompletionView(skillID: skillID, logID: logID)
         }
     }
 }

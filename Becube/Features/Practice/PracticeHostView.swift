@@ -24,6 +24,13 @@ struct PracticeHostView: View {
     /// ViewModel on every render and restart the animation mid-breath.
     @State private var screen: PracticeScreen?
 
+    /// Completion has to happen once, whichever gets there first: the practice
+    /// ending on its own or the user tapping Done. A reference box rather than a
+    /// `Bool` state so the session's callback can close it without capturing the view.
+    @State private var gate = CompletionGate()
+
+    private final class CompletionGate { var isClosed = false }
+
     init(skillID: String) {
         self.skillID = skillID
         _screen = State(initialValue: PracticeRegistry.screen(for: skillID))
@@ -53,31 +60,34 @@ struct PracticeHostView: View {
             .padding(30)
         }
         .overlay {
-            if let skillID = router.repeatCompletionSkillID {
+            if let completion = router.repeatCompletion {
                 ZStack {
                     Color.black.opacity(0.35)
                         .ignoresSafeArea()
 
-                    PracticeRepeatCompletionView(skillID: skillID)
+                    PracticeRepeatCompletionView(skillID: completion.skillID, logID: completion.logID)
                         .frame(maxWidth: 300)
                 }
                 .transition(.opacity.combined(with: .scale(scale: 0.95)))
                 
             }
         }
-//        .animation(.easeOut(duration: 0.2), value: router.repeatCompletionSkillID)
+//        .animation(.easeOut(duration: 0.2), value: router.repeatCompletion)
         .navigationBarBackButtonHidden(true)
         .toolbar(.hidden, for: .navigationBar)
         .task {
             let session = screen?.session
-                session?.onComplete = { [weak session, skillID, gardenStore, router] in
-                    session?.stop()
-                    handlePracticeCompletion(skillID: skillID, gardenStore: gardenStore, router: router)
-                }
-                session?.start()
+            session?.onComplete = { [weak session, gate, skillID, gardenStore, router] in
+                session?.stop()
+                Self.completePractice(gate: gate, skillID: skillID, store: gardenStore, router: router)
+            }
+            session?.start()
         }
         .onDisappear {
             screen?.session.stop()
+            // The card belongs to this screen: leaving by any route (including a
+            // swipe back) takes it with us, so it can't reappear over the next practice.
+            router.repeatCompletion = nil
         }
     }
 
@@ -109,36 +119,17 @@ struct PracticeHostView: View {
     }
 
     private var doneButton: some View {
-        if gardenStore.gardenState.onboardingDone == true {
-            Button("Done") {
-                PracticeService.complete(skillID: skillID, in: gardenStore)
-                screen?.session.stop()
-                handlePracticeCompletion(skillID: skillID, gardenStore: gardenStore, router: router)
-            }
-            .font(.system(size: 17, weight: .semibold, design: .rounded))
-            .foregroundColor(.white)
-            .frame(maxWidth: .infinity)
-            .frame(height: 56)
-            .background(Color.darkBrown)
-            .clipShape(Capsule())
-            .shadow(color: Color.black.opacity(0.15), radius: 6, x: 0, y: 4)
+        Button("Done") {
+            screen?.session.stop()
+            Self.completePractice(gate: gate, skillID: skillID, store: gardenStore, router: router)
         }
-        else{
-            Button("Done") {
-                PracticeService.complete(skillID: skillID, in: gardenStore)
-                screen?.session.stop()
-                handlePracticeCompletion(skillID: skillID, gardenStore: gardenStore, router: router)
-                router.popToRoot()
-                router.selectedTab = .garden
-            }
-            .font(.system(size: 17, weight: .semibold, design: .rounded))
-            .foregroundColor(.white)
-            .frame(maxWidth: .infinity)
-            .frame(height: 56)
-            .background(Color.darkBrown)
-            .clipShape(Capsule())
-            .shadow(color: Color.black.opacity(0.15), radius: 6, x: 0, y: 4)
-        }
+        .font(.system(size: 17, weight: .semibold, design: .rounded))
+        .foregroundColor(.white)
+        .frame(maxWidth: .infinity)
+        .frame(height: 56)
+        .background(Color.darkBrown)
+        .clipShape(Capsule())
+        .shadow(color: Color.black.opacity(0.15), radius: 6, x: 0, y: 4)
     }
 
     /// A skill whose practice hasn't been built yet. Says so plainly instead of
@@ -153,16 +144,34 @@ struct PracticeHostView: View {
         .foregroundStyle(.brown)
     }
     
-    private func handlePracticeCompletion(
+    /// The single completion path: writes the one log, grants the plant, then
+    /// shows whichever celebration fits. Ignored if completion already happened,
+    /// so a Done tap on the same practice can't log it twice.
+    ///
+    /// `static` so the session's callback can call it without capturing the view.
+    private static func completePractice(
+        gate: CompletionGate,
         skillID: String,
-        gardenStore: GardenStore,
+        store: GardenStore,
         router: Router
     ) {
-        let isFirstTime = PracticeService.complete(skillID: skillID, in: gardenStore)
-        if isFirstTime {
-            router.showFirstCompletion(skillID: skillID)
+        guard !gate.isClosed else { return }
+        gate.isClosed = true
+
+        let completion = PracticeService.complete(skillID: skillID, in: store)
+
+        // Onboarding skips the celebration screens — the tour ends in the Garden,
+        // where the first plant is waiting.
+        guard store.gardenState.onboardingDone else {
+            router.popToRoot()
+            router.selectedTab = .garden
+            return
+        }
+
+        if completion.isFirstUnlock {
+            router.showFirstCompletion(skillID: completion.skillID, logID: completion.logID)
         } else {
-            router.showRepeatCompletion(skillID: skillID)
+            router.showRepeatCompletion(completion)
         }
     }
 }

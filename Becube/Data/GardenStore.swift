@@ -157,6 +157,23 @@ class GardenStore {
         do{try context.save(); print("Saved!!")} catch{print("Error saving GardenState")}
     }
     
+    /// One log by id, or `nil` if it isn't there any more.
+    func log(id: UUID) -> Log? {
+        logHistory.first { $0.id == id }
+    }
+
+    /// Fills a reflection into a log that already exists — the practice wrote the
+    /// log, the rating and journal arrive later. Returns `false` if there was
+    /// nothing to fill in, so the caller can write a fresh log instead.
+    @discardableResult
+    func updateLog(id: UUID, rating: Int?, journal: String?) -> Bool {
+        guard let log = log(id: id) else { return false }
+        log.rating = rating
+        log.journal = journal
+        saveData()
+        return true
+    }
+
     func addNewLog(log: Log){
         logHistory.append(log)
         context.insert(log)

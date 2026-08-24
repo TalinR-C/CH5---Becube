@@ -190,7 +190,7 @@ struct SinglePlantView: View {
             // Logging without practising first is a deliberate entry point —
             // the user may have used the skill out in the world.
             Button("Log Experience") {
-                router.push(.reflect(skillID: viewModel.skillID))
+                router.push(.reflect(skillID: viewModel.skillID, logID: nil))
             }
             .buttonStyle(ShelfActionButtonStyle(role: .secondary))
 

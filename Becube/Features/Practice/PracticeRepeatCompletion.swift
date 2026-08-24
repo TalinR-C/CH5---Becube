@@ -9,6 +9,8 @@ import SwiftUI
 
 struct PracticeRepeatCompletionView: View {
     let skillID: String
+    /// The log the practice just wrote — reflecting fills it in rather than adding another.
+    let logID: UUID
 
     @Environment(Router.self) private var router
     @Environment(GardenStore.self) private var gardenStore
@@ -40,14 +42,13 @@ struct PracticeRepeatCompletionView: View {
 
                 VStack(spacing: 12) {
                     Button {
-                        router.repeatCompletionSkillID = nil
-                        router.reflectAfterPractice(skillID: skillID)
+                        router.repeatCompletion = nil
+                        router.reflectAfterPractice(skillID: skillID, logID: logID)
                     } label: {
                         filledButtonLabel("Log Experience")
                     }
                     Button {
-                        router.repeatCompletionSkillID = nil
-                        router.pop()
+                        router.exitFlow() // clears the card as it leaves the loop
                     } label: {
                         outlinedButtonLabel("Close")
                     }

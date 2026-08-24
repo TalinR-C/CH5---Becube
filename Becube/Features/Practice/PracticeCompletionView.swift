@@ -9,6 +9,8 @@ import SwiftUI
 
 struct PracticeCompletionView: View {
     let skillID: String
+    /// The log the practice just wrote — reflecting fills it in rather than adding another.
+    let logID: UUID
 
     @Environment(Router.self) private var router
 
@@ -54,14 +56,14 @@ struct PracticeCompletionView: View {
 
                 VStack(spacing: 12) {
                     Button {
-                        router.reflectAfterPractice(skillID: skillID) //continue to reflect
+                        router.reflectAfterPractice(skillID: skillID, logID: logID) //continue to reflect
                     } label: {
                         filledButtonLabel("Log your Experience")
                     }
                     .shadow(color: Color.black.opacity(0.05), radius: 8, x: 0, y: 4)
 
                     Button {
-                        router.pop() //continue to forest
+                        router.exitFlow() // skipping reflection still ends the loop
                     } label: {
                         outlinedButtonLabel("Continue Exploring")
                     }
@@ -96,7 +98,7 @@ struct PracticeCompletionView: View {
 
 #Preview {
     NavigationStack {
-        PracticeCompletionView(skillID: "box_breathing")
+        PracticeCompletionView(skillID: "box_breathing", logID: UUID())
             .environment(Router())
     }
 }
