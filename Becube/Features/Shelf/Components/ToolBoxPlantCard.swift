@@ -39,7 +39,7 @@ struct ToolBoxPlantCard: View {
             VStack(spacing: 2) {
                 CommentBox(cornerRadius: 14, bulge: 2, tailPosition: .bottomCenter, contentPadding: 6) {
                     Text(name)
-                        .font(.system(size: 12, weight: .bold, design: .rounded))
+                        .font(.custom("Jua-Regular", size: 12))
                         .foregroundStyle(ShelfPalette.darkBrown)
                         .multilineTextAlignment(.center)
                         // Three lines rather than the two the Hi-Fi shows: its four

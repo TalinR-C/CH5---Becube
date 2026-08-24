@@ -155,7 +155,7 @@ struct ShelfListView: View {
             .frame(height: signHeight)
             .overlay {
                 Text(viewModel.shelfTitle)
-                    .font(.system(size: 30, weight: .bold, design: .rounded))
+                    .font(.custom("Jua Regular", size: 30))
                     .foregroundStyle(ShelfPalette.darkBrown)
                     .lineLimit(1)
                     .minimumScaleFactor(0.6)
@@ -272,7 +272,7 @@ struct ShelfListView: View {
     private var paperSection: some View {
         VStack(spacing: 16) {
             Text("Plants Collected")
-                .font(.system(size: 20, weight: .bold, design: .rounded))
+                .font(.custom("Jua-Regular", size: 20))
                 .foregroundStyle(ShelfPalette.darkBrown)
 
             searchBar
@@ -418,7 +418,7 @@ struct ShelfListView: View {
             Image(systemName: "magnifyingglass")
                 .foregroundStyle(ShelfPalette.darkBrown.opacity(0.55))
             TextField("Search", text: $viewModel.searchText)
-                .font(.system(size: 16, design: .rounded))
+                .font(.custom("SFProRounded-Medium", size: 16))
                 .foregroundStyle(ShelfPalette.darkBrown)
             // Nothing sits on the trailing side until there's something to clear.
             if !viewModel.searchText.isEmpty {

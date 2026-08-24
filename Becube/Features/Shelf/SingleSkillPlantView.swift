@@ -156,7 +156,7 @@ struct SinglePlantView: View {
         CommentBox(cornerRadius: 34, bulge: 3, tailPosition: .topCenter, contentPadding: 18) {
             VStack(spacing: 6) {
                 Text(viewModel.skill?.name ?? "")
-                    .font(.system(size: 26, weight: .bold, design: .rounded))
+                    .font(.custom("Jua-Regular", size: 26))
                     .foregroundStyle(ShelfPalette.darkBrown)
                     .multilineTextAlignment(.center)
 
