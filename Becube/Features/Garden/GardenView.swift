@@ -61,7 +61,6 @@ struct GardenView: View {
                     test = "World"
                 }
             }
-            .toolbar(gardenStore.gardenState.onboardingDone ? .hidden : .visible, for: .tabBar)
 
             NavigationLink("Go to List"){
                 ContentView()
@@ -83,15 +82,21 @@ struct GardenView: View {
                             .opacity(0.3)
                             .onTapGesture {}
                             .ignoresSafeArea()
-                        VStack{
-                            Text("Discover More Skills")
-                            Text("The more you learn, the more the garden grows")
-                            Button("Next"){
-                                currentOnboardingStep = .nameGarden
+                        CommentBox(cornerRadius: 16, bulge: 3, tailPosition: .none) {
+                            VStack{
+                                Text("Discover More Skills")
+                                    .foregroundStyle(Color.darkBrown).bold()
+                                Text("The more you learn, the more the garden grows")
+                                    .font(.system(size: 13, weight: .light))
+                                    .foregroundStyle(Color.brown)
+                                    .padding()
+                                Button("Next"){
+                                    currentOnboardingStep = .nameGarden
+                                }
                             }
+                            .frame(width: 300, height: 250)
+                            .background(.white)
                         }
-                        .frame(width: 300, height: 250)
-                        .background(.white)
                     }
                 }
                 else if currentOnboardingStep == .nameGarden{
@@ -100,18 +105,23 @@ struct GardenView: View {
                             .opacity(0.3)
                             .onTapGesture {}
                             .ignoresSafeArea()
-                        VStack{
-                            Text("Name Your Garden")
-                            TextField("Enter Name", text: $gardenName)
-                            Button("Continue"){
-                                gardenStore.updateGardenName(name: gardenName)
-                                currentOnboardingStep = .complete
-                                router.popToRoot()
-                                router.selectedTab = .shelf
+                        CommentBox(cornerRadius: 16, bulge: 3, tailPosition: .none) {
+                            VStack{
+                                Text("Name Your Garden")
+                                    .foregroundStyle(Color.darkBrown).bold()
+                                TextField("Enter Name", text: $gardenName)
+                                    .padding(.horizontal, 40)
+                                    .padding(.vertical, 15)
+                                Button("Continue"){
+                                    gardenStore.updateGardenName(name: gardenName)
+                                    currentOnboardingStep = .complete
+                                    router.popToRoot()
+                                    router.selectedTab = .shelf
+                                }
                             }
+                            .frame(width: 300, height: 250)
+                            .background(.white)
                         }
-                        .frame(width: 300, height: 250)
-                        .background(.white)
                     }
                 }
             }
