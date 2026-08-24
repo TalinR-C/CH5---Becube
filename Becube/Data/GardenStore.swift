@@ -53,6 +53,11 @@ class GardenStore {
         saveData()
     }
     
+    func updateGardenName(name: String){
+        gardenState.name = name
+        saveData()
+    }
+    
     // MARK: - Unlocking
 
     /// Whether this skill's plant is already in the garden.

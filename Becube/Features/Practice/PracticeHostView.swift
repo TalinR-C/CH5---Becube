@@ -116,6 +116,7 @@ struct PracticeHostView: View {
         }
         else{
             Button("Done") {
+                PracticeService.complete(skillID: skillID, in: gardenStore)
                 gardenStore.toggleOnboarding(state: 0)
                 print(gardenStore.gardenState.onboardingDone)
                 router.popToRoot()

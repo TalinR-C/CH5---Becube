@@ -8,34 +8,38 @@
 import SwiftUI
 import SwiftData
 
+
 struct ShelfListView: View {
+    @Environment(GardenStore.self) private var gardenStore
     @State var viewModel: ShelfListViewModel
 
     // The Shelf tab's NavigationStack lives in RootView, so this view is just
     // its root content.
     var body: some View {
-        ScrollView {
-            VStack(spacing: 0) {
-                titleSign
-                plankSection
-                    // Drawn above the sheet so the plank's front edge sits on top
-                    // of the paper's torn top, rather than the other way round.
-                    .zIndex(1)
-                paperSection
-                    // Tucks the sheet up under the plank so the blue only shows
-                    // through the torn notches, not as a band between the two.
-                    .padding(.top, -8)
-            }
-        }
-        .scrollIndicators(.hidden)
-        .background(ShelfPalette.background.ignoresSafeArea())
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button(viewModel.isEditing ? "Done" : "Edit") {
-                    viewModel.isEditing.toggle()
+        ZStack{
+            ScrollView {
+                VStack(spacing: 0) {
+                    titleSign
+                    plankSection
+                        // Drawn above the sheet so the plank's front edge sits on top
+                        // of the paper's torn top, rather than the other way round.
+                        .zIndex(1)
+                    paperSection
+                        // Tucks the sheet up under the plank so the blue only shows
+                        // through the torn notches, not as a band between the two.
+                        .padding(.top, -8)
                 }
-                .font(.system(size: 17, weight: .semibold, design: .rounded))
-                .foregroundStyle(ShelfPalette.darkBrown)
+            }
+            .scrollIndicators(.hidden)
+            .background(ShelfPalette.background.ignoresSafeArea())
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(viewModel.isEditing ? "Done" : "Edit") {
+                        viewModel.isEditing.toggle()
+                    }
+                    .font(.system(size: 17, weight: .semibold, design: .rounded))
+                    .foregroundStyle(ShelfPalette.darkBrown)
+                }
             }
         }
     }
