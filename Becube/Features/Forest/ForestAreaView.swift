@@ -72,6 +72,7 @@ struct ForestAreaView: View {
     NavigationStack {
         ForestAreaView(forestArea: ContentRepository.areas[0])
     }
+    .modelContainer(container)
     .environment(GardenStore(context: container.mainContext))
     .environment(Router())
 }
