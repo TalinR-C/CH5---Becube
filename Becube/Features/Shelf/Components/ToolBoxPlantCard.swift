@@ -17,10 +17,10 @@ struct ToolBoxPlantCard: View {
     let averageRating: Double
     let timesCompleted: Int
 
-    /// Fixed (not `maxWidth`) so every bubble in the row is exactly the same width,
-    /// as in the Hi-Fi — and narrow enough that four cards fit across the shelf before
-    /// the row needs to scroll.
-    private let nameWidth: CGFloat = 60
+    /// Bubble width and the space the badges hang into both come from `ToolboxSlot`, so a
+    /// filled card and an `EmptyToolSlot` are the same size and sit at the same height
+    /// when the row mixes the two.
+    private let nameWidth = ToolboxSlot.nameWidth
 
     /// Height of the plant art.
     private let flowerHeight: CGFloat = 104
@@ -32,7 +32,7 @@ struct ToolBoxPlantCard: View {
     /// into it, so they overlap the pot by `badgeSize - badgeDrop` without anything
     /// being offset outside the card's own bounds — which the horizontal ScrollView in
     /// ShelfListView would clip.
-    private let badgeDrop: CGFloat = 16
+    private let badgeDrop = ToolboxSlot.baseDrop
 
     var body: some View {
         ZStack(alignment: .bottom) {
