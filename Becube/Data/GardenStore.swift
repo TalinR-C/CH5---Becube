@@ -15,6 +15,7 @@ class GardenStore {
     private let context: ModelContext
     var gardenState: GardenState
     var logHistory: [Log]
+    var tutorialPlantID: String = "box_breathing"
 
     init(context: ModelContext) {
         self.context = context
@@ -46,6 +47,16 @@ class GardenStore {
             seedDemoData()
         }
         #endif
+    }
+    
+    func toggleOnboarding(state: Int){
+        gardenState.onboardingDone.toggle()
+        saveData()
+    }
+    
+    func updateGardenName(name: String){
+        gardenState.name = name
+        saveData()
     }
     
     // MARK: - Unlocking

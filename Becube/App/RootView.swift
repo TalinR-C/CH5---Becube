@@ -21,7 +21,7 @@ struct RootView: View {
             NavigationStack(path: $router.shelfPath) {
               ShelfListView(viewModel: ShelfListViewModel(gardenStore: gardenStore))
                     .routeDestinations()
-                    .tabBarVisible(router.shelfPath.isEmpty)
+                    .tabBarVisible(router.shelfPath.isEmpty && gardenStore.gardenState.onboardingDone)
             }
             .tabItem {
                 Image(ImageResource.shelfIcon)
@@ -32,7 +32,7 @@ struct RootView: View {
             NavigationStack(path: $router.gardenPath) {
               GardenView(viewModel: GardenViewModel(gardenStore: gardenStore))
                     .routeDestinations()
-                    .tabBarVisible(router.gardenPath.isEmpty)
+                    .tabBarVisible(router.shelfPath.isEmpty && gardenStore.gardenState.onboardingDone)
             }
             .tabItem {
                 Image(ImageResource.gardenIcon)
@@ -52,7 +52,14 @@ struct RootView: View {
             .tag(AppTab.forest)
             
         }
+        .onAppear {
+            if gardenStore.gardenState.onboardingDone == false{
+                router.selectedTab = .forest
+                router.push(.forestArea(areaID: "waterfall"))
+            }
+        }
         .tint(.darkBrown)
+        
     }
 }
 

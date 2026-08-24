@@ -109,12 +109,26 @@ struct PracticeHostView: View {
     }
 
     private var doneButton: some View {
-        Button {
-            screen?.session.stop()
-            
-            handlePracticeCompletion(skillID: skillID, gardenStore: gardenStore, router: router)
-        } label: {
-            Text("Done")
+        if gardenStore.gardenState.onboardingDone == true {
+            Button("Done") {
+                PracticeService.complete(skillID: skillID, in: gardenStore)
+                screen?.session.stop()
+                handlePracticeCompletion(skillID: skillID, gardenStore: gardenStore, router: router)
+            }
+            .font(.system(size: 17, weight: .semibold, design: .rounded))
+            .foregroundColor(.white)
+            .frame(maxWidth: .infinity)
+            .frame(height: 56)
+            .background(Color.darkBrown)
+            .clipShape(Capsule())
+            .shadow(color: Color.black.opacity(0.15), radius: 6, x: 0, y: 4)
+        }
+        else{
+            Button("Done") {
+                PracticeService.complete(skillID: skillID, in: gardenStore)
+                router.popToRoot()
+                router.selectedTab = .garden
+            }
             .font(.system(size: 17, weight: .semibold, design: .rounded))
             .foregroundColor(.white)
             .frame(maxWidth: .infinity)

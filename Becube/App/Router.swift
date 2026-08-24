@@ -17,7 +17,7 @@ import SwiftUI
 @Observable
 final class Router {
 
-    var selectedTab: AppTab = .forest
+    var selectedTab: AppTab = .shelf
 
     var shelfPath: [Route] = []
     var gardenPath: [Route] = []

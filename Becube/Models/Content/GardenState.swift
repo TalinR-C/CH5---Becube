@@ -12,6 +12,7 @@ import SwiftData
 @Model
 class GardenState {
     var name: String
+    var onboardingDone: Bool = false
     var unlockedPlantsID: [String]
     var unlockedToolboxID: [String]
     var unlockedForestAreaID: [String]

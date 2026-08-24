@@ -9,7 +9,9 @@ import SwiftUI
 import SwiftData
 
 struct ShelfListView: View {
+    @Environment(GardenStore.self) private var gardenStore
     @State var viewModel: ShelfListViewModel
+    let tutorialBubblePos:CGPoint = CGPoint(x: 200, y: 300)
 
     // MARK: - Sheet state
 
@@ -58,6 +60,12 @@ struct ShelfListView: View {
             backdrop
             paperSheet
             editButton
+          
+            if gardenStore.gardenState.onboardingDone == false{
+                  CommentBox(cornerRadius: 16, bulge: 3, tailPosition: .bottomLeft) {
+                      Text("Tap the plant to revisit what you've learned")
+                  }
+                  .position(x: tutorialBubblePos.x, y: tutorialBubblePos.y)
         }
         .background(ShelfPalette.background.ignoresSafeArea())
         // The Shelf runs its own Edit button rather than a navigation bar. A bar would do
@@ -303,6 +311,12 @@ struct ShelfListView: View {
                             timesCompleted: stats.count
                         )
                     }
+                    .simultaneousGesture(TapGesture().onEnded {
+                        // This code now runs only when the user actually taps the link
+                        if skill.id == gardenStore.tutorialPlantID {
+                            gardenStore.gardenState.onboardingDone = true
+                        }
+                    })
                     .buttonStyle(.plain)
                     .allowsHitTesting(!viewModel.isEditing)
                     .overlay(alignment: .topLeading) {
