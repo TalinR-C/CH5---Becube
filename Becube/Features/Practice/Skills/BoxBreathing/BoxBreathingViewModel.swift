@@ -64,8 +64,13 @@ final class BoxBreathingViewModel: PracticeSession {
     }
     
     func stop() {
-        timer?.invalidate() // stops the timer from firing again
+        timer?.invalidate()
         timer = nil
+
+        withTransaction(Transaction(animation: nil)) {
+            dotPosition = dotPosition
+            circleScale = circleScale
+        }
     }
 
     private func advance() {

@@ -23,6 +23,7 @@ enum Route: Hashable, Codable {
     case practice(skillID: String)
     case reflect(skillID: String)
     case reflectHistory(skillID: String)
+    case practiceCompletion(skillID: String)
 }
 
 /// Top-level rather than nested in `Router` so it reads cleanly next to
