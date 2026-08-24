@@ -10,6 +10,18 @@ import Foundation
 import SwiftUI
 import SwiftData
 
+/// Aligns a bubble's tail tip with the flower centered beneath it, regardless of
+/// how wide the bubble ends up (its width varies with the skill name's text).
+private struct TailAlignment: AlignmentID {
+    static func defaultValue(in context: ViewDimensions) -> CGFloat {
+        context[HorizontalAlignment.center]
+    }
+}
+
+private extension HorizontalAlignment {
+    static let tail = HorizontalAlignment(TailAlignment.self)
+}
+
 struct ForestAreaView: View {
     private let viewModel: ForestAreaViewModel
 
@@ -40,19 +52,32 @@ struct ForestAreaView: View {
                     .foregroundStyle(.darkBrown)
 
                 ForEach(Array(zip(viewModel.skills, viewModel.forestArea.skillPositions)), id: \.0.id) { skill, pos in
+                    let isLeft = pos.x < figmaFrame.width / 2
+
                     // A bubble opens the skill's plant screen, which is where the
                     // Learn and Practice choices live. Swap this for
                     // `.learn(skillID:)` if a bubble should drop straight into the
                     // lesson instead.
-                    Button {
-                        router.push(.lockedPlant(skillID: skill.id))
-                    } label: {
-                        SkillBubble(
-                            message: skill.name,
-                            tailOffsetDenominator: pos.x < figmaFrame.width / 2 ? -4 : 4
-                        )
+                    VStack(alignment: .tail, spacing: 24) {
+                        Button {
+                            router.push(.lockedPlant(skillID: skill.id))
+                        } label: {
+                            SkillBubble(
+                                message: skill.name,
+                                tailOffsetDenominator: isLeft ? -4 : 4
+                            )
+                        }
+                        .buttonStyle(.plain)
+                        // The tail sits at 25%/75% of the bubble's own width (see
+                        // BulgingCardShape), so its x-position has to be derived the
+                        // same way here rather than aligned by the bubble's edge.
+                        .alignmentGuide(.tail) { d in isLeft ? d.width * 0.25 : d.width * 0.75 }
+
+                        Image("Flower")
+                            .alignmentGuide(.tail) { d in d.width / 2 }
+                            
                     }
-                    .buttonStyle(.plain)
+                    .padding()
                     .position(
                         x: pos.x / figmaFrame.width * geo.size.width,
                         y: pos.y / figmaFrame.height * geo.size.height
@@ -70,7 +95,7 @@ struct ForestAreaView: View {
         configurations: ModelConfiguration(isStoredInMemoryOnly: true)
     )
     NavigationStack {
-        ForestAreaView(forestArea: ContentRepository.areas[0])
+        ForestAreaView(forestArea: ContentRepository.areas[3])
     }
     .modelContainer(container)
     .environment(GardenStore(context: container.mainContext))
