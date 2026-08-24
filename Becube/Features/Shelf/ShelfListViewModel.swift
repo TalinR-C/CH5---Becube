@@ -36,16 +36,41 @@ class ShelfListViewModel {
         }
     }
 
-    /// Every coping skill the user has unlocked into their garden — these are the ones
-    /// that get a `PlantCard` in the shelf grid below.
+    /// Every coping skill the user has unlocked into their garden — the honest list,
+    /// plank included. What the grid draws is `gridSkills`.
     var unlockedSkills: [CopingSkill] {
         let unlockedIDs = gardenStore.gardenState.unlockedPlantsID
         return ContentRepository.skills.filter { unlockedIDs.contains($0.id) }
     }
 
+    /// Collected, minus whatever is standing on the plank. A pinned plant is already on
+    /// screen right above the sheet, so a card for it down here would be the same plant
+    /// twice — pinning still isn't a *move*, it only decides where the plant is shown.
+    var gridSkills: [CopingSkill] {
+        unlockedSkills.filter { !isPinned($0.id) }
+    }
+
+    /// Search never reaches past the plank: a pinned plant stays out of the grid whether
+    /// or not its name matches.
     var filteredSkills: [CopingSkill] {
-        guard !searchText.isEmpty else { return unlockedSkills }
-        return unlockedSkills.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        guard !searchText.isEmpty else { return gridSkills }
+        return gridSkills.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+    }
+
+    /// Why the grid has nothing to draw. `nil` when it has cards.
+    ///
+    /// Three different reasons, and naming the wrong one is worse than saying nothing —
+    /// "No plants match" in front of someone who hasn't collected anything reads like a bug.
+    enum EmptyState {
+        case noMatches
+        case allOnTheShelf
+        case nothingYet
+    }
+
+    var gridEmptyState: EmptyState? {
+        guard filteredSkills.isEmpty else { return nil }
+        if !searchText.isEmpty { return .noMatches }
+        return unlockedSkills.isEmpty ? .nothingYet : .allOnTheShelf
     }
 
     /// How many places on the plank are still free. The row always draws
@@ -64,8 +89,8 @@ class ShelfListViewModel {
 
     // MARK: - Editing the toolbox
 
-    /// Whether this skill is already standing on the plank. Its grid card hides its
-    /// `+` badge when it is.
+    /// Whether this skill is already standing on the plank — which is also what keeps
+    /// it out of the grid below.
     func isPinned(_ skillID: String) -> Bool {
         gardenStore.isPinnedToToolbox(id: skillID)
     }

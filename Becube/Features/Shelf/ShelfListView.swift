@@ -325,9 +325,10 @@ struct ShelfListView: View {
                     .buttonStyle(.plain)
                     .allowsHitTesting(!viewModel.isEditing)
                     .overlay(alignment: .topLeading) {
-                        // A plant already on the plank gets no badge at all — the row
-                        // above is where it's taken back off.
-                        if viewModel.isEditing, !viewModel.isPinned(skill.id) {
+                        // Everything in the grid is unpinned by definition — a plant on
+                        // the plank has no card down here — so the only question left is
+                        // whether the plank still has room.
+                        if viewModel.isEditing {
                             ShelfEditBadge(role: .add, isEnabled: viewModel.toolboxHasRoom) {
                                 withAnimation(.snappy(duration: 0.25)) {
                                     viewModel.pin(skill.id)
@@ -340,8 +341,8 @@ struct ShelfListView: View {
                 }
             }
 
-            if viewModel.filteredSkills.isEmpty {
-                noResults
+            if let emptyState = viewModel.gridEmptyState {
+                emptyMessage(emptyState)
             }
         }
         // Inset the *content*, not the ScrollView. Padding the scroll view itself would
@@ -382,8 +383,14 @@ struct ShelfListView: View {
         }
     }
 
-    private var noResults: some View {
-        Text("No plants match “\(viewModel.searchText)”.")
+    private func emptyMessage(_ state: ShelfListViewModel.EmptyState) -> some View {
+        let text = switch state {
+        case .noMatches: "No plants match “\(viewModel.searchText)”."
+        case .allOnTheShelf: "Every plant you've collected is on the shelf."
+        case .nothingYet: "Explore the forest to collect your first plant."
+        }
+
+        return Text(text)
             .font(.system(size: 15, design: .rounded))
             .foregroundStyle(ShelfPalette.darkBrown.opacity(0.6))
             .multilineTextAlignment(.center)
