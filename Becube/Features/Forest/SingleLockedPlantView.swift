@@ -60,11 +60,19 @@ struct SingleLockedPlant: View {
                                     .font(.system(size: 20, weight: .bold, design: .rounded))
                                     .foregroundStyle(.darkBrown)
                                 
-                                Text(skill.plantPhilosophy)
-                                    .font(.system(size: 15, weight: .regular, design: .rounded))
-                                    .multilineTextAlignment(.center)
-                                    .foregroundStyle(.darkBrown)
-                                    .padding(.bottom, 13)
+                                HStack (spacing: 3){
+                                    Text ("Plant name: ")
+                                        .font(.system(size: 15, weight: .regular, design: .rounded))
+                                        .multilineTextAlignment(.center)
+                                        .foregroundStyle(.darkBrown)
+                                        .padding(.bottom, 13)
+                                
+                                    Text(skill.plantName ?? "")
+                                        .font(.system(size: 15, weight: .regular, design: .rounded))
+                                        .multilineTextAlignment(.center)
+                                        .foregroundStyle(.darkBrown)
+                                        .padding(.bottom, 13)
+                                }
                                 
                                 Text(skill.info["what"] ?? "Description is not found.")
                                     .font(.system(size: 15, weight: .regular, design: .rounded))
