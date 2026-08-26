@@ -64,7 +64,9 @@ struct CalendarView: View {
                     
                     // Grid of days
                     LazyVGrid(columns: columns, spacing: 12) {
-                        ForEach(days, id: \.self) { day in
+                        ForEach(days.indices, id: \.self) { index in
+                            
+                            let day = days[index]
                             Button {
                                 if  day.date.monthInt == currentMonth.monthInt {
                                     selectedDate = day.date
@@ -116,13 +118,14 @@ struct CalendarView: View {
     
     private func updateDays() {
         var updatedDays: [Day] = []
+        print(currentMonth.calendarDisplayDays)
         for date in currentMonth.calendarDisplayDays{
             let averageRating = getDayAverageRating(date: date)
-            let hasEntry = averageRating != 0.0 ? true : false
+//            let hasEntry = averageRating != 0.0 && !averageRating.isNaN ? true : false
             updatedDays.append(Day(
                 date: date,
                 averageRating: averageRating,
-                hasEntry: hasEntry
+                hasEntry: hasEntry(date: date)
             ))
         }
         
@@ -132,9 +135,29 @@ struct CalendarView: View {
     private func getDayAverageRating(date: Date) -> Double{
         let logsInDay = logs.filter{$0.date.startOfDay == date.startOfDay}
         if logsInDay.count <= 0 {return 0.0}
+        print(logsInDay)
         let ratings = logsInDay.compactMap {r in r.rating}
+        print(ratings)
+        print(Double(ratings.reduce(0, +)))
+        print(Double(ratings.count))
         let averageRating = Double(ratings.reduce(0, +)) / Double(ratings.count)
+        print(averageRating, Calendar.current.component(.day, from: date))
+        print(hasRating(date: date))
         return averageRating
+    }
+    
+    private func hasEntry(date:Date) -> Bool{
+        let logsInDay = logs.filter{$0.date.startOfDay == date.startOfDay}
+        return logsInDay.count > 0
+    }
+    
+    private func hasRating(date:Date) -> Bool{
+        let logsInDay = logs.filter{$0.date.startOfDay == date.startOfDay}
+        if logsInDay.count <= 0 {return false}
+        let ratings = logsInDay.compactMap {r in r.rating}
+        print(ratings)
+        print(!ratings.isEmpty)
+        return !ratings.isEmpty
     }
     
     private func getRatingClassImage(rating: Double) -> Image{
@@ -150,7 +173,8 @@ struct CalendarView: View {
         if rating <= 2.0 {return 2}
         if rating <= 3.0 {return 3}
         if rating <= 4.0 {return 4}
-        return 5
+        if rating <= 5.0 {return 5}
+        return 0
     }
     
     @ViewBuilder
@@ -164,14 +188,14 @@ struct CalendarView: View {
         }
         
         // Rating based background
-        if day.hasEntry {
+        if hasRating(date: day.date) {
             Image("rating_empty_color_\(getRatingClass(rating: day.averageRating!))")
                 .resizable()
                 .frame(width: 35, height: 35)
         }
         
         // Selected date background
-        if day.date.startOfDay == selectedDate.startOfDay, day.hasEntry{
+        if day.date.startOfDay == selectedDate.startOfDay && hasRating(date: selectedDate){
             Image("BorderBrown\(getRatingClass(rating: day.averageRating!))")
                 .resizable()
                 .frame(width: 35, height: 35)
