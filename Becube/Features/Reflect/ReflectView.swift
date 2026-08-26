@@ -28,6 +28,9 @@ struct ReflectView: View {
                 .padding(.bottom, 20)
             rating
             textbox
+                // Anything the practice already wrote onto this log belongs in the
+                // box, not lost behind it.
+                .task { currentLog = viewModel.existingJournal ?? "" }
             Button{
                 viewModel.submitLog(rating: selectedRating, journal: currentLog)
                 // Saving ends the loop, so this is a rewind rather than a push:
