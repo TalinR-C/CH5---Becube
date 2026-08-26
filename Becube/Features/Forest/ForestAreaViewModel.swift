@@ -20,7 +20,9 @@ class ForestAreaViewModel {
     var areaName: String { forestArea.name }
     
     // checks whether all skill is unlocked
-    var isAllSkillUnlocked: Bool = true
+    var isAllSkillUnlocked: Bool {
+        skills.allSatisfy { isSkillUnlocked($0) }
+    }
 
     // Processing the background image name according to its area id and its unlock status
     var backgroundImage: String {
@@ -38,5 +40,10 @@ class ForestAreaViewModel {
             ContentRepository.skills.first(where: { $0.id == id })
         }
         self.gardenStore = gardenStore
+    }
+
+    /// Whether a skill's plant has already been collected into the garden.
+    func isSkillUnlocked(_ skill: CopingSkill) -> Bool {
+        gardenStore.hasUnlockedPlant(id: skill.id)
     }
 }
