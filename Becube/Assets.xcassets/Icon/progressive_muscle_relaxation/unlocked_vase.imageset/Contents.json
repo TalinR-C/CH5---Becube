@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "unlocked_vase.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
