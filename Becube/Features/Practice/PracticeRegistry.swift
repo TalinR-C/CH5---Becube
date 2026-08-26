@@ -54,8 +54,6 @@ enum PracticeRegistry {
             return make(TIPPViewModel(skillID: skillID)) {
                 TIPPView(viewModel: $0)
             }
-        } // <-- Added missing closing brace for switch statement
-    }     // <-- Added missing closing brace for static func screen
 
         case .stopSkill:
             return make(STOPViewModel(skillID: skillID)) {
