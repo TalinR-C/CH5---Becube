@@ -78,8 +78,11 @@ struct PracticeHostView: View {
         .task {
             let session = screen?.session
             session?.onComplete = { [weak session, gate, skillID, gardenStore, router] in
+                // Read the draft before stopping: `stop()` is only required to be
+                // idempotent, not to preserve anything the practice was holding.
+                let journal = session?.journalDraft
                 session?.stop()
-                Self.completePractice(gate: gate, skillID: skillID, store: gardenStore, router: router)
+                Self.completePractice(gate: gate, skillID: skillID, journal: journal, store: gardenStore, router: router)
             }
             session?.start()
         }
@@ -126,8 +129,9 @@ struct PracticeHostView: View {
 
     private var doneButton: some View {
         Button("Done") {
+            let journal = screen?.session.journalDraft
             screen?.session.stop()
-            Self.completePractice(gate: gate, skillID: skillID, store: gardenStore, router: router)
+            Self.completePractice(gate: gate, skillID: skillID, journal: journal, store: gardenStore, router: router)
         }
         .font(.system(size: 17, weight: .semibold, design: .rounded))
         .foregroundColor(.white)
@@ -161,13 +165,14 @@ struct PracticeHostView: View {
     private static func completePractice(
         gate: CompletionGate,
         skillID: String,
+        journal: String?,
         store: GardenStore,
         router: Router
     ) {
         guard !gate.isClosed else { return }
         gate.isClosed = true
 
-        let completion = PracticeService.complete(skillID: skillID, in: store)
+        let completion = PracticeService.complete(skillID: skillID, journal: journal, in: store)
 
         // Onboarding skips the celebration screens — the tour ends in the Garden,
         // where the first plant is waiting.

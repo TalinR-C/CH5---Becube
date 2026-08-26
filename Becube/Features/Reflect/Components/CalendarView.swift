@@ -131,9 +131,10 @@ struct CalendarView: View {
     
     private func getDayAverageRating(date: Date) -> Double{
         let logsInDay = logs.filter{$0.date.startOfDay == date.startOfDay}
-        if logsInDay.count <= 0 {return 0.0}
+        if logsInDay.count <= 0 {print("count is 0"); return 0.0}
         let ratings = logsInDay.compactMap {r in r.rating}
         let averageRating = Double(ratings.reduce(0, +)) / Double(ratings.count)
+        print("count is NOOT 0")
         return averageRating
     }
     
@@ -150,6 +151,7 @@ struct CalendarView: View {
         if rating <= 2.0 {return 2}
         if rating <= 3.0 {return 3}
         if rating <= 4.0 {return 4}
+        print("Rating Class: \(rating)")
         return 5
     }
     

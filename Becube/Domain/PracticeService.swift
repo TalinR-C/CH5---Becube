@@ -25,8 +25,11 @@ enum PracticeService {
         let isFirstUnlock: Bool
     }
 
-    static func complete(skillID: String, in store: GardenStore) -> Completion {
-        let log = Log(id: UUID(), date: .now, copingID: skillID, rating: nil)
+    /// `journal` is whatever the practice collected on its way through — an
+    /// observation typed during STOP, say. It lands on the same log a later
+    /// reflection fills in, so the two never fight over which one owns the entry.
+    static func complete(skillID: String, journal: String? = nil, in store: GardenStore) -> Completion {
+        let log = Log(id: UUID(), date: .now, copingID: skillID, rating: nil, journal: journal)
         store.addNewLog(log: log)
         return Completion(
             skillID: skillID,
