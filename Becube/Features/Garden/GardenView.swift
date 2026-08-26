@@ -71,7 +71,7 @@ struct GardenView: View {
             ForEach(gardenStore.gardenState.unlockedPlantsID, id: \.self){ id in
                 let plant = ContentRepository.skill(id: id)
                 ZStack{
-                    Image(plant!.image)
+                    Image(plant?.plantImageName ?? CopingSkill.placeholderImageName)
                 }
             }
             
