@@ -127,18 +127,30 @@ struct PracticeHostView: View {
         screen?.session.isDoneEnabled ?? true
     }
 
+    /// Every bit of the capsule is tappable, not just the word.
+    ///
+    /// The frame, background and clip shape have to live on the **label**. Hung
+    /// off the `Button` instead they still draw — the capsule appears exactly
+    /// the same — but the button's hit region stays the size of the text, so
+    /// only the glyphs responded to a tap. `contentShape(Capsule())` then makes
+    /// the target the capsule itself rather than its bounding box, so the four
+    /// corners outside the curve correctly do nothing.
     private var doneButton: some View {
-        Button("Done") {
+        Button {
             let journal = screen?.session.journalDraft
             screen?.session.stop()
             Self.completePractice(gate: gate, skillID: skillID, journal: journal, store: gardenStore, router: router)
+        } label: {
+            Text("Done")
+                .font(.system(size: 17, weight: .semibold, design: .rounded))
+                .foregroundStyle(.white)
+                .frame(maxWidth: .infinity)
+                .frame(height: 56)
+                .background(Color.darkBrown)
+                .clipShape(Capsule())
+                .contentShape(Capsule())
         }
-        .font(.system(size: 17, weight: .semibold, design: .rounded))
-        .foregroundColor(.white)
-        .frame(maxWidth: .infinity)
-        .frame(height: 56)
-        .background(Color.darkBrown)
-        .clipShape(Capsule())
+        .buttonStyle(.plain)
         .shadow(color: Color.black.opacity(0.15), radius: 6, x: 0, y: 4)
         .disabled(!isDoneEnabled)
         .opacity(isDoneEnabled ? 1 : 0.35)

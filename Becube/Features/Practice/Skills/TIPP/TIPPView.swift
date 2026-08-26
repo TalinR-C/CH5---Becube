@@ -163,13 +163,20 @@ struct TIPPView: View {
     @ViewBuilder
     private var startButton: some View {
         if !viewModel.isRunning {
-            Button("Start") { viewModel.begin() }
-                .font(.system(size: 15, weight: .semibold, design: .rounded))
-                .foregroundStyle(.white)
-                .padding(.horizontal, 32)
-                .frame(height: 42)
-                .background(Color.darkBrown)
-                .clipShape(Capsule())
+            // Styling belongs on the label, not on the Button: hung off the
+            // Button it still draws, but the hit region stays the size of the
+            // text and only the glyphs respond to a tap.
+            Button { viewModel.begin() } label: {
+                Text("Start")
+                    .font(.system(size: 15, weight: .semibold, design: .rounded))
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 32)
+                    .frame(height: 42)
+                    .background(Color.darkBrown)
+                    .clipShape(Capsule())
+                    .contentShape(Capsule())
+            }
+            .buttonStyle(.plain)
         }
     }
 

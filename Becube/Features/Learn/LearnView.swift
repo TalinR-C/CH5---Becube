@@ -133,7 +133,14 @@ struct LearnView: View {
                             )
                         )
                         .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 2)
+                        // Without this the target is the chevron glyph, not the
+                        // disc: the frame around it is transparent, and a
+                        // Circle() supplied as a background is decoration that
+                        // hit-testing ignores. Circle rather than Rectangle so
+                        // the corners outside the disc stay inert.
+                        .contentShape(Circle())
                 }
+                .buttonStyle(.plain)
 
                 Spacer()
                 

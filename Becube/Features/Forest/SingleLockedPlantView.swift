@@ -10,6 +10,17 @@ import SwiftUI
 struct SingleLockedPlant: View {
     let skill : CopingSkill
     @Environment(Router.self) private var router
+    @Environment(GardenStore.self) private var gardenStore
+
+    /// The same rule the forest map uses: the collected drawing once the skill has
+    /// been earned, the pre-practice one before that. Ground art rather than the
+    /// potted `unlockedVase` variant, since the plant is standing on grass here.
+    ///
+    /// `plantImageName(_:)` falls back to the placeholder on its own for skills
+    /// whose art hasn't been drawn yet, so this stays correct as illustrations land.
+    private var plantImageName: String {
+        skill.plantImageName(gardenStore.hasUnlockedPlant(id: skill.id) ? .unlocked : .locked)
+    }
     
     var body: some View{
         
@@ -44,7 +55,7 @@ struct SingleLockedPlant: View {
                                 .frame(width: 208, height: 35.9)
                                 .offset(x: -10, y: 15 )
                             
-                            Image("FlowerPlantPlaceholder")
+                            Image(plantImageName)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 190.6, height: 178.22)

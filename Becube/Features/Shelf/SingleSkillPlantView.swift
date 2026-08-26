@@ -12,7 +12,6 @@ import SwiftUI
 import SwiftData
 
 struct SinglePlantView: View {
-    @Environment(\.dismiss) private var dismiss
     @Environment(Router.self) private var router
     @State var viewModel: SingleSkillPlantViewModel
 
@@ -40,18 +39,17 @@ struct SinglePlantView: View {
                 detailArea
             }
         }
-        .navigationBarBackButtonHidden(true)
         // The tab bar is hidden for every pushed screen by `.routeDestinations()`.
         .toolbarBackground(.hidden, for: .navigationBar)
+        // The back button is deliberately the system's own. A hand-rolled one is a
+        // Button whose label is a bare SF Symbol, so only the glyph is hit-testable
+        // while iOS 26 draws its Liquid Glass capsule around a much larger area —
+        // and sizing the label to fix that stretches the capsule into a pill.
+        // Apple's own button is already the right size and keeps the edge-swipe
+        // back gesture consistent with it. `ShelfListView` sets an empty
+        // navigationTitle so this renders chevron-only rather than "Back".
+        .tint(ShelfPalette.darkBrown)
         .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "chevron.left")
-                }
-                .tint(ShelfPalette.darkBrown)
-            }
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     router.push(.reflectHistory(skillID: viewModel.skillID))

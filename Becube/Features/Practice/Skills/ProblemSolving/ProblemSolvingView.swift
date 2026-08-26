@@ -360,29 +360,43 @@ struct ProblemSolvingView: View {
         isEnabled: Bool,
         action: @escaping () -> Void
     ) -> some View {
-        Button(title, action: action)
-            .font(.system(size: 15, weight: .semibold, design: .rounded))
-            .foregroundStyle(.white)
-            .padding(.horizontal, 32)
-            .frame(height: 46)
-            .background(Color.darkBrown)
-            .clipShape(Capsule())
-            .disabled(!isEnabled)
+            // Styling belongs on the label, not on the Button: hung off the
+            // Button it still draws, but the hit region stays the size of the
+            // text and only the glyphs respond to a tap.
+        Button(action: action) {
+            Text(title)
+                .font(.system(size: 15, weight: .semibold, design: .rounded))
+                .foregroundStyle(.white)
+                .padding(.horizontal, 32)
+                .frame(height: 46)
+                .background(Color.darkBrown)
+                .clipShape(Capsule())
+                .contentShape(Capsule())
+        }
+        .buttonStyle(.plain)
+        .disabled(!isEnabled)
             .opacity(isEnabled ? 1 : 0.35)
             .animation(.easeInOut(duration: 0.2), value: isEnabled)
     }
 
     private func secondaryButton(_ title: LocalizedStringKey, action: @escaping () -> Void) -> some View {
-        Button(title, action: action)
-            .font(.system(size: 15, weight: .semibold, design: .rounded))
-            .foregroundStyle(Color.darkBrown)
-            .padding(.horizontal, 24)
-            .frame(height: 46)
-            .background {
-                Capsule()
-                    .fill(.white)
-                    .overlay { Capsule().stroke(Color.darkBrown.opacity(0.4), lineWidth: 1) }
-            }
+            // Styling belongs on the label, not on the Button: hung off the
+            // Button it still draws, but the hit region stays the size of the
+            // text and only the glyphs respond to a tap.
+        Button(action: action) {
+            Text(title)
+                .font(.system(size: 15, weight: .semibold, design: .rounded))
+                .foregroundStyle(Color.darkBrown)
+                .padding(.horizontal, 24)
+                .frame(height: 46)
+                .background {
+                    Capsule()
+                        .fill(.white)
+                        .overlay { Capsule().stroke(Color.darkBrown.opacity(0.4), lineWidth: 1) }
+                }
+                .contentShape(Capsule())
+        }
+        .buttonStyle(.plain)
     }
 
     private var card: some View {

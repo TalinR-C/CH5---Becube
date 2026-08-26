@@ -152,13 +152,20 @@ struct STOPView: View {
     }
 
     private func primaryButton(_ title: LocalizedStringKey, action: @escaping () -> Void) -> some View {
-        Button(title, action: action)
-            .font(.system(size: 15, weight: .semibold, design: .rounded))
-            .foregroundStyle(.white)
-            .padding(.horizontal, 32)
-            .frame(height: 46)
-            .background(Color.darkBrown)
-            .clipShape(Capsule())
+            // Styling belongs on the label, not on the Button: hung off the
+            // Button it still draws, but the hit region stays the size of the
+            // text and only the glyphs respond to a tap.
+        Button(action: action) {
+            Text(title)
+                .font(.system(size: 15, weight: .semibold, design: .rounded))
+                .foregroundStyle(.white)
+                .padding(.horizontal, 32)
+                .frame(height: 46)
+                .background(Color.darkBrown)
+                .clipShape(Capsule())
+                .contentShape(Capsule())
+        }
+        .buttonStyle(.plain)
     }
 
     // Spelled out as `LocalizedStringKey` rather than inlined as a ternary or a

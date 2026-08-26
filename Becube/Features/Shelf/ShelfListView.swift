@@ -79,6 +79,10 @@ struct ShelfListView: View {
         // at the top of the shelf. The other full-bleed screens (LearnView,
         // PracticeHostView) hide it the same way.
         .toolbar(.hidden, for: .navigationBar)
+        // Hidden here, but it is still this screen's title that names the back
+        // button on whatever gets pushed. Left unset, SinglePlantView's back
+        // button reads "Back" and widens to fit the word; empty gives a chevron.
+        .navigationTitle("")
     }
 
     // MARK: - Backdrop
