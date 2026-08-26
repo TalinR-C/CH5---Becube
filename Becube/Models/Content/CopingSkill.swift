@@ -15,7 +15,9 @@ struct CopingSkill: Codable, Identifiable {
     let id: String
     let index: Int
     let name: String
-    let image: String
+    /// The illustration for the Learn flow — *not* the plant. Plant art is derived
+    /// from `id` instead; see `plantImageName(_:)` in `PlantArtwork.swift`.
+    let learnImage: String
     let plantPhilosophy: String
     let info: [String: String]
 

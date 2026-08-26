@@ -24,9 +24,19 @@ struct GardenView: View {
     
     var body: some View {
         ZStack{
+            // Full-bleed, behind the status bar and the tab bar alike. The explicit
+            // frame is what keeps `scaledToFill` from sizing the ZStack itself: the
+            // artwork overflows its frame to cover the screen, but still reports the
+            // screen's size to the stack around it.
+            Image("GardenBack")
+                .resizable()
+                .scaledToFill()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .ignoresSafeArea()
+
             Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
                     
-            NavigationStack(){
+            VStack{
                 HStack{
                     Button{
                         viewModel.appendUnlockedPlant(id: "box_breathing")
@@ -71,7 +81,7 @@ struct GardenView: View {
             ForEach(gardenStore.gardenState.unlockedPlantsID, id: \.self){ id in
                 let plant = ContentRepository.skill(id: id)
                 ZStack{
-                    Image(plant?.plantImageName ?? CopingSkill.placeholderImageName)
+                    Image(plant?.plantImageName() ?? CopingSkill.placeholderImageName)
                 }
             }
             
@@ -126,7 +136,11 @@ struct GardenView: View {
                 }
             }
         }
-        
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .titleSign(viewModel.gardenTitle)
+        // Same reasoning as ShelfListView: a navigation bar would reserve a strip of
+        // height above the sign's ropes and lay its material over the background.
+        .toolbar(.hidden, for: .navigationBar)
     }
 }
 

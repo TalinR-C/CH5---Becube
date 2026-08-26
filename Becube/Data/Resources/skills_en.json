@@ -3,7 +3,7 @@
     "id": "box_breathing",
     "index": 1,
     "name": "Box Breathing",
-    "image": "BoxBreathingLearn",
+    "learnImage": "BoxBreathingLearn",
     "plantName": "Bamboo",
     "plantPhilosophy": "Bamboo bends deep in a strong wind without snapping, then returns upright — its strength comes from flexibility built on a steady, segmented structure, not rigidity.",
     "info": {
@@ -17,7 +17,7 @@
     "id": "urge_surfing",
     "index": 2,
     "name": "Urge Surfing",
-    "image": "plant_rumput_laut",
+    "learnImage": "plant_rumput_laut",
     "plantName": "Seaweed / Kelp",
     "plantPhilosophy": "Kelp doesn't fight the current — it bends and sways with each wave, rooted at the base, still standing once the wave has passed.",
     "info": {
@@ -31,7 +31,7 @@
     "id": "grounding",
     "index": 3,
     "name": "Grounding (5-4-3-2-1)",
-    "image": "plant_akar_wangi",
+    "learnImage": "plant_akar_wangi",
     "plantName": "Vetiver",
     "plantPhilosophy": "Vetiver is grown on slopes to stop the soil washing away — its whole value is in the roots, not what shows above ground.",
     "info": {
@@ -45,7 +45,7 @@
     "id": "progressive_muscle_relaxation",
     "index": 4,
     "name": "Progressive Muscle Relaxation",
-    "image": "plant_putri_malu",
+    "learnImage": "plant_putri_malu",
     "plantName": "Putri Malu (Sensitive Plant)",
     "plantPhilosophy": "Its leaves close tight the instant they're touched, then slowly relax and reopen on their own — visible tension, followed by visible release.",
     "info": {
@@ -59,7 +59,7 @@
     "id": "tipp_skill",
     "index": 5,
     "name": "TIPP Skill",
-    "image": "plant_lidah_buaya",
+    "learnImage": "plant_lidah_buaya",
     "plantName": "Aloe Vera",
     "plantPhilosophy": "Aloe stores cool, soothing relief inside a tough exterior built to survive heat — reached for at the exact moment something is burning.",
     "info": {
@@ -73,7 +73,7 @@
     "id": "self_soothing",
     "index": 6,
     "name": "Self-Soothing with the Five Senses",
-    "image": "plant_melati",
+    "learnImage": "plant_melati",
     "plantName": "Jasmine",
     "plantPhilosophy": "Grown for its scent alone, jasmine offers nothing to \"solve\" — only something worth pausing for and noticing.",
     "info": {
@@ -87,7 +87,7 @@
     "id": "radical_acceptance",
     "index": 7,
     "name": "Radical Acceptance",
-    "image": "plant_beringin",
+    "learnImage": "plant_beringin",
     "plantName": "Banyan Tree",
     "plantPhilosophy": "A banyan doesn't fight the storms that pass through it across a hundred years — it just keeps standing, roots going wherever they need to.",
     "info": {
@@ -101,7 +101,7 @@
     "id": "opposite_action",
     "index": 8,
     "name": "Opposite Action",
-    "image": "plant_bunga_matahari",
+    "learnImage": "plant_bunga_matahari",
     "plantName": "Sunflower",
     "plantPhilosophy": "A sunflower turns to track the sun even on days it isn't visible — facing a direction on purpose, not just wherever it happens to be pointed.",
     "info": {
@@ -115,7 +115,7 @@
     "id": "body_scan",
     "index": 9,
     "name": "Body Scan",
-    "image": "plant_pakis",
+    "learnImage": "plant_pakis",
     "plantName": "Fern",
     "plantPhilosophy": "A fern unfurls one frond at a time, never all at once — a slow, deliberate uncurling, much like moving attention through the body part by part.",
     "info": {
@@ -129,7 +129,7 @@
     "id": "stop_skill",
     "index": 10,
     "name": "STOP Skill",
-    "image": "plant_kaktus",
+    "learnImage": "plant_kaktus",
     "plantName": "Cactus",
     "plantPhilosophy": "A cactus survives by pausing — conserving, waiting for the right conditions — rather than reacting to every change in its environment right away.",
     "info": {
@@ -143,7 +143,7 @@
     "id": "halt_check_in",
     "index": 11,
     "name": "HALT Check-In",
-    "image": "plant_padi",
+    "learnImage": "plant_padi",
     "plantName": "Rice Plant",
     "plantPhilosophy": "Rice needs water, sun, and nutrients on a steady schedule or it visibly wilts — a plant that makes neglected basic needs impossible to ignore.",
     "info": {
@@ -157,7 +157,7 @@
     "id": "cognitive_reframing",
     "index": 12,
     "name": "Cognitive Reframing (Thought Record)",
-    "image": "plant_bougenville",
+    "learnImage": "plant_bougenville",
     "plantName": "Bougainvillea",
     "plantPhilosophy": "Bougainvillea is thorny and wild by nature, but easily trained onto a trellis — growing in a new direction without harming the plant.",
     "info": {
@@ -171,7 +171,7 @@
     "id": "problem_solving_steps",
     "index": 13,
     "name": "Problem-Solving Steps",
-    "image": "plant_markisa",
+    "learnImage": "plant_markisa",
     "plantName": "Passion Fruit Vine",
     "plantPhilosophy": "A passion vine can't reach the sun on its own — give it a trellis, and it climbs it one deliberate step at a time.",
     "info": {
@@ -185,7 +185,7 @@
     "id": "behavioral_activation",
     "index": 14,
     "name": "Behavioral Activation",
-    "image": "plant_kecambah",
+    "learnImage": "plant_kecambah",
     "plantName": "Bean Sprout",
     "plantPhilosophy": "A bean sprout shows visible growth within days of one small, repeated action — watering — proving progress before you feel ready for it.",
     "info": {
@@ -199,7 +199,7 @@
     "id": "expressive_writing",
     "index": 15,
     "name": "Expressive Writing",
-    "image": "plant_lontar",
+    "learnImage": "plant_lontar",
     "plantName": "Palmyra Palm (Lontar)",
     "plantPhilosophy": "In Bali, lontar leaves were the traditional surface for writing down what mattered enough to keep — this skill treats your own words the same way.",
     "info": {
@@ -213,7 +213,7 @@
     "id": "if_then_planning",
     "index": 16,
     "name": "If–Then Planning",
-    "image": "FlowerPlantPlaceholder",
+    "learnImage": "FlowerPlantPlaceholder",
     "plantName": "Placeholder Plant",
     "plantPhilosophy": "Placeholder plant philosophy for If–Then Planning.",
     "info": {
