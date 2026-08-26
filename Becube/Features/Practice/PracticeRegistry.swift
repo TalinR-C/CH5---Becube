@@ -43,17 +43,18 @@ enum PracticeRegistry {
             return make(BoxBreathingViewModel(skillID: skillID)) {
                 BoxBreathingView(viewModel: $0)
             }
-            
+
         case .urgeSurfing:
             return make(UrgeSurfingViewModel(skillID: skillID)) {
                 UrgeSurfingView(viewModel: $0)
+            } // <-- Added missing closing brace here
 
         case .tippSkill:
             return make(TIPPViewModel(skillID: skillID)) {
                 TIPPView(viewModel: $0)
             }
-        }
-    }
+        } // <-- Added missing closing brace for switch statement
+    }     // <-- Added missing closing brace for static func screen
 
     /// Ties the session's concrete type to the view that takes it, so the pair
     /// is built together and the type never has to be recovered by casting.
