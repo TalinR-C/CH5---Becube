@@ -27,8 +27,9 @@ struct ReflectHistoryView: View {
                             .foregroundStyle(.brown)
                         ZStack{
                             Image("Star")
-                            Text("\(viewModel.getCurrentPlantlogs().count)")
-                                .foregroundStyle(.white)
+                            Text("\(viewModel.getCurrentPlantlogs().count)x")
+                                .font(.system(size: 15, weight: .bold, design: .rounded))
+                                .foregroundStyle(ShelfPalette.badgeText)
                         }
                     }
                     .frame(maxWidth: .infinity, alignment: .trailing)
@@ -41,11 +42,13 @@ struct ReflectHistoryView: View {
                             showAvgRatingInfo = true
                         }
                         label: {
+                            
                             Text("Avg\nRating")
                                 .font(.system(size: 11))
                                 .foregroundStyle(.brown)
                                 .multilineTextAlignment(.center)
-                            }
+                        }
+
                         ZStack{
                             Image("Star")
                             Image("rating_\(viewModel.currentRatingClass)")
@@ -60,13 +63,14 @@ struct ReflectHistoryView: View {
                 // Title and Flower Name
                 VStack{
                     Text(viewModel.current.name)
-                        .font(.system(size: 24))
-                        .textCase(.uppercase)
                         .foregroundStyle(.brown)
+                        .font(.custom("Jua-Regular", size: 26))
+                        .padding(3)
                     Text("Flower Name: \(viewModel.current.plantName!)")
-                        .font(.system(size: 13.75))
                         .foregroundStyle(.brown)
+                        .font(.custom("SFProRounded-Medium", size: 15))
                 }
+               
                 
                 // Calendar
                 CalendarView(
