@@ -40,6 +40,7 @@ class ReflectViewModel {
         // populate log array with default values. Set data to current day.
         let plantLogs = gardenStore.logHistory.filter{$0.copingID == current.id}
         self.logs = plantLogs.filter{$0.date.startOfDay == .now.startOfDay}
+        print("Reflect ViewModel init", self.logs.count)
     }
     
     /// What the log being attached to already says, if anything.
