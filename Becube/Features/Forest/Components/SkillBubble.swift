@@ -26,11 +26,11 @@ struct SkillBubble: View {
 
     var body: some View {
         Text(message)
-            .font(.system(.subheadline, design: .rounded, weight: .bold))
+            .font(.system(.headline, design: .rounded, weight: .bold))
             .foregroundStyle(brown)
             .multilineTextAlignment(.center)
             .padding(.horizontal, 14)
-            .padding(.vertical, 10)
+            .padding(.vertical)
             .frame(maxWidth: bubbleWidth, alignment: .center)
             .padding(.bottom, bubbleShape.tailHeight)
             .background(bubbleShape.fill(cream))
