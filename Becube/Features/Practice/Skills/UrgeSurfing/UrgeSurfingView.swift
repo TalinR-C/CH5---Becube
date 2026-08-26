@@ -12,16 +12,19 @@ struct UrgeSurfingView: View {
     @FocusState private var nameFieldFocused: Bool
 
     var body: some View {
-        VStack(spacing: 32) {
-            switch viewModel.step {
-            case .name:
-                nameStepContent
-            case .observe:
-                observeStepContent
-            case .surf:
-                surfStepContent
+        ScrollView {
+            VStack(spacing: 32) {
+                switch viewModel.step {
+                case .name:
+                    nameStepContent
+                case .observe:
+                    observeStepContent
+                case .surf:
+                    surfStepContent
+                }
             }
         }
+        .scrollDismissesKeyboard(.interactively)
     }
 
     // MARK: - Step 1: Name the Urge
@@ -58,7 +61,6 @@ struct UrgeSurfingView: View {
 
             continueButton(enabled: viewModel.canContinueFromName)
         }
-        .onAppear { nameFieldFocused = true }
     }
 
     // MARK: - Step 2: Observe Without Judgment
@@ -126,25 +128,14 @@ struct UrgeSurfingView: View {
                 .animation(.easeIn(duration: 0.3), value: viewModel.breathPhase)
 
             if viewModel.showReminder {
-                Text("This urge isn't permanent. You've ridden out hard moments before.")
+                Text("This urge isn't permanent. You've ridden out hard moments before. Tap Done below whenever you're ready.")
                     .font(.system(size: 14, weight: .regular, design: .rounded))
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 24)
                     .transition(.opacity)
             }
-
-            Button {
-                viewModel.advance()
-            } label: {
-                Text("I'm okay now")
-                    .font(.system(size: 17, weight: .semibold, design: .rounded))
-                    .foregroundColor(.darkBrown)
-            }
-            .opacity(viewModel.showReminder ? 1 : 0)
-            .animation(.easeIn(duration: 0.4), value: viewModel.showReminder)
         }
-        .onDisappear { viewModel.stop() }
     }
 
     // MARK: - Shared continue button
@@ -154,9 +145,16 @@ struct UrgeSurfingView: View {
             viewModel.advance()
         } label: {
             Text("Continue")
-                .font(.system(size: 17, weight: .semibold, design: .rounded))
-                .foregroundColor(enabled ? .darkBrown : .darkBrown.opacity(0.35))
+                .font(.system(size: 16, weight: .regular, design: .rounded))
+                .foregroundColor(enabled ? .white : .darkBrown.opacity(0.35))
         }
+        .frame(maxWidth: 120)
+        .frame(height: 56)
+//        .background(Color.text)
+        .background(
+            Capsule()
+                .fill(enabled ? Color.darkBrown : Color.darkBrown.opacity(0.1))
+        )
         .disabled(!enabled)
     }
 

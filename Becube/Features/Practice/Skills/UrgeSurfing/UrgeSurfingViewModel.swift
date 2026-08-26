@@ -54,6 +54,10 @@ final class UrgeSurfingViewModel: PracticeSession {
 
     // MARK: - Step 1: Name the Urge
     var urgeText: String = ""
+    
+    var isDoneEnabled: Bool {
+        step == .surf && showReminder
+    }
 
     var canContinueFromName: Bool {
         !urgeText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
