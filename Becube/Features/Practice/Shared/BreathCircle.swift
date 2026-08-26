@@ -9,6 +9,13 @@
 
 import SwiftUI
 
+/// Paced breathing is in and out only — no holds, unlike box breathing. Lives
+/// here rather than in any one practice: STOP and TIPP both pace a breath, and
+/// neither should have to import the other.
+enum PacedBreathPhase {
+    case inhale, exhale
+}
+
 /// The breathing circle: bigger on the way in, smaller on the way out.
 ///
 /// Like `TimerRing`, it is told its scale rather than deciding it. The pacing

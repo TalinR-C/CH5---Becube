@@ -42,6 +42,16 @@ class ReflectViewModel {
         self.logs = plantLogs.filter{$0.date.startOfDay == .now.startOfDay}
     }
     
+    /// What the log being attached to already says, if anything.
+    ///
+    /// A practice can write to the log before the user ever reaches this screen —
+    /// STOP's Observe step does. Saving a reflection assigns `journal`
+    /// unconditionally, so without seeding the text box from this, submitting an
+    /// empty reflection would quietly erase what the user wrote during practice.
+    var existingJournal: String? {
+        attachedLogID.flatMap { gardenStore.log(id: $0)?.journal }
+    }
+
     /// `rating` is `nil` when the user didn't pick one — an unrated log still
     /// counts as a use of the skill, it just stays out of the average.
     func submitLog(rating: Int?, journal: String?) {

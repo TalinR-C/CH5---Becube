@@ -18,6 +18,7 @@ import SwiftUI
 enum PracticeKind: String {
     case boxBreathing = "box_breathing"
     case tippSkill    = "tipp_skill"
+    case stopSkill    = "stop_skill"
     // case bodyScan   = "body_scan"
     // case fiveSenses = "five_senses"
 }
@@ -46,6 +47,11 @@ enum PracticeRegistry {
         case .tippSkill:
             return make(TIPPViewModel(skillID: skillID)) {
                 TIPPView(viewModel: $0)
+            }
+
+        case .stopSkill:
+            return make(STOPViewModel(skillID: skillID)) {
+                STOPView(viewModel: $0)
             }
         }
     }
