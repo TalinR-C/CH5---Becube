@@ -17,7 +17,9 @@ import SwiftUI
 /// is the entire reason for routing through an enum instead of raw strings.
 enum PracticeKind: String {
     case boxBreathing = "box_breathing"
+    case urgeSurfing  = "urge_surfing"
     case tippSkill    = "tipp_skill"
+    case stopSkill    = "stop_skill"
     // case bodyScan   = "body_scan"
     // case fiveSenses = "five_senses"
 }
@@ -43,9 +45,21 @@ enum PracticeRegistry {
                 BoxBreathingView(viewModel: $0)
             }
 
+        case .urgeSurfing:
+            return make(UrgeSurfingViewModel(skillID: skillID)) {
+                UrgeSurfingView(viewModel: $0)
+            } // <-- Added missing closing brace here
+
         case .tippSkill:
             return make(TIPPViewModel(skillID: skillID)) {
                 TIPPView(viewModel: $0)
+            }
+        } // <-- Added missing closing brace for switch statement
+    }     // <-- Added missing closing brace for static func screen
+
+        case .stopSkill:
+            return make(STOPViewModel(skillID: skillID)) {
+                STOPView(viewModel: $0)
             }
         }
     }

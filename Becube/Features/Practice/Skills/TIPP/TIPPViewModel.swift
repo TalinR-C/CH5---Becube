@@ -21,11 +21,6 @@ enum TIPPStep: Int, CaseIterable, Identifiable {
     var number: Int { rawValue + 1 }
 }
 
-/// Paced breathing is in and out only — no holds, unlike box breathing.
-enum PacedBreathPhase {
-    case inhale, exhale
-}
-
 @MainActor
 @Observable
 final class TIPPViewModel: PracticeSession {
