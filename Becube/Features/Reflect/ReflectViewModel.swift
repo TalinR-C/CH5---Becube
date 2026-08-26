@@ -72,6 +72,7 @@ class ReflectViewModel {
     
     func getDayLogs(day: Date){
         let plantLogs = gardenStore.logHistory.filter{$0.copingID == self.current.id}
+        if plantLogs.isEmpty {return}
         self.logs = plantLogs.filter{$0.date.startOfDay == day.startOfDay}
     }
     
@@ -98,12 +99,12 @@ class ReflectViewModel {
     }
     
     func getRatingClass(rating: Double) -> Int {
-        if rating == 0.0 {return 0}
         if rating <= 1.0 {return 1 }
         if rating <= 2.0 {return 2 }
         if rating <= 3.0 {return 3 }
         if rating <= 4.0 {return 4 }
-        return 5
+        if rating <= 5.0 {return 5 }
+        return 0
     }
     
     func resetEverything(){
