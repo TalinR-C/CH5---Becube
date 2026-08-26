@@ -102,6 +102,36 @@ structure:
 (`skills_en.json` / `skills_id.json`) for skill copy — two separate localization mechanisms to be aware
 of when adding user-facing strings vs. skill content.
 
+## Plant artwork — derived from the skill id, do not add a field for it
+
+A plant's art is **not** stored in `skills_en.json`. It is derived from the skill's `id`:
+
+```
+Assets.xcassets/Icon/<skill_id>/{locked, unlocked, unlocked_vase}
+```
+
+`Components/PlantArtwork.swift` builds the name (`CopingSkill.plantImageName(_:)`, defaulting to
+`.unlockedVase`) and falls back to `FlowerPlantPlaceholder` when a skill has no art yet — 8 of 16
+skills are drawn at the time of writing, and the rest start working the moment their folder lands.
+Wiring up a new plant is dropping three imagesets into `Icon/<id>/`. No JSON edit, no code change.
+
+Two things break this quietly, so watch for them:
+
+1. **`Icon/` and every `Icon/<skill_id>/` folder must have Provides Namespace ticked**
+   (`"provides-namespace": true` in that folder's `Contents.json`). That flag is what puts the folder
+   path into the asset's name. Without it every skill's imagesets are called plain `locked` /
+   `unlocked` / `unlocked_vase`, they collide in one flat namespace, and `Image("Icon/<id>/…")`
+   resolves to nothing — which renders as an empty box, not an error. **A new skill folder needs the
+   box ticked.**
+
+2. **`CopingSkill.learnImage` is the Learn-flow illustration, not the plant.** It decodes from the
+   JSON's `"image"` key via `CodingKeys`. The key is deliberately left as `"image"` in the content
+   files so edits there merge cleanly; the Swift property is renamed instead. Don't "fix" the mismatch
+   by renaming either side, and don't reach for `learnImage` when you want a plant.
+
+`skills_en.json` also carries `plantName` and `plantPhilosophy` — display copy, frequently rewritten,
+unrelated to which asset gets drawn.
+
 ## Conventions observed in this codebase
 
 - ViewModels are `@Observable` (not `ObservableObject`/`@Published`) — this is a modern-SwiftData-era
