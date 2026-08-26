@@ -56,7 +56,6 @@ extension View {
     func titleSign(_ title: String) -> some View {
         overlay(alignment: .top) {
             TitleSign(title: title)
-                .ignoresSafeArea(.container, edges: .top)
         }
     }
 }
