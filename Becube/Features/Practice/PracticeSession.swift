@@ -30,4 +30,16 @@ protocol PracticeSession: AnyObject, Observable {
     /// a countdown — calls this to hand control back. Open-ended ones like box
     /// breathing never do; the host's Done button drives those.
     var onComplete: (() -> Void)? { get set }
+
+    /// Whether the host's Done button can be tapped right now.
+    ///
+    /// Defaults to `true`: an open-ended practice like box breathing is finished
+    /// the moment the user says it is. A practice that has to actually happen
+    /// before it counts — TIPP, where Done on an untouched screen would grow a
+    /// plant for nothing — overrides this and makes the button be earned.
+    var isDoneEnabled: Bool { get }
+}
+
+extension PracticeSession {
+    var isDoneEnabled: Bool { true }
 }

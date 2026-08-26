@@ -24,56 +24,16 @@ struct GardenView: View {
     
     var body: some View {
         ZStack{
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-                    
-            NavigationStack(){
-                HStack{
-                    Button{
-                        viewModel.appendUnlockedPlant(id: "box_breathing")
-                    } label: {
-                        Text("Add Plant")
-                    }
-                    Button{
-                        viewModel.nuclearReset()
-                    } label: {
-                        Text("Reset Data")
-                    }
-                    Button{
-                        viewModel.testGardenVM()
-                    } label: {
-                        Text("Test Garden")
-                    }
-                    Button("Change Data"){
-                        test = "World"
-                    }
-                }
-                Button{
-                    viewModel.resetPlantData()
-                } label: {
-                    Text("Reset Data")
-                }
-                Button{
-                    viewModel.testGardenVM()
-                } label: {
-                    Text("Test Garden")
-                }
-                Button("Change Data"){
-                    test = "World"
-                }
-            }
-
-            NavigationLink("Go to List"){
-                ContentView()
-            }
-            Text(test)
-           
+            // Full-bleed, behind the status bar and the tab bar alike. The explicit
+            // frame is what keeps `scaledToFill` from sizing the ZStack itself: the
+            // artwork overflows its frame to cover the screen, but still reports the
+            // screen's size to the stack around it.
+            Image("GardenBack")
+                .resizable()
+                .scaledToFill()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .ignoresSafeArea()
             
-            ForEach(gardenStore.gardenState.unlockedPlantsID, id: \.self){ id in
-                let plant = ContentRepository.skill(id: id)
-                ZStack{
-                    Image(plant!.image)
-                }
-            }
             
             if gardenStore.gardenState.onboardingDone == false{
                 if currentOnboardingStep == .discoverSkills{
@@ -126,7 +86,11 @@ struct GardenView: View {
                 }
             }
         }
-        
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .titleSign(viewModel.gardenTitle)
+        // Same reasoning as ShelfListView: a navigation bar would reserve a strip of
+        // height above the sign's ropes and lay its material over the background.
+        .toolbar(.hidden, for: .navigationBar)
     }
 }
 

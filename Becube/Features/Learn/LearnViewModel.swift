@@ -112,7 +112,7 @@ class LearnViewModel {
     }
     
     var imageName: String {
-        skill?.image ?? ""
+        skill?.learnImage ?? ""
     }
 
     ///error handling 

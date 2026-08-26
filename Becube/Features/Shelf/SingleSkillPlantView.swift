@@ -70,9 +70,7 @@ struct SinglePlantView: View {
 
     private var plantArea: some View {
         ZStack(alignment: .top) {
-            // No plant art exists per-skill yet, so every skill falls back to the
-            // shared "Flower" placeholder image (per Talin's note).
-            Image("Flower")
+            Image(viewModel.plantImageName)
                 .resizable()
                 .scaledToFit()
                 .padding(.horizontal, 80)

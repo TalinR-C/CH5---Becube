@@ -15,7 +15,12 @@ struct CopingSkill: Codable, Identifiable {
     let id: String
     let index: Int
     let name: String
-    let image: String
+    /// The illustration for the Learn flow — *not* the plant. Plant art is derived
+    /// from `id` instead; see `plantImageName(_:)` in `PlantArtwork.swift`.
+    ///
+    /// Decoded from the JSON's `"image"` key (see `CodingKeys`) rather than renaming the
+    /// key itself, so the content files stay exactly as the team writes them.
+    let learnImage: String
     let plantPhilosophy: String
     let info: [String: String]
 
@@ -26,4 +31,13 @@ struct CopingSkill: Codable, Identifiable {
     /// simply doesn't render. Add `"plantName": "Hydrangea"` to a skill's entry and it
     /// appears automatically, no code change needed.
     let plantName: String?
+
+    /// The JSON calls the Learn illustration `"image"`, which reads like it might be the
+    /// plant. It isn't, and it hasn't been since plant art started deriving from `id`.
+    /// Mapping it here keeps the Swift side honest without touching the content files —
+    /// which several people edit, and where a renamed key would come back on every merge.
+    private enum CodingKeys: String, CodingKey {
+        case id, index, name, plantPhilosophy, info, plantName
+        case learnImage = "image"
+    }
 }

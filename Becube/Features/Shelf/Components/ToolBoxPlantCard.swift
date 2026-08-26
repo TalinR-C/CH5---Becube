@@ -14,6 +14,9 @@ import SwiftUI
 
 struct ToolBoxPlantCard: View {
     let name: String
+    /// The skill's potted plant art, from `CopingSkill.plantImageName()`. Passed in
+    /// rather than looked up here so the card stays a plain drawing of values.
+    let imageName: String
     let averageRating: Double
     let timesCompleted: Int
 
@@ -51,9 +54,7 @@ struct ToolBoxPlantCard: View {
                         .frame(width: nameWidth)
                 }
 
-                // No plant art exists per-skill yet, so every card falls back to the
-                // shared "Flower" placeholder image (per Talin's note).
-                Image("Flower")
+                Image(imageName)
                     .resizable()
                     .scaledToFit()
                     .frame(height: flowerHeight)
@@ -83,10 +84,11 @@ struct ToolBoxPlantCard: View {
 
 #Preview {
     HStack(alignment: .bottom, spacing: 8) {
-        ToolBoxPlantCard(name: "Box Breathing", averageRating: 4.6, timesCompleted: 5)
-        ToolBoxPlantCard(name: "5-4-3-2-1 Grounding", averageRating: 3, timesCompleted: 5)
-        ToolBoxPlantCard(name: "Urge Surfing", averageRating: 2, timesCompleted: 5)
-        ToolBoxPlantCard(name: "Name Your Feeling", averageRating: 0, timesCompleted: 0)
+        ToolBoxPlantCard(name: "Box Breathing", imageName: "Icon/box_breathing/unlocked_vase", averageRating: 4.6, timesCompleted: 5)
+        ToolBoxPlantCard(name: "Urge Surfing", imageName: "Icon/urge_surfing/unlocked_vase", averageRating: 2, timesCompleted: 5)
+        ToolBoxPlantCard(name: "STOP Skill", imageName: "Icon/stop_skill/unlocked_vase", averageRating: 3, timesCompleted: 5)
+        // An undrawn skill, so the placeholder is visible in the preview too.
+        ToolBoxPlantCard(name: "Name Your Feeling", imageName: CopingSkill.placeholderImageName, averageRating: 0, timesCompleted: 0)
     }
     .padding(10)
     .background(ShelfPalette.background)

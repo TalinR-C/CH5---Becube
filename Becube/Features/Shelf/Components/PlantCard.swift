@@ -13,6 +13,9 @@ import SwiftUI
 
 struct PlantCard: View {
     let name: String
+    /// The skill's potted plant art, from `CopingSkill.plantImageName()`. Passed in
+    /// rather than looked up here so the card stays a plain drawing of values.
+    let imageName: String
     let averageRating: Double
     let timesCompleted: Int
 
@@ -31,9 +34,7 @@ struct PlantCard: View {
     private var cardContent: some View {
         VStack(spacing: 6) {
             HStack(alignment: .top, spacing: 4) {
-                // No plant art exists per-skill yet, so every card falls back to the
-                // shared "Flower" placeholder image (per Talin's note).
-                Image("Flower")
+                Image(imageName)
                     .resizable()
                     .scaledToFit()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -89,8 +90,19 @@ struct PlantCard: View {
 
 #Preview {
     HStack(alignment: .top, spacing: 14) {
-        PlantCard(name: "Box Breathing", averageRating: 4.6, timesCompleted: 5)
-        PlantCard(name: "Knowing Your Risky Situations", averageRating: 0, timesCompleted: 0)
+        PlantCard(
+            name: "Box Breathing",
+            imageName: "Icon/box_breathing/unlocked_vase",
+            averageRating: 4.6,
+            timesCompleted: 5
+        )
+        // An undrawn skill, so the placeholder is visible in the preview too.
+        PlantCard(
+            name: "Knowing Your Risky Situations",
+            imageName: CopingSkill.placeholderImageName,
+            averageRating: 0,
+            timesCompleted: 0
+        )
     }
     .padding(26)
     .background(ShelfPalette.paperFill)

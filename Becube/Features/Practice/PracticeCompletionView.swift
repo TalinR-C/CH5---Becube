@@ -38,7 +38,7 @@ struct PracticeCompletionView: View {
                 }
                 .shadow(color: Color.black.opacity(0.05), radius: 8, x: 0, y: 4)
 
-                Image(skill?.image ?? "")
+                Image(skill?.plantImageName() ?? CopingSkill.placeholderImageName)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 180, height: 220)

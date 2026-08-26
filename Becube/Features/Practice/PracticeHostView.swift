@@ -118,6 +118,12 @@ struct PracticeHostView: View {
         }
     }
 
+    /// Read through the existential, so `@Observable` still tracks whatever
+    /// stored state the session computes it from.
+    private var isDoneEnabled: Bool {
+        screen?.session.isDoneEnabled ?? true
+    }
+
     private var doneButton: some View {
         Button("Done") {
             screen?.session.stop()
@@ -130,6 +136,9 @@ struct PracticeHostView: View {
         .background(Color.darkBrown)
         .clipShape(Capsule())
         .shadow(color: Color.black.opacity(0.15), radius: 6, x: 0, y: 4)
+        .disabled(!isDoneEnabled)
+        .opacity(isDoneEnabled ? 1 : 0.35)
+        .animation(.easeInOut(duration: 0.2), value: isDoneEnabled)
     }
 
     /// A skill whose practice hasn't been built yet. Says so plainly instead of

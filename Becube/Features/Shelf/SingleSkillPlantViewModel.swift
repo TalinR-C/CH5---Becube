@@ -37,6 +37,11 @@ class SingleSkillPlantViewModel {
         gardenStore.getPlantAverageRating(id: skillID)
     }
 
+    /// The plant art for this screen: the potted drawing, standing on the plank.
+    var plantImageName: String {
+        skill?.plantImageName() ?? CopingSkill.placeholderImageName
+    }
+
     /// The one-sentence summary shown on the card — `info["what"]`, not `info["how"]`.
     /// "how" is the numbered step list, which is what the Learn flow walks through and
     /// is far too long for this screen.

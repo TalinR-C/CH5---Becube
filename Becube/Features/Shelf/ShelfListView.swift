@@ -86,7 +86,7 @@ struct ShelfListView: View {
     /// The sign and the toolbox plank. Fixed: the paper slides over it, it never moves.
     private var backdrop: some View {
         VStack(spacing: 0) {
-            titleSign
+            TitleSign(title: viewModel.shelfTitle)
             plankSection
         }
         // Measured on the sign-and-plank stack itself, before it's pinned to the top of a
@@ -155,32 +155,6 @@ struct ShelfListView: View {
         .padding(.top, 8)
     }
 
-    // MARK: - Title
-
-    /// Height of the hanging sign. Fixed rather than proportional so `titleOffset`
-    /// below can be derived from it.
-    private let signHeight: CGFloat = 150
-
-    private var titleSign: some View {
-        Image("Title")
-            .resizable()
-            .scaledToFit()
-            .frame(height: signHeight)
-            .overlay {
-                Text(viewModel.shelfTitle)
-                    .font(.custom("Jua Regular", size: 30))
-                    .foregroundStyle(ShelfPalette.darkBrown)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.6)
-                    .padding(.horizontal, 48)
-                    // Title.png is 363x168, of which the top ~40% is rope — the board's
-                    // visual centre sits at ~64% of the image height, not 50%. Nudging
-                    // the text down by that difference lands it on the wood instead of
-                    // floating up over the ropes.
-                    .offset(y: signHeight * 0.14)
-            }
-    }
-
     // MARK: - Toolbox plank
 
     /// The pinned skills stand on the `Shelf` plank, which is bottom-aligned behind the
@@ -214,6 +188,7 @@ struct ShelfListView: View {
                     NavigationLink(value: Route.skillDetail(skillID: skill.id)) {
                         ToolBoxPlantCard(
                             name: skill.name,
+                            imageName: skill.plantImageName(),
                             averageRating: stats.average,
                             timesCompleted: stats.count
                         )
@@ -312,6 +287,7 @@ struct ShelfListView: View {
                     NavigationLink(value: Route.skillDetail(skillID: skill.id)) {
                         PlantCard(
                             name: skill.name,
+                            imageName: skill.plantImageName(),
                             averageRating: stats.average,
                             timesCompleted: stats.count
                         )
