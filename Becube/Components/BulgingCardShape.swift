@@ -24,6 +24,14 @@ struct BulgingCardShape: Shape {
     var cornerRadius: CGFloat
     var bulge: CGFloat
     var tailPosition: TailPosition = .none
+    /// Absolute horizontal shift applied to the tail's centre.
+    ///
+    /// A side tail is placed at a *fraction* of the shape's own width, so a
+    /// caller stacking two differently-sized copies of this shape — see
+    /// `CommentBox`, whose inner shape is inset from its outer one — gets two
+    /// tails on different centre lines. This lets that caller cancel the
+    /// difference out. Defaults to 0: an unstacked shape needs nothing.
+    var tailOffset: CGFloat = 0
     var tailWidth: CGFloat = 28
     var tailHeight: CGFloat = 16
 
@@ -51,7 +59,7 @@ struct BulgingCardShape: Shape {
                 to: &path,
                 from: CGPoint(x: rect.minX + cornerRadius, y: rect.minY),
                 to: CGPoint(x: rect.maxX - cornerRadius, y: rect.minY),
-                tailCenterX: rect.midX,
+                tailCenterX: rect.midX + tailOffset,
                 tailPointsUp: true,
                 tailWidth: tailWidth
             )
@@ -74,9 +82,9 @@ struct BulgingCardShape: Shape {
 
         let bottomTailCenterX: CGFloat
         switch tailPosition {
-        case .bottomLeft: bottomTailCenterX = rect.minX + rect.width * 0.25
-        case .bottomRight: bottomTailCenterX = rect.minX + rect.width * 0.75
-        default: bottomTailCenterX = rect.midX
+        case .bottomLeft: bottomTailCenterX = rect.minX + rect.width * 0.25 + tailOffset
+        case .bottomRight: bottomTailCenterX = rect.minX + rect.width * 0.75 + tailOffset
+        default: bottomTailCenterX = rect.midX + tailOffset
         }
 
         let hasBottomTail = tailPosition == .bottomCenter

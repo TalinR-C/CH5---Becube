@@ -74,8 +74,16 @@ final class ProblemSolvingViewModel: PracticeSession {
     /// reread the problem does not undo having defined it.
     private(set) var completed: Set<ProblemSolvingStep> = []
 
+    /// Reassigning inside `didSet` re-enters the setter here. On a plain stored
+    /// property Swift suppresses that; under `@Observable` the property is
+    /// rewritten into a computed one, so the write goes back through the setter
+    /// and fires `didSet` again. Hence the guard: it must only write when it
+    /// genuinely has something to trim, or it recurses until the stack gives out.
     var problem: String = "" {
-        didSet { problem = Self.capped(problem, to: Self.problemCharLimit) }
+        didSet {
+            guard problem.count > Self.problemCharLimit else { return }
+            problem = String(problem.prefix(Self.problemCharLimit))
+        }
     }
 
     private(set) var options: [SolutionOption] = []
@@ -83,7 +91,11 @@ final class ProblemSolvingViewModel: PracticeSession {
     /// The add-field on step 2. Held here rather than in the view so returning
     /// to the step doesn't lose a half-typed idea.
     var draftOption: String = "" {
-        didSet { draftOption = Self.capped(draftOption, to: Self.optionCharLimit) }
+        // Guarded for the same reason as `problem` above.
+        didSet {
+            guard draftOption.count > Self.optionCharLimit else { return }
+            draftOption = String(draftOption.prefix(Self.optionCharLimit))
+        }
     }
 
     /// Which option step 3 is currently showing. Weighing is paged one at a

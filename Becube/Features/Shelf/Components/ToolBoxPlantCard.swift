@@ -68,10 +68,7 @@ struct ToolBoxPlantCard: View {
                         .foregroundStyle(ShelfPalette.badgeText)
                 }
                 IndicatorBadge(size: badgeSize) {
-                    Image(RatingAsset.assetName(forAverage: averageRating))
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 24, height: 24)
+                    RatingIcon(average: averageRating, size: 24)
                 }
             }
         }

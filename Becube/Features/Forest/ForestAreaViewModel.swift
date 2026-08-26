@@ -19,9 +19,16 @@ class ForestAreaViewModel {
 
     var areaName: String { forestArea.name }
     
-    // checks whether all skill is unlocked
+    /// Whether every plant in this area has been collected.
+    ///
+    /// Goes through `Progression` so the check that colours the background here
+    /// is the same one that offers the next area on the map — two copies of
+    /// "this area is finished" would eventually disagree.
     var isAllSkillUnlocked: Bool {
-        skills.allSatisfy { isSkillUnlocked($0) }
+        Progression.isComplete(
+            forestArea,
+            unlockedPlantIDs: gardenStore.gardenState.unlockedPlantsID
+        )
     }
 
     // Processing the background image name according to its area id and its unlock status

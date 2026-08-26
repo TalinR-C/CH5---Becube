@@ -8,8 +8,6 @@
 import Foundation
 import SwiftUI
 
-// TODO: implement
-
 @Observable
 class ForestMapViewModel {
     var columns: [GridItem]
@@ -32,16 +30,30 @@ class ForestMapViewModel {
         self.gardenStore = gardenStore
     }
 
-    // A fresh garden has nothing unlocked yet, so the user is asked to pick the
-    // area they want to start in rather than being handed one.
-    var needsStartingArea: Bool {
+    /// The areas the user may open right now — everything on a fresh garden, the
+    /// remaining locked areas once the area they are in is finished, and nothing
+    /// in between. Empty is what keeps the picker off the map.
+    ///
+    /// Computed rather than stored: the map re-reads it whenever `GardenState`
+    /// changes, so collecting an area's last plant needs no separate trigger to
+    /// make the next choice appear.
+    var selectableAreas: [ForestArea] {
+        Progression.selectableAreas(
+            unlockedAreaIDs: gardenStore.gardenState.unlockedForestAreaID,
+            unlockedPlantIDs: gardenStore.gardenState.unlockedPlantsID,
+            in: forestAreas
+        )
+    }
+
+    /// The first-run pick, which the user cannot decline — there is nowhere to
+    /// go until they choose. Every later pick is a bonus and can wait.
+    var isFirstAreaChoice: Bool {
         gardenStore.gardenState.unlockedForestAreaID.isEmpty
     }
 
-    // Opens the area the user picked on first run. Their choice is the only
-    // thing that unlocks an area at this point. The store dedups, so a double
-    // tap cannot add it twice.
-    func chooseStartingArea(_ area: ForestArea) {
+    // Opens the area the user picked. Their choice is the only thing that
+    // unlocks an area. The store dedups, so a double tap cannot add it twice.
+    func chooseArea(_ area: ForestArea) {
         gardenStore.unlockForestArea(id: area.id)
     }
 

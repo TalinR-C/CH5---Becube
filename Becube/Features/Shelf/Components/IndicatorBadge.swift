@@ -38,16 +38,11 @@ struct IndicatorBadge<Content: View>: View {
                 .font(.system(size: 11, weight: .bold, design: .rounded))
         }
         IndicatorBadge {
-            Image(RatingAsset.assetName(forAverage: 4.2))
-                .resizable()
-                .scaledToFit()
-                .frame(width: 16, height: 16)
+            RatingIcon(average: 4.2, size: 16)
         }
+        // Nothing rated yet — an empty badge.
         IndicatorBadge {
-            Image(RatingAsset.assetName(forAverage: 0))
-                .resizable()
-                .scaledToFit()
-                .frame(width: 16, height: 16)
+            RatingIcon(average: 0, size: 16)
         }
     }
     .padding()

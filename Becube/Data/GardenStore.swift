@@ -212,11 +212,13 @@ class GardenStore {
 /// function here — next to the store that computes the rating — so both card views stay
 /// in sync with a single source of truth instead of duplicating the mapping logic.
 enum RatingAsset {
-    /// - Parameter average: `0` (nothing rated yet) returns the empty/outline icon.
+    /// - Parameter average: `0` (nothing rated yet) returns `nil` — there is no "empty"
+    ///   artwork, the badge is simply left blank. See `RatingIcon`, which every Shelf
+    ///   surface draws instead of calling this directly.
     ///   Otherwise the rating is rounded *up* to the nearest whole level (3.2 -> level 4)
     ///   and clamped to the 1...5 range the `rating_color_x` assets cover.
-    static func assetName(forAverage average: Double) -> String {
-        guard average > 0 else { return "rating_empty_1" }
+    static func assetName(forAverage average: Double) -> String? {
+        guard average > 0 else { return nil }
         let level = min(5, max(1, Int(average.rounded(.up))))
         return "rating_color_\(level)"
     }

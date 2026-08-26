@@ -47,10 +47,7 @@ struct PlantCard: View {
                             .foregroundStyle(ShelfPalette.badgeText)
                     }
                     statColumn(label: "Avg\nRating") {
-                        Image(RatingAsset.assetName(forAverage: averageRating))
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 26, height: 26)
+                        RatingIcon(average: averageRating)
                     }
                 }
                 .fixedSize(horizontal: false, vertical: false)

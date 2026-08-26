@@ -10,10 +10,10 @@
     ],
     "index": 1,
     "skillPositions": [
-      { "x": 120, "y": 250 },
-      { "x": 270, "y": 350 },
-      { "x": 110, "y": 490 },
-      { "x": 260, "y": 610 }
+      { "skill": "box_breathing", "x": 300, "y": 520 },
+      { "skill": "urge_surfing",  "x": 110, "y": 580 },
+      { "skill": "tipp_skill",    "x": 140, "y": 340},
+      { "skill": "stop_skill",    "x": 240, "y": 740 }
     ]
   },
   {
@@ -27,10 +27,10 @@
     ],
     "index": 2,
     "skillPositions": [
-      { "x": 120, "y": 250 },
-      { "x": 270, "y": 380 },
-      { "x": 110, "y": 550 },
-      { "x": 260, "y": 650 }
+      { "skill": "grounding",                     "x": 120, "y": 350 },
+      { "skill": "progressive_muscle_relaxation", "x": 130, "y": 650 },
+      { "skill": "self_soothing",                 "x": 290, "y": 250 },
+      { "skill": "body_scan",                     "x": 260, "y": 500 }
     ]
   },
   {
@@ -44,10 +44,10 @@
     ],
     "index": 3,
     "skillPositions": [
-      { "x": 120, "y": 250 },
-      { "x": 270, "y": 350 },
-      { "x": 110, "y": 540 },
-      { "x": 260, "y": 660 }
+      { "skill": "radical_acceptance",  "x": 110, "y": 540  },
+      { "skill": "opposite_action",     "x": 270, "y": 350 },
+      { "skill": "cognitive_reframing", "x": 120, "y": 250 },
+      { "skill": "expressive_writing",  "x": 260, "y": 660 }
     ]
   },
   {
@@ -61,10 +61,10 @@
     ],
     "index": 4,
     "skillPositions": [
-      { "x": 120, "y": 250 },
-      { "x": 270, "y": 350 },
-      { "x": 110, "y": 490 },
-      { "x": 260, "y": 610 }
+      { "skill": "halt_check_in",         "x": 270, "y": 350 },
+      { "skill": "problem_solving_steps", "x": 110, "y": 510 },
+      { "skill": "behavioral_activation", "x": 120, "y": 250 },
+      { "skill": "if_then_planning",      "x": 260, "y": 640 }
     ]
   }
 ]

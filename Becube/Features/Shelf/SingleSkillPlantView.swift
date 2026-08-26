@@ -96,10 +96,7 @@ struct SinglePlantView: View {
                     .foregroundStyle(ShelfPalette.badgeText)
             }
             statBlock(label: "Avg\nRating") {
-                Image(RatingAsset.assetName(forAverage: viewModel.stats.average))
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 26, height: 26)
+                RatingIcon(average: viewModel.stats.average)
             }
         }
     }

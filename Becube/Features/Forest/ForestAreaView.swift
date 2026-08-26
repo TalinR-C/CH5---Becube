@@ -107,14 +107,39 @@ struct ForestAreaView: View {
             router.push(.lockedPlant(skillID: skill.id))
         } label: {
             VStack(alignment: .tail, spacing: 24) {
-                SkillBubble(
-                    message: skill.name,
-                    tailOffsetDenominator: isLeft ? -4 : 4
-                )
+                // Shared CommentBox rather than a Forest-local bubble — same
+                // recipe as the Shelf's tutorial bubble (16/3), so the two
+                // screens draw the same box. The tail still points down at the
+                // plant, on whichever side of the map the plant sits.
+                // contentPadding 6, not the default 16: CommentBox stacks two
+                // paddings — contentPadding inside the stroked outline, plus a
+                // fixed 8pt outlineInset between the two outlines — so the
+                // default spends 48pt per axis on chrome. 6 brings that to 28,
+                // matching what SkillBubble drew and what ToolBoxPlantCard
+                // already uses for its name bubbles.
+                CommentBox(
+                    cornerRadius: 16,
+                    bulge: 3,
+                    tailPosition: isLeft ? .bottomLeft : .bottomRight,
+                    contentPadding: 6
+                ) {
+                    Text(skill.name)
+                        // Jua-Regular at 16, matching AreaButton's map labels and
+                        // PlantCard — the app's other "name of a thing" text. Single
+                        // weight face, so there is no bold to ask for.
+                        .font(.custom("Jua-Regular", size: 16))
+                        .foregroundStyle(Color.forestBrown)
+                        .multilineTextAlignment(.center)
+                        // 122pt is SkillBubble's old text column (150 wide, less
+                        // its 14pt side padding), so names wrap where they always did.
+                        .frame(maxWidth: 122)
+                }
                 .onboardingHighlight(isActive: isHighlightingTarget)
-                // The tail sits at 25%/75% of the bubble's own width (see
-                // BulgingCardShape), so its x-position has to be derived the
-                // same way here rather than aligned by the bubble's edge.
+                // BulgingCardShape puts a side tail at 25%/75% of the shape's
+                // width, so the guide has to be derived the same way rather than
+                // aligned by the bubble's edge. CommentBox's outer shape fills
+                // the view's frame exactly, so `d.width` is the right width to
+                // take the fraction of.
                 .alignmentGuide(.tail) { d in isLeft ? d.width * 0.25 : d.width * 0.75 }
 
                 Image(plantImageName)

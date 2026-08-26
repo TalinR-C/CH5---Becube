@@ -64,6 +64,24 @@ struct CommentBox<Content: View>: View {
     /// Gap between the stroked inner shape and the filled outer shape.
     private let outlineInset: CGFloat = 8
 
+    /// Cancels the side-tail drift between the two stacked shapes.
+    ///
+    /// `BulgingCardShape` puts a side tail at a fraction of its own width, and
+    /// the inner shape is `outlineInset` narrower per side. With fraction `f`
+    /// and inset `i` the two centres end up `i · (1 − 2f)` apart — ±`i/2` at
+    /// the 25%/75% side positions — which draws the inner tail visibly off
+    /// centre inside the outer one. The width cancels out of that expression,
+    /// so the correction is a constant and needs no measurement.
+    ///
+    /// Centre tails (`f = 0.5`) are already exact, hence 0.
+    private var innerTailOffset: CGFloat {
+        switch tailPosition {
+        case .bottomLeft: -outlineInset / 2
+        case .bottomRight: outlineInset / 2
+        case .none, .bottomCenter, .topCenter: 0
+        }
+    }
+
     init(
         cornerRadius: CGFloat = 40,
         bulge: CGFloat = 4,
@@ -82,8 +100,13 @@ struct CommentBox<Content: View>: View {
         content
             .padding(contentPadding)
             .background(
-                BulgingCardShape(cornerRadius: cornerRadius, bulge: bulge, tailPosition: tailPosition)
-                    .stroke(Color.brown, lineWidth: 2)
+                BulgingCardShape(
+                    cornerRadius: cornerRadius,
+                    bulge: bulge,
+                    tailPosition: tailPosition,
+                    tailOffset: innerTailOffset
+                )
+                .stroke(Color.brown, lineWidth: 2)
             )
             .padding(outlineInset)
             .background(
