@@ -30,7 +30,7 @@ enum ExploreState {
 
 struct ForestAreaView: View {
     var viewModel: ForestAreaViewModel
-    @State var currentState: ExploreState = .showingPopup
+    @State var currentState: ExploreState = .completed
 
     @Environment(GardenStore.self) private var gardenStore
     @Environment(Router.self) private var router
@@ -45,19 +45,16 @@ struct ForestAreaView: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                Image("Backgrounds/\(viewModel.forestArea.id)")
+                Image(viewModel.backgroundImage)
                     .resizable()
                     .scaledToFill()
                     .ignoresSafeArea()
 
-                Text(viewModel.areaName)
-                    .font(.largeTitle)
-                    .bold()
-                    .padding(5)
-                    .clipShape(.capsule)
-                    .background(Color(.lightCream))
+                Image(viewModel.headerImage)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 50)
                     .position(x: 200, y: 50)
-                    .foregroundStyle(.darkBrown)
 
                 ForEach(Array(zip(viewModel.skills, viewModel.forestArea.skillPositions)), id: \.0.id) { skill, pos in
                     let isLeft = pos.x < figmaFrame.width / 2

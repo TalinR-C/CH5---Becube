@@ -18,7 +18,20 @@ class ForestAreaViewModel {
     var skills: [CopingSkill]
 
     var areaName: String { forestArea.name }
+    
+    // checks whether all skill is unlocked
+    var isAllSkillUnlocked: Bool = true
 
+    // Processing the background image name according to its area id and its unlock status
+    var backgroundImage: String {
+        "Backgrounds/\(forestArea.id)_\(isAllSkillUnlocked ? "colored" : "muted")"
+    }
+    
+    // Processing the header/title file name (which is a custom vector)
+    var headerImage: String {
+        "Headers/\(forestArea.id)"
+    }
+    
     init(gardenStore: GardenStore, forestArea: ForestArea) {
         self.forestArea = forestArea
         self.skills = forestArea.copingSkillIds.compactMap { id in
