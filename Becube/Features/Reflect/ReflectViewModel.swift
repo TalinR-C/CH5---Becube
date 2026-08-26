@@ -40,6 +40,7 @@ class ReflectViewModel {
         // populate log array with default values. Set data to current day.
         let plantLogs = gardenStore.logHistory.filter{$0.copingID == current.id}
         self.logs = plantLogs.filter{$0.date.startOfDay == .now.startOfDay}
+        print("Reflect ViewModel init", self.logs.count)
     }
     
     /// `rating` is `nil` when the user didn't pick one — an unrated log still
