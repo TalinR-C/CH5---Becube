@@ -30,7 +30,7 @@ enum ExploreState {
 
 struct ForestAreaView: View {
     var viewModel: ForestAreaViewModel
-    @State var currentState: ExploreState = .showingPopup
+    @State var currentState: ExploreState = .completed
 
     @Environment(GardenStore.self) private var gardenStore
     @Environment(Router.self) private var router
@@ -45,63 +45,19 @@ struct ForestAreaView: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                Image("Backgrounds/\(viewModel.forestArea.id)")
+                Image(viewModel.backgroundImage)
                     .resizable()
                     .scaledToFill()
                     .ignoresSafeArea()
 
-                Text(viewModel.areaName)
-                    .font(.largeTitle)
-                    .bold()
-                    .padding(5)
-                    .clipShape(.capsule)
-                    .background(Color(.lightCream))
+                Image(viewModel.headerImage)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 50)
                     .position(x: 200, y: 50)
-                    .foregroundStyle(.darkBrown)
 
                 ForEach(Array(zip(viewModel.skills, viewModel.forestArea.skillPositions)), id: \.0.id) { skill, pos in
-                    let isLeft = pos.x < figmaFrame.width / 2
-
-                    // During the onboarding's highlight phase only the tutorial
-                    // plant stays tappable; the rest dim out of the way.
-                    let isTarget = (skill.id == viewModel.gardenStore.tutorialPlantID)
-                    let isHighlightingPhase = currentState == .highlightingPlant
-                    let isHighlightingTarget = isHighlightingPhase && isTarget
-                    let shouldDisable = isHighlightingPhase && !isTarget
-
-                    // A bubble opens the skill's plant screen, which is where the
-                    // Learn and Practice choices live. Swap this for
-                    // `.learn(skillID:)` if a bubble should drop straight into the
-                    // lesson instead.
-                    VStack(alignment: .tail, spacing: 24) {
-                        Button {
-                            currentState = .completed
-                            router.push(.lockedPlant(skillID: skill.id))
-                        } label: {
-                            SkillBubble(
-                                message: skill.name,
-                                tailOffsetDenominator: isLeft ? -4 : 4
-                            )
-                            .onboardingHighlight(isActive: isHighlightingTarget)
-                        }
-                        .buttonStyle(.plain)
-                        // The tail sits at 25%/75% of the bubble's own width (see
-                        // BulgingCardShape), so its x-position has to be derived the
-                        // same way here rather than aligned by the bubble's edge.
-                        .alignmentGuide(.tail) { d in isLeft ? d.width * 0.25 : d.width * 0.75 }
-
-                        Image("Flower")
-                            .alignmentGuide(.tail) { d in d.width / 2 }
-                            
-                    }
-                    .padding()
-                    .position(
-                        x: pos.x / figmaFrame.width * geo.size.width,
-                        y: pos.y / figmaFrame.height * geo.size.height
-                    )
-                    .disabled(shouldDisable)
-                    .opacity(shouldDisable ? 0.6 : 1.0)
-                    .animation(.easeInOut, value: shouldDisable)
+                    skillBubble(for: skill, at: pos, geo: geo)
                 }
 
                 if currentState == .showingPopup {
@@ -119,6 +75,64 @@ struct ForestAreaView: View {
 
     func onLearnSkillTapped() {
         self.currentState = .highlightingPlant
+    }
+
+    // Pulled out of the ForEach closure: with all the position math and the ternaries
+    // for onboarding/lock state inline, the compiler couldn't type-check the combined
+    // expression in reasonable time.
+    @ViewBuilder
+    private func skillBubble(
+        for skill: CopingSkill,
+        at pos: ForestArea.SkillPosition,
+        geo: GeometryProxy
+    ) -> some View {
+        let isLeft = pos.x < figmaFrame.width / 2
+
+        // During the onboarding's highlight phase only the tutorial
+        // plant stays tappable; the rest dim out of the way.
+        let isTarget = (skill.id == viewModel.gardenStore.tutorialPlantID)
+        let isHighlightingPhase = currentState == .highlightingPlant
+        let isHighlightingTarget = isHighlightingPhase && isTarget
+        let shouldDisable = isHighlightingPhase && !isTarget
+        let plantArt: CopingSkill.PlantArt = viewModel.isSkillUnlocked(skill) ? .unlocked : .locked
+        let plantImageName = skill.plantImageName(plantArt)
+
+        // A bubble opens the skill's plant screen, which is where the
+        // Learn and Practice choices live. Swap this for
+        // `.learn(skillID:)` if a bubble should drop straight into the
+        // lesson instead. The plant art sits in the same button as the
+        // bubble so tapping either one opens the skill.
+        Button {
+            currentState = .completed
+            router.push(.lockedPlant(skillID: skill.id))
+        } label: {
+            VStack(alignment: .tail, spacing: 24) {
+                SkillBubble(
+                    message: skill.name,
+                    tailOffsetDenominator: isLeft ? -4 : 4
+                )
+                .onboardingHighlight(isActive: isHighlightingTarget)
+                // The tail sits at 25%/75% of the bubble's own width (see
+                // BulgingCardShape), so its x-position has to be derived the
+                // same way here rather than aligned by the bubble's edge.
+                .alignmentGuide(.tail) { d in isLeft ? d.width * 0.25 : d.width * 0.75 }
+
+                Image(plantImageName)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 133, height: 130)
+                    .alignmentGuide(.tail) { d in d.width / 2 }
+            }
+        }
+        .buttonStyle(.plain)
+        .padding()
+        .position(
+            x: pos.x / figmaFrame.width * geo.size.width,
+            y: pos.y / figmaFrame.height * geo.size.height
+        )
+        .disabled(shouldDisable)
+        .opacity(shouldDisable ? 0.6 : 1.0)
+        .animation(.easeInOut, value: shouldDisable)
     }
 }
 
@@ -160,7 +174,7 @@ extension View {
         ForestAreaView(
             viewModel: ForestAreaViewModel(
                 gardenStore: gardenStore,
-                forestArea: ContentRepository.areas[3]
+                forestArea: ContentRepository.areas[0]
             )
         )
     }

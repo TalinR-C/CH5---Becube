@@ -38,8 +38,17 @@ protocol PracticeSession: AnyObject, Observable {
     /// before it counts — TIPP, where Done on an untouched screen would grow a
     /// plant for nothing — overrides this and makes the button be earned.
     var isDoneEnabled: Bool { get }
+
+    /// Text the practice collected, to be written into the log it earns.
+    ///
+    /// Nil for every practice that collects nothing, which is most of them. The
+    /// log does not exist until the practice completes, so a practice that asks
+    /// the user to write something has to hold it and hand it over here rather
+    /// than saving as it goes.
+    var journalDraft: String? { get }
 }
 
 extension PracticeSession {
     var isDoneEnabled: Bool { true }
+    var journalDraft: String? { nil }
 }
