@@ -39,7 +39,7 @@ class LearnViewModel {
     var currentPage: Page = .how ///Default page
     var skill: CopingSkill?
 
-    private let gardenStore: GardenStore
+    let gardenStore: GardenStore
 
     /// Adding closure that will handle a function later
     var onJumpToPractice: (() -> Void)?
