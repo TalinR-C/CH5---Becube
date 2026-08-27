@@ -22,8 +22,16 @@ enum PracticeKind: String {
     case stopSkill      = "stop_skill"
     case problemSolving = "problem_solving_steps"
     case selfSoothing   = "self_soothing"
-    // case bodyScan   = "body_scan"
-    // case fiveSenses = "five_senses"
+    case bodyScan       = "body_scan"
+    case pmr            = "progressive_muscle_relaxation"
+    case grounding      = "grounding"
+    case haltCheckIn    = "halt_check_in"
+    case reframing      = "cognitive_reframing"
+    case acceptance     = "radical_acceptance"
+    case oppositeAction = "opposite_action"
+    case writing        = "expressive_writing"
+    case activation     = "behavioral_activation"
+    case ifThen         = "if_then_planning"
 }
 
 /// A built practice: its ViewModel and the view that draws it, already paired.
@@ -70,6 +78,56 @@ enum PracticeRegistry {
         case .selfSoothing:
             return make(SelfSoothingViewModel(skillID: skillID)) {
                 SelfSoothingView(viewModel: $0)
+            }
+
+        case .bodyScan:
+            return make(BodyScanViewModel(skillID: skillID)) {
+                BodyScanView(viewModel: $0)
+            }
+
+        case .pmr:
+            return make(PMRViewModel(skillID: skillID)) {
+                PMRView(viewModel: $0)
+            }
+
+        case .grounding:
+            return make(GroundingViewModel(skillID: skillID)) {
+                GroundingView(viewModel: $0)
+            }
+
+        case .haltCheckIn:
+            return make(HALTViewModel(skillID: skillID)) {
+                HALTView(viewModel: $0)
+            }
+
+        case .reframing:
+            return make(ReframingViewModel(skillID: skillID)) {
+                ReframingView(viewModel: $0)
+            }
+
+        case .acceptance:
+            return make(AcceptanceViewModel(skillID: skillID)) {
+                AcceptanceView(viewModel: $0)
+            }
+
+        case .oppositeAction:
+            return make(OppositeActionViewModel(skillID: skillID)) {
+                OppositeActionView(viewModel: $0)
+            }
+
+        case .writing:
+            return make(WritingViewModel(skillID: skillID)) {
+                WritingView(viewModel: $0)
+            }
+
+        case .activation:
+            return make(ActivationViewModel(skillID: skillID)) {
+                ActivationView(viewModel: $0)
+            }
+
+        case .ifThen:
+            return make(IfThenViewModel(skillID: skillID)) {
+                IfThenView(viewModel: $0)
             }
         }
     }

@@ -24,6 +24,11 @@ class GardenState {
         self.unlockedToolboxID = []
         self.unlockedForestAreaID = ["waterfall"]
         
+        #if DEBUG
+        self.onboardingDone = true
+        self.unlockedPlantsID = ContentRepository.skills.map(\.id)
+        self.unlockedForestAreaID = ContentRepository.areas.map(\.id)
+        #endif
     }
     
 }

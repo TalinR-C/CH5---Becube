@@ -37,7 +37,7 @@ struct SelfSoothingView: View {
         CommentBox(bulge: 6, tailPosition: .none, contentPadding: 24) {
             VStack(alignment: .leading, spacing: 12) {
                 Label(title, systemImage: icon)
-                    .font(.system(size: 17, weight: .bold, design: .rounded))
+                    .font(.custom("Jua-Regular", size: 17))
                     .foregroundStyle(.darkBrown)
 
                 numberedField(number: 1, text: entry.item1)

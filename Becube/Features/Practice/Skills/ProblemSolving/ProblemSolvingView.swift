@@ -343,7 +343,8 @@ struct ProblemSolvingView: View {
     private func heading(_ title: LocalizedStringKey, detail: LocalizedStringKey) -> some View {
         VStack(spacing: 6) {
             Text(title)
-                .font(.system(size: 24, weight: .bold, design: .rounded))
+                // Jua has a single weight, so no `.bold()`.
+                .font(.custom("Jua-Regular", size: 24))
                 .multilineTextAlignment(.center)
                 .foregroundStyle(Color.darkBrown)
 

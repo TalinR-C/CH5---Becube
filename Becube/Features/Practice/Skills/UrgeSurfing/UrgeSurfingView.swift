@@ -31,7 +31,7 @@ struct UrgeSurfingView: View {
     private var nameStepContent: some View {
         VStack(spacing: 24) {
             Text("Name the Urge")
-                .font(.system(size: 22, weight: .bold, design: .rounded))
+                .font(.custom("Jua-Regular", size: 22))
                 .foregroundStyle(.text)
                 .padding(.top, 30)
 
@@ -67,7 +67,7 @@ struct UrgeSurfingView: View {
     private var observeStepContent: some View {
         VStack(spacing: 24) {
             Text("Notice Without Judging")
-                .font(.system(size: 22, weight: .bold, design: .rounded))
+                .font(.custom("Jua-Regular", size: 22))
                 .foregroundStyle(.text)
                 .padding(.top, 30)
 
@@ -107,7 +107,7 @@ struct UrgeSurfingView: View {
     private var surfStepContent: some View {
         VStack(spacing: 24) {
             Text("Ride the Wave")
-                .font(.system(size: 22, weight: .bold, design: .rounded))
+                .font(.custom("Jua-Regular", size: 22))
                 .foregroundStyle(.text)
                 .padding(.top, 30)
 
