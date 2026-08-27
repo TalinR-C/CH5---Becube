@@ -217,10 +217,10 @@
     "plantName": "Daisy",
     "plantPhilosophy": "A daisy doesn't decide each morning whether to open — it follows one simple rule, opening at first light and closing at dusk, every time, without having to choose it fresh.",
     "info": {
-      "what": "Placeholder description for what If–Then Planning is.",
-      "how": "1. Placeholder step 1.\n2. Placeholder step 2.\n3. Placeholder step 3.",
-      "when": "Placeholder description for when to use this skill.",
-      "why": "Placeholder description for why this skill works."
+      "what": "Deciding in advance exactly what you'll do when a specific situation shows up, so the choice is already made by the time it arrives.",
+      "how": "1. Pick one situation you know is coming — a time, a place, or a feeling.\n2. Choose one specific thing you'll do when it happens.\n3. Say it as one sentence: \"If [situation], then I will [action].\"\n4. Repeat it a few times, so the situation itself brings the plan to mind.",
+      "when": "For the moments you already know are hard — the walk past a certain shop, 3pm at your desk, the first hour after a difficult phone call.",
+      "why": "Peter Gollwitzer's research on implementation intentions found that people who decide the specific when-and-where of an action follow through far more often than people who only decide to do it. The plan hands the trigger to the situation, so it fires without needing a decision from you in the moment."
     }
   }
 ]

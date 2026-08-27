@@ -21,17 +21,21 @@ struct TimerRing<Label: View>: View {
     let progress: Double
     var diameter: CGFloat = 140
     var lineWidth: CGFloat = 8
+    /// Defaulted, so every existing call site keeps the brown ring it had. A
+    /// practice whose phases mean different things — PMR's tense against its
+    /// release — passes its own so the colour carries that difference too.
+    var tint: Color = .darkBrown
     @ViewBuilder let label: () -> Label
 
     var body: some View {
         ZStack {
             Circle()
-                .stroke(Color.darkBrown.opacity(0.15), lineWidth: lineWidth)
+                .stroke(tint.opacity(0.15), lineWidth: lineWidth)
 
             Circle()
                 .trim(from: 0, to: min(max(progress, 0), 1))
                 .stroke(
-                    Color.darkBrown,
+                    tint,
                     style: StrokeStyle(lineWidth: lineWidth, lineCap: .round)
                 )
                 // Trim starts at three o'clock; everyone reads a countdown from twelve.

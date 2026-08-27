@@ -39,7 +39,8 @@ struct StepRow<Expanded: View>: View {
 
                     VStack(alignment: .leading, spacing: 3) {
                         Text(title)
-                            .font(.system(size: 17, weight: .semibold, design: .rounded))
+                            // Jua has a single weight, so no `.semibold`.
+                            .font(.custom("Jua-Regular", size: 17))
                             .foregroundStyle(Color.darkBrown)
 
                         Text(detail)
