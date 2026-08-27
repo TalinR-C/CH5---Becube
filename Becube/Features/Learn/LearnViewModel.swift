@@ -110,10 +110,6 @@ class LearnViewModel {
     var skillName: String {
         skill?.name.uppercased() ?? ""
     }
-    
-    var imageName: String {
-        skill?.learnImage ?? ""
-    }
 
     ///error handling 
     var currentPageText: String {

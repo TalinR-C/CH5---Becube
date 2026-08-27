@@ -31,8 +31,10 @@ struct LearnView: View {
                     
                         ///Current state title
                         Text(viewModel.currentPage.title)
-                            .font(.title2)
-                            .bold()
+                        // Jua has a single weight, so no `.bold()` — it would
+                        // only synthesise one. `relativeTo` keeps the Dynamic
+                        // Type scaling `.title2` was giving this heading.
+                            .font(.custom("Jua-Regular", size: 22, relativeTo: .title2))
                             .foregroundStyle(.brown)
                     
 
@@ -177,28 +179,11 @@ struct LearnView: View {
             howStepsCard // shows the numbered steps card
 
         case .when:
-            VStack(spacing: 25) {
-                Image(viewModel.imageName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 346, height: 270)
-                    .clipShape(RoundedRectangle(cornerRadius: 5))
-                    .padding(5)
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.white)
-                            
-                            .shadow(
-                                color: Color("BlueShadow"),
-                                radius: 4,
-                                x: 0,
-                                y: 4)
-                    )
-
-                CommentBox(text: viewModel.currentPageText)
-
-                // the small text box below the image, now shared via Components/CommentBox
-            }
+            // Text only. The illustration that used to sit above this box was
+            // the same placeholder for every skill, which said nothing about
+            // when to use any of them. Bring it back when the art exists —
+            // `CopingSkill.learnImage` still decodes the JSON's "image" key.
+            CommentBox(text: viewModel.currentPageText)
 
         case .why:
             VStack(spacing: 12) {

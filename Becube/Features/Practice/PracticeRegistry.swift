@@ -21,6 +21,7 @@ enum PracticeKind: String {
     case tippSkill      = "tipp_skill"
     case stopSkill      = "stop_skill"
     case problemSolving = "problem_solving_steps"
+    case selfSoothing   = "self_soothing"
     // case bodyScan   = "body_scan"
     // case fiveSenses = "five_senses"
 }
@@ -64,6 +65,11 @@ enum PracticeRegistry {
         case .problemSolving:
             return make(ProblemSolvingViewModel(skillID: skillID)) {
                 ProblemSolvingView(viewModel: $0)
+            }
+
+        case .selfSoothing:
+            return make(SelfSoothingViewModel(skillID: skillID)) {
+                SelfSoothingView(viewModel: $0)
             }
         }
     }

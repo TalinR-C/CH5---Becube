@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct SelfSoothingView: View {
-    @State var viewModel: SelfSoothingViewModel
+    /// `@Bindable` rather than the plain `let` the timed practices use: every
+    /// field on this screen writes back into the ViewModel. Owned by
+    /// `PracticeHostView` — `@State` here would fight the host for ownership,
+    /// and the host is what reads the worksheet back at completion.
+    @Bindable var viewModel: SelfSoothingViewModel
 
     var body: some View {
         ScrollView {
