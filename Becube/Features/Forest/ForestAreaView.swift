@@ -30,7 +30,7 @@ enum ExploreState {
 
 struct ForestAreaView: View {
     var viewModel: ForestAreaViewModel
-    @State var currentState: ExploreState = .completed
+    @State var currentState: ExploreState = .showingPopup
 
     @Environment(GardenStore.self) private var gardenStore
     @Environment(Router.self) private var router
@@ -64,13 +64,15 @@ struct ForestAreaView: View {
                     OnboardingPopupView(onLearnSkillTapped: onLearnSkillTapped)
                 }
             }
-            .padding(0)
+            .navigationBarBackButtonHidden(!viewModel.gardenStore.gardenState.onboardingDone)
+            
         }
         .onAppear {
             if viewModel.gardenStore.gardenState.onboardingDone {
                 currentState = .completed
             }
         }
+            
     }
 
     func onLearnSkillTapped() {

@@ -141,6 +141,9 @@ struct LearnView: View {
                         .contentShape(Circle())
                 }
                 .buttonStyle(.plain)
+                .disabled(!viewModel.gardenStore.gardenState.onboardingDone)
+                .opacity(!viewModel.gardenStore.gardenState.onboardingDone ? 0 : 1)
+                 
 
                 Spacer()
                 

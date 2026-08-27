@@ -10,6 +10,7 @@ import SwiftUI
 
 struct BackButton: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(GardenStore.self) private var gardenStore
     
     var body: some View {
             Button {
@@ -45,5 +46,7 @@ struct BackButton: View {
                     .contentShape(Circle())
         }
         .buttonStyle(.plain)
+        .disabled(!gardenStore.gardenState.onboardingDone)
+        .opacity(!gardenStore.gardenState.onboardingDone ? 0 : 1)
     }
 }

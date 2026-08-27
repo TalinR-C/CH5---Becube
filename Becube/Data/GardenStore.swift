@@ -42,11 +42,11 @@ class GardenStore {
 
         print("initialize gardenviewmodel")
 
-        #if DEBUG
-        if Self.isDemoModeEnabled {
-            seedDemoData()
-        }
-        #endif
+//        #if DEBUG
+//        if Self.isDemoModeEnabled {
+//            seedDemoData()
+//        }
+//        #endif
     }
     
     func toggleOnboarding(state: Int){
