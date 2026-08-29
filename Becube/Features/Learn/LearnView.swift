@@ -62,7 +62,7 @@ struct LearnView: View {
                             viewModel.goToNextPage() // otherwise just advance to the next page
                         }
                     } label: {
-                        Text(viewModel.isLastPage ? "Practice" : "Next")
+                        Text(nextButtonLabel)
                             .font(.system(size: 17, weight: .semibold, design: .rounded))
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
@@ -97,6 +97,14 @@ struct LearnView: View {
         // hides the system's automatic back button, since we're drawing our own in "header"
         .toolbar(.hidden, for: .navigationBar)
         // hides the system's navigation bar entirely, so only our custom header shows
+    }
+
+    // `Text(flag ? "A" : "B")` resolves to the plain-`String` overload, which
+    // skips the string catalog and ships English into the Indonesian build —
+    // spelled out as `LocalizedStringKey` instead, matching the pattern used
+    // in PMRView/GroundingViewModel.
+    private var nextButtonLabel: LocalizedStringKey {
+        viewModel.isLastPage ? "Practice" : "Next"
     }
 
     private var header: some View {

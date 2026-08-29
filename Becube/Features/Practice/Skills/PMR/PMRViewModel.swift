@@ -18,7 +18,7 @@ enum MuscleGroup: Int, CaseIterable, Identifiable {
 
     var id: Int { rawValue }
 
-    var title: String {
+    var title: LocalizedStringKey {
         switch self {
         case .feet:      return "Feet"
         case .calves:    return "Calves"
@@ -33,7 +33,7 @@ enum MuscleGroup: Int, CaseIterable, Identifiable {
 
     /// One concrete movement each. "Tense your calves" is an instruction nobody
     /// can follow on the first try; "point your toes up toward your knees" is.
-    var instruction: String {
+    var instruction: LocalizedStringKey {
         switch self {
         case .feet:      return "Curl your toes down and grip."
         case .calves:    return "Point your toes up toward your knees."

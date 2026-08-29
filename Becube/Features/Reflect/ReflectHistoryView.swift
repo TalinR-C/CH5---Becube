@@ -62,11 +62,11 @@ struct ReflectHistoryView: View {
                 
                 // Title and Flower Name
                 VStack{
-                    Text(viewModel.current.name)
+                    Text(viewModel.current.localizedName)
                         .foregroundStyle(.brown)
                         .font(.custom("Jua-Regular", size: 26))
                         .padding(3)
-                    Text("Flower Name: \(viewModel.current.plantName!)")
+                    Text("Flower Name: \(viewModel.current.localizedPlantName ?? "")")
                         .foregroundStyle(.brown)
                         .font(.custom("SFProRounded-Medium", size: 15))
                 }

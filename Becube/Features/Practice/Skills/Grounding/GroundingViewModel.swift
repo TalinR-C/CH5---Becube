@@ -26,7 +26,11 @@ enum SenseStage: Int, CaseIterable, Identifiable {
     /// so the countdown works there exactly as STOP's letters do.
     static let letters = ["5", "4", "3", "2", "1"]
 
-    var title: String {
+    // Typed as `LocalizedStringKey` rather than `String`: a `Text(flag ? "A" :
+    // "B")`-shaped switch resolves to the plain-`String` overload when the
+    // property itself is `String`, which skips the string catalog and ships
+    // English into the Indonesian build.
+    var title: LocalizedStringKey {
         switch self {
         case .see:   return "5 things you can see"
         case .feel:  return "4 things you can feel"
@@ -39,7 +43,7 @@ enum SenseStage: Int, CaseIterable, Identifiable {
     /// Examples, always mundane. The failure mode of this skill is hunting for
     /// something worth naming — anything in the room counts, and the prompt has
     /// to say so.
-    var prompt: String {
+    var prompt: LocalizedStringKey {
         switch self {
         case .see:   return "Look around. A lamp, a crack in the wall, your own hands."
         case .feel:  return "The floor under you, fabric on your skin, the air."

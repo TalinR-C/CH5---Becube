@@ -16,7 +16,7 @@ struct PMRView: View {
     /// The same words every time. The contrast is the skill, not the phrasing —
     /// varying it per group would make the release feel like a new instruction
     /// rather than the same one landing again.
-    private static let releasePrompt = "Let go all at once. Notice the difference."
+    private static let releasePrompt: LocalizedStringKey = "Let go all at once. Notice the difference."
 
     var body: some View {
         VStack(spacing: 24) {
@@ -54,9 +54,7 @@ struct PMRView: View {
                     .font(.custom("Jua-Regular", size: 22))
                     .foregroundStyle(Color.darkBrown)
 
-                Text(viewModel.phase == .tense
-                     ? viewModel.currentGroup.instruction
-                     : Self.releasePrompt)
+                Text(instructionOrRelease)
                     .font(.system(size: 15, design: .rounded))
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
@@ -76,7 +74,7 @@ struct PMRView: View {
     private var ring: some View {
         TimerRing(progress: viewModel.phaseProgress, tint: ringTint) {
             VStack(spacing: 0) {
-                Text(viewModel.phase == .tense ? "TENSE" : "RELEASE")
+                Text(phaseLabel)
                     .font(.system(size: 12, weight: .bold, design: .rounded))
                     .tracking(1.4)
                     .foregroundStyle(ringTint)
@@ -115,7 +113,7 @@ struct PMRView: View {
     private var breathingContent: some View {
         VStack(spacing: 18) {
             BreathCircle(scale: viewModel.breathScale) {
-                Text(viewModel.breathPhase == .inhale ? "Breathe In" : "Breathe Out")
+                Text(breathLabel)
                     .font(.system(size: 18, design: .rounded))
                     .foregroundStyle(.brown)
             }
@@ -124,6 +122,21 @@ struct PMRView: View {
                 .font(.system(size: 15, design: .rounded))
                 .foregroundStyle(.secondary)
         }
+    }
+
+    // Spelled out as `LocalizedStringKey` rather than inlined as a ternary:
+    // `Text(flag ? "A" : "B")` resolves to the plain-`String` overload, which
+    // skips the string catalog and ships English into the Indonesian build.
+    private var instructionOrRelease: LocalizedStringKey {
+        viewModel.phase == .tense ? viewModel.currentGroup.instruction : Self.releasePrompt
+    }
+
+    private var phaseLabel: LocalizedStringKey {
+        viewModel.phase == .tense ? "TENSE" : "RELEASE"
+    }
+
+    private var breathLabel: LocalizedStringKey {
+        viewModel.breathPhase == .inhale ? "Breathe In" : "Breathe Out"
     }
 
     // MARK: - Progress

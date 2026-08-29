@@ -60,7 +60,7 @@ struct OppositeActionView: View {
             }
 
             if let emotion = viewModel.emotion {
-                labelledNote(title: "It's telling you to", body: emotion.urge, icon: "arrow.turn.down.right")
+                labelledNote(title: String(localized: "It's telling you to"), body: emotion.urge, icon: "arrow.turn.down.right")
             }
 
             primaryButton("Continue",
@@ -80,7 +80,7 @@ struct OppositeActionView: View {
                     detail: "Emotions aren't wrong. The question is whether this one matches what's actually happening.")
 
             if let emotion = viewModel.emotion {
-                labelledNote(title: "\(emotion.title) fits when",
+                labelledNote(title: String(localized: "\(emotion.title) fits when"),
                              body: emotion.whenItFits + ".",
                              icon: "checkmark.seal")
             }
@@ -147,7 +147,7 @@ struct OppositeActionView: View {
                     detail: "Fully, not half-heartedly. A hedged version just rehearses the avoidance.")
 
             if let emotion = viewModel.emotion {
-                labelledNote(title: "Opposite of \(emotion.shortUrge)",
+                labelledNote(title: String(localized: "Opposite of \(emotion.shortUrge)"),
                              body: emotion.opposite,
                              icon: "arrow.uturn.up")
             }

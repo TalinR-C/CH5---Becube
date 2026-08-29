@@ -44,10 +44,10 @@ struct PracticeCompletionView: View {
                     .frame(width: 180, height: 220)
 
                 VStack(spacing: 5) {
-                    Text(skill?.name ?? "")
+                    Text(skill?.localizedName ?? "")
                         .font(.system(size: 28, weight: .bold, design: .rounded))
                         .foregroundStyle(.text)
-                    Text(skill?.plantName ?? "")
+                    Text(skill?.localizedPlantName ?? "")
                         .font(.system(size: 15, weight: .regular, design: .rounded))
                         .foregroundStyle(.text)
                 }

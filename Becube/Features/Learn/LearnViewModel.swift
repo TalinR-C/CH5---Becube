@@ -25,13 +25,12 @@ class LearnViewModel {
             }
         }
         
-        /// title for each current Page
+        /// title for each current Page, resolved from `Localizable.xcstrings`
+        /// (keys `learn.page.<how|when|why>.title`) so it follows the app's language.
+        /// `Bundle.localizedString(forKey:)`, not `String(localized:)` interpolation —
+        /// see the note on `CopingSkill.localizedName`.
         var title: String {
-            switch self {
-            case .how: return "How is this skill done?"
-            case .when: return "When to use this skill?"
-            case .why: return "Why to use this skill?"
-            }
+            Bundle.main.localizedString(forKey: "learn.page.\(infoKey).title", value: nil, table: nil)
         }
     }
     
@@ -108,12 +107,12 @@ class LearnViewModel {
 
     ///fetching the skill's name
     var skillName: String {
-        skill?.name.uppercased() ?? ""
+        skill?.localizedName.uppercased() ?? ""
     }
 
-    ///error handling 
+    ///error handling
     var currentPageText: String {
-        skill?.info[currentPage.infoKey] ?? "Content not available."
+        skill?.localizedInfo(currentPage.infoKey) ?? "Content not available."
     }
 }
 

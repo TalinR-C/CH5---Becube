@@ -15,7 +15,7 @@ struct AcceptanceView: View {
     @Bindable var viewModel: AcceptanceViewModel
 
     /// The line the whole skill turns on, straight from the content.
-    private static let phrase = "I don't have to like this.\nI just don't have to fight it right now."
+    private static let phrase: LocalizedStringKey = "I don't have to like this.\nI just don't have to fight it right now."
 
     var body: some View {
         VStack(spacing: 22) {
