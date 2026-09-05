@@ -72,7 +72,7 @@ struct HALTView: View {
     /// Yes is the filled one. It is the answer that leads somewhere, and on a
     /// screen you are using because something feels off it should not be the
     /// one you have to hunt for.
-    private func answerButton(_ title: String, isYes: Bool) -> some View {
+    private func answerButton(_ title: LocalizedStringKey, isYes: Bool) -> some View {
         Button {
             viewModel.answer(isYes)
         } label: {

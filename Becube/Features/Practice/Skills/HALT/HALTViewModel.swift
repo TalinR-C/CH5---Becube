@@ -18,16 +18,20 @@ enum HALTNeed: Int, CaseIterable, Identifiable {
     /// so showing them is teaching it.
     static let letters = ["H", "A", "L", "T"]
 
+    // `String`, not `LocalizedStringKey`: `title` gets lower-cased and joined
+    // elsewhere, which `LocalizedStringKey` can't do. `String(localized:)` still
+    // routes it through the same string catalog as a direct `Text` literal
+    // would, so the lower-cased/joined result stays translated.
     var title: String {
         switch self {
-        case .hungry: return "Hungry"
-        case .angry:  return "Angry"
-        case .lonely: return "Lonely"
-        case .tired:  return "Tired"
+        case .hungry: return String(localized: "Hungry")
+        case .angry:  return String(localized: "Angry")
+        case .lonely: return String(localized: "Lonely")
+        case .tired:  return String(localized: "Tired")
         }
     }
 
-    var question: String {
+    var question: LocalizedStringKey {
         switch self {
         case .hungry: return "Are you hungry?"
         case .angry:  return "Are you angry?"
@@ -38,7 +42,7 @@ enum HALTNeed: Int, CaseIterable, Identifiable {
 
     /// A question behind the question. "Are you hungry?" gets a reflexive no;
     /// "when did you last eat something proper?" gets an honest answer.
-    var prompt: String {
+    var prompt: LocalizedStringKey {
         switch self {
         case .hungry: return "When did you last eat something proper?"
         case .angry:  return "Irritated, resentful, or wound up about something?"
@@ -49,7 +53,7 @@ enum HALTNeed: Int, CaseIterable, Identifiable {
 
     /// One concrete thing to do about it, doable in the next hour. Advice you
     /// can't act on today is just another thing to feel behind on.
-    var action: String {
+    var action: LocalizedStringKey {
         switch self {
         case .hungry: return "Eat something now. Even something small changes the next hour."
         case .angry:  return "Give it ten minutes before you decide anything."

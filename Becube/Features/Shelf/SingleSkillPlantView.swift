@@ -148,14 +148,14 @@ struct SinglePlantView: View {
     private var detailCard: some View {
         CommentBox(cornerRadius: 34, bulge: 3, tailPosition: .topCenter, contentPadding: 18) {
             VStack(spacing: 6) {
-                Text(viewModel.skill?.name ?? "")
+                Text(viewModel.skill?.localizedName ?? "")
                     .font(.custom("Jua-Regular", size: 26))
                     .foregroundStyle(ShelfPalette.darkBrown)
                     .multilineTextAlignment(.center)
 
                 // Only rendered once a skill actually carries a plantName — see the
                 // property's note in CopingSkill.
-                if let plantName = viewModel.skill?.plantName {
+                if let plantName = viewModel.skill?.localizedPlantName {
                     Text("Flower Name: \(plantName)")
                         .font(.system(size: 14, weight: .medium, design: .rounded))
                         .foregroundStyle(ShelfPalette.darkBrown.opacity(0.9))

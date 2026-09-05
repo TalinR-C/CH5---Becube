@@ -67,7 +67,7 @@ struct SingleLockedPlant: View {
                         //Card Informations
                         CommentBox(bulge: 6, tailPosition: .topCenter, contentPadding: 24) {
                             VStack(spacing: 2) {
-                                Text(skill.name)
+                                Text(skill.localizedName)
                                     .font(.system(size: 20, weight: .bold, design: .rounded))
                                     .foregroundStyle(.darkBrown)
                                 
@@ -78,14 +78,14 @@ struct SingleLockedPlant: View {
                                         .foregroundStyle(.darkBrown)
                                         .padding(.bottom, 13)
                                 
-                                    Text(skill.plantName ?? "")
+                                    Text(skill.localizedPlantName ?? "")
                                         .font(.system(size: 15, weight: .regular, design: .rounded))
                                         .multilineTextAlignment(.center)
                                         .foregroundStyle(.darkBrown)
                                         .padding(.bottom, 13)
                                 }
                                 
-                                Text(skill.info["what"] ?? "Description is not found.")
+                                Text(skill.localizedInfo("what"))
                                     .font(.system(size: 15, weight: .regular, design: .rounded))
                                     .multilineTextAlignment(.center)
                                     .foregroundStyle(.darkBrown)

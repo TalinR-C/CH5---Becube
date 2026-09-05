@@ -28,13 +28,18 @@ enum Emotion: String, CaseIterable, Identifiable {
 
     var id: String { rawValue }
 
+    // `String`, not `LocalizedStringKey`: these get interpolated into further
+    // sentences and (for `shortUrge`) lower-cased/joined elsewhere, which
+    // `LocalizedStringKey` can't do. `String(localized:)` still routes each one
+    // through the same string catalog a direct `Text` literal would use, so the
+    // composed result stays translated.
     var title: String {
         switch self {
-        case .fear:         return "Fear"
-        case .anger:        return "Anger"
-        case .shame:        return "Shame"
-        case .sadness:      return "Sadness"
-        case .guilt: return "Guilt"
+        case .fear:         return String(localized: "Fear")
+        case .anger:        return String(localized: "Anger")
+        case .shame:        return String(localized: "Shame")
+        case .sadness:      return String(localized: "Sadness")
+        case .guilt: return String(localized: "Guilt")
         }
     }
 
@@ -52,22 +57,22 @@ enum Emotion: String, CaseIterable, Identifiable {
     /// What the emotion is telling you to do.
     var urge: String {
         switch self {
-        case .fear:         return "Avoid it. Get away, or never start."
-        case .anger:        return "Attack. Snap, blame, or go cold."
-        case .shame:        return "Hide. Go quiet. Disappear."
-        case .sadness:      return "Withdraw. Shut down. Do nothing."
-        case .guilt: return "Apologise over and over, or avoid them entirely."
+        case .fear:         return String(localized: "Avoid it. Get away, or never start.")
+        case .anger:        return String(localized: "Attack. Snap, blame, or go cold.")
+        case .shame:        return String(localized: "Hide. Go quiet. Disappear.")
+        case .sadness:      return String(localized: "Withdraw. Shut down. Do nothing.")
+        case .guilt: return String(localized: "Apologise over and over, or avoid them entirely.")
         }
     }
 
     /// The short form, for the one line this practice writes onto its log.
     var shortUrge: String {
         switch self {
-        case .fear:         return "avoid"
-        case .anger:        return "lash out"
-        case .shame:        return "hide"
-        case .sadness:      return "withdraw"
-        case .guilt: return "over-apologise"
+        case .fear:         return String(localized: "avoid")
+        case .anger:        return String(localized: "lash out")
+        case .shame:        return String(localized: "hide")
+        case .sadness:      return String(localized: "withdraw")
+        case .guilt: return String(localized: "over-apologise")
         }
     }
 
@@ -75,22 +80,22 @@ enum Emotion: String, CaseIterable, Identifiable {
     /// people skip. Half-hearted opposite action just rehearses the avoidance.
     var opposite: String {
         switch self {
-        case .fear:         return "Approach what you're avoiding. Slowly, and stay with it until the fear drops."
-        case .anger:        return "Step away gently. Be a little kinder than you feel like being."
-        case .shame:        return "Stay in the room. Tell someone you trust, in plain words."
-        case .sadness:      return "Get active. One small thing, ideally with other people in it."
-        case .guilt: return "Keep doing the thing openly, and don't apologise for it."
+        case .fear:         return String(localized: "Approach what you're avoiding. Slowly, and stay with it until the fear drops.")
+        case .anger:        return String(localized: "Step away gently. Be a little kinder than you feel like being.")
+        case .shame:        return String(localized: "Stay in the room. Tell someone you trust, in plain words.")
+        case .sadness:      return String(localized: "Get active. One small thing, ideally with other people in it.")
+        case .guilt: return String(localized: "Keep doing the thing openly, and don't apologise for it.")
         }
     }
 
     /// When the emotion is *justified* — the test for the fork on step 2.
     var whenItFits: String {
         switch self {
-        case .fear:         return "there's a real threat to your safety or health right now"
-        case .anger:        return "something you genuinely care about is being blocked or harmed"
-        case .shame:        return "being open about this really would get you rejected by people who matter"
-        case .sadness:      return "you've actually lost something that mattered"
-        case .guilt: return "you've genuinely acted against your own values"
+        case .fear:         return String(localized: "there's a real threat to your safety or health right now")
+        case .anger:        return String(localized: "something you genuinely care about is being blocked or harmed")
+        case .shame:        return String(localized: "being open about this really would get you rejected by people who matter")
+        case .sadness:      return String(localized: "you've actually lost something that mattered")
+        case .guilt: return String(localized: "you've genuinely acted against your own values")
         }
     }
 

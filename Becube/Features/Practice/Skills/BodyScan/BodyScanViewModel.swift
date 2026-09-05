@@ -18,7 +18,7 @@ enum BodyRegion: Int, CaseIterable, Identifiable {
 
     var id: Int { rawValue }
 
-    var title: String {
+    var title: LocalizedStringKey {
         switch self {
         case .feet:      return "Feet"
         case .legs:      return "Legs"
@@ -33,7 +33,7 @@ enum BodyRegion: Int, CaseIterable, Identifiable {
 
     /// Deliberately phrased as noticing, never as fixing. "Relax your
     /// shoulders" turns a scan into a task you can fail at.
-    var prompt: String {
+    var prompt: LocalizedStringKey {
         switch self {
         case .feet:      return "Toes, soles, heels. Warmth, pressure, or nothing at all."
         case .legs:      return "Calves, knees, thighs. Notice their weight."
