@@ -13,6 +13,11 @@ import SwiftUI
 private struct RouteDestinations: ViewModifier {
     @Environment(GardenStore.self) private var gardenStore
 
+    /// Shared with `ForestMapView`'s area buttons so a `.forestArea` push can
+    /// zoom in from the tapped button instead of sliding. `nil` on every stack
+    /// but the Forest tab's, which is the only route that opts into this.
+    var zoomNamespace: Namespace.ID?
+
     func body(content: Content) -> some View {
         content.navigationDestination(for: Route.self) { route in
             destination(for: route)
@@ -28,12 +33,25 @@ private struct RouteDestinations: ViewModifier {
         switch route {
         case .forestArea(let areaID):
             if let area = ContentRepository.area(id: areaID) {
-                ForestAreaView(viewModel: ForestAreaViewModel(gardenStore: gardenStore, forestArea: area))
+                let areaView = ForestAreaView(
+                    viewModel: ForestAreaViewModel(gardenStore: gardenStore, forestArea: area),
+                    namespace: zoomNamespace
+                )
+                if let zoomNamespace {
+                    areaView.navigationTransition(.zoom(sourceID: areaID, in: zoomNamespace))
+                } else {
+                    areaView
+                }
             }
 
         case .lockedPlant(let skillID):
             if let skill = ContentRepository.skill(id: skillID) {
-                SingleLockedPlant(skill: skill)
+                let lockedView = SingleLockedPlant(skill: skill)
+                if let zoomNamespace {
+                    lockedView.navigationTransition(.zoom(sourceID: skillID, in: zoomNamespace))
+                } else {
+                    lockedView
+                }
             }
 
         case .skillDetail(let skillID):
@@ -66,8 +84,11 @@ private struct RouteDestinations: ViewModifier {
 }
 
 extension View {
-    /// One line on the root content of each `NavigationStack`.
-    func routeDestinations() -> some View {
-        modifier(RouteDestinations())
+    /// One line on the root content of each `NavigationStack`. Pass
+    /// `zoomNamespace` only on the stack whose root also tags a source view
+    /// with a matching `.matchedTransitionSource(id:in:)` — currently just
+    /// the Forest tab's map.
+    func routeDestinations(zoomNamespace: Namespace.ID? = nil) -> some View {
+        modifier(RouteDestinations(zoomNamespace: zoomNamespace))
     }
 }

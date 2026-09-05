@@ -13,6 +13,7 @@ import SwiftData
 struct RootView: View {
     @Environment(GardenStore.self) private var gardenStore
     @Environment(Router.self) private var router
+    @Namespace private var forestZoomNamespace
 
     var body: some View {
         @Bindable var router = router
@@ -41,8 +42,8 @@ struct RootView: View {
             .tag(AppTab.garden)
             
             NavigationStack(path: $router.forestPath) {
-                ForestMapView()
-                    .routeDestinations()
+                ForestMapView(namespace: forestZoomNamespace)
+                    .routeDestinations(zoomNamespace: forestZoomNamespace)
                     .tabBarVisible(router.forestPath.isEmpty)
             }
             .tabItem{

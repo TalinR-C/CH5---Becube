@@ -38,8 +38,14 @@ struct ForestAreaView: View {
     // Figma artboard dimensions the designer used — positions in areas.json are in these units
     private let figmaFrame = CGSize(width: 390, height: 844)
 
-    init(viewModel: ForestAreaViewModel) {
+    /// Shared with `RouteDestinations` so tapping a skill bubble zooms into
+    /// `SingleLockedPlant` instead of the default slide push. `nil` when this
+    /// view is built without one (e.g. in previews).
+    let namespace: Namespace.ID?
+
+    init(viewModel: ForestAreaViewModel, namespace: Namespace.ID? = nil) {
         self.viewModel = viewModel
+        self.namespace = namespace
     }
 
     var body: some View {
@@ -104,7 +110,7 @@ struct ForestAreaView: View {
         // `.learn(skillID:)` if a bubble should drop straight into the
         // lesson instead. The plant art sits in the same button as the
         // bubble so tapping either one opens the skill.
-        Button {
+        let bubble = Button {
             currentState = .completed
             router.push(.lockedPlant(skillID: skill.id))
         } label: {
@@ -160,6 +166,12 @@ struct ForestAreaView: View {
         .disabled(shouldDisable)
         .opacity(shouldDisable ? 0.6 : 1.0)
         .animation(.easeInOut, value: shouldDisable)
+
+        if let namespace {
+            bubble.matchedTransitionSource(id: skill.id, in: namespace)
+        } else {
+            bubble
+        }
     }
 }
 
