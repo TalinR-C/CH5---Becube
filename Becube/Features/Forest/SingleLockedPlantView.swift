@@ -85,7 +85,7 @@ struct SingleLockedPlant: View {
                                         .padding(.bottom, 13)
                                 }
                                 
-                                Text(skill.info["what"] ?? "Description is not found.")
+                                Text(skill.localizedInfo("what"))
                                     .font(.system(size: 15, weight: .regular, design: .rounded))
                                     .multilineTextAlignment(.center)
                                     .foregroundStyle(.darkBrown)
