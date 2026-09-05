@@ -15,6 +15,9 @@ struct ForestMapView: View {
     @Environment(Router.self) private var router
     @State private var viewModel: ForestMapViewModel?
     @State private var showAreaLocked = false
+    /// Shared with `RouteDestinations` so tapping an area button zooms into
+    /// `ForestAreaView` instead of the default slide push.
+    let namespace: Namespace.ID
     /// Reset in `onAppear`, so a picker waved away comes back on the next visit
     /// to the tab — and the moment the user pops back from the area they just
     /// finished. Nothing to persist: declining a free area is not a decision
@@ -90,6 +93,7 @@ struct ForestMapView: View {
             AreaButton(areaStatus: status)
         }
         .buttonStyle(.plain)
+        .matchedTransitionSource(id: area.id, in: namespace)
     }
 
     /// Whether the map is currently offering a choice of area.
@@ -142,7 +146,8 @@ struct ForestMapView: View {
         }
     }
 
-    init() {
+    init(namespace: Namespace.ID) {
+        self.namespace = namespace
         self.viewModel = nil
     }
 }
@@ -153,6 +158,21 @@ struct ForestMapView: View {
 /// The overwrite is the point: `GardenState.init` has a `#if DEBUG` block that
 /// opens every area and every skill, which would leave the picker with nothing
 /// to offer in any debug run.
+/// Hosts a `@Namespace` for the preview: `Namespace` can only live inside a
+/// `View`'s own property-wrapper storage, so `forestMapPreview` can't declare
+/// one itself as a free function.
+private struct ForestMapPreviewHost: View {
+    let router: Router
+    @Namespace private var namespace
+
+    var body: some View {
+        NavigationStack(path: Bindable(router).forestPath) {
+            ForestMapView(namespace: namespace)
+                .routeDestinations(zoomNamespace: namespace)
+        }
+    }
+}
+
 @MainActor
 private func forestMapPreview(areas: [String], plants: [String]) -> some View {
     let container = try! ModelContainer(
@@ -164,13 +184,10 @@ private func forestMapPreview(areas: [String], plants: [String]) -> some View {
     gardenStore.gardenState.unlockedPlantsID = plants
     let router = Router()
 
-    return NavigationStack(path: Bindable(router).forestPath) {
-        ForestMapView()
-            .routeDestinations()
-    }
-    .modelContainer(container)
-    .environment(gardenStore)
-    .environment(router)
+    return ForestMapPreviewHost(router: router)
+        .modelContainer(container)
+        .environment(gardenStore)
+        .environment(router)
 }
 
 private let waterfallSkillIDs = ContentRepository.area(id: "waterfall")?.copingSkillIds ?? []
